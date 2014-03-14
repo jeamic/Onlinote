@@ -1,4 +1,4 @@
-/* quentin girard */
+/* quentin girard  test commit*/
 public class Carre extends Quadrilatere {
 
 	//constructeur de la classe Carre
