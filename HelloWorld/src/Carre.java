@@ -7,7 +7,8 @@ public class Carre extends Quadrilatere {
 		this.type = "carré";
 		//coucou
 		//coucou2
-		//coucou3 
+		//coucou3
+		//coucou4
 		// TODO Auto-generated constructor stub
 	}
 	
