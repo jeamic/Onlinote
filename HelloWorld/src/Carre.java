@@ -5,6 +5,7 @@ public class Carre extends Quadrilatere {
 	public Carre(InterPoint a, InterPoint b, InterPoint c, InterPoint d, String couleurTrait, String couleuInterieur) {
 		super(a, b, c, d, couleurTrait, couleuInterieur);
 		this.type = "carré";
+		//coucou
 		// TODO Auto-generated constructor stub
 	}
 	
