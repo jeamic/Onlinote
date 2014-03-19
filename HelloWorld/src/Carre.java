@@ -6,6 +6,7 @@ public class Carre extends Quadrilatere {
 		super(a, b, c, d, couleurTrait, couleuInterieur);
 		this.type = "carré";
 		//coucou
+		//coucou2
 		// TODO Auto-generated constructor stub
 	}
 	
