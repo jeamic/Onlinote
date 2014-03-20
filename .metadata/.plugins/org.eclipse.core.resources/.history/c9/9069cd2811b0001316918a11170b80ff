@@ -1,0 +1,20 @@
+package fenetres;
+
+public class ConnexionClick {
+	
+	public static void clicked() {
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
+
+	
+}
