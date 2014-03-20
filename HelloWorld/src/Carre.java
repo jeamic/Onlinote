@@ -4,7 +4,7 @@ public class Carre extends Quadrilatere {
 	//constructeur de la classe Carre
 	public Carre(InterPoint a, InterPoint b, InterPoint c, InterPoint d, String couleurTrait, String couleuInterieur) {
 		super(a, b, c, d, couleurTrait, couleuInterieur);
-		this.type = "carré";
+		this.type = "carrÃ¨";
 		//coucou
 		//coucou2
 		//coucou3
@@ -12,10 +12,10 @@ public class Carre extends Quadrilatere {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//renvoie les propriétes du carré
+	//renvoie les propriÃ©tes du carrÃ©
 	@Override
 	public String proprietes() {
-		return "Le carré est à la fois un losange et un rectangle, il possède donc les propriétés de ces deux quadrilatères. Il peut également être vu comme un polygone régulier, ce qui permet de démontrer ses propriétés par déduction de celles de ces polygones.";
+		return "Le carrÃ© est Ã  la fois un losange et un rectangle, il possÃ¨de donc les propriÃ©tÃ©s de ces deux quadrilatÃ¨res. Il peut Ã©galement Ãªtre vu comme un polygone rÃ©gulier, ce qui permet de dÃ©montrer ses propriÃ©tÃ©s par dÃ©duction de celles de ces polygones.";
 	}
 	
 	public double getPerimetre () {
