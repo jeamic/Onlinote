@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="C:/Users/Mika/Desktop/eclipse-standard-kepler-SR2-win32/eclipse/plugins/org.eclipse.ui.forms_3.6.1.v20130822-1117.jar" sourcepath="C:/Users/Mika/Desktop/eclipse-standard-kepler-SR2-win32/eclipse/plugins/org.eclipse.ui.forms.source_3.6.1.v20130822-1117.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mika/Desktop/ojdbc7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mika/Downloads/Photo cadre/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="E:/Programmation/Java/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
