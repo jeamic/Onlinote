@@ -1,4 +1,4 @@
-package src.Fenetre;
+package Fenetre;
 
 public class MaFenetre {
 
