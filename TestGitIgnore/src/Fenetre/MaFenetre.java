@@ -1,4 +1,4 @@
-package Fenetre;
+package src.Fenetre;
 
 public class MaFenetre {
 
@@ -6,4 +6,5 @@ public class MaFenetre {
 		System.out.println("hello");
 	}
 	/////////blabla
+	////////blabla2
 }
