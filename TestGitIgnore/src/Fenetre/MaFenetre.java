@@ -8,4 +8,5 @@ public class MaFenetre {
 	/////////blabla
 	////////blabla2
 	/////// blabla3
+	/////// blabla4
 }
