@@ -51,45 +51,41 @@ public class test {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 687, 358);
+		frame.setBounds(100, 100, 448, 212);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(328, 122, 86, 20);
+		textField.setBounds(242, 40, 86, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNomDutilisateur = new JLabel("Nom d'utilisateur :");
-		lblNomDutilisateur.setBounds(205, 125, 97, 14);
+		lblNomDutilisateur.setBounds(76, 43, 129, 14);
 		frame.getContentPane().add(lblNomDutilisateur);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(328, 153, 86, 20);
+		textField_1.setBounds(242, 73, 86, 20);
 		frame.getContentPane().add(textField_1);
 		
 		JLabel lblMotDePasse = new JLabel("Mot de passe :");
-		lblMotDePasse.setBounds(205, 156, 97, 14);
+		lblMotDePasse.setBounds(76, 76, 129, 14);
 		frame.getContentPane().add(lblMotDePasse);
 		
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ConnexionClick.clicked();
+				ConnexionClick.clicked(textField.getText(), textField_1.getText());
 			}
 		});
 		btnConnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnConnexion.setBounds(263, 198, 89, 23);
+		btnConnexion.setBounds(169, 117, 89, 23);
 		frame.getContentPane().add(btnConnexion);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
-		chckbxNewCheckBox.setBounds(451, 215, 97, 23);
-		frame.getContentPane().add(chckbxNewCheckBox);
 		
 		//JLabel label2 = new JLabel("..");
 		//label2.setBounds(280, 250, 46, 14);

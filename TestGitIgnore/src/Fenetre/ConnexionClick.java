@@ -51,19 +51,31 @@ public class ConnexionClick {
 		return conn;
 	}
 	
-	public static void clicked() {
+	public static void clicked(String Id, String Password) {
 		Connection conn = connexion();
 		
 		if(conn != null)
 			try {
 				
 				java.sql.Statement stat = conn.createStatement();
-				java.sql.ResultSet res = stat.executeQuery("Select ID, Password from utilisateur");
+				java.sql.ResultSet res = stat.executeQuery("Select Password from utilisateur where id = " + Id);
+				
 				while (res.next())
 				{
-					System.out.println(res.getInt(1));
-					System.out.println(res.getString(2));
+					if (res.getString(1).equals(Password))
+						{
+							System.out.println("Connecté");
+							MainFenetre window = new MainFenetre();							
+							//test.click();
+						}
+					else
+					System.out.println("Le mot de passe n'est pas bon");
 				}
+				
+				System.out.println("Connexion échoué");
+				
+				
+				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
