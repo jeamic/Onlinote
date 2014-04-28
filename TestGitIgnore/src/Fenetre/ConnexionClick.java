@@ -72,7 +72,7 @@ public class ConnexionClick {
 					System.out.println("Le mot de passe n'est pas bon");
 				}
 				
-				System.out.println("Connexion échoué");
+				System.out.println("Connexion échouée");
 				
 				
 				
