@@ -64,7 +64,7 @@ public class ConnexionClick {
 				{
 					if (res.getString(1).equals(Password))
 						{
-							System.out.println("Connecté");
+							System.out.println("ConnectÃ©");
 							MainFenetre window = new MainFenetre();							
 							//test.click();
 						}
@@ -72,7 +72,7 @@ public class ConnexionClick {
 					System.out.println("Le mot de passe n'est pas bon");
 				}
 				
-				System.out.println("Connexion échoué");
+				System.out.println("Connexion Ã©chouÃ©");
 				
 				
 				
