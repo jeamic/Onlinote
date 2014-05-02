@@ -60,7 +60,7 @@ public class test {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNomDutilisateur = new JLabel("Nom d'utilisateur :");
+		JLabel lblNomDutilisateur = new JLabel("Email :");
 		lblNomDutilisateur.setBounds(76, 43, 129, 14);
 		frame.getContentPane().add(lblNomDutilisateur);
 		

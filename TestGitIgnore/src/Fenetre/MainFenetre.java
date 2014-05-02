@@ -48,7 +48,7 @@ public class MainFenetre {
 		
 		Label lblConnect = new Label(shell, SWT.NONE);
 		lblConnect.setBounds(198, 115, 55, 15);
-		lblConnect.setText("Connect\u00E9");
+		lblConnect.setText("Connecté");
 
 	}
 }

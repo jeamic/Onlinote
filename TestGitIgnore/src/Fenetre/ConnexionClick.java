@@ -24,7 +24,7 @@ public class ConnexionClick {
 		Connection conn = null;
 		try
 		{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/Onlinote", "root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/onlinote", "root", "");
 			
 		}
 		catch(SQLException e)
@@ -51,38 +51,45 @@ public class ConnexionClick {
 		return conn;
 	}
 	
-	public static void clicked(String Id, String Password) {
+	public static void clicked(String Email, String Password) {
+		
 		Connection conn = connexion();
+		PreparedStatement stmt = null;
 		
 		if(conn != null)
+		{
+
 			try {
+				stmt = (PreparedStatement) conn.prepareStatement("Select mot_de_passe from personne where email = ?");
+				stmt.setString(1, Email);
+				ResultSet res = (ResultSet) stmt.executeQuery();
 				
-				java.sql.Statement stat = conn.createStatement();
-				java.sql.ResultSet res = stat.executeQuery("Select Password from utilisateur where id = " + Id);
-				
+//				java.sql.Statement stat = conn.createStatement();
+//				java.sql.ResultSet res = stat.executeQuery("Select mot_de_passe from personne where email = " + Email);
+
 				while (res.next())
 				{
-					if (res.getString(1).equals(Password))
-						{
-							System.out.println("Connecté");
-							MainFenetre window = new MainFenetre();							
-							//test.click();
-						}
+					if (res.getString("mot_de_passe").equals(Password))
+					{
+						System.out.println("Connecté");
+					}
 					else
-					System.out.println("Le mot de passe n'est pas bon");
+					{
+						System.out.println("Le mot de passe n'est pas bon");
+					}
 				}
-				
-				System.out.println("Connexion échouée");
-				
-				
 				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Connexion échouée");
 			}
+		}
 		else
+		{
 			System.out.println("null !");
+		}
 		
 	}
 	
