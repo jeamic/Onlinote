@@ -1,0 +1,3 @@
+BDD_ADDRESS="jdbc:mysql://localhost/onlinote";
+BDD_LOGIN="root";
+BDD_PASSWORD="";
