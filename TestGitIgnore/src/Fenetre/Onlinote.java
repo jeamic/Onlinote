@@ -17,7 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
 
-public class test {
+public class Onlinote {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -30,7 +30,7 @@ public class test {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					test window = new test();
+					Onlinote window = new Onlinote();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class test {
 	/**
 	 * Create the application.
 	 */
-	public test() {
+	public Onlinote() {
 		initialize();
 	}
 

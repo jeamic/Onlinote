@@ -1,5 +1,9 @@
 package Fenetre;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,6 +14,7 @@ import com.mysql.jdbc.Statement;
 
 public class ConnexionClick {
 	
+	/* Classe de connexion à la BDD */
 	public static Connection connexion() {
 		try
 		{
@@ -18,14 +23,42 @@ public class ConnexionClick {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			
 		}
 		
 		Connection conn = null;
 		try
 		{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/onlinote", "root", "");
-			
+			@SuppressWarnings("resource")
+			String filePath = new File("").getAbsolutePath();
+			BufferedReader br = new BufferedReader(new FileReader(filePath + "/src/Fenetre/conf/bdd"));
+			String sCurrentLine;
+			String BDD_ADDRESS ="";
+			String BDD_LOGIN ="";
+			String BDD_PASSWORD ="";
+			String [] BDD_CONF;
+ 
+			while ((sCurrentLine = br.readLine()) != null) {
+				
+				if (sCurrentLine.contains("BDD_ADDRESS"))
+				{
+					BDD_CONF = sCurrentLine.split("\"");
+					BDD_ADDRESS = BDD_CONF[1];
+					continue;
+				}
+				if (sCurrentLine.contains("BDD_LOGIN"))
+				{
+					BDD_CONF = sCurrentLine.split("\"");
+					BDD_LOGIN = BDD_CONF[1];
+					continue;
+				}
+				if (sCurrentLine.contains("BDD_PASSWORD"))
+				{
+					BDD_CONF = sCurrentLine.split("\"");
+					BDD_PASSWORD = BDD_CONF[1];
+					continue;
+				}
+			}			
+			conn = DriverManager.getConnection(BDD_ADDRESS, BDD_LOGIN, BDD_PASSWORD);
 		}
 		catch(SQLException e)
 		{
@@ -38,16 +71,11 @@ public class ConnexionClick {
 				e.printStackTrace();
 				e=e.getNextException();
 			}
-			
-			//return null;
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			
-			//return null;
 		}
-		
 		return conn;
 	}
 	
@@ -58,17 +86,14 @@ public class ConnexionClick {
 		
 		if(conn != null)
 		{
-
 			try {
 				stmt = (PreparedStatement) conn.prepareStatement("Select mot_de_passe from personne where email = ?");
 				stmt.setString(1, Email);
 				ResultSet res = (ResultSet) stmt.executeQuery();
 				
-//				java.sql.Statement stat = conn.createStatement();
-//				java.sql.ResultSet res = stat.executeQuery("Select mot_de_passe from personne where email = " + Email);
-
-				while (res.next())
+				if (res.first())
 				{
+					
 					if (res.getString("mot_de_passe").equals(Password))
 					{
 						System.out.println("Connecté");
@@ -78,8 +103,10 @@ public class ConnexionClick {
 						System.out.println("Le mot de passe n'est pas bon");
 					}
 				}
-				
-				
+				else
+				{
+					System.out.println("Nom d'utilisateur incorrect");
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
