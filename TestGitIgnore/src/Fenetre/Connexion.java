@@ -2,7 +2,9 @@ package Fenetre;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,31 +14,27 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
-public class ConnexionClick {
+public class Connexion {
 	
 	/* Classe de connexion à la BDD */
-	public static Connection connexion() {
-		try
-		{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
+	public static Connection connexion() throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		Connection conn = null;
 		try
 		{
-			@SuppressWarnings("resource")
+			/* objet de connexion à la base */
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			/* construire chemin absolu du fichier de conf*/
 			String filePath = new File("").getAbsolutePath();
+			@SuppressWarnings("resource")
 			BufferedReader br = new BufferedReader(new FileReader(filePath + "/src/Fenetre/conf/bdd"));
 			String sCurrentLine;
+			/* Macros de connexion */
 			String BDD_ADDRESS ="";
 			String BDD_LOGIN ="";
 			String BDD_PASSWORD ="";
 			String [] BDD_CONF;
  
+			/* parcours du fichier de config et extraction des données utiles */
 			while ((sCurrentLine = br.readLine()) != null) {
 				
 				if (sCurrentLine.contains("BDD_ADDRESS"))
@@ -57,7 +55,8 @@ public class ConnexionClick {
 					BDD_PASSWORD = BDD_CONF[1];
 					continue;
 				}
-			}			
+			}
+			/* connexion */
 			conn = DriverManager.getConnection(BDD_ADDRESS, BDD_LOGIN, BDD_PASSWORD);
 		}
 		catch(SQLException e)
@@ -72,18 +71,16 @@ public class ConnexionClick {
 				e=e.getNextException();
 			}
 		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
 		return conn;
 	}
 	
-	public static void clicked(String Email, String Password) {
-		
-		Connection conn = connexion();
+	/* Démarre l'application avec un des quatre types de droit*/
+	public static String startApp(String Email, String Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+		Connection conn = null;
 		PreparedStatement stmt = null;
-		
+		conn = connexion();
+		String type_connexion = "";
+
 		if(conn != null)
 		{
 			try {
@@ -93,7 +90,6 @@ public class ConnexionClick {
 				
 				if (res.first())
 				{
-					
 					if (res.getString("mot_de_passe").equals(Password))
 					{
 						System.out.println("Connecté");
@@ -107,6 +103,23 @@ public class ConnexionClick {
 				{
 					System.out.println("Nom d'utilisateur incorrect");
 				}
+				
+				stmt = null;
+				res = null;
+				stmt = (PreparedStatement) conn.prepareStatement("Select type_p from personne where email = ?");
+				stmt.setString(1, Email);
+				res = (ResultSet) stmt.executeQuery();
+				
+				if (res.first())
+				{
+					System.out.println(res.getString("type_p"));
+					type_connexion = res.getString("type_p");
+				}
+				else
+				{
+					System.out.println("Type de connexion inconnu");
+				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -117,7 +130,7 @@ public class ConnexionClick {
 		{
 			System.out.println("null !");
 		}
-		
+		return type_connexion;
 	}
 	
 }
