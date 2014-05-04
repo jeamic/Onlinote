@@ -75,7 +75,7 @@ public class Connexion {
 	}
 	
 	/* Démarre l'application avec un des quatre types de droit*/
-	public static String startApp(String Email, char [] Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+	public static void startApp(String Email, char [] Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -95,19 +95,12 @@ public class Connexion {
 				{
 					boolean mdp_ok = false;
 					tmp_password = res.getString("mot_de_passe").toCharArray();
-					if (tmp_password.length != 0)
+					if ((tmp_password.length != 0) && (tmp_password.length == Password.length))
 					{
 						for (int i = 0; i < Password.length; ++i)
 						{
-							if (Password[i] != tmp_password[i])
-							{
-								mdp_ok = false;
-								break;
-							}
-							else
-							{
-								mdp_ok = true;
-							}
+							mdp_ok = (Password[i] != tmp_password[i]) ? false : true;
+							if (mdp_ok == false) break;
 						}
 					}
 					if (mdp_ok)
@@ -118,16 +111,7 @@ public class Connexion {
 						stmt = (PreparedStatement) conn.prepareStatement("Select type_p from personne where email = ?");
 						stmt.setString(1, Email);
 						res = (ResultSet) stmt.executeQuery();
-						
-						if (res.first())
-						{
-							System.out.println(res.getString("type_p"));
-							type_connexion = res.getString("type_p");
-						}
-						else
-						{
-							System.out.println("Type de connexion inconnu");
-						}
+						type_connexion = (res.first()) ?  res.getString("type_p") : "Type de connexion inconnu";
 					}
 					else
 					{
@@ -139,17 +123,30 @@ public class Connexion {
 					System.out.println("Nom d'utilisateur incorrect");
 				}
 			} 
-			catch (SQLException e) {
+			catch (SQLException e) 
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Connexion échouée");
 			}
 		}
-		else
-		{
-			System.out.println("null !");
+		
+		switch (type_connexion) {
+			case "élève": 
+				TypeConnexion t_con = new TypeConnexion("élève");
+				break;
+			case "professeur": 
+				TypeConnexion t_con1 = new TypeConnexion("professeur");
+				break;
+			case "parent": 
+				TypeConnexion t_con2 = new TypeConnexion("parent");
+				break;
+			case "admin": 
+				TypeConnexion t_con3 = new TypeConnexion("admin");
+				break;
+			default:
+				break;
 		}
-		return type_connexion;
 	}
 	
 }

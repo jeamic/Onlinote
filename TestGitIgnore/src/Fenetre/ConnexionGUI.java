@@ -18,12 +18,6 @@ public class ConnexionGUI {
 	private JPasswordField passwordField;
 	
 	public ConnexionGUI() {
-	}
-	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	public void Affiche (){
 		frmConnexion = new JFrame();
 		frmConnexion.setTitle("Connexion");
 		frmConnexion.setBounds(100, 100, 448, 212);
@@ -31,20 +25,20 @@ public class ConnexionGUI {
 		frmConnexion.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(199, 40, 129, 20);
+		textField.setBounds(164, 40, 223, 20);
 		frmConnexion.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNomDutilisateur = new JLabel("Email :");
-		lblNomDutilisateur.setBounds(76, 43, 129, 14);
+		lblNomDutilisateur.setBounds(41, 43, 129, 14);
 		frmConnexion.getContentPane().add(lblNomDutilisateur);
 		
 		JLabel lblMotDePasse = new JLabel("Mot de passe :");
-		lblMotDePasse.setBounds(76, 76, 129, 14);
+		lblMotDePasse.setBounds(41, 76, 129, 14);
 		frmConnexion.getContentPane().add(lblMotDePasse);
 		
 		JButton btnConnexion = new JButton("Connexion");
-		btnConnexion.setBounds(199, 117, 129, 23);
+		btnConnexion.setBounds(215, 110, 129, 23);
 		frmConnexion.getContentPane().add(btnConnexion);
 		
 		/* écouteur d'évènements sur le bouton connexion */
@@ -67,9 +61,10 @@ public class ConnexionGUI {
 		frmConnexion.getRootPane().setDefaultButton(btnConnexion);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(199, 73, 129, 20);
+		passwordField.setBounds(164, 73, 223, 20);
 		frmConnexion.getContentPane().add(passwordField);
 		
 		frmConnexion.setVisible(true);
 	}
+
 }

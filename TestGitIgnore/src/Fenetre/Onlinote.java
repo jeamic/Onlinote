@@ -40,8 +40,9 @@ public class Onlinote {
 	 * Create the application.
 	 */
 	public Onlinote() {
-		ConnexionGUI fen_con = new ConnexionGUI();
-		fen_con.Affiche();
+		{
+			ConnexionGUI fen_con = new ConnexionGUI();
+		}
 	}
 
 }
