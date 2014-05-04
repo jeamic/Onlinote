@@ -9,43 +9,43 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class ConnexionGUI {
 	
-	private JFrame frame;
+	private JFrame frmConnexion;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField passwordField;
 	
 	public ConnexionGUI() {
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void Affiche (){
-		frame = new JFrame();
-		frame.setBounds(100, 100, 448, 212);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmConnexion = new JFrame();
+		frmConnexion.setTitle("Connexion");
+		frmConnexion.setBounds(100, 100, 448, 212);
+		frmConnexion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConnexion.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(242, 40, 86, 20);
-		frame.getContentPane().add(textField);
+		textField.setBounds(199, 40, 129, 20);
+		frmConnexion.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNomDutilisateur = new JLabel("Email :");
 		lblNomDutilisateur.setBounds(76, 43, 129, 14);
-		frame.getContentPane().add(lblNomDutilisateur);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(242, 73, 86, 20);
-		frame.getContentPane().add(textField_1);
+		frmConnexion.getContentPane().add(lblNomDutilisateur);
 		
 		JLabel lblMotDePasse = new JLabel("Mot de passe :");
 		lblMotDePasse.setBounds(76, 76, 129, 14);
-		frame.getContentPane().add(lblMotDePasse);
+		frmConnexion.getContentPane().add(lblMotDePasse);
 		
 		JButton btnConnexion = new JButton("Connexion");
-		btnConnexion.setBounds(169, 117, 89, 23);
-		frame.getContentPane().add(btnConnexion);
+		btnConnexion.setBounds(199, 117, 129, 23);
+		frmConnexion.getContentPane().add(btnConnexion);
 		
 		/* écouteur d'évènements sur le bouton connexion */
 		btnConnexion.addActionListener(new ActionListener (){
@@ -53,7 +53,7 @@ public class ConnexionGUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					Connexion.startApp(textField.getText(), textField_1.getText());
+					Connexion.startApp(textField.getText(), passwordField.getPassword());
 				} 
 				catch (InstantiationException | IllegalAccessException
 						| ClassNotFoundException | IOException e1) {
@@ -64,8 +64,12 @@ public class ConnexionGUI {
 			
 		});
 		/* activer la connexion quand on presse entrée */
-		frame.getRootPane().setDefaultButton(btnConnexion);
+		frmConnexion.getRootPane().setDefaultButton(btnConnexion);
 		
-		frame.setVisible(true);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(199, 73, 129, 20);
+		frmConnexion.getContentPane().add(passwordField);
+		
+		frmConnexion.setVisible(true);
 	}
 }

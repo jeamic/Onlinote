@@ -16,7 +16,7 @@ import com.mysql.jdbc.Statement;
 
 public class Connexion {
 	
-	/* Classe de connexion à la BDD */
+	/* Connexion à la BDD */
 	public static Connection connexion() throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		Connection conn = null;
 		try
@@ -75,24 +75,59 @@ public class Connexion {
 	}
 	
 	/* Démarre l'application avec un des quatre types de droit*/
-	public static String startApp(String Email, String Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+	public static String startApp(String Email, char [] Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		conn = connexion();
 		String type_connexion = "";
+		char [] tmp_password = null;
 
 		if(conn != null)
 		{
-			try {
+			try 
+			{
 				stmt = (PreparedStatement) conn.prepareStatement("Select mot_de_passe from personne where email = ?");
 				stmt.setString(1, Email);
 				ResultSet res = (ResultSet) stmt.executeQuery();
 				
 				if (res.first())
 				{
-					if (res.getString("mot_de_passe").equals(Password))
+					boolean mdp_ok = false;
+					tmp_password = res.getString("mot_de_passe").toCharArray();
+					if (tmp_password.length != 0)
+					{
+						for (int i = 0; i < Password.length; ++i)
+						{
+							if (Password[i] != tmp_password[i])
+							{
+								mdp_ok = false;
+								break;
+							}
+							else
+							{
+								mdp_ok = true;
+							}
+						}
+					}
+					if (mdp_ok)
 					{
 						System.out.println("Connecté");
+						stmt = null;
+						res = null;
+						stmt = (PreparedStatement) conn.prepareStatement("Select type_p from personne where email = ?");
+						stmt.setString(1, Email);
+						res = (ResultSet) stmt.executeQuery();
+						
+						if (res.first())
+						{
+							System.out.println(res.getString("type_p"));
+							type_connexion = res.getString("type_p");
+						}
+						else
+						{
+							System.out.println("Type de connexion inconnu");
+						}
 					}
 					else
 					{
@@ -103,24 +138,8 @@ public class Connexion {
 				{
 					System.out.println("Nom d'utilisateur incorrect");
 				}
-				
-				stmt = null;
-				res = null;
-				stmt = (PreparedStatement) conn.prepareStatement("Select type_p from personne where email = ?");
-				stmt.setString(1, Email);
-				res = (ResultSet) stmt.executeQuery();
-				
-				if (res.first())
-				{
-					System.out.println(res.getString("type_p"));
-					type_connexion = res.getString("type_p");
-				}
-				else
-				{
-					System.out.println("Type de connexion inconnu");
-				}
-				
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Connexion échouée");
