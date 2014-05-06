@@ -1,7 +1,6 @@
 package baseDAO;
+import bddConnect.ConnexionJDBC;
 import com.mysql.jdbc.Connection;
-
-import Fenetre.*;
 
 public abstract class DAO <T>{
 	public Connection connect = (Connection) ConnexionJDBC.getInstance();
@@ -11,7 +10,7 @@ public abstract class DAO <T>{
 	 * @param id
 	 * @return
 	 */
-	public abstract T find(long id);
+	public abstract T find(int id);
 	
 	/**
 	 * Permet de créer une entrée dans la base de données

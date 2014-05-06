@@ -1,4 +1,4 @@
-package Fenetre;
+package bddConnect;
 
 import java.io.BufferedReader;
 import java.io.File;
