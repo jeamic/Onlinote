@@ -1,5 +1,6 @@
 package Fenetre;
 
+import bddConnect.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,73 +17,14 @@ import com.mysql.jdbc.Statement;
 
 public class Connexion {
 	
-	/* Connexion à la BDD */
-	public static Connection connexion() throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
-		Connection conn = null;
-		try
-		{
-			/* objet de connexion à la base */
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			/* construire chemin absolu du fichier de conf*/
-			String filePath = new File("").getAbsolutePath();
-			@SuppressWarnings("resource")
-			BufferedReader br = new BufferedReader(new FileReader(filePath + "/src/Fenetre/conf/bdd"));
-			String sCurrentLine;
-			/* Macros de connexion */
-			String BDD_ADDRESS ="";
-			String BDD_LOGIN ="";
-			String BDD_PASSWORD ="";
-			String [] BDD_CONF;
- 
-			/* parcours du fichier de config et extraction des données utiles */
-			while ((sCurrentLine = br.readLine()) != null) {
-				
-				if (sCurrentLine.contains("BDD_ADDRESS"))
-				{
-					BDD_CONF = sCurrentLine.split("\"");
-					BDD_ADDRESS = BDD_CONF[1];
-					continue;
-				}
-				if (sCurrentLine.contains("BDD_LOGIN"))
-				{
-					BDD_CONF = sCurrentLine.split("\"");
-					BDD_LOGIN = BDD_CONF[1];
-					continue;
-				}
-				if (sCurrentLine.contains("BDD_PASSWORD"))
-				{
-					BDD_CONF = sCurrentLine.split("\"");
-					BDD_PASSWORD = BDD_CONF[1];
-					continue;
-				}
-			}
-			/* connexion */
-			conn = DriverManager.getConnection(BDD_ADDRESS, BDD_LOGIN, BDD_PASSWORD);
-		}
-		catch(SQLException e)
-		{
-			System.out.println("sql exception");
-			while (e!=null)
-			{
-				System.out.println(e.getErrorCode());
-				System.out.println(e.getMessage());
-				System.out.println(e.getSQLState());
-				e.printStackTrace();
-				e=e.getNextException();
-			}
-		}
-		return conn;
-	}
-	
 	/* Démarre l'application avec un des quatre types de droit*/
 	public static void startApp(String Email, char [] Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		conn = connexion();
+		conn = ConnexionJDBC.getInstance();
 		String type_connexion = "";
 		char [] tmp_password = null;
-
 		if(conn != null)
 		{
 			try 
@@ -133,16 +75,16 @@ public class Connexion {
 		
 		switch (type_connexion) {
 			case "élève": 
-				TypeConnexion t_con = new TypeConnexion("élève");
+				new TypeConnexion("élève");
 				break;
 			case "professeur": 
-				TypeConnexion t_con1 = new TypeConnexion("professeur");
+				new TypeConnexion("professeur");
 				break;
 			case "parent": 
-				TypeConnexion t_con2 = new TypeConnexion("parent");
+				new TypeConnexion("parent");
 				break;
 			case "admin": 
-				TypeConnexion t_con3 = new TypeConnexion("admin");
+				new TypeConnexion("admin");
 				break;
 			default:
 				break;

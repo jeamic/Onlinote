@@ -2,8 +2,10 @@ package baseDAO;
 import bddConnect.ConnexionJDBC;
 import com.mysql.jdbc.Connection;
 
-public abstract class DAO <T>{
+public abstract class DAO <T> {
+	
 	public Connection connect = (Connection) ConnexionJDBC.getInstance();
+
 	
 	/**
 	 * Permet de récupérer un objet via son ID

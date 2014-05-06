@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.gjt.mm.mysql.Driver;
+
+import com.mysql.jdbc.*;
+
 
 public class ConnexionJDBC {
 	
@@ -30,12 +34,13 @@ public class ConnexionJDBC {
 	 */
 	private static Connection connect;
 	
-	private ConnexionJDBC () throws IOException, SQLException {
+	private ConnexionJDBC () throws IOException, SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			LoadParamBDD();
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connect = DriverManager.getConnection(BDD_ADDRESS, BDD_LOGIN, BDD_PASSWORD);
 		}
-		catch (IOException e) {
+		catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		catch (SQLException e) {
@@ -47,7 +52,6 @@ public class ConnexionJDBC {
 		}
 	}
 	
-
 	private static void LoadParamBDD () throws IOException {
 		/* construire chemin absolu du fichier de conf*/
 		String filePath = new File("").getAbsolutePath();
@@ -89,6 +93,9 @@ public class ConnexionJDBC {
 	 * Méthode qui va nous retourner notre instance
 	 * et la créer si elle n'existe pas...
 	 * @return
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 * @throws IOException 
 	 */
 	public static Connection getInstance() {
@@ -100,7 +107,7 @@ public class ConnexionJDBC {
 					}
 				}
 				
-			} catch (SQLException | IOException e) {
+			} catch (SQLException | IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}		
