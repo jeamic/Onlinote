@@ -38,27 +38,28 @@ public class Connexion {
 					mdp_ok = (password[i] != tmp_password[i]) ? false : true;
 					if (mdp_ok == false) break;
 				}
+				if (mdp_ok){
+					switch (pers.getType_p()) {
+						case "élève": 
+							new TypeConnexion("élève");
+							break;
+						case "professeur": 
+							new TypeConnexion("professeur");
+							break;
+						case "parent": 
+							new TypeConnexion("parent");
+							break;
+						case "admin": 
+							new TypeConnexion("admin");
+							break;
+						default:
+							break;
+					}
+				}
 			}
 			else
 			{
 				System.out.println("Le mot de passe n'est pas bon");
-			}
-			
-			switch (pers.getType_p()) {
-				case "élève": 
-					new TypeConnexion("élève");
-					break;
-				case "professeur": 
-					new TypeConnexion("professeur");
-					break;
-				case "parent": 
-					new TypeConnexion("parent");
-					break;
-				case "admin": 
-					new TypeConnexion("admin");
-					break;
-				default:
-					break;
 			}
 		}
 		else {
