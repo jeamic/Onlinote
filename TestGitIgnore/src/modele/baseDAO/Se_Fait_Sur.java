@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Se_Fait_Sur {
+public class Se_Fait_Sur implements java.io.Serializable {
 	private String categorie;
 	private String nom_support;
 	

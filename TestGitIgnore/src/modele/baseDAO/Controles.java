@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Controles {
+public class Controles implements java.io.Serializable{
 	
 	private int id_controle;
 	private String enonce;

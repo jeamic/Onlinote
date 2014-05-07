@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Support {
+public class Support implements java.io.Serializable {
 	private String nom_support;
 	
 	public Support () {}

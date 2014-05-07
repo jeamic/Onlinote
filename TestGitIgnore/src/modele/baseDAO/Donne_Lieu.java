@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Donne_Lieu {
+public class Donne_Lieu implements java.io.Serializable {
 	String matiere;
 	String categorie;
 	

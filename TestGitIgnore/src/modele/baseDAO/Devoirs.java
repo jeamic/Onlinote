@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Devoirs {
+public class Devoirs implements java.io.Serializable {
 	String categorie;
 	String description;
 	

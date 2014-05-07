@@ -1,7 +1,7 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOMessage extends DAO<Message>{
+public class DAOMessage extends DAOFactory<Message>{
 
 	@Override
 	public Message find(int id) {

@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Choix_Option {
+public class Choix_Option implements java.io.Serializable {
 	
 	private String libelle;
 	

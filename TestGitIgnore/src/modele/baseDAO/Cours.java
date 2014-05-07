@@ -3,7 +3,7 @@ package modele.baseDAO;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Cours {
+public class Cours implements java.io.Serializable {
 	
 	private String matiere;
 	private int id_salle;

@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Salle {
+public class Salle implements java.io.Serializable {
 	private int id_salle;
 	
 	public Salle () {}

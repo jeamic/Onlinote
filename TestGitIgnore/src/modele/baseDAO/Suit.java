@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Suit {
+public class Suit implements java.io.Serializable {
 	private int id_eleve;
 	private String libelle;
 	

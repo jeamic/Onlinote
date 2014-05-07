@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Specialite {
+public class Specialite implements java.io.Serializable {
 	private String specialite;
 	
 	public Specialite () {}

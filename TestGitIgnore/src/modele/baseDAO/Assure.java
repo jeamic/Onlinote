@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Assure {
+public class Assure implements java.io.Serializable {
 	
 	private String specialite;
 	private int id_classe;

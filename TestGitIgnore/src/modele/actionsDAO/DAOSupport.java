@@ -1,7 +1,7 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOSupport extends DAO <Support>{
+public class DAOSupport extends DAOFactory <Support>{
 
 	@Override
 	public Support find(int id) {

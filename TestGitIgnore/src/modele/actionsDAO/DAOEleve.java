@@ -1,7 +1,7 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOEleve extends DAO<Eleve>{
+public class DAOEleve extends DAOFactory<Eleve>{
 
 	@Override
 	public Eleve find(int id) {

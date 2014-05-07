@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Compose {
+public class Compose implements java.io.Serializable {
 	
 	private int id_personne;
 	private int id_message;

@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Subit {
+public class Subit implements java.io.Serializable {
 	private int id_controle;
 	private int id_eleve;
 	private String matiere;

@@ -1,7 +1,7 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOCompose extends DAO <Compose>{
+public class DAOCompose extends DAOFactory <Compose>{
 
 	@Override
 	public Compose find(int id) {

@@ -1,7 +1,7 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOSpecialite extends DAO<Specialite>{
+public class DAOSpecialite extends DAOFactory<Specialite>{
 
 	@Override
 	public Specialite find(int id) {

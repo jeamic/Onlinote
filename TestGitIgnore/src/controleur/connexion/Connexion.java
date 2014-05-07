@@ -10,7 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import modele.baseDAO.Personne;
+import modele.actionsDAO.DAOPersonne;
+import modele.baseDAO.*;
 import modele.bddConnect.*;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -20,7 +21,10 @@ import com.mysql.jdbc.Statement;
 public class Connexion {
 	
 	/* Démarre l'application avec un des quatre types de droit*/
-	public static void startApp(String Email, char [] Password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+		
+		DAOPersonne DAOPers = new DAOPersonne();
+		//DAOPersonne.find(email);
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -32,18 +36,20 @@ public class Connexion {
 			try 
 			{
 				stmt = (PreparedStatement) conn.prepareStatement("Select mot_de_passe from personne where email = ?");
-				stmt.setString(1, Email);
+				stmt.setString(1, email);
 				ResultSet res = (ResultSet) stmt.executeQuery();
+				
+				
 				
 				if (res.first())
 				{
 					boolean mdp_ok = false;
 					tmp_password = res.getString("mot_de_passe").toCharArray();
-					if ((tmp_password.length != 0) && (tmp_password.length == Password.length))
+					if ((tmp_password.length != 0) && (tmp_password.length == password.length))
 					{
-						for (int i = 0; i < Password.length; ++i)
+						for (int i = 0; i < password.length; ++i)
 						{
-							mdp_ok = (Password[i] != tmp_password[i]) ? false : true;
+							mdp_ok = (password[i] != tmp_password[i]) ? false : true;
 							if (mdp_ok == false) break;
 						}
 					}
@@ -53,7 +59,7 @@ public class Connexion {
 						stmt = null;
 						res = null;
 						stmt = (PreparedStatement) conn.prepareStatement("Select type_p from personne where email = ?");
-						stmt.setString(1, Email);
+						stmt.setString(1, email);
 						res = (ResultSet) stmt.executeQuery();
 						type_connexion = (res.first()) ?  res.getString("type_p") : "Type de connexion inconnu";
 					}

@@ -1,9 +1,9 @@
-package modele.baseDAO;
+package modele.actionsDAO;
 import modele.bddConnect.ConnexionJDBC;
 
 import com.mysql.jdbc.Connection;
 
-public abstract class DAO <T> {
+public abstract class DAOFactory <T> {
 	
 	public Connection connect = (Connection) ConnexionJDBC.getInstance();
 

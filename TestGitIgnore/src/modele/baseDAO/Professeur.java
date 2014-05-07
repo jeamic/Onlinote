@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Professeur {
+public class Professeur implements java.io.Serializable {
 	private int id_prof;
 	private String specialite;
 	

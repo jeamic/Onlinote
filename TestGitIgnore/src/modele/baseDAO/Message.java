@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Message {
+public class Message implements java.io.Serializable {
 	private int id_message;
 	private String objet;
 	private String destinataires;

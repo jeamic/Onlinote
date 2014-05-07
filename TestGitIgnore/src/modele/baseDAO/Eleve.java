@@ -1,6 +1,6 @@
 package modele.baseDAO;
 
-public class Eleve {
+public class Eleve implements java.io.Serializable {
 	
 	private int id_parent;
 	private int id_classe;

@@ -1,7 +1,7 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOSuit extends DAO <Suit>{
+public class DAOSuit extends DAOFactory <Suit>{
 
 	@Override
 	public Suit find(int id) {
