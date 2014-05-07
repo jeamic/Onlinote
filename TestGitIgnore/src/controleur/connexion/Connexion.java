@@ -21,6 +21,14 @@ import com.mysql.jdbc.Statement;
 public class Connexion {
 	
 	/* Démarre l'application avec un des quatre types de droit*/
+	/**
+	 * @param email
+	 * @param password
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		
 		DAOPersonne DAOPers = new DAOPersonne();
