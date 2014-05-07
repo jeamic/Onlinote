@@ -1,5 +1,7 @@
 package vue.fenetre;
 
+import controleur.connexion.Connexion;
+
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +49,7 @@ public class ConnexionGUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					ConnexionJ.startApp(textField.getText(), passwordField.getPassword());
+					Connexion.startApp(textField.getText(), passwordField.getPassword());
 				} 
 				catch (InstantiationException | IllegalAccessException
 						| ClassNotFoundException | IOException e1) {
