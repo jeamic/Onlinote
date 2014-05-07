@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import modele.baseDAO.Personne;
 import modele.bddConnect.*;
 
 import com.mysql.jdbc.PreparedStatement;
