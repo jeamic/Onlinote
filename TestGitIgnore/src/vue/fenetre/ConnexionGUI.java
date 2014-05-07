@@ -47,7 +47,7 @@ public class ConnexionGUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					Connexion.startApp(textField.getText(), passwordField.getPassword());
+					ConnexionJ.startApp(textField.getText(), passwordField.getPassword());
 				} 
 				catch (InstantiationException | IllegalAccessException
 						| ClassNotFoundException | IOException e1) {
