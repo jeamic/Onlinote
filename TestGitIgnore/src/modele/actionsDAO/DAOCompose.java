@@ -25,5 +25,11 @@ public class DAOCompose extends DAOFactory <Compose>{
 	public void delete(Compose obj) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Compose find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

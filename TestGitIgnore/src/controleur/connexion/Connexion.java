@@ -24,79 +24,45 @@ public class Connexion {
 	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		
 		DAOPersonne DAOPers = new DAOPersonne();
-		//DAOPersonne.find(email);
+		Personne pers = DAOPers.find(email);
 		
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		conn = ConnexionJDBC.getInstance();
-		String type_connexion = "";
-		char [] tmp_password = null;
-		if(conn != null)
+		if (pers != null) //si la personne existe
 		{
-			try 
+			//test de comparaison du mot de passe
+			char [] tmp_password = pers.getMot_de_passe().toCharArray();
+			boolean mdp_ok = false;
+			if ((tmp_password.length != 0) && (tmp_password.length == password.length))
 			{
-				stmt = (PreparedStatement) conn.prepareStatement("Select mot_de_passe from personne where email = ?");
-				stmt.setString(1, email);
-				ResultSet res = (ResultSet) stmt.executeQuery();
-				
-				
-				
-				if (res.first())
+				for (int i = 0; i < password.length; ++i)
 				{
-					boolean mdp_ok = false;
-					tmp_password = res.getString("mot_de_passe").toCharArray();
-					if ((tmp_password.length != 0) && (tmp_password.length == password.length))
-					{
-						for (int i = 0; i < password.length; ++i)
-						{
-							mdp_ok = (password[i] != tmp_password[i]) ? false : true;
-							if (mdp_ok == false) break;
-						}
-					}
-					if (mdp_ok)
-					{
-						System.out.println("Connecté");
-						stmt = null;
-						res = null;
-						stmt = (PreparedStatement) conn.prepareStatement("Select type_p from personne where email = ?");
-						stmt.setString(1, email);
-						res = (ResultSet) stmt.executeQuery();
-						type_connexion = (res.first()) ?  res.getString("type_p") : "Type de connexion inconnu";
-					}
-					else
-					{
-						System.out.println("Le mot de passe n'est pas bon");
-					}
+					mdp_ok = (password[i] != tmp_password[i]) ? false : true;
+					if (mdp_ok == false) break;
 				}
-				else
-				{
-					System.out.println("Nom d'utilisateur incorrect");
-				}
-			} 
-			catch (SQLException e) 
+			}
+			else
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("Connexion échouée");
+				System.out.println("Le mot de passe n'est pas bon");
+			}
+			
+			switch (pers.getType_p()) {
+				case "élève": 
+					new TypeConnexion("élève");
+					break;
+				case "professeur": 
+					new TypeConnexion("professeur");
+					break;
+				case "parent": 
+					new TypeConnexion("parent");
+					break;
+				case "admin": 
+					new TypeConnexion("admin");
+					break;
+				default:
+					break;
 			}
 		}
-		
-		switch (type_connexion) {
-			case "élève": 
-				new TypeConnexion("élève");
-				break;
-			case "professeur": 
-				new TypeConnexion("professeur");
-				break;
-			case "parent": 
-				new TypeConnexion("parent");
-				break;
-			case "admin": 
-				new TypeConnexion("admin");
-				break;
-			default:
-				break;
+		else {
+			System.out.println("Nom d'utilisateur incorrect");
 		}
 	}
-	
 }

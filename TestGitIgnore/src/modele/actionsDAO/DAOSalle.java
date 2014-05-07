@@ -26,5 +26,11 @@ public class DAOSalle extends DAOFactory<Salle>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Salle find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

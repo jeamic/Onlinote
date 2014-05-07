@@ -26,5 +26,11 @@ public class DAOSpecialite extends DAOFactory<Specialite>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Specialite find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

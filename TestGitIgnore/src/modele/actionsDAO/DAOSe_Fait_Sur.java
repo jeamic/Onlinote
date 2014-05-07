@@ -26,5 +26,11 @@ public class DAOSe_Fait_Sur extends DAOFactory<Se_Fait_Sur>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Se_Fait_Sur find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

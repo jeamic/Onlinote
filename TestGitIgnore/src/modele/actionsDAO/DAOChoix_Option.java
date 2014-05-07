@@ -26,5 +26,11 @@ public class DAOChoix_Option extends DAOFactory <Choix_Option>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Choix_Option find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

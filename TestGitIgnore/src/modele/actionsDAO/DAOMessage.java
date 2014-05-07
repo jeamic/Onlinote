@@ -26,5 +26,11 @@ public class DAOMessage extends DAOFactory<Message>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Message find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

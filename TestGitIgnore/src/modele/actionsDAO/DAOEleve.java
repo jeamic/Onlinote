@@ -26,5 +26,11 @@ public class DAOEleve extends DAOFactory<Eleve>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Eleve find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

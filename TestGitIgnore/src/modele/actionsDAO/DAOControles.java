@@ -26,5 +26,11 @@ public class DAOControles extends DAOFactory <Controles>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Controles find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

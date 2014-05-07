@@ -26,6 +26,12 @@ public class DAOAssure extends DAOFactory <Assure>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Assure find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 		
 }

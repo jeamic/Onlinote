@@ -26,5 +26,11 @@ public class DAODonne_Lieu extends DAOFactory <Donne_Lieu>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Donne_Lieu find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

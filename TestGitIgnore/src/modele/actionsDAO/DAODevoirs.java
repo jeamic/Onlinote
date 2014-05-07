@@ -26,6 +26,12 @@ public class DAODevoirs extends DAOFactory <Devoirs>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Devoirs find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

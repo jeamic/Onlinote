@@ -26,5 +26,11 @@ public class DAOSuit extends DAOFactory <Suit>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Suit find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

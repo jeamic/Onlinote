@@ -26,5 +26,11 @@ public class DAOSupport extends DAOFactory <Support>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Support find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -26,5 +26,11 @@ public class DAOSubit extends DAOFactory <Subit> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Subit find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

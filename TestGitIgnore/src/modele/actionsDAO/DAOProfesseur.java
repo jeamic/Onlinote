@@ -26,5 +26,11 @@ public class DAOProfesseur extends DAOFactory<Professeur>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Professeur find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

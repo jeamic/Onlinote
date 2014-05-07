@@ -26,5 +26,11 @@ public class DAOCours extends DAOFactory<Cours>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Cours find(String chaine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

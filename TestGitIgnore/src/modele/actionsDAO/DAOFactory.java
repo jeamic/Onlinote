@@ -16,6 +16,13 @@ public abstract class DAOFactory <T> {
 	public abstract T find(int id);
 	
 	/**
+	 * Permet de récupérer un objet via une string
+	 * @param String
+	 * @return
+	 */
+	public abstract T find(String chaine);
+	
+	/**
 	 * Permet de créer une entrée dans la base de données
 	 * par rapport à un objet
 	 * @param obj
