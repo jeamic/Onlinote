@@ -1,4 +1,4 @@
-package vue.fenetre;
+package controleur.connexion;
 
 public class TypeConnexion {
 	public TypeConnexion () {

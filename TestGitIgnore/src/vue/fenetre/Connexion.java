@@ -16,6 +16,8 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
+import controleur.connexion.TypeConnexion;
+
 public class Connexion {
 	
 	/* Démarre l'application avec un des quatre types de droit*/
