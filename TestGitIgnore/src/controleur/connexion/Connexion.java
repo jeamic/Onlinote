@@ -1,5 +1,6 @@
 package controleur.connexion;
 
+import java.awt.PopupMenu;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +11,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JFrame;
+import controleur.connexion.*;
+import vue.fenetre.*;
 import modele.actionsDAO.DAOPersonne;
 import modele.baseDAO.*;
 import modele.bddConnect.*;
@@ -28,6 +32,7 @@ public class Connexion {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 * @throws IOException
+	 * @wbp.parser.entryPoint
 	 */
 	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 		
@@ -47,8 +52,10 @@ public class Connexion {
 					if (mdp_ok == false) break;
 				}
 				if (mdp_ok){
+					
 					switch (pers.getType_p()) {
 						case "élève": 
+							
 							new TypeConnexion("élève");
 							break;
 						case "professeur": 
