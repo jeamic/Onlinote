@@ -1,4 +1,4 @@
-package vue.fenetre;
+package controleur.connexion;
 
 import java.awt.EventQueue;
 
@@ -19,6 +19,8 @@ import java.io.IOException;
 
 import javax.swing.JCheckBox;
 
+import vue.fenetre.ConnexionGUI;
+
 public class Onlinote {
 
 	/**
@@ -28,7 +30,7 @@ public class Onlinote {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Onlinote window = new Onlinote();
+					new Onlinote();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,7 +43,7 @@ public class Onlinote {
 	 */
 	public Onlinote() {
 		{
-			ConnexionGUI fen_con = new ConnexionGUI();
+			new ConnexionGUI();
 		}
 	}
 
