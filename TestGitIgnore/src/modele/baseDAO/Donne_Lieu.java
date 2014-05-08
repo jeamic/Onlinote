@@ -1,26 +1,25 @@
 package modele.baseDAO;
 
 public class Donne_Lieu implements java.io.Serializable {
-	String matiere;
-	String categorie;
+	int id_cours;
+	int id_devoir;
 	
 	public Donne_Lieu () {}
-	public Donne_Lieu (String matiere, String categorie) {
-		this.matiere 	= matiere;
-		this.categorie  = categorie;
+	public Donne_Lieu (int id_cours, int id_devoir) {
+		this.id_cours 	= id_cours;
+		this.id_devoir  = id_devoir;
 	}
-	public String getMatiere() {
-		return matiere;
+	public int getId_cours() {
+		return id_cours;
 	}
-	public void setMatiere(String matiere) {
-		this.matiere = matiere;
+	public void setId_cours(int id_cours) {
+		this.id_cours = id_cours;
 	}
-	public String getCategorie() {
-		return categorie;
+	public int getId_devoir() {
+		return id_devoir;
 	}
-	public void setCategorie(String categorie) {
-		this.categorie = categorie;
+	public void setId_devoir(int id_devoir) {
+		this.id_devoir = id_devoir;
 	}
-	
 	
 }

@@ -1,34 +1,34 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOSe_Fait_Sur extends DAOFactory<Se_Fait_Sur>{
+public class DAOSe_Fait_Sur extends DAOFactory<Documente>{
 
 	@Override
-	public Se_Fait_Sur find(int id) {
+	public Documente find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Se_Fait_Sur create(Se_Fait_Sur obj) {
+	public Documente create(Documente obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Se_Fait_Sur update(Se_Fait_Sur obj) {
+	public Documente update(Documente obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Se_Fait_Sur obj) {
+	public void delete(Documente obj) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Se_Fait_Sur find(String chaine) {
+	public Documente find(String chaine) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,3 +1,3 @@
-BDD_ADDRESS="jdbc:mysql://localhost/onlinote_test_v3_1";
+BDD_ADDRESS="jdbc:mysql://localhost/onlinote_test_v4";
 BDD_LOGIN="root";
 BDD_PASSWORD="";

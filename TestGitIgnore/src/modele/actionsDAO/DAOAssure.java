@@ -1,34 +1,34 @@
 package modele.actionsDAO;
 import modele.baseDAO.*;
 
-public class DAOAssure extends DAOFactory <Assure>{
+public class DAOAssure extends DAOFactory <Enseigne>{
 
 	@Override
-	public Assure find(int id) {
+	public Enseigne find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Assure create(Assure obj) {
+	public Enseigne create(Enseigne obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Assure update(Assure obj) {
+	public Enseigne update(Enseigne obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Assure obj) {
+	public void delete(Enseigne obj) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Assure find(String chaine) {
+	public Enseigne find(String chaine) {
 		// TODO Auto-generated method stub
 		return null;
 	}
