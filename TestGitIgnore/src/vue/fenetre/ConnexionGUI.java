@@ -1,6 +1,7 @@
 package vue.fenetre;
 
 import controleur.connexion.Connexion;
+import vue.fenetre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -17,7 +18,9 @@ public class ConnexionGUI {
 	private JPasswordField passwordField;
 	
 	public ConnexionGUI() {
+		
 		frmConnexion = new JFrame();
+		
 		frmConnexion.setTitle("Connexion");
 		frmConnexion.setBounds(100, 100, 448, 212);
 		frmConnexion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

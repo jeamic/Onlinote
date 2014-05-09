@@ -42,9 +42,7 @@ public class Onlinote {
 	 * Create the application.
 	 */
 	public Onlinote() {
-		{
-			new ConnexionGUI();
-		}
+		new ConnexionGUI();
 	}
 
 }

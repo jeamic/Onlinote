@@ -1,16 +1,12 @@
 package controleur.connexion;
 
-import java.awt.PopupMenu;
-import java.awt.TextField;
+import java.awt.BorderLayout;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import java.awt.BorderLayout;
-
 import javax.swing.JToolBar;
 
 public class TypeConnexion {
@@ -31,7 +27,7 @@ public class TypeConnexion {
 		
 		JToolBar toolBar = new JToolBar();
 		fen.getContentPane().add(toolBar, BorderLayout.CENTER);
-		System.out.println("Type switch connexion " + sType);
+		Logger.getLogger("Type switch connexion " + sType);
 		fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fen.getContentPane().setLayout(null);
 		
