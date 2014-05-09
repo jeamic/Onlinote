@@ -16,10 +16,10 @@ public class Documente implements java.io.Serializable {
 	public void setIdSupport(int idSupport) {
 		this.idSupport = idSupport;
 	}
-	public String getNom_support() {
+	public String getNomSupport() {
 		return nomSupport;
 	}
-	public void setNom_support(String nomSupport) {
+	public void setNomSupport(String nomSupport) {
 		this.nomSupport = nomSupport;
 	}
 

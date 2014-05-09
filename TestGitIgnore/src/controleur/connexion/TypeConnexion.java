@@ -15,7 +15,8 @@ public class TypeConnexion {
 	
 	private JTextField textField;
 
-	public TypeConnexion () {}
+	public TypeConnexion () {
+	}
 	
 	/**
 	 * @wbp.parser.constructor

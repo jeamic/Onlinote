@@ -33,9 +33,9 @@ public class Connexion {
 		
 		DAOPersonne daoPers = new DAOPersonne();
 		Personne pers = daoPers.find(email);
-		
-		if (pers != null) { //si la personne existe
-			//test de comparaison du mot de passe
+		/* si la personne existe */
+		if (pers != null) { 
+			/*test de comparaison du mot de passe*/
 			if (isPasswordOk(password, pers)) {
 				definirTypeConnexion(pers.getTypeP());
 			} else {
@@ -47,19 +47,24 @@ public class Connexion {
 	}
 	
 	private static void definirTypeConnexion (String type) {
+		final String ELEVE = "élève";
+		final String PROF  = "professeur";
+		final String PARENT= "parent";
+		final String ADMIN = "admin";
+		
 		switch (type) {
 			case "élève": 
 				
-				new TypeConnexion("élève");
+				new TypeConnexion(ELEVE);
 				break;
 			case "professeur": 
-				new TypeConnexion("professeur");
+				new TypeConnexion(PROF);
 				break;
 			case "parent": 
-				new TypeConnexion("parent");
+				new TypeConnexion(PARENT);
 				break;
 			case "admin": 
-				new TypeConnexion("admin");
+				new TypeConnexion(ADMIN);
 				break;
 			default:
 				break;
