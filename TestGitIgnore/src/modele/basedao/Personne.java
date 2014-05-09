@@ -21,10 +21,10 @@ public class Personne implements java.io.Serializable {
 		this.email		  = email;
 		this.typeP 	  = typeP;
 	}
-	public int getId_personne() {
+	public int getidPersonne() {
 		return idPersonne;
 	}
-	public void setId_personne(int idPersonne) {
+	public void setidPersonne(int idPersonne) {
 		this.idPersonne = idPersonne;
 	}
 	public String getNom() {

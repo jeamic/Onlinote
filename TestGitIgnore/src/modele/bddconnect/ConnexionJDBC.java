@@ -80,17 +80,17 @@ public class ConnexionJDBC {
 		/* parcours du fichier de config et extraction des données utiles */
 		try {
 			while ((sCurrentLine = br.readLine()) != null) {
-				if (sCurrentLine.contains("bddAddress")){
+				if (sCurrentLine.contains("BDD_ADDRESS")){
 					bddConf = sCurrentLine.split("\"");
 					bddAddress = bddConf[1];
 					continue;
 				}
-				if (sCurrentLine.contains("bddLogin")){
+				if (sCurrentLine.contains("BDD_LOGIN")){
 					bddConf = sCurrentLine.split("\"");
 					bddLogin = bddConf[1];
 					continue;
 				}
-				if (sCurrentLine.contains("bddPassword")){
+				if (sCurrentLine.contains("BDD_PASSWORD")){
 					bddConf = sCurrentLine.split("\"");
 					bddPassword = bddConf[1];
 					continue;

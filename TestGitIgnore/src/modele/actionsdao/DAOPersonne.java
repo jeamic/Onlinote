@@ -47,13 +47,13 @@ public class DAOPersonne extends DAOFactory<Personne>{
 		//création de l'objet correspondant à la personne recherchée
 		try {
 			if (res.first()){
-				pers = new Personne( res.getInt("idPersonne"),
+				pers = new Personne( res.getInt("id_personne"),
 									 res.getString("nom"),
 									 res.getString("prenom"),
 									 res.getString("adresse"),
-									 res.getString("motDePasse"),
+									 res.getString("mot_de_passe"),
 									 res.getString("email"),
-									 res.getString("typeP"));}
+									 res.getString("type_p"));}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
