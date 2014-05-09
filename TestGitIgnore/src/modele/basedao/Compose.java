@@ -11,18 +11,19 @@ public class Compose implements java.io.Serializable {
 		this.idPersonne = idPersonne;
 		this.idMessage	 = idMessage;
 	}
-	public int getId_personne() {
+	public int getIdPersonne() {
 		return idPersonne;
 	}
-	public void setId_personne(int idPersonne) {
+	public void setIdPersonne(int idPersonne) {
 		this.idPersonne = idPersonne;
 	}
-	public int getId_message() {
+	public int getIdMessage() {
 		return idMessage;
 	}
-	public void setId_message(int idMessage) {
+	public void setIdMessage(int idMessage) {
 		this.idMessage = idMessage;
 	}
+
 	
 	
 }

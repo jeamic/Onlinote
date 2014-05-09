@@ -13,22 +13,22 @@ public class Eleve implements java.io.Serializable {
 		this.idClasse = idClasse;
 		this.idEleve  = idEleve;
 	}
-	public int getId_parent() {
+	public int getidParent() {
 		return idParent;
 	}
-	public void setId_parent(int idParent) {
+	public void setidParent(int idParent) {
 		this.idParent = idParent;
 	}
-	public int getId_classe() {
+	public int getidClasse() {
 		return idClasse;
 	}
-	public void setId_classe(int idClasse) {
+	public void setidClasse(int idClasse) {
 		this.idClasse = idClasse;
 	}
-	public int getId_eleve() {
+	public int getidEleve() {
 		return idEleve;
 	}
-	public void setId_eleve(int idEleve) {
+	public void setidEleve(int idEleve) {
 		this.idEleve = idEleve;
 	}
 	

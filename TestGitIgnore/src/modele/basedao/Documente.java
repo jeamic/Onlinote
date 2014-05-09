@@ -2,25 +2,25 @@ package modele.basedao;
 
 public class Documente implements java.io.Serializable {
 	private int idSupport;
-	private String nom_support;
+	private String nomSupport;
 	
 	public Documente () {
 	}
-	public Documente (int idSupport, String nom_support) {
+	public Documente (int idSupport, String nomSupport) {
 		this.idSupport  = idSupport;
-		this.nom_support = nom_support;
+		this.nomSupport = nomSupport;
 	}
-	public int getId_support() {
+	public int getIdSupport() {
 		return idSupport;
 	}
-	public void setId_support(int idSupport) {
+	public void setIdSupport(int idSupport) {
 		this.idSupport = idSupport;
 	}
 	public String getNom_support() {
-		return nom_support;
+		return nomSupport;
 	}
-	public void setNom_support(String nom_support) {
-		this.nom_support = nom_support;
+	public void setNom_support(String nomSupport) {
+		this.nomSupport = nomSupport;
 	}
 
 }

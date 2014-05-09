@@ -14,22 +14,22 @@ public class Subit implements java.io.Serializable {
 		this.idCours 	 = idCours;
 		this.note 		 = note;
 	}
-	public int getId_controle() {
+	public int getidControle() {
 		return idControle;
 	}
-	public void setId_controle(int idControle) {
+	public void setidControle(int idControle) {
 		this.idControle = idControle;
 	}
-	public int getId_eleve() {
+	public int getidEleve() {
 		return idEleve;
 	}
-	public void setId_eleve(int idEleve) {
+	public void setidEleve(int idEleve) {
 		this.idEleve = idEleve;
 	}
-	public int getId_cours() {
+	public int getidCours() {
 		return idCours;
 	}
-	public void setId_cours(int idCours) {
+	public void setidCours(int idCours) {
 		this.idCours = idCours;
 	}
 	public double getNote() {
@@ -38,5 +38,4 @@ public class Subit implements java.io.Serializable {
 	public void setNote(double note) {
 		this.note = note;
 	}
-	
 }

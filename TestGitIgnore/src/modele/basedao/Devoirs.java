@@ -13,10 +13,10 @@ public class Devoirs implements java.io.Serializable {
 		this.categorie 	 = categorie;
 		this.description = description;
 	}
-	public int getId_devoir() {
+	public int getIdDevoir() {
 		return idDevoir;
 	}
-	public void setId_devoir(int idDevoir) {
+	public void setIdDevoir(int idDevoir) {
 		this.idDevoir = idDevoir;
 	}
 	public String getCategorie() {
@@ -31,5 +31,5 @@ public class Devoirs implements java.io.Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-		
+			
 }

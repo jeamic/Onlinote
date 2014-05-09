@@ -21,10 +21,10 @@ public class Personne implements java.io.Serializable {
 		this.email		  = email;
 		this.typeP 	  = typeP;
 	}
-	public int getidPersonne() {
+	public int getIdPersonne() {
 		return idPersonne;
 	}
-	public void setidPersonne(int idPersonne) {
+	public void setIdPersonne(int idPersonne) {
 		this.idPersonne = idPersonne;
 	}
 	public String getNom() {
@@ -63,6 +63,4 @@ public class Personne implements java.io.Serializable {
 	public void setTypeP(String typeP) {
 		this.typeP = typeP;
 	}
-	
-	
 }

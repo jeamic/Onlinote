@@ -10,10 +10,10 @@ public class EstSpecialise {
 		this.idProf = idProf;
 		this.specialite    = specialite;
 	}
-	public int getId_prof() {
+	public int getIdProf() {
 		return idProf;
 	}
-	public void setId_prof(int idProf) {
+	public void setIdProf(int idProf) {
 		this.idProf = idProf;
 	}
 	public String getSpecialite() {
@@ -22,5 +22,6 @@ public class EstSpecialise {
 	public void setSpecialite(String specialite) {
 		this.specialite = specialite;
 	}
+
 	
 }

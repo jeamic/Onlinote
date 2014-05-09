@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Logger;
-import com.mysql.jdbc.Driver;
+import org.apache.log4j.LogManager;
 
 
 public class ConnexionJDBC {
 	
+	/**
+	 * Log4j logger
+	 */
+	static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionJDBC.class.getName());
 	
 	/**
 	 * URL de connexion
@@ -33,22 +36,20 @@ public class ConnexionJDBC {
 	
 	private ConnexionJDBC ()  {
 		try {
-			LoadParamBDD();
+			loadParamBDD();
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			throw new RuntimeException("context", e);
+			log4j.info(e.getMessage(), e);
 		} catch (SQLException e) {
-			Logger.getLogger(Integer.toString(e.getErrorCode()));
-			Logger.getLogger(e.getMessage());
-			Logger.getLogger(e.getSQLState());
-			e.printStackTrace();
-			SQLException e2=e.getNextException();
+			log4j.info(e.getMessage(), e);
 		}	
 	}
 	
 	private static class ConnexionJDBCHolder {
-		private final static Connection instance = new ConnexionJDBC().connect;
+		private ConnexionJDBCHolder () {
+		}
+		private final static Connection INSTANCE = ConnexionJDBC.connect;
 	}
 	
 	/**
@@ -61,7 +62,7 @@ public class ConnexionJDBC {
 	 * @throws IOException 
 	 */
 	public static Connection getInstance() {
-		return (Connection) ConnexionJDBCHolder.instance;
+		return (Connection) ConnexionJDBCHolder.INSTANCE;
 	}
 	
 	
@@ -69,7 +70,7 @@ public class ConnexionJDBC {
 	 * Charger les paramètres de la bdd
 	 * @throws IOException
 	 */
-	private static void LoadParamBDD () throws IOException {
+	private static void loadParamBDD () throws IOException {
 		/* construire chemin absolu du fichier de conf*/
 		String filePath = new File("").getAbsolutePath();
 		@SuppressWarnings("resource")
@@ -83,21 +84,18 @@ public class ConnexionJDBC {
 				if (sCurrentLine.contains("BDD_ADDRESS")){
 					bddConf = sCurrentLine.split("\"");
 					bddAddress = bddConf[1];
-					continue;
 				}
 				if (sCurrentLine.contains("BDD_LOGIN")){
 					bddConf = sCurrentLine.split("\"");
 					bddLogin = bddConf[1];
-					continue;
 				}
 				if (sCurrentLine.contains("BDD_PASSWORD")){
 					bddConf = sCurrentLine.split("\"");
 					bddPassword = bddConf[1];
-					continue;
 				}
 			}
 		} catch (Exception e){
-			e.printStackTrace();
+			log4j.info(e.getMessage(), e);
 		}
 	}
 }

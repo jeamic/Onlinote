@@ -1,15 +1,19 @@
 package modele.actionsdao;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Connection;
+import org.apache.log4j.LogManager;
+import modele.basedao.Personne;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 
-import modele.basedao.*;
-import modele.bddconnect.*;
 
 public class DAOPersonne extends DAOFactory<Personne>{
 
+	/**
+	 * Log4j logger
+	 */
+	static org.apache.log4j.Logger log4j =  LogManager.getLogger(DAOPersonne.class.getName());
+	
 	@Override
 	public Personne find(int id) {
 		// TODO Auto-generated method stub
@@ -22,27 +26,22 @@ public class DAOPersonne extends DAOFactory<Personne>{
 		Personne pers = null;
 		PreparedStatement stmt = null;
 		ResultSet res = null;
-		//connexion à la base
-		Connection conn = (Connection) ConnexionJDBC.getInstance();
 		
 		//requête pour rechercher la personne
 		try {
-			stmt = (PreparedStatement) conn.prepareStatement("Select * from personne where email = ?");
+			stmt = (PreparedStatement) super.connect.prepareStatement("Select * from personne where email = ?");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log4j.info(e.getMessage(), e);
 		}
 		try {
 			stmt.setString(1, email);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log4j.info(e.getMessage(), e);
 		}
 		try {
 			res = (ResultSet) stmt.executeQuery();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			log4j.info(e1.getMessage(), e1);
 		}
 		//création de l'objet correspondant à la personne recherchée
 		try {
@@ -55,8 +54,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
 									 res.getString("email"),
 									 res.getString("type_p"));}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log4j.info(e.getMessage(), e);
 		}
 		return pers;
 	}

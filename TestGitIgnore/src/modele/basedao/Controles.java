@@ -17,10 +17,10 @@ public class Controles implements java.io.Serializable{
 		this.noteMax 	 = noteMax;
 		this.coefficient = coefficient;
 	}
-	public int getId_controle() {
+	public int getIdControle() {
 		return idControle;
 	}
-	public void setId_controle(int idControle) {
+	public void setIdControle(int idControle) {
 		this.idControle = idControle;
 	}
 	public String getEnonce() {
@@ -35,10 +35,10 @@ public class Controles implements java.io.Serializable{
 	public void setCorrige(String corrige) {
 		this.corrige = corrige;
 	}
-	public int getNote_max() {
+	public int getNoteMax() {
 		return noteMax;
 	}
-	public void setNote_max(int noteMax) {
+	public void setNoteMax(int noteMax) {
 		this.noteMax = noteMax;
 	}
 	public String getCoefficient() {
@@ -47,6 +47,5 @@ public class Controles implements java.io.Serializable{
 	public void setCoefficient(String coefficient) {
 		this.coefficient = coefficient;
 	}
-	
 	
 }

@@ -10,10 +10,10 @@ public class Suit implements java.io.Serializable {
 		this.idEleve = idEleve;
 		this.libelle  = libelle;
 	}
-	public int getId_eleve() {
+	public int getIdEleve() {
 		return idEleve;
 	}
-	public void setId_eleve(int idEleve) {
+	public void setIdEleve(int idEleve) {
 		this.idEleve = idEleve;
 	}
 	public String getLibelle() {
@@ -22,5 +22,5 @@ public class Suit implements java.io.Serializable {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	
+
 }

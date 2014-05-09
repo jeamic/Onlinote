@@ -19,10 +19,26 @@ import java.io.IOException;
 
 import javax.swing.JCheckBox;
 
+import modele.bddconnect.ConnexionJDBC;
+
+import org.apache.log4j.LogManager;
+
 import vue.fenetre.ConnexionGUI;
 
 public class Onlinote {
-
+	
+	/**
+	 * Log4j logger
+	 */
+	static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionJDBC.class.getName());
+	
+	/**
+	 * Create the application.
+	 */
+	private Onlinote() {
+		new ConnexionGUI();
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -32,17 +48,9 @@ public class Onlinote {
 				try {
 					new Onlinote();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log4j.info(e.getMessage(), e);
 				}
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public Onlinote() {
-		new ConnexionGUI();
-	}
-
 }

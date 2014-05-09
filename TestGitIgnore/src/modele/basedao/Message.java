@@ -16,10 +16,10 @@ public class Message implements java.io.Serializable {
 		this.contenu		= contenu;
 		this.lu 			= lu;
 	}
-	public int getId_message() {
+	public int getIdMessage() {
 		return idMessage;
 	}
-	public void setId_message(int idMessage) {
+	public void setIdMessage(int idMessage) {
 		this.idMessage = idMessage;
 	}
 	public String getObjet() {
@@ -46,6 +46,5 @@ public class Message implements java.io.Serializable {
 	public void setLu(boolean lu) {
 		this.lu = lu;
 	}
-	
-	
+
 }

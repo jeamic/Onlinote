@@ -22,10 +22,10 @@ public class Cours implements java.io.Serializable {
 		this.heureDebut = heureDebut;
 		this.duree 		 = duree;
 	}
-	public int getId_cours() {
+	public int getidCours() {
 		return idCours;
 	}
-	public void setId_cours(int idCours) {
+	public void setidCours(int idCours) {
 		this.idCours = idCours;
 	}
 	public String getMatiere() {
@@ -34,10 +34,10 @@ public class Cours implements java.io.Serializable {
 	public void setMatiere(String matiere) {
 		this.matiere = matiere;
 	}
-	public int getId_salle() {
+	public int getidSalle() {
 		return idSalle;
 	}
-	public void setId_salle(int idSalle) {
+	public void setidSalle(int idSalle) {
 		this.idSalle = idSalle;
 	}
 	public String getCommentaire() {
@@ -46,10 +46,10 @@ public class Cours implements java.io.Serializable {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
-	public Date getHeure_debut() {
+	public Date getheureDebut() {
 		return heureDebut;
 	}
-	public void setHeure_debut(Date heureDebut) {
+	public void setheureDebut(Date heureDebut) {
 		this.heureDebut = heureDebut;
 	}
 	public Time getDuree() {

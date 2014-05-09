@@ -13,23 +13,24 @@ public class Classe implements java.io.Serializable{
 		this.nomClasse 		= nomClasse;
 		this.idProfPrincipal 	= idProfPrincipal;
 	}
-	public int getId_classe() {
+	public int getIdClasse() {
 		return idClasse;
 	}
-	public void setId_classe(int idClasse) {
+	public void setIdClasse(int idClasse) {
 		this.idClasse = idClasse;
 	}
-	public String getNom_classe() {
+	public String getNomClasse() {
 		return nomClasse;
 	}
-	public void setNom_classe(String nomClasse) {
+	public void setNomClasse(String nomClasse) {
 		this.nomClasse = nomClasse;
 	}
-	public int getId_prof_principal() {
+	public int getIdProfPrincipal() {
 		return idProfPrincipal;
 	}
-	public void setId_prof_principal(int idProfPrincipal) {
+	public void setIdProfPrincipal(int idProfPrincipal) {
 		this.idProfPrincipal = idProfPrincipal;
 	}
+
 	
 }

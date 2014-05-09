@@ -13,23 +13,23 @@ public class Enseigne implements java.io.Serializable {
 		this.idClasse 	= idClasse;
 		this.idPersonne 	= idPersonne;
 	}
-	public int getId_cours() {
+	public int getIdCours() {
 		return idCours;
 	}
-	public void setId_cours(int idCours) {
+	public void setIdCours(int idCours) {
 		this.idCours = idCours;
 	}
-	public int getId_classe() {
+	public int getIdClasse() {
 		return idClasse;
 	}
-	public void setId_classe(int idClasse) {
+	public void setIdClasse(int idClasse) {
 		this.idClasse = idClasse;
 	}
-	public int getId_personne() {
+	public int getIdPersonne() {
 		return idPersonne;
 	}
-	public void setId_personne(int idPersonne) {
+	public void setIdPersonne(int idPersonne) {
 		this.idPersonne = idPersonne;
 	}
-	
+
 }

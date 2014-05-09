@@ -1,7 +1,6 @@
 package vue.fenetre;
 
 import controleur.connexion.Connexion;
-import vue.fenetre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,7 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+import modele.bddconnect.ConnexionJDBC;
+
+import org.apache.log4j.LogManager;
+
 public class ConnexionGUI {
+	
+	/**
+	 * Log4j logger
+	 */
+	static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
 	
 	private JFrame frmConnexion;
 	private JTextField textField;
@@ -51,18 +59,14 @@ public class ConnexionGUI {
 				try {
 					Connexion.startApp(textField.getText(), passwordField.getPassword());
 					frmConnexion.dispose();
-				} 
-				catch (InstantiationException | IllegalAccessException
-						| ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1) {
+					log4j.info(e1.getMessage(), e1);
 				}
 			}
 			
 		});
 		/* activer la connexion quand on presse entrée */
 		frmConnexion.getRootPane().setDefaultButton(btnConnexion);
-		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(614, 328, 223, 20);
 		frmConnexion.getContentPane().add(passwordField);

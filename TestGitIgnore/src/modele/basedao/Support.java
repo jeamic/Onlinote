@@ -8,10 +8,11 @@ public class Support implements java.io.Serializable {
 	public Support (String nomSupport) {
 		this.nomSupport = nomSupport;
 	}
-	public String getNom_support() {
+	public String getNomSupport() {
 		return nomSupport;
 	}
-	public void setNom_support(String nomSupport) {
+	public void setNomSupport(String nomSupport) {
 		this.nomSupport = nomSupport;
 	}
+
 }
