@@ -1,26 +1,8 @@
 package controleur.connexion;
 
-import java.awt.PopupMenu;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import javax.swing.JFrame;
-import controleur.connexion.*;
-import vue.fenetre.*;
 import modele.actionsDAO.DAOPersonne;
 import modele.baseDAO.*;
-import modele.bddConnect.*;
-
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
-import com.mysql.jdbc.Statement;
 
 public class Connexion {
 	

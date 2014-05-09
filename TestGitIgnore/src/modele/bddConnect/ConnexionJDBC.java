@@ -2,16 +2,11 @@ package modele.bddConnect;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import org.gjt.mm.mysql.Driver;
-
-import com.mysql.jdbc.*;
 
 
 public class ConnexionJDBC {
