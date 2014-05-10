@@ -9,6 +9,8 @@ import modele.basedao.*;
 
 import org.apache.log4j.*;
 
+import vue.fenetre.TypeConnexion;
+
 
 public class Connexion {
 	/**
@@ -53,8 +55,7 @@ public class Connexion {
 		final String ADMIN = "admin";
 		
 		switch (type) {
-			case "élève": 
-				
+			case "élève":
 				new TypeConnexion(ELEVE);
 				break;
 			case "professeur": 

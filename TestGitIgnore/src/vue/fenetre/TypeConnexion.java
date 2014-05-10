@@ -1,4 +1,4 @@
-package controleur.connexion;
+package vue.fenetre;
 
 import java.awt.BorderLayout;
 import java.util.logging.Logger;
