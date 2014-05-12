@@ -1,0 +1,4 @@
+GetMatiere(Heure, jour, élève)
+{
+    return list avec Matière Prof et salle
+}
