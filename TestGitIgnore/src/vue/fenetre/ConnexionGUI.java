@@ -1,9 +1,11 @@
 package vue.fenetre;
 
 import controleur.connexion.Connexion;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,7 +52,7 @@ public class ConnexionGUI {
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.setBounds(665, 365, 129, 23);
 		frmConnexion.getContentPane().add(btnConnexion);
-		
+
 		/* écouteur d'évènements sur le bouton connexion */
 		btnConnexion.addActionListener(new ActionListener (){
 			@Override

@@ -32,13 +32,14 @@ public class ConnexionJDBC {
 	/**
 	 * Objet Connection
 	 */
-	private static Connection connect = null;
+	private Connection connect = null;
 	
 	private ConnexionJDBC ()  {
 		try {
 			loadParamBDD();
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
+			
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			log4j.info(e.getMessage(), e);
 		} catch (SQLException e) {
@@ -49,7 +50,7 @@ public class ConnexionJDBC {
 	private static class ConnexionJDBCHolder {
 		private ConnexionJDBCHolder () {
 		}
-		private final static Connection INSTANCE = ConnexionJDBC.connect;
+		private final static ConnexionJDBC INSTANCE = new ConnexionJDBC();
 	}
 	
 	/**
@@ -61,10 +62,13 @@ public class ConnexionJDBC {
 	 * @throws InstantiationException 
 	 * @throws IOException 
 	 */
-	public static Connection getInstance() {
-		return (Connection) ConnexionJDBCHolder.INSTANCE;
+	public static ConnexionJDBC getInstance() {
+		return ConnexionJDBCHolder.INSTANCE;
 	}
 	
+	public Connection getConnection () {
+		return connect;
+	}
 	
 	/**
 	 * Charger les paramètres de la bdd

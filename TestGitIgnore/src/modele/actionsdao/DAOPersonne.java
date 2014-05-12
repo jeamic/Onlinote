@@ -29,7 +29,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
 		
 		//requête pour rechercher la personne
 		try {
-			stmt = (PreparedStatement) super.connect.prepareStatement("Select * from personne where email = ?");
+			stmt = (PreparedStatement) instance.getConnection().prepareStatement("Select * from personne where email = ?");
 		} catch (SQLException e) {
 			log4j.info(e.getMessage(), e);
 		}

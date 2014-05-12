@@ -5,7 +5,7 @@ import com.mysql.jdbc.Connection;
 
 public abstract class DAOFactory <T> {
 	
-	protected Connection connect = (Connection) ConnexionJDBC.getInstance();
+	protected ConnexionJDBC instance = ConnexionJDBC.getInstance();
 
 	/**
 	 * Permet de récupérer un objet via son ID
