@@ -1,7 +1,7 @@
 package vue.fenetre;
 
-import controleur.connexion.Connexion;
-
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -9,12 +9,12 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-
-import modele.bddconnect.ConnexionJDBC;
+import javax.swing.JTextField;
 
 import org.apache.log4j.LogManager;
+
+import controleur.connexion.Connexion;
 
 public class ConnexionGUI {
 	
@@ -28,15 +28,27 @@ public class ConnexionGUI {
 	private JPasswordField passwordField;
 	
 	public ConnexionGUI() {
+	    
 		
 		frmConnexion = new JFrame();
 		frmConnexion.setResizable(false);
+		
+	
+		
+
 		
 		frmConnexion.setTitle("Connexion");
 		frmConnexion.setBounds(100, 100, 500, 200);
 		frmConnexion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmConnexion.getContentPane().setLayout(null);
 		
+	    //Centrer la fenêtre
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frmConnexion.setLocation(dim.width/2-frmConnexion.getSize().width/2, dim.height/2-frmConnexion.getSize().height/2);
+		
+        // fin centrer
+        
 		textField = new JTextField();
 		textField.setBounds(158, 42, 223, 20);
 		frmConnexion.getContentPane().add(textField);

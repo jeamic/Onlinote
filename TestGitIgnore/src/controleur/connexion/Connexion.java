@@ -51,23 +51,19 @@ public class Connexion {
 	}
 	
 	private static void definirTypeConnexion (String type) {
-		final String ELEVE = "élève";
-		final String PROF  = "professeur";
-		final String PARENT= "parent";
-		final String ADMIN = "admin";
 		
 		switch (type) {
 			case "élève":
-				new Fenetre();
+				Fenetre.creerFenetre();
 				break;
 			case "professeur": 
-				new TypeConnexion(PROF);
+			    Fenetre.creerFenetre();
 				break;
 			case "parent": 
-				new TypeConnexion(PARENT);
+			    Fenetre.creerFenetre();
 				break;
 			case "admin": 
-				new TypeConnexion(ADMIN);
+			    Fenetre.creerFenetre();
 				break;
 			default:
 				break;

@@ -2,3 +2,9 @@ GetMatiere(Heure, jour, élève)
 {
     return list avec Matière Prof et salle
 }
+
+//Fenetre.clean à voir*
+
+
+Requête pour récuperer le nom
+

@@ -53,4 +53,13 @@ public class Onlinote {
 			}
 		});
 	}
+	
+	public static void relancer() {
+	    try {
+            new Onlinote();
+        } catch (Exception e) {
+            log4j.info(e.getMessage(), e);
+        }
+	    
+	}
 }
