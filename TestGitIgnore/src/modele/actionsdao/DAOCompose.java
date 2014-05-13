@@ -1,4 +1,6 @@
 package modele.actionsdao;
+import java.util.List;
+
 import modele.basedao.*;
 
 public class DAOCompose extends DAOFactory <Compose>{
@@ -31,5 +33,11 @@ public class DAOCompose extends DAOFactory <Compose>{
 	public Compose find(String chaine) {
 		// TODO Auto-generated method stub
 		return null;
-	}	
+	}
+
+    @Override
+    public List<Compose> findAll(List<String> listeAttr, List<String> listeVal) {
+        // TODO Auto-generated method stub
+        return null;
+    }	
 }

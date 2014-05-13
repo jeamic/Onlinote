@@ -1,4 +1,6 @@
 package modele.actionsdao;
+import java.util.List;
+
 import modele.basedao.*;
 
 public class DAOClasse extends DAOFactory <Classe>{
@@ -32,5 +34,10 @@ public class DAOClasse extends DAOFactory <Classe>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+    @Override
+    public List<Classe> findAll(List<String> listeAttr, List<String> listeVal) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

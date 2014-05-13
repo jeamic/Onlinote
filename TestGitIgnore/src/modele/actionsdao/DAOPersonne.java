@@ -1,8 +1,11 @@
 package modele.actionsdao;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.log4j.LogManager;
+
 import modele.basedao.Personne;
+
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 
@@ -22,40 +25,29 @@ public class DAOPersonne extends DAOFactory<Personne>{
 	
 	@Override
 	public Personne find (String email) {
-		//déclaration et init des variables nécessaires
+		/* déclaration et init des variables nécessaires */
 		Personne pers = null;
 		PreparedStatement stmt = null;
 		ResultSet res = null;
 		
-		//requête pour rechercher la personne
+		/* requête pour rechercher la personne */
 		try {
 			stmt = (PreparedStatement) instance.getConnection().prepareStatement("Select * from personne where email = ?");
-		} catch (SQLException e) {
-			log4j.info(e.getMessage(), e);
-		}
-		try {
 			stmt.setString(1, email);
-		} catch (SQLException e) {
-			log4j.info(e.getMessage(), e);
-		}
-		try {
 			res = (ResultSet) stmt.executeQuery();
-		} catch (SQLException e1) {
-			log4j.info(e1.getMessage(), e1);
-		}
-		//création de l'objet correspondant à la personne recherchée
-		try {
-			if (res.first()){
-				pers = new Personne( res.getInt("id_personne"),
-									 res.getString("nom"),
-									 res.getString("prenom"),
-									 res.getString("adresse"),
-									 res.getString("mot_de_passe"),
-									 res.getString("email"),
-									 res.getString("type_p"));}
+            if (res.first()){
+                /* création de l'objet correspondant à la personne recherchée */
+                pers = new Personne( res.getInt("id_personne"),
+                                     res.getString("nom"),
+                                     res.getString("prenom"),
+                                     res.getString("adresse"),
+                                     res.getString("mot_de_passe"),
+                                     res.getString("email"),
+                                     res.getString("type_p"));}
 		} catch (SQLException e) {
 			log4j.info(e.getMessage(), e);
 		}
+
 		return pers;
 	}
 
@@ -76,5 +68,11 @@ public class DAOPersonne extends DAOFactory<Personne>{
 		// TODO Auto-generated method stub
 		
 	}
+
+    @Override
+    public List<Personne> findAll(List<String> listeAttr, List<String> listeVal) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

@@ -1,4 +1,6 @@
 package modele.actionsdao;
+import java.util.List;
+
 import modele.bddconnect.ConnexionJDBC;
 
 import com.mysql.jdbc.Connection;
@@ -21,6 +23,14 @@ public abstract class DAOFactory <T> {
 	 */
 	public abstract T find(String chaine);
 	
+	   /**
+     * Permet une liste d'objets de type T correspondants aux valeurs 
+     * @param List <String>
+     * @param List <String>
+     * @return
+     */
+    public abstract List <T> findAll(List <String> listeAttr, List <String> listeVal);
+	
 	/**
 	 * Permet de créer une entrée dans la base de données
 	 * par rapport à un objet
@@ -39,4 +49,6 @@ public abstract class DAOFactory <T> {
 	 * @param obj
 	 */
 	public abstract void delete(T obj);
+	
+	
 }
