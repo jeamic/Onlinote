@@ -264,8 +264,25 @@ public class Menu {
                 lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
                 lblDetails1.setBounds(150, 44, 714, 35);
                 Fenetre.maFenetre.getContentPane().add(lblDetails1);
+                Fenetre.maFenetre.getContentPane().repaint();
                break;
+            case "Notes" :
+                JPanel mesNotes = new Notes().getNotes();
+                mesNotes.setBounds(150, 0, 700, 750);
+                mesNotes.setVisible(true);
+                Fenetre.maFenetre.add(mesNotes);
+                Fenetre.maFenetre.validate();
+                break;
+            case "Emploi du temps" :
+                JPanel monEDT = new EmploiDuTemps().getEDT();
+                monEDT.setBounds(150, 0, 700, 750);
+                monEDT.setVisible(true);
+                Fenetre.maFenetre.add(monEDT);
+                Fenetre.maFenetre.validate();
+                break;
+                
             default : 
+                
                 break;
         }
     }

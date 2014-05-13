@@ -1,10 +1,24 @@
-GetMatiere(Heure, jour, élève)
-{
-    return list avec Matière Prof et salle
-}
+
 
 //Fenetre.clean à voir*
 
+Requête pour emploi du temps :
 
-Requête pour récuperer le nom
+
+-GetCours(Heure, jour, élève)
+{
+    return list avec Matière Prof et salle (dans cet ordre)
+}
+
+Requête pour Accueil :
+
+-Récuperer le nom de celui qui se connecte
+
+
+
+
+Requête pour Notes élève :
+
+-Liste des matières que suit un élève
+-Toutes les notes pour un élève, un trimestre et une matière particulière
 
