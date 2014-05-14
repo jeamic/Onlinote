@@ -2,7 +2,11 @@ package modele.basedao;
 
 public class ChoixOption implements java.io.Serializable {
 	
-	private String libelle;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private String libelle;
 	
 	public ChoixOption () {
 	}

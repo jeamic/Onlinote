@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Support implements java.io.Serializable {
-	private String nomSupport;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private String nomSupport;
 	
 	public Support () {
 	}

@@ -2,7 +2,11 @@ package modele.basedao;
 
 public class Eleve implements java.io.Serializable {
 	
-	private int idParent;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idParent;
 	private int idClasse;
 	private int idEleve;
 	

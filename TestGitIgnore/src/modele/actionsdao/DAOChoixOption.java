@@ -1,6 +1,4 @@
 package modele.actionsdao;
-import java.util.List;
-
 import modele.basedao.*;
 
 public class DAOChoixOption extends DAOFactory <ChoixOption>{
@@ -36,8 +34,7 @@ public class DAOChoixOption extends DAOFactory <ChoixOption>{
 	}
 
     @Override
-    public List<ChoixOption> findAll(List<String> listeAttr,
-            List<String> listeVal) {
+    public ChoixOption findAll() {
         // TODO Auto-generated method stub
         return null;
     }

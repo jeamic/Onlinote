@@ -1,9 +1,14 @@
 package modele.actionsdao;
-import java.util.List;
+import org.apache.log4j.LogManager;
 
 import modele.basedao.*;
+import modele.bddconnect.ConnexionJDBC;
 
 public class DAOEleve extends DAOFactory<Eleve>{
+    /**
+     * Log4j logger
+     */
+    static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionJDBC.class.getName());
 
 	@Override
 	public Eleve find(int id) {
@@ -36,8 +41,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
 	}
 
     @Override
-    public List<Eleve> findAll(List<String> listeAttr, List<String> listeVal) {
-        // TODO Auto-generated method stub
+    public Eleve findAll() {        
         return null;
     }
 

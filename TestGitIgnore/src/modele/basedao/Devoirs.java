@@ -2,7 +2,11 @@ package modele.basedao;
 
 public class Devoirs implements java.io.Serializable {
 	
-	int idDevoir;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    int idDevoir;
 	String categorie;
 	String description;
 	

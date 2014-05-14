@@ -2,16 +2,12 @@ package controleur.connexion;
 
 
 import java.io.IOException;
-import java.util.logging.Logger;
-import java.util.zip.DeflaterOutputStream;
-
 import modele.actionsdao.DAOPersonne;
 import modele.basedao.*;
 
 import org.apache.log4j.*;
 
 import vue.fenetre.Fenetre;
-import vue.fenetre.TypeConnexion;
 
 
 public class Connexion {

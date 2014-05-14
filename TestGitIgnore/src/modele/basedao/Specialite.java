@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Specialite implements java.io.Serializable {
-	private String specialite;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private String specialite;
 	
 	public Specialite () {
 	}

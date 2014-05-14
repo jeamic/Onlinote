@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class DonneLieu implements java.io.Serializable {
-	int idCours;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    int idCours;
 	int idDevoir;
 	
 	public DonneLieu () {

@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Subit implements java.io.Serializable {
-	private int idControle;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idControle;
 	private int idEleve;
 	private int idCours;
 	private double note;

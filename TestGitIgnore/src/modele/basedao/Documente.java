@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Documente implements java.io.Serializable {
-	private int idSupport;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idSupport;
 	private String nomSupport;
 	
 	public Documente () {

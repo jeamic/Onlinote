@@ -5,7 +5,11 @@ import java.sql.Time;
 
 public class Cours implements java.io.Serializable {
 	
-	private int idCours;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idCours;
 	private String matiere;
 	private int idSalle;
 	private String commentaire;

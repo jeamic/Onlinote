@@ -2,7 +2,11 @@ package modele.basedao;
 
 public class Controles implements java.io.Serializable{
 	
-	private int idControle;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idControle;
 	private String enonce;
 	private String corrige;
 	private int noteMax;

@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Suit implements java.io.Serializable {
-	private int idEleve;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idEleve;
 	private String libelle;
 	
 	public Suit () {

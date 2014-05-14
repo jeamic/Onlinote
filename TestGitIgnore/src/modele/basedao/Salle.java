@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Salle implements java.io.Serializable {
-	private int idSalle;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idSalle;
 	private String nomSalle;
 
     public Salle () {

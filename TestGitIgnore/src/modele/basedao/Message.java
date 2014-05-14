@@ -1,7 +1,11 @@
 package modele.basedao;
 
 public class Message implements java.io.Serializable {
-	private int idMessage;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idMessage;
 	private String objet;
 	private String destinataires;
 	private String contenu;

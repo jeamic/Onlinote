@@ -1,12 +1,11 @@
 package controleur.cours;
 
-import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
 
-import modele.basedao.Personne;
 import modele.bddconnect.ConnexionJDBC;
 
 import com.mysql.jdbc.Connection;
@@ -22,7 +21,7 @@ public class GestionCours {
      */
     static org.apache.log4j.Logger log4j =  LogManager.getLogger(Connexion.class.getName());
     
-    private GestionCours() {
+    public GestionCours() {
         // TODO Auto-generated constructor stub
     }
     
@@ -36,7 +35,7 @@ public class GestionCours {
      */
     public List <String> getCours (int idEleve, String date) {
         /* déclaration et init des variables nécessaires */
-        List <String> cours = null;
+        List <String> cours = new ArrayList <String>();
         PreparedStatement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -46,13 +45,13 @@ public class GestionCours {
         try {
             stmt =   (PreparedStatement) conn.prepareStatement(
                       "select  cours.matiere, prof.nom, salle.nom_salle"
-                     +"from    cours, enseigne ens, personne prof, eleve, salle"
-                     +"where   eleve.id_classe = ens.id_classe"
-                     +  "and ens.id_personne = prof.id_personne"
-                     +  "and ens.id_cours = cours.id_cours"
-                     +  "and ? BETWEEN HEURE_DEBUT and addtime(heure_debut, duree)"
-                     +  "and cours.id_salle = salle.id_salle"
-                     +  "and eleve.id_eleve = ?");
+                     +" from    cours, enseigne ens, personne prof, eleve, salle"
+                     +" where   eleve.id_classe = ens.id_classe"
+                     +  " and ens.id_personne = prof.id_personne"
+                     +  " and ens.id_cours = cours.id_cours"
+                     +  " and ? BETWEEN HEURE_DEBUT and addtime(heure_debut, duree)"
+                     +  " and cours.id_salle = salle.id_salle"
+                     +  " and eleve.id_eleve = ?;");
             stmt.setString(1, date);
             stmt.setInt(2, idEleve);
             
@@ -62,7 +61,10 @@ public class GestionCours {
                 cours.add(res.getString("matiere"));
                 cours.add(res.getString("nom"));
                 cours.add(res.getString("nom_salle"));
+                
+                System.out.println("cours " + cours);
             } else {
+                System.out.println("null");
                 return null;
             }
         } catch (SQLException e) {

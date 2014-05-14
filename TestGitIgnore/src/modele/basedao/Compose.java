@@ -2,7 +2,11 @@ package modele.basedao;
 
 public class Compose implements java.io.Serializable {
 	
-	private int idPersonne;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private int idPersonne;
 	private int idMessage;
 
 	public Compose () {
