@@ -1,5 +1,7 @@
 package modele.actionsdao;
-import modele.basedao.*;
+import java.util.List;
+
+import modele.basedao.Suit;
 
 public class DAOSuit extends DAOFactory <Suit>{
 
@@ -34,7 +36,7 @@ public class DAOSuit extends DAOFactory <Suit>{
 	}
 
     @Override
-    public Suit findAll() {
+    public List<Suit> findAll() {
         // TODO Auto-generated method stub
         return null;
     }

@@ -1,4 +1,6 @@
 package modele.actionsdao;
+import java.util.List;
+
 import modele.basedao.EstSpecialise;
 
 
@@ -35,7 +37,7 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
 	}
 
     @Override
-    public EstSpecialise findAll() {
+    public List<EstSpecialise> findAll() {
         // TODO Auto-generated method stub
         return null;
     }

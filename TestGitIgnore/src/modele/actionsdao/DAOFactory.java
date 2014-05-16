@@ -1,4 +1,6 @@
 package modele.actionsdao;
+import java.util.List;
+
 import modele.bddconnect.ConnexionJDBC;
 
 public abstract class DAOFactory <T> {
@@ -25,7 +27,7 @@ public abstract class DAOFactory <T> {
      * @param List <String>
      * @return
      */
-    public abstract T findAll();
+    public abstract List<T> findAll();
 	
 	/**
 	 * Permet de créer une entrée dans la base de données

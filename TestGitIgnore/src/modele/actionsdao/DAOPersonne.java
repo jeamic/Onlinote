@@ -1,8 +1,10 @@
 package modele.actionsdao;
 import java.sql.SQLException;
-import org.apache.log4j.LogManager;
+import java.util.List;
 
 import modele.basedao.Personne;
+
+import org.apache.log4j.LogManager;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
@@ -68,7 +70,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
 	}
 
     @Override
-    public Personne findAll() {
+    public List<Personne> findAll() {
         // TODO Auto-generated method stub
         return null;
     }

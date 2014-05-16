@@ -2,10 +2,13 @@ package controleur.connexion;
 
 import java.awt.EventQueue;
 
+import modele.actionsdao.DAOEleve;
+import modele.basedao.Eleve;
 import modele.bddconnect.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 
+import controleur.eleve.GestionEleve;
 import vue.fenetre.ConnexionGUI;
 
 public class Onlinote {
@@ -19,6 +22,22 @@ public class Onlinote {
 	 */
 	private Onlinote() {
 		new ConnexionGUI();
+		
+		
+		/*
+		 * @test get all eleve
+		 * 
+		GestionEleve test = new GestionEleve();
+		test.GetAllEleve();
+		
+		Eleve el = new Eleve();
+		
+		DAOEleve eleve = new DAOEleve();
+		el = eleve.find("qu.girard@gmail.com");
+		
+		System.out.println(el);*/
+		
+		
 	}
 	
 	/**

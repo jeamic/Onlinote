@@ -1,5 +1,7 @@
 package modele.actionsdao;
-import modele.basedao.*;
+import java.util.List;
+
+import modele.basedao.Cours;
 
 public class DAOCours extends DAOFactory<Cours>{
 
@@ -34,7 +36,7 @@ public class DAOCours extends DAOFactory<Cours>{
 	}
 
     @Override
-    public Cours findAll() {
+    public List<Cours> findAll() {
         // TODO Auto-generated method stub
         return null;
     }	
