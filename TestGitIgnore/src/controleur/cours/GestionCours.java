@@ -49,7 +49,7 @@ public class GestionCours {
                      +" where   eleve.id_classe = ens.id_classe"
                      +  " and ens.id_personne = prof.id_personne"
                      +  " and ens.id_cours = cours.id_cours"
-                     +  " and ? BETWEEN HEURE_DEBUT and addtime(heure_debut, duree)"
+                     +  " and ? between heure_debut and addtime(heure_debut, duree)"
                      +  " and cours.id_salle = salle.id_salle"
                      +  " and eleve.id_eleve = ?;");
             stmt.setString(1, date);
