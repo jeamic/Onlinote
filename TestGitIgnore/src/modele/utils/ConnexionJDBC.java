@@ -1,4 +1,4 @@
-package modele.bddconnect;
+package modele.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,7 +39,6 @@ public class ConnexionJDBC {
 			loadParamBDD();
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
-			
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			log4j.info(e.getMessage(), e);
 		} catch (SQLException e) {
@@ -68,6 +67,14 @@ public class ConnexionJDBC {
 	
 	public Connection getConnection () {
 		return connect;
+	}
+	
+	public void closeConnection () {
+	    try {
+            connect.close();
+        } catch (Exception e){
+            log4j.info(e.getMessage(), e);
+        }
 	}
 	
 	/**

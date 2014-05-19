@@ -5,7 +5,7 @@ import java.util.List;
 
 import modele.basedao.Eleve;
 import modele.basedao.Personne;
-import modele.bddconnect.ConnexionJDBC;
+import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 

@@ -1,14 +1,17 @@
 package controleur.connexion;
 
 import java.awt.EventQueue;
+import java.util.List;
 
 import modele.actionsdao.DAOEleve;
 import modele.basedao.Eleve;
-import modele.bddconnect.ConnexionJDBC;
+import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 
+import controleur.cours.GestionCours;
 import controleur.eleve.GestionEleve;
+import controleur.notes.GestionNotes;
 import vue.fenetre.ConnexionGUI;
 
 public class Onlinote {
@@ -37,7 +40,22 @@ public class Onlinote {
 		
 		System.out.println(el);*/
 		
+		/*
+		 * @test getCours
+		 * 
+		 */
+		/*GestionCours gestCours = new GestionCours();
+		List<List<String>> bla = gestCours.getCours(3, "2014-05-15 10:00:01");
 		
+		System.out.println(bla);*/
+		
+		/*
+		 * @ test getNotes
+		 * 
+		 */
+		GestionNotes gestNotes = new GestionNotes();
+		List<List<String>> bli = gestNotes.getNotes(3, "Maths");
+		System.out.println(bli);
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package modele.actionsdao;
 import java.util.List;
 
-import modele.bddconnect.ConnexionJDBC;
+import modele.utils.ConnexionJDBC;
 
 public abstract class DAOFactory <T> {
 	

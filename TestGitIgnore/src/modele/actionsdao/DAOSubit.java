@@ -6,7 +6,7 @@ import modele.basedao.Subit;
 public class DAOSubit extends DAOFactory <Subit> {
 
 	@Override
-	public Subit find(int id) {
+	public Subit find(int id /* id d'un élève */) {
 		// TODO Auto-generated method stub
 		return null;
 	}

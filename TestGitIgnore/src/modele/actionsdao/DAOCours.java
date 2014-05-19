@@ -30,7 +30,7 @@ public class DAOCours extends DAOFactory<Cours>{
 	}
 
 	@Override
-	public Cours find(String chaine) {
+	public Cours find(String chaine /*format: 2014-05-15 10:00:01 trouve tous les cours à partir de cette date */) {
 		// TODO Auto-generated method stub
 		return null;
 	}

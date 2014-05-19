@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 
-import modele.bddconnect.ConnexionJDBC;
+import modele.utils.ConnexionJDBC;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -30,12 +30,12 @@ public class GestionCours {
      * Renvoie un cours, la matière et la salle
      *  pour un élève donnée à une heure donnée
      * @param idEleve
-     * @param date
+     * @param date format: 2014-05-15 10:00:01
      * @return 
      */
-    public List <String> getCours (int idEleve, String date) {
+    public List<List<String>> getCours (int idEleve, String date) {
         /* déclaration et init des variables nécessaires */
-        List <String> cours = new ArrayList <String>();
+        List<List<String>> cours = new ArrayList<List<String>>();
         PreparedStatement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -52,21 +52,19 @@ public class GestionCours {
                      +  " and ? between heure_debut and addtime(heure_debut, duree)"
                      +  " and cours.id_salle = salle.id_salle"
                      +  " and eleve.id_eleve = ?;");
+            
             stmt.setString(1, date);
             stmt.setInt(2, idEleve);
-            
             res = (ResultSet) stmt.executeQuery();
-            if (res.first()){
-                /* création de la liste correspondante au cours recherché */
-                cours.add(res.getString("matiere"));
-                cours.add(res.getString("nom"));
-                cours.add(res.getString("nom_salle"));
-                
-                System.out.println("cours " + cours);
-            } else {
-                System.out.println("null");
-                return null;
+
+            while (res.next()){
+                ArrayList<String> listeTemp = new ArrayList<String>();
+                listeTemp.add(res.getString("matiere"));
+                listeTemp.add(res.getString("nom"));
+                listeTemp.add(res.getString("nom_salle"));
+                cours.add(listeTemp);
             }
+            
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
