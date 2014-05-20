@@ -11,11 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import modele.basedao.Personne;
+
 public class Fenetre {
 	
 	protected static JFrame maFenetre = null;
 
-    private Fenetre(){
+    private Fenetre(Personne personne){
 			
         maFenetre = new JFrame();
         
@@ -52,9 +54,8 @@ public class Fenetre {
         maFenetre.setVisible(true);
 	}
     
-    public static void creerFenetre () {
-        new Fenetre ();
-        
+    public static void creerFenetre (Personne personne) {
+        new Fenetre (personne);
     }
 	
 

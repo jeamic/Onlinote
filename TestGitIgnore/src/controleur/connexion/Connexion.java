@@ -37,7 +37,7 @@ public class Connexion {
 		if (pers != null) { 
 			/*test de comparaison du mot de passe*/
 			if (isPasswordOk(password, pers)) {
-				definirTypeConnexion(pers.getTypeP());
+				definirTypeConnexion(pers);
 			} else {
 				log4j.error("Le mot de passe n'est pas bon");
 			}
@@ -46,20 +46,20 @@ public class Connexion {
 		}
 	}
 	
-	private static void definirTypeConnexion (String type) {
+	private static void definirTypeConnexion (Personne personne) {
 		
-		switch (type) {
+		switch (personne.getTypeP()) {
 			case "élève":
-				Fenetre.creerFenetre();
+				Fenetre.creerFenetre(personne);
 				break;
 			case "professeur": 
-			    Fenetre.creerFenetre();
+			    Fenetre.creerFenetre(personne);
 				break;
 			case "parent": 
-			    Fenetre.creerFenetre();
+			    Fenetre.creerFenetre(personne);
 				break;
 			case "admin": 
-			    Fenetre.creerFenetre();
+			    Fenetre.creerFenetre(personne);
 				break;
 			default:
 				break;

@@ -4,7 +4,9 @@ import java.awt.EventQueue;
 import java.util.List;
 
 import modele.actionsdao.DAOEleve;
+import modele.actionsdao.DAOMatiere;
 import modele.basedao.Eleve;
+import modele.basedao.Matiere;
 import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
@@ -56,6 +58,17 @@ public class Onlinote {
 		/*DAOEleve daoEleve = new DAOEleve();
 		List<List<String>> bli = daoEleve.getNotes(3, "Maths");
 		System.out.println(bli);*/
+		
+		
+		/*
+		 * 
+		 * @test getMatieres
+		 */
+		DAOMatiere daoMatiere = new DAOMatiere();
+		List<Matiere> listeMat = daoMatiere.getMatieres(3);
+		for (int i = 0; i < listeMat.size(); ++i) {
+		    System.out.println(listeMat.get(i).getMatiere());
+		}
 	}
 	
 	/**
