@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.utils.ConnexionJDBC;
 
 public abstract class DAOFactory <T> {
@@ -47,6 +49,8 @@ public abstract class DAOFactory <T> {
 	 * @param obj
 	 */
 	public abstract void delete(T obj);
+	
+	public abstract T map (ResultSet resultSet);
 	
 	
 }

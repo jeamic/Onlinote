@@ -101,4 +101,10 @@ public class DAOCours extends DAOFactory<Cours>{
         return cours;
     }
 
+    @Override
+    public Cours map(ResultSet resultSet) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

@@ -7,6 +7,7 @@ import modele.actionsdao.DAOEleve;
 import modele.actionsdao.DAOMatiere;
 import modele.basedao.Eleve;
 import modele.basedao.Matiere;
+import modele.controleur.NoteModele;
 import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
@@ -68,6 +69,13 @@ public class Onlinote {
 		List<Matiere> listeMat = daoMatiere.getMatieres(3);
 		for (int i = 0; i < listeMat.size(); ++i) {
 		    System.out.println(listeMat.get(i).getMatiere());
+		}
+		
+		DAOEleve daoEleve = new DAOEleve();
+		List<NoteModele> test = daoEleve.getNotes(3, "Maths", 1);
+		
+		for (int i = 0; i < test.size(); i++){
+		    System.out.println(test.get(i).getNoteMax());
 		}
 	}
 	

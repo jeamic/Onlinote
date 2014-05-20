@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.Message;
 
 public class DAOMessage extends DAOFactory<Message>{
@@ -37,6 +39,12 @@ public class DAOMessage extends DAOFactory<Message>{
 
     @Override
     public List<Message> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Message map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

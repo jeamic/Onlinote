@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.Support;
 
 public class DAOSupport extends DAOFactory <Support>{
@@ -37,6 +39,12 @@ public class DAOSupport extends DAOFactory <Support>{
 
     @Override
     public List<Support> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Support map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

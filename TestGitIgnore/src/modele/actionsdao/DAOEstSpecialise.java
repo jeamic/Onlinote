@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.EstSpecialise;
 
 
@@ -38,6 +40,12 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
 
     @Override
     public List<EstSpecialise> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public EstSpecialise map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

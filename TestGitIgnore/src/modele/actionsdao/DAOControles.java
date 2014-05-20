@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.Controles;
 
 public class DAOControles extends DAOFactory <Controles>{
@@ -37,6 +39,12 @@ public class DAOControles extends DAOFactory <Controles>{
 
     @Override
     public List<Controles> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Controles map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

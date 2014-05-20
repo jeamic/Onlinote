@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.Suit;
 
 public class DAOSuit extends DAOFactory <Suit>{
@@ -37,6 +39,12 @@ public class DAOSuit extends DAOFactory <Suit>{
 
     @Override
     public List<Suit> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Suit map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

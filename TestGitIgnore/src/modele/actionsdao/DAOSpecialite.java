@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.Specialite;
 
 public class DAOSpecialite extends DAOFactory<Specialite>{
@@ -37,6 +39,12 @@ public class DAOSpecialite extends DAOFactory<Specialite>{
 
     @Override
     public List<Specialite> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Specialite map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

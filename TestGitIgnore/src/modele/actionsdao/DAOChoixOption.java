@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.*;
 
 public class DAOChoixOption extends DAOFactory <ChoixOption>{
@@ -37,6 +39,12 @@ public class DAOChoixOption extends DAOFactory <ChoixOption>{
 
     @Override
     public List<ChoixOption> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ChoixOption map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

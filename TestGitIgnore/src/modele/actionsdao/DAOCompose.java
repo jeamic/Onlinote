@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.*;
 
 public class DAOCompose extends DAOFactory <Compose>{
@@ -37,6 +39,12 @@ public class DAOCompose extends DAOFactory <Compose>{
 
     @Override
     public List<Compose> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Compose map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }	

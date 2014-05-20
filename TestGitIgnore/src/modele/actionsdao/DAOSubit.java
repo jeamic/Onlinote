@@ -1,6 +1,8 @@
 package modele.actionsdao;
 import java.util.List;
 
+import com.mysql.jdbc.ResultSet;
+
 import modele.basedao.Subit;
 
 public class DAOSubit extends DAOFactory <Subit> {
@@ -37,6 +39,12 @@ public class DAOSubit extends DAOFactory <Subit> {
 
     @Override
     public List<Subit> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Subit map(ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

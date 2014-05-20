@@ -75,4 +75,10 @@ public class DAOPersonne extends DAOFactory<Personne>{
         return null;
     }
 
+    @Override
+    public Personne map(ResultSet resultSet) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

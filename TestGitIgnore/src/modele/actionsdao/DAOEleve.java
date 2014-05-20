@@ -5,6 +5,7 @@ import java.util.List;
 
 import modele.basedao.Eleve;
 import modele.basedao.Personne;
+import modele.controleur.NoteModele;
 import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
@@ -96,10 +97,14 @@ public class DAOEleve extends DAOFactory<Eleve>{
         return listeEleve;
     }
     
-    public List<List<String>> getNotes (int idEleve, String nomMatiere){
+    public List<NoteModele> getNotes (int idEleve, String nomMatiere){
+        return getNotes(idEleve, nomMatiere, 0);
+    }
+    
+    public List<NoteModele> getNotes (int idEleve, String nomMatiere, int trimestre){
         
         /* déclaration et init des variables nécessaires */
-        List<List<String>> notes = new ArrayList<List<String>>();
+        List<NoteModele> listeNotes = null;
         PreparedStatement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -107,29 +112,47 @@ public class DAOEleve extends DAOFactory<Eleve>{
         
         /* requête pour rechercher la personne, param 1 = date, param 2 = idEleve*/
         try {
-            stmt =   (PreparedStatement) conn.prepareStatement(
-                 "select note, m.matiere"
-                +" from subit s, eleve e, matiere m, cours c"
-                +" where s.id_eleve = ?"
-                    +" and s.id_cours = c.id_cours"
-                    +" and c.matiere = m.matiere"
-                    +" and m.matiere = ?;");
+            String query = "select note, note_max, coefficient, m.matiere, trimestre"
+                          +" from subit s, eleve e, matiere m, cours c, controles cont"
+                          +" where s.id_eleve = ?"
+                            + " and s.id_cours = c.id_cours"
+                            + " and c.matiere = m.matiere"
+                            + " and m.matiere = ?"
+                            + " and s.id_controle = cont.id_controle;";
+            if (trimestre != 0){
+                query =   "select note, note_max, coefficient, m.matiere, trimestre"
+                        +" from subit s, eleve e, matiere m, cours c, controles cont"
+                        +" where s.id_eleve = ?"
+                            + " and s.id_cours = c.id_cours"
+                            + " and c.matiere = m.matiere"
+                            + " and m.matiere = ?"
+                            + " and s.id_controle = cont.id_controle"
+                            + " and cont.trimestre = ?;";
+            }
+            stmt =   (PreparedStatement) conn.prepareStatement(query);
             stmt.setInt(1, idEleve);
             stmt.setString(2, nomMatiere);
+            if (trimestre != 0){
+                stmt.setInt(3, trimestre);
+            }
             
             res = (ResultSet) stmt.executeQuery();
+            listeNotes = new ArrayList<NoteModele>();
             
             while (res.next()){
-                ArrayList<String> listeTemp = new ArrayList<String>();
-                listeTemp.add(res.getString("matiere"));
-                listeTemp.add(res.getString("note"));
-                notes.add(listeTemp);
+                listeNotes.add(new NoteModele(idEleve, res.getDouble("note"), res.getDouble("note_max"), res.getDouble("coefficient"), res.getInt("trimestre"), res.getString("matiere")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return notes;
+        return listeNotes;
+    }
+
+    @Override
+    public Eleve map(ResultSet resultSet) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

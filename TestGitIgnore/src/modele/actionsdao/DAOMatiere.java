@@ -88,4 +88,10 @@ public class DAOMatiere extends DAOFactory<Matiere>{
         return listeMat;
     }
 
+    @Override
+    public Matiere map(ResultSet resultSet) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
