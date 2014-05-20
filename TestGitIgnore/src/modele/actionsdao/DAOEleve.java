@@ -9,6 +9,7 @@ import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 
+import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 
@@ -93,6 +94,42 @@ public class DAOEleve extends DAOFactory<Eleve>{
         }
 
         return listeEleve;
+    }
+    
+    public List<List<String>> getNotes (int idEleve, String nomMatiere){
+        
+        /* déclaration et init des variables nécessaires */
+        List<List<String>> notes = new ArrayList<List<String>>();
+        PreparedStatement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        /* requête pour rechercher la personne, param 1 = date, param 2 = idEleve*/
+        try {
+            stmt =   (PreparedStatement) conn.prepareStatement(
+                 "select note, m.matiere"
+                +" from subit s, eleve e, matiere m, cours c"
+                +" where s.id_eleve = ?"
+                    +" and s.id_cours = c.id_cours"
+                    +" and c.matiere = m.matiere"
+                    +" and m.matiere = ?;");
+            stmt.setInt(1, idEleve);
+            stmt.setString(2, nomMatiere);
+            
+            res = (ResultSet) stmt.executeQuery();
+            
+            while (res.next()){
+                ArrayList<String> listeTemp = new ArrayList<String>();
+                listeTemp.add(res.getString("matiere"));
+                listeTemp.add(res.getString("note"));
+                notes.add(listeTemp);
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return notes;
     }
 
 }

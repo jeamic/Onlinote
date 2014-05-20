@@ -53,9 +53,9 @@ public class Onlinote {
 		 * @ test getNotes
 		 * 
 		 */
-		GestionNotes gestNotes = new GestionNotes();
-		List<List<String>> bli = gestNotes.getNotes(3, "Maths");
-		System.out.println(bli);
+		/*DAOEleve daoEleve = new DAOEleve();
+		List<List<String>> bli = daoEleve.getNotes(3, "Maths");
+		System.out.println(bli);*/
 	}
 	
 	/**
