@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.basedao.Eleve;
-import modele.basedao.Personne;
-import modele.controleur.NoteModele;
+import modele.daovue.DAOVueNote;
 import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
@@ -97,14 +96,14 @@ public class DAOEleve extends DAOFactory<Eleve>{
         return listeEleve;
     }
     
-    public List<NoteModele> getNotes (int idEleve, String nomMatiere){
+    public List<DAOVueNote> getNotes (int idEleve, String nomMatiere){
         return getNotes(idEleve, nomMatiere, 0);
     }
     
-    public List<NoteModele> getNotes (int idEleve, String nomMatiere, int trimestre){
+    public List<DAOVueNote> getNotes (int idEleve, String nomMatiere, int trimestre){
         
         /* déclaration et init des variables nécessaires */
-        List<NoteModele> listeNotes = null;
+        List<DAOVueNote> listeNotes = null;
         PreparedStatement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -137,10 +136,10 @@ public class DAOEleve extends DAOFactory<Eleve>{
             }
             
             res = (ResultSet) stmt.executeQuery();
-            listeNotes = new ArrayList<NoteModele>();
+            listeNotes = new ArrayList<DAOVueNote>();
             
             while (res.next()){
-                listeNotes.add(new NoteModele(idEleve, res.getDouble("note"), res.getDouble("note_max"), res.getDouble("coefficient"), res.getInt("trimestre"), res.getString("matiere")));
+                listeNotes.add(new DAOVueNote(idEleve, res.getDouble("note"), res.getDouble("note_max"), res.getDouble("coefficient"), res.getInt("trimestre"), res.getString("matiere")));
             }
             
         } catch (SQLException e) {

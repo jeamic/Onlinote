@@ -1,9 +1,7 @@
 package modele.actionsdao;
 import java.util.List;
 
-import com.mysql.jdbc.ResultSet;
-
-import modele.basedao.*;
+import modele.basedao.Classe;
 
 public class DAOClasse extends DAOFactory <Classe>{
 

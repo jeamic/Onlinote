@@ -1,8 +1,6 @@
 package modele.actionsdao;
 import java.util.List;
 
-import com.mysql.jdbc.ResultSet;
-
 import modele.basedao.Salle;
 
 public class DAOSalle extends DAOFactory<Salle>{

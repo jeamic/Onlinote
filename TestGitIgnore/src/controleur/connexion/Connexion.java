@@ -2,10 +2,11 @@ package controleur.connexion;
 
 
 import java.io.IOException;
-import modele.actionsdao.DAOPersonne;
-import modele.basedao.*;
 
-import org.apache.log4j.*;
+import modele.actionsdao.DAOPersonne;
+import modele.basedao.Personne;
+
+import org.apache.log4j.LogManager;
 
 import vue.fenetre.Fenetre;
 

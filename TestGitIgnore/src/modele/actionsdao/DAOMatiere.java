@@ -1,18 +1,17 @@
 package modele.actionsdao;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.LogManager;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import controleur.connexion.Connexion;
 import modele.basedao.Matiere;
 import modele.utils.ConnexionJDBC;
+
+import org.apache.log4j.LogManager;
+
+import controleur.connexion.Connexion;
 
 public class DAOMatiere extends DAOFactory<Matiere>{
     
@@ -66,28 +65,15 @@ public class DAOMatiere extends DAOFactory<Matiere>{
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         
-        try {
-            /* =   (PreparedStatement) conn.prepareStatement(
-                 "select cou.matiere"
-                +" from eleve e, suit s, cours cou, enseigne ens, matiere mat, classe cl"
-                +" where e.id_eleve = ?"
-                   +" and e.id_classe = cl.id_classe"
-                   +" and cl.id_classe = ens.id_classe"
-                   +" and ens.id_cours = cou.id_cours"
-                   +" and cou.matiere = mat.matiere;");*/
+        try {stmt = conn.createStatement();
             
-            stmt = conn.createStatement();
-            
-           res = stmt.executeQuery("select cou.matiere"
+            res = stmt.executeQuery("select cou.matiere"
                     +" from eleve e, suit s, cours cou, enseigne ens, matiere mat, classe cl"
                     +" where e.id_eleve = " + idEleve
                        +" and e.id_classe = cl.id_classe"
                        +" and cl.id_classe = ens.id_classe"
                        +" and ens.id_cours = cou.id_cours"
                        +" and cou.matiere = mat.matiere;");
-            
-            //stmt.setInt(1, idEleve);
-            //res = (ResultSet) stmt.executeQuery();
 
             while (res.next()){
                 listeMat.add(new Matiere(res.getString("matiere")));

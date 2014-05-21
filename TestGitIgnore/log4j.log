@@ -526,3 +526,4 @@ java.lang.IndexOutOfBoundsException: Index: 1, Size: 1
 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
 	at java.awt.EventDispatchThread.run(Unknown Source)
+[2014-05-21 14:32:05,120]ERROR     1[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:46) - Nom d'utilisateur incorrect

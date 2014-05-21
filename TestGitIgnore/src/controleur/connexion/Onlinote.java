@@ -5,16 +5,12 @@ import java.util.List;
 
 import modele.actionsdao.DAOEleve;
 import modele.actionsdao.DAOMatiere;
-import modele.basedao.Eleve;
 import modele.basedao.Matiere;
-import modele.controleur.NoteModele;
+import modele.daovue.DAOVueNote;
 import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 
-import controleur.cours.GestionCours;
-import controleur.eleve.GestionEleve;
-import controleur.notes.GestionNotes;
 import vue.fenetre.ConnexionGUI;
 
 public class Onlinote {
@@ -72,7 +68,7 @@ public class Onlinote {
 		}
 		
 		DAOEleve daoEleve = new DAOEleve();
-		List<NoteModele> test = daoEleve.getNotes(3, "Maths", 1);
+		List<DAOVueNote> test = daoEleve.getNotes(3, "Maths", 1);
 		
 		for (int i = 0; i < test.size(); i++){
 		    System.out.println(test.get(i).getNoteMax());

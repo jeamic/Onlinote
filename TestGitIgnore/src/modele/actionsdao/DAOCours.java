@@ -3,6 +3,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.basedao.Cours;
+import modele.utils.ConnexionJDBC;
+
 import org.apache.log4j.LogManager;
 
 import com.mysql.jdbc.Connection;
@@ -10,8 +13,6 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 
 import controleur.connexion.Connexion;
-import modele.basedao.Cours;
-import modele.utils.ConnexionJDBC;
 
 public class DAOCours extends DAOFactory<Cours>{
     

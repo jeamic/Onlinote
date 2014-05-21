@@ -1,6 +1,6 @@
-package modele.controleur;
+package modele.daovue;
 
-public class NoteModele {
+public class DAOVueNote {
     private int idEleve;
     private double note;
     private double noteMax;
@@ -8,11 +8,11 @@ public class NoteModele {
     private int trimestre;
     private String matiere;
     
-    public NoteModele() {
+    public DAOVueNote() {
         
     }
     
-    public NoteModele(int idEleve, double note, double noteMax, double coefficient, int trimestre, String matiere) {
+    public DAOVueNote(int idEleve, double note, double noteMax, double coefficient, int trimestre, String matiere) {
         this.idEleve = idEleve;
         this.note    = note;
         this.trimestre = trimestre;
