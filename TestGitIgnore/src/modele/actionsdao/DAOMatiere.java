@@ -65,7 +65,8 @@ public class DAOMatiere extends DAOFactory<Matiere>{
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         
-        try {stmt = conn.createStatement();
+        try {
+            stmt = conn.createStatement();
             
             res = stmt.executeQuery("select cou.matiere"
                     +" from eleve e, suit s, cours cou, enseigne ens, matiere mat, classe cl"

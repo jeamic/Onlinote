@@ -5,14 +5,11 @@
 Requête pour emploi du temps :
 
 
--GetCours(Heure, jour, élève)
-{
-    return list avec Matière Prof et salle (dans cet ordre)
-}
+List<DAOVueCours> GetCours(int idEleve, String date (format: YYYY/MM/DD HH:MM:SS)
 
 Requête pour Accueil :
 
--Récuperer le nom de celui qui se connecte
+-Récuperer le nom de celui qui se connecte: fait changement
 
 
 
