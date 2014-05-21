@@ -42,9 +42,11 @@ public class Connexion {
 			    ConnexionGUI.fermerFenetre();
 				definirTypeConnexion(pers);
 			} else {
+			    ConnexionGUI.incorrectMDP();
 				log4j.error("Le mot de passe n'est pas bon");
 			}
 		} else {
+		    ConnexionGUI.incorrectUser();
 			log4j.error("Nom d'utilisateur incorrect");
 		}
 	}

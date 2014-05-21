@@ -37,7 +37,7 @@ public class FenetreParent {
         maFenetreParent.getContentPane().setLayout(null);
         
         
-        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr X");
+        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr ");
         lblApplicationOnlinote.setBounds(150, 0, 714, 502);
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
         lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
