@@ -44,7 +44,7 @@ public class DAOSpecialite extends DAOFactory<Specialite>{
     }
 
     @Override
-    public Specialite map(ResultSet resultSet) {
+    public Specialite map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

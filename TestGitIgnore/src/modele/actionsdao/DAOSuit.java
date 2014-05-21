@@ -44,7 +44,7 @@ public class DAOSuit extends DAOFactory <Suit>{
     }
 
     @Override
-    public Suit map(ResultSet resultSet) {
+    public Suit map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

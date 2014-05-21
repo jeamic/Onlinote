@@ -44,7 +44,7 @@ public class DAODonneLieu extends DAOFactory <DonneLieu>{
     }
 
     @Override
-    public DonneLieu map(ResultSet resultSet) {
+    public DonneLieu map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

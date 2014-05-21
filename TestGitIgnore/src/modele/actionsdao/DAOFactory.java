@@ -1,7 +1,6 @@
 package modele.actionsdao;
+import java.sql.ResultSet;
 import java.util.List;
-
-import com.mysql.jdbc.ResultSet;
 
 import modele.utils.ConnexionJDBC;
 

@@ -44,7 +44,7 @@ public class DAOMessage extends DAOFactory<Message>{
     }
 
     @Override
-    public Message map(ResultSet resultSet) {
+    public Message map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

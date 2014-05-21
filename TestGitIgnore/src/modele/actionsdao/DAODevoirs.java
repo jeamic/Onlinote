@@ -44,7 +44,7 @@ public class DAODevoirs extends DAOFactory <Devoirs>{
     }
 
     @Override
-    public Devoirs map(ResultSet resultSet) {
+    public Devoirs map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

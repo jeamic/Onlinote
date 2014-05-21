@@ -44,7 +44,7 @@ public class DAOChoixOption extends DAOFactory <ChoixOption>{
     }
 
     @Override
-    public ChoixOption map(ResultSet resultSet) {
+    public ChoixOption map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

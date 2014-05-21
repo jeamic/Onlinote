@@ -44,7 +44,7 @@ public class DAOCompose extends DAOFactory <Compose>{
     }
 
     @Override
-    public Compose map(ResultSet resultSet) {
+    public Compose map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }	

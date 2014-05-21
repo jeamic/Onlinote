@@ -44,7 +44,7 @@ public class DAODocumente extends DAOFactory<Documente>{
     }
 
     @Override
-    public Documente map(ResultSet resultSet) {
+    public Documente map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

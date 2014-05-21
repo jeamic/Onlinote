@@ -43,7 +43,8 @@ public class DAOPersonne extends DAOFactory<Personne>{
                                      res.getString("adresse"),
                                      res.getString("mot_de_passe"),
                                      res.getString("email"),
-                                     res.getString("type_p"));}
+                                     res.getString("type_p"));
+            }
 		} catch (SQLException e) {
 			log4j.info(e.getMessage(), e);
 		}
@@ -76,7 +77,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
     }
 
     @Override
-    public Personne map(ResultSet resultSet) {
+    public Personne map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

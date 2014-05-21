@@ -45,7 +45,7 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
     }
 
     @Override
-    public EstSpecialise map(ResultSet resultSet) {
+    public EstSpecialise map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -44,7 +44,7 @@ public class DAOControles extends DAOFactory <Controles>{
     }
 
     @Override
-    public Controles map(ResultSet resultSet) {
+    public Controles map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

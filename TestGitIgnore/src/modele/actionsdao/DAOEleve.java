@@ -150,7 +150,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
     }
 
     @Override
-    public Eleve map(ResultSet resultSet) {
+    public Eleve map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }

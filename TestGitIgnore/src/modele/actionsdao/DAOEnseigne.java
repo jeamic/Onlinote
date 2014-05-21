@@ -44,7 +44,7 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
     }
 
     @Override
-    public Enseigne map(ResultSet resultSet) {
+    public Enseigne map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }
