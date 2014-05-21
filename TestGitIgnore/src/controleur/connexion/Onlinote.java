@@ -61,6 +61,7 @@ public class Onlinote {
 		 * 
 		 * @test getMatieres
 		 */
+		/*
 		DAOMatiere daoMatiere = new DAOMatiere();
 		List<Matiere> listeMat = daoMatiere.getMatieres(3);
 		for (int i = 0; i < listeMat.size(); ++i) {
@@ -73,6 +74,8 @@ public class Onlinote {
 		for (int i = 0; i < test.size(); i++){
 		    System.out.println(test.get(i).getNoteMax());
 		}
+		
+		*/
 	}
 	
 	/**

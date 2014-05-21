@@ -23,7 +23,7 @@ public class ConnexionGUI {
 	 */
 	static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
 	
-	private JFrame frmConnexion;
+	private static JFrame frmConnexion;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	
@@ -73,7 +73,6 @@ public class ConnexionGUI {
 				// TODO Auto-generated method stub
 				try {
 					Connexion.startApp(textField.getText(), passwordField.getPassword());
-					frmConnexion.dispose();
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1) {
 					log4j.info(e1.getMessage(), e1);
 				}
@@ -86,6 +85,10 @@ public class ConnexionGUI {
 		passwordField.setBounds(158, 75, 223, 20);
 		frmConnexion.getContentPane().add(passwordField);
 		frmConnexion.setVisible(true);
+	}
+	
+	public static void fermerFenetre() {
+	    frmConnexion.dispose();
 	}
 
 }

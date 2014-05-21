@@ -13,28 +13,28 @@ import javax.swing.SwingConstants;
 
 import modele.basedao.Personne;
 
-public class Fenetre {
+public class FenetreParent {
 	
-	protected static JFrame maFenetre = null;
+	protected static JFrame maFenetreParent = null;
 
-    private Fenetre(Personne personne){
+    private FenetreParent(Personne personne){
 			
-        maFenetre = new JFrame();
+        maFenetreParent = new JFrame();
         
-        maFenetre.setSize(new Dimension(880, 540));
+        maFenetreParent.setSize(new Dimension(880, 540));
         
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        maFenetre.setLocation(dim.width/2-maFenetre.getSize().width/2, dim.height/2-maFenetre.getSize().height/2);
+        maFenetreParent.setLocation(dim.width/2-maFenetreParent.getSize().width/2, dim.height/2-maFenetreParent.getSize().height/2);
 
         
-        maFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        maFenetreParent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel monMenu = new Menu("Accueil").getMenu();
         monMenu.setBounds(0,0,150,300);
         
-        maFenetre.getContentPane().add( monMenu, BorderLayout.CENTER);
-        maFenetre.getContentPane().setLayout(null);
+        maFenetreParent.getContentPane().add( monMenu, BorderLayout.CENTER);
+        maFenetreParent.getContentPane().setLayout(null);
         
         
         JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr X");
@@ -42,20 +42,20 @@ public class Fenetre {
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
         lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
         lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
-        maFenetre.getContentPane().add(lblApplicationOnlinote);
+        maFenetreParent.getContentPane().add(lblApplicationOnlinote);
         
         
         JLabel lblDetails1 = new JLabel("L'application qui vous permet de suivre vos enfants et garder un contact avec l'administration");
         lblDetails1.setHorizontalAlignment(SwingConstants.CENTER);
         lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
         lblDetails1.setBounds(150, 44, 714, 35);
-        maFenetre.getContentPane().add(lblDetails1);
+        maFenetreParent.getContentPane().add(lblDetails1);
             
-        maFenetre.setVisible(true);
+        maFenetreParent.setVisible(true);
 	}
     
-    public static void creerFenetre (Personne personne) {
-        new Fenetre (personne);
+    public static void creerFenetreParent (Personne personne) {
+        new FenetreParent (personne);
     }
 	
 

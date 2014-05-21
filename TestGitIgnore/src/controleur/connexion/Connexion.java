@@ -8,7 +8,8 @@ import modele.basedao.Personne;
 
 import org.apache.log4j.LogManager;
 
-import vue.fenetre.Fenetre;
+import vue.fenetre.ConnexionGUI;
+import vue.fenetre.FenetreParent;
 
 
 public class Connexion {
@@ -38,6 +39,7 @@ public class Connexion {
 		if (pers != null) { 
 			/*test de comparaison du mot de passe*/
 			if (isPasswordOk(password, pers)) {
+			    ConnexionGUI.fermerFenetre();
 				definirTypeConnexion(pers);
 			} else {
 				log4j.error("Le mot de passe n'est pas bon");
@@ -51,16 +53,16 @@ public class Connexion {
 		
 		switch (personne.getTypeP()) {
 			case "élève":
-				Fenetre.creerFenetre(personne);
+				FenetreParent.creerFenetreParent(personne);
 				break;
 			case "professeur": 
-			    Fenetre.creerFenetre(personne);
+			    FenetreParent.creerFenetreParent(personne);
 				break;
 			case "parent": 
-			    Fenetre.creerFenetre(personne);
+			    FenetreParent.creerFenetreParent(personne);
 				break;
 			case "admin": 
-			    Fenetre.creerFenetre(personne);
+			    FenetreParent.creerFenetreParent(personne);
 				break;
 			default:
 				break;

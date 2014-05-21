@@ -119,7 +119,7 @@ public class Menu {
             
             public void mouseClicked(MouseEvent e) {  
                 
-                 Fenetre.maFenetre.dispose();
+                 FenetreParent.maFenetreParent.dispose();
                  Onlinote.relancer();
     
             }  
@@ -128,7 +128,7 @@ public class Menu {
             
             public void mouseClicked(MouseEvent e) {  
                 
-                 Fenetre.maFenetre.dispose();
+                FenetreParent.maFenetreParent.dispose();
                  Onlinote.relancer();
     
             }  
@@ -239,15 +239,15 @@ public class Menu {
 	}
 	
    private void switchOnglet(String onglet) {
-        Fenetre.maFenetre.getContentPane().removeAll();
+       FenetreParent.maFenetreParent.getContentPane().removeAll();
         JPanel monMenu = new Menu(onglet).getMenu();
         monMenu.setBounds(0,0,150,300);
         
         
-        Fenetre.maFenetre.getContentPane().add( monMenu, BorderLayout.CENTER);
-        Fenetre.maFenetre.getContentPane().setLayout(null);
+        FenetreParent.maFenetreParent.getContentPane().add( monMenu, BorderLayout.CENTER);
+        FenetreParent.maFenetreParent.getContentPane().setLayout(null);
         
-        Fenetre.maFenetre.getContentPane().repaint();
+        FenetreParent.maFenetreParent.getContentPane().repaint();
         
         switch(onglet) {
             case "Accueil" :
@@ -256,29 +256,29 @@ public class Menu {
                 lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
                 lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
                 lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
-                Fenetre.maFenetre.getContentPane().add(lblApplicationOnlinote);
+                FenetreParent.maFenetreParent.getContentPane().add(lblApplicationOnlinote);
                 
                 
                 JLabel lblDetails1 = new JLabel("L'application qui vous permet de suivre vos enfants et garder un contact avec l'administration");
                 lblDetails1.setHorizontalAlignment(SwingConstants.CENTER);
                 lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
                 lblDetails1.setBounds(150, 44, 714, 35);
-                Fenetre.maFenetre.getContentPane().add(lblDetails1);
-                Fenetre.maFenetre.getContentPane().repaint();
+                FenetreParent.maFenetreParent.getContentPane().add(lblDetails1);
+                FenetreParent.maFenetreParent.getContentPane().repaint();
                break;
             case "Notes" :
                 JPanel mesNotes = new Notes().getNotes();
                 mesNotes.setBounds(150, 0, 700, 750);
                 mesNotes.setVisible(true);
-                Fenetre.maFenetre.add(mesNotes);
-                Fenetre.maFenetre.validate();
+                FenetreParent.maFenetreParent.add(mesNotes);
+                FenetreParent.maFenetreParent.validate();
                 break;
             case "Emploi du temps" :
                 JPanel monEDT = new EmploiDuTemps().getEDT();
                 monEDT.setBounds(150, 0, 700, 750);
                 monEDT.setVisible(true);
-                Fenetre.maFenetre.add(monEDT);
-                Fenetre.maFenetre.validate();
+                FenetreParent.maFenetreParent.add(monEDT);
+                FenetreParent.maFenetreParent.validate();
                 break;
                 
             default : 
