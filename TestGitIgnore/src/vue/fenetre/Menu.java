@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,6 +30,10 @@ public class Menu {
     static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
 	
 	private JPanel menu = null;
+	private JLabel lblAccueil = null;
+	private JLabel lblNotes = null;
+	private JLabel lblEmploiDuTemps = null;
+	private JLabel lblMessagerie = null;
 	
 	public Menu (String ongletEC) {
 	    
@@ -42,11 +47,11 @@ public class Menu {
 		menu.setSize(new Dimension(153, 267));
 		menu.setLayout(null);
 		
-	    addAccueil(tabImg[0], ongletEC);
-        addNotes(tabImg[1], ongletEC);
-        addMsg(tabImg[2], ongletEC);
-        addEmploiDuTemps(tabImg[3], ongletEC);
-        addDeconnexion(tabImg[4], ongletEC);
+	    addAccueil(tabImg[0]);
+        addNotes(tabImg[1]);
+        addMsg(tabImg[2]);
+        addEmploiDuTemps(tabImg[3]);
+        addDeconnexion(tabImg[4]);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -103,7 +108,7 @@ public class Menu {
 
 	}
 	
-	private void addDeconnexion (ImageIcon tabImg, String ongletEC) {
+	private void addDeconnexion (ImageIcon tabImg) {
     	JLabel lblDeconnexion = new JLabel();
         JLabel lblIconDeconnexion = new JLabel(tabImg);
         lblDeconnexion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -112,9 +117,6 @@ public class Menu {
         lblDeconnexion.setBounds(45, 230, 96, 17);
         lblDeconnexion.setFont(new Font("Times new roman", Font.PLAIN, 14));
         lblDeconnexion.setText("Deconnexion");
-        if (lblDeconnexion.getText() == ongletEC) {
-            lblDeconnexion.setFont(new Font("Times new roman", Font.BOLD, 14));
-        }
         lblDeconnexion.addMouseListener(new MouseAdapter() {  
             
             public void mouseClicked(MouseEvent e) {  
@@ -124,30 +126,18 @@ public class Menu {
     
             }  
         });
-        lblIconDeconnexion.addMouseListener(new MouseAdapter() {  
-            
-            public void mouseClicked(MouseEvent e) {  
-                
-                FenetreParent.maFenetreParent.dispose();
-                 Onlinote.relancer();
-    
-            }  
-        });
         menu.add(lblIconDeconnexion);
         menu.add(lblDeconnexion);
 	}
-	private void addAccueil (ImageIcon tabImg, String ongletEC) {
+	private void addAccueil (ImageIcon tabImg) {
         JLabel lblIconAccueil = new JLabel(tabImg);
-        JLabel lblAccueil = new JLabel();
+        lblAccueil = new JLabel();
         lblIconAccueil.setBounds(5, 4, 29, 53);
         lblAccueil.setBounds(44, 4, 50, 53);
         lblAccueil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblIconAccueil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        lblAccueil.setFont(new Font("Times new roman", Font.PLAIN, 14));
+        lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
         lblAccueil.setText("Accueil");
-        if ( lblAccueil.getText() == ongletEC) {
-            lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
-        }
         lblAccueil.addMouseListener(new MouseAdapter() {  
             public void mouseClicked(MouseEvent e) {  
                  switchOnglet("Accueil");
@@ -164,8 +154,8 @@ public class Menu {
 	}
 	
 	
-	private void addNotes(ImageIcon tabImg, String ongletEC) {
-	    JLabel lblNotes = new JLabel();
+	private void addNotes(ImageIcon tabImg) {
+	    lblNotes = new JLabel();
         JLabel lblIconNotes = new JLabel(tabImg);
         lblIconNotes.setBounds(5, 119, 29, 53);
         lblNotes.setBounds(45, 136, 50, 17);
@@ -173,9 +163,6 @@ public class Menu {
         lblNotes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblIconNotes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblNotes.setText("Notes");
-        if (lblNotes.getText() == ongletEC) {
-            lblNotes.setFont(new Font("Times new roman", Font.BOLD, 14));
-        }
         
         lblNotes.addMouseListener(new MouseAdapter()  {  
             public void mouseClicked(MouseEvent e) {  
@@ -191,8 +178,8 @@ public class Menu {
         menu.add(lblNotes);
 	}
 	
-	private void addEmploiDuTemps(ImageIcon tabImg, String ongletEC) { 
-        JLabel lblEmploiDuTemps = new JLabel();
+	private void addEmploiDuTemps(ImageIcon tabImg) { 
+        lblEmploiDuTemps = new JLabel();
         JLabel lblIconEmploiDuTemps = new JLabel(tabImg);
         lblEmploiDuTemps.addMouseListener(new MouseAdapter() {  
             public void mouseClicked(MouseEvent e) {  
@@ -210,15 +197,12 @@ public class Menu {
         lblIconEmploiDuTemps.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblEmploiDuTemps.setText("Emploi du temps");
         lblEmploiDuTemps.setFont(new Font("Times new roman", Font.PLAIN, 14));
-        if ( lblEmploiDuTemps.getText() == ongletEC) {
-            lblEmploiDuTemps.setFont(new Font("Times new roman", Font.BOLD, 14));
-        }
         menu.add(lblIconEmploiDuTemps);
         menu.add(lblEmploiDuTemps);
 	}
 	
-	private void addMsg(ImageIcon tabImg, String ongletEC) { 
-    	JLabel lblMessagerie = new JLabel();
+	private void addMsg(ImageIcon tabImg) { 
+    	lblMessagerie = new JLabel();
         JLabel lblIconMessagerie = new JLabel(tabImg);
         lblIconMessagerie.setBounds(5, 150, 29, 53);
         lblMessagerie.setBounds(44, 165, 96, 17);
@@ -226,9 +210,6 @@ public class Menu {
         lblIconMessagerie.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblMessagerie.setText("Messagerie");
         lblMessagerie.setFont(new Font("Times new roman", Font.PLAIN, 14));
-        if (lblMessagerie.getText() == ongletEC) {
-            lblMessagerie.setFont(new Font("Times new roman", Font.BOLD, 14));
-        }
         lblMessagerie.addMouseListener(new MouseAdapter() {  
             public void mouseClicked(MouseEvent e) {  
                  switchOnglet("Messagerie");
@@ -239,45 +220,126 @@ public class Menu {
 	}
 	
    private void switchOnglet(String onglet) {
-       FenetreParent.maFenetreParent.getContentPane().removeAll();
-        JPanel monMenu = new Menu(onglet).getMenu();
-        monMenu.setBounds(0,0,150,300);
-        
-        
-        FenetreParent.maFenetreParent.getContentPane().add( monMenu, BorderLayout.CENTER);
-        FenetreParent.maFenetreParent.getContentPane().setLayout(null);
-        
-        FenetreParent.maFenetreParent.getContentPane().repaint();
+       viderGras();
+       FenetreParent.changeMenu();
         
         switch(onglet) {
             case "Accueil" :
-                JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr X");
-                lblApplicationOnlinote.setBounds(150, 0, 714, 502);
+                FenetreParent.panelTop = new JPanel(new BorderLayout());
+                
+                JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr ");
                 lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
                 lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
                 lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
-                FenetreParent.maFenetreParent.getContentPane().add(lblApplicationOnlinote);
                 
                 
                 JLabel lblDetails1 = new JLabel("L'application qui vous permet de suivre vos enfants et garder un contact avec l'administration");
                 lblDetails1.setHorizontalAlignment(SwingConstants.CENTER);
                 lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
-                lblDetails1.setBounds(150, 44, 714, 35);
-                FenetreParent.maFenetreParent.getContentPane().add(lblDetails1);
-                FenetreParent.maFenetreParent.getContentPane().repaint();
+                JLabel lblVide = new JLabel(" ");
+                lblVide.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                FenetreParent.panelTop.add(lblApplicationOnlinote, BorderLayout.NORTH);
+                FenetreParent.panelTop.add(lblVide, BorderLayout.CENTER);
+                FenetreParent.panelTop.add(lblDetails1, BorderLayout.SOUTH);
+                
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+                lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
+                FenetreParent.maFenetreParent.getContentPane().validate();
+                
                break;
             case "Notes" :
+                FenetreParent.panelTop = new JPanel(new BorderLayout());
+                FenetreParent.panelCenter = new JPanel (new BorderLayout());
+                
+                JLabel lblApplicationOnlinoteN = new JLabel("Onlinote - Notes");
+                lblApplicationOnlinoteN.setVerticalAlignment(SwingConstants.TOP);
+                lblApplicationOnlinoteN.setFont(new Font("Times new roman", Font.PLAIN, 32));
+                lblApplicationOnlinoteN.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                JLabel lblDetailsN = new JLabel(" ");
+                lblDetailsN.setHorizontalAlignment(SwingConstants.CENTER);
+                lblDetailsN.setFont(new Font("Times new roman", Font.PLAIN, 12));
+                JLabel lblVide2 = new JLabel(" ");
+                lblVide2.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                FenetreParent.panelTop.add(lblApplicationOnlinoteN, BorderLayout.NORTH);
+                FenetreParent.panelTop.add(lblVide2, BorderLayout.CENTER);
+                FenetreParent.panelTop.add(lblDetailsN, BorderLayout.SOUTH);
+                
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+                
+                
                 JPanel mesNotes = new Notes().getNotes();
-                mesNotes.setBounds(150, 0, 700, 750);
-                mesNotes.setVisible(true);
-                FenetreParent.maFenetreParent.add(mesNotes);
+                mesNotes.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
+                FenetreParent.panelCenter.add(mesNotes, BorderLayout.CENTER);
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
+                lblNotes.setFont(new Font("Times new roman", Font.BOLD, 14));
                 FenetreParent.maFenetreParent.validate();
+                
+                
                 break;
             case "Emploi du temps" :
+                
+                FenetreParent.panelTop = new JPanel(new BorderLayout());
+                FenetreParent.panelCenter = new JPanel (new BorderLayout());
+                
+                JLabel lblApplicationOnlinoteEDT = new JLabel("Onlinote - Emploi du temps");
+                lblApplicationOnlinoteEDT.setVerticalAlignment(SwingConstants.TOP);
+                lblApplicationOnlinoteEDT.setFont(new Font("Times new roman", Font.PLAIN, 32));
+                lblApplicationOnlinoteEDT.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                JLabel lblDetailsEDT = new JLabel(" ");
+                lblDetailsEDT.setHorizontalAlignment(SwingConstants.CENTER);
+                lblDetailsEDT.setFont(new Font("Times new roman", Font.PLAIN, 12));
+                JLabel lblVideEDT = new JLabel(" ");
+                lblVideEDT.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                FenetreParent.panelTop.add(lblApplicationOnlinoteEDT, BorderLayout.NORTH);
+                FenetreParent.panelTop.add(lblVideEDT, BorderLayout.CENTER);
+                FenetreParent.panelTop.add(lblDetailsEDT, BorderLayout.SOUTH);
+                
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+                
                 JPanel monEDT = new EmploiDuTemps().getEDT();
-                monEDT.setBounds(150, 0, 700, 750);
-                monEDT.setVisible(true);
-                FenetreParent.maFenetreParent.add(monEDT);
+                monEDT.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
+                FenetreParent.panelCenter.add(monEDT);
+  
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
+                lblEmploiDuTemps.setFont(new Font("Times new roman", Font.BOLD, 14));
+                FenetreParent.maFenetreParent.validate();
+                break;
+                
+            case "Messagerie" :
+                FenetreParent.panelTop = new JPanel(new BorderLayout());
+                FenetreParent.panelCenter = new JPanel (new BorderLayout());
+                
+                JLabel lblApplicationOnlinoteM = new JLabel("Onlinote - Emploi du temps");
+                lblApplicationOnlinoteM.setVerticalAlignment(SwingConstants.TOP);
+                lblApplicationOnlinoteM.setFont(new Font("Times new roman", Font.PLAIN, 32));
+                lblApplicationOnlinoteM.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                JLabel lblDetailsM = new JLabel(" ");
+                lblDetailsM.setHorizontalAlignment(SwingConstants.CENTER);
+                lblDetailsM.setFont(new Font("Times new roman", Font.PLAIN, 12));
+                JLabel lblVideM = new JLabel(" ");
+                lblVideM.setHorizontalAlignment(SwingConstants.CENTER);
+                
+                
+                FenetreParent.panelTop.add(lblApplicationOnlinoteM, BorderLayout.NORTH);
+                FenetreParent.panelTop.add(lblVideM, BorderLayout.CENTER);
+                FenetreParent.panelTop.add(lblDetailsM, BorderLayout.SOUTH);
+                
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+                
+                lblMessagerie.setFont(new Font("Times new roman", Font.BOLD, 14));
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
                 FenetreParent.maFenetreParent.validate();
                 break;
                 
@@ -286,5 +348,14 @@ public class Menu {
                 break;
         }
     }
+   
+   private void viderGras ()
+   {
+       lblAccueil.setFont(new Font("Times new roman", Font.PLAIN, 14));
+       lblNotes.setFont(new Font("Times new roman", Font.PLAIN, 14));
+       lblEmploiDuTemps.setFont(new Font("Times new roman", Font.PLAIN, 14));
+       lblMessagerie.setFont(new Font("Times new roman", Font.PLAIN, 14));
+       
+   }
 
 }

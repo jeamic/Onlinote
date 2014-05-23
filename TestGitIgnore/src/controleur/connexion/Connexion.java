@@ -9,6 +9,7 @@ import modele.basedao.Personne;
 import org.apache.log4j.LogManager;
 
 import vue.fenetre.ConnexionGUI;
+import vue.fenetre.FenetreAdmin;
 import vue.fenetre.FenetreParent;
 
 
@@ -64,7 +65,7 @@ public class Connexion {
 			    FenetreParent.creerFenetreParent(personne);
 				break;
 			case "admin": 
-			    FenetreParent.creerFenetreParent(personne);
+			    FenetreAdmin.creerFenetreAdmin(personne);
 				break;
 			default:
 				break;
