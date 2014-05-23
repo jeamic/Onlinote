@@ -1,5 +1,7 @@
 package vue.fenetre;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -11,7 +13,7 @@ public class EmploiDuTemps {
     public EmploiDuTemps () {
     
     
-        eDT = new JPanel();
+        eDT = new JPanel(new BorderLayout());
         
         String[] columnNames = {"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"};
         
