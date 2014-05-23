@@ -6,15 +6,18 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.MalformedURLException;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import modele.basedao.Personne;
+import modele.base.dao.Personne;
 
 public class FenetreParent {
 	
@@ -66,6 +69,8 @@ public class FenetreParent {
 
         
         panelTop = new JPanel(new BorderLayout());
+        JPanel panelTopGauche = new JPanel(new BorderLayout());
+        JPanel panelTopCentre = new JPanel(new BorderLayout());
         
         JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr ");
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
@@ -80,9 +85,25 @@ public class FenetreParent {
         lblVide.setHorizontalAlignment(SwingConstants.CENTER);
         
         
-        panelTop.add(lblApplicationOnlinote, BorderLayout.NORTH);
-        panelTop.add(lblVide, BorderLayout.CENTER);
-        panelTop.add(lblDetails1, BorderLayout.SOUTH);
+        java.net.URL imgURLAccueil = null;
+        try {
+            imgURLAccueil = new java.net.URL("file:img/mines_ales.png");
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
+        
+        JLabel lblImgAccueil= new JLabel(imgAccueil);
+        panelTopGauche.add(lblImgAccueil, BorderLayout.CENTER);
+        
+        
+        panelTopCentre.add(lblApplicationOnlinote, BorderLayout.NORTH);
+        panelTopCentre.add(lblVide, BorderLayout.CENTER);
+        panelTopCentre.add(lblDetails1, BorderLayout.SOUTH);
+        
+        panelTop.add(panelTopGauche);
+        panelTop.add(panelTopCentre);
         
         maFenetreParent.getContentPane().add(panelTop, BorderLayout.NORTH);
             

@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import modele.basedao.Personne;
+import modele.base.dao.Personne;
 import controleur.connexion.Onlinote;
 
 public class FenetreAdmin {
