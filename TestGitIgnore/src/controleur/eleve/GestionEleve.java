@@ -3,8 +3,8 @@ package controleur.eleve;
 import java.util.ArrayList;
 import java.util.List;
 
-import modele.actionsdao.DAOEleve;
-import modele.basedao.Eleve;
+import modele.base.actionsdao.DAOEleve;
+import modele.base.dao.Eleve;
 
 public class GestionEleve {
     public GestionEleve () {

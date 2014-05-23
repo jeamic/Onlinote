@@ -3,8 +3,10 @@ package controleur.connexion;
 
 import java.io.IOException;
 
-import modele.actionsdao.DAOPersonne;
-import modele.basedao.Personne;
+import modele.base.actionsdao.DAOPersonne;
+import modele.base.dao.Personne;
+import modele.vue.actions.DAOVueEleveImpl;
+import modele.vue.dao.DAOVueEleve;
 
 import org.apache.log4j.LogManager;
 
@@ -54,6 +56,7 @@ public class Connexion {
 	
 	private static void definirTypeConnexion (Personne personne) {
 		
+	    //new DAOVueEleveImpl().getEleveById(personne.getIdPersonne())
 		switch (personne.getTypeP()) {
 			case "élève":
 				FenetreParent.creerFenetreParent(personne);

@@ -3,11 +3,11 @@ package controleur.connexion;
 import java.awt.EventQueue;
 import java.util.List;
 
-import modele.actionsdao.DAOEleve;
-import modele.actionsdao.DAOMatiere;
-import modele.basedao.Matiere;
-import modele.daovue.DAOVueNote;
+import modele.base.actionsdao.DAOEleve;
+import modele.base.actionsdao.DAOMatiere;
+import modele.base.dao.Matiere;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueNote;
 
 import org.apache.log4j.LogManager;
 
