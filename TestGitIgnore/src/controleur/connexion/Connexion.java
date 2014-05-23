@@ -9,6 +9,7 @@ import modele.basedao.Personne;
 import org.apache.log4j.LogManager;
 
 import vue.fenetre.ConnexionGUI;
+import vue.fenetre.FenetreAdmin;
 import vue.fenetre.FenetreParent;
 
 
@@ -42,9 +43,11 @@ public class Connexion {
 			    ConnexionGUI.fermerFenetre();
 				definirTypeConnexion(pers);
 			} else {
+			    ConnexionGUI.incorrectMDP();
 				log4j.error("Le mot de passe n'est pas bon");
 			}
 		} else {
+		    ConnexionGUI.incorrectUser();
 			log4j.error("Nom d'utilisateur incorrect");
 		}
 	}
@@ -62,7 +65,7 @@ public class Connexion {
 			    FenetreParent.creerFenetreParent(personne);
 				break;
 			case "admin": 
-			    FenetreParent.creerFenetreParent(personne);
+			    FenetreAdmin.creerFenetreAdmin(personne);
 				break;
 			default:
 				break;
