@@ -62,6 +62,8 @@ public class DAOMatiere extends DAOFactory<Matiere>{
         //PreparedStatement stmt = null;
         Statement stmt = null;
         ResultSet res = null;
+        
+        
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         

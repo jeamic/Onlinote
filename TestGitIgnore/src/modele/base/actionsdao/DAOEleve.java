@@ -5,13 +5,15 @@ import java.util.List;
 
 import modele.base.dao.Eleve;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVueNote;
 
 import org.apache.log4j.LogManager;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class DAOEleve extends DAOFactory<Eleve>{
     /**
@@ -20,7 +22,6 @@ public class DAOEleve extends DAOFactory<Eleve>{
     static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionJDBC.class.getName());
     
     /* variables pour requêtes */
-    PreparedStatement stmt = null;
     ResultSet res = null;
 
 	@Override
@@ -52,11 +53,15 @@ public class DAOEleve extends DAOFactory<Eleve>{
 	    /* déclaration et init des variables nécessaires */
         Eleve eleve = null;
         
-        /* requête pour rechercher la personne */
-        try {           
-            stmt = (PreparedStatement) instance.getConnection().prepareStatement("Select * from eleve e, personne p where e.id_eleve = p.id_personne and p.email = ?;");
-            stmt.setString(1, chaine);
-            res = (ResultSet) stmt.executeQuery();
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = instance.getConnection();
+        
+        try {
+            
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * from eleve e, personne p where e.id_eleve = p.id_personne and p.email = " + chaine + ";");
             while (res.next()){
                 /* création de l'objet correspondant à l'élève recherchée */
                 eleve = new Eleve( res.getInt("id_parent"),
@@ -76,17 +81,57 @@ public class DAOEleve extends DAOFactory<Eleve>{
         Eleve eleve = null;
         List<Eleve> listeEleve = null;
         
-        /* requête pour rechercher la personne */
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = instance.getConnection();
+        
         try {
+            
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * from eleve;");
             listeEleve = new ArrayList<Eleve>();
             
-            stmt = (PreparedStatement) instance.getConnection().prepareStatement("Select * from eleve;");
-            res = (ResultSet) stmt.executeQuery();
             while (res.next()){
                 /* création de l'objet correspondant à l'élève recherchée */
                 eleve = new Eleve( res.getInt("id_parent"),
                                    res.getInt("id_classe"),
                                    res.getInt("id_eleve"));
+                listeEleve.add(eleve);
+            }
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
+
+        return listeEleve;
+    }
+    
+    public List<DAOVueEleve> findEleveByName (String name) {
+        
+        
+        /* déclaration et init des variables nécessaires */
+        DAOVueEleve eleve = null;
+        List<DAOVueEleve> listeEleve = null;
+        
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = instance.getConnection();
+        
+        try {
+            
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * "
+                                + " from personne, eleve "
+                                + " where nom LIKE '" + name + "%' "
+                                 + "or prenom LIKE '" + name + "%' "
+                                + "and id_personne in "
+                                        + " (select id_eleve from eleve;");
+            listeEleve = new ArrayList<DAOVueEleve>();
+            
+            while (res.next()){
+                /* création de l'objet correspondant à l'élève recherchée */
+                eleve = new DAOVueEleve(res.getInt("id_eleve"), res.getInt("id_classe"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getInt("id_parent1"), res.getInt("id_parent2"));
                 listeEleve.add(eleve);
             }
         } catch (SQLException e) {

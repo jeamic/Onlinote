@@ -19,3 +19,7 @@ Requête pour Notes élève :
 -Liste des matières que suit un élève
 -Toutes les notes pour un élève, un trimestre et une matière particulière
 
+
+
+rechercher eleve et prof par nom
+
