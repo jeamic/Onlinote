@@ -34,7 +34,7 @@ public class Connexion {
 	 * @throws IOException
 	 * @wbp.parser.entryPoint
 	 */
-	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException, NullPointerException {
+	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException, NullPointerException, Exception {
 		
 		DAOPersonne daoPers = new DAOPersonne();
 

@@ -2,6 +2,7 @@ package vue.fenetre;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,8 +18,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import modele.base.dao.Personne;
+
+import org.apache.log4j.LogManager;
+
 import controleur.connexion.Onlinote;
 
 public class FenetreAdmin {
@@ -26,6 +31,13 @@ public class FenetreAdmin {
 	protected static JFrame maFenetreAdmin = null;
 
     private FenetreAdmin(Personne personne){
+        
+        
+        /**
+         * Log4j logger
+         */
+        org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
+        
 			
         maFenetreAdmin = new JFrame();
         
@@ -40,20 +52,49 @@ public class FenetreAdmin {
         JPanel menuDroite = new JPanel();
 
         
-        maFenetreAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        maFenetreAdmin.getContentPane().setLayout(new BorderLayout(0, 0));
-        
-            
         JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Administrateur");
-        lblApplicationOnlinote.setBounds(150, 0, 714, 502);
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
         lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
         lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
-        maFenetreAdmin.getContentPane().add(lblApplicationOnlinote, BorderLayout.NORTH);
         
         
+        JLabel lblDetails1 = new JLabel(" ");
+        lblDetails1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
+        JLabel lblVide = new JLabel(" ");
+        lblVide.setHorizontalAlignment(SwingConstants.CENTER);
         
         
+        java.net.URL imgURLAccueil = null;
+        try {
+            imgURLAccueil = new java.net.URL("file:img/mines_ales.png");
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            log4j.error("image existe pas");
+
+        }
+        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage());
+        
+        JLabel lblImgAccueil= new JLabel(imgAccueil);
+        lblImgAccueil.setBounds(0,0,100,100);
+        JPanel panelTop = new JPanel(new BorderLayout());
+        JPanel panelTopCentre = new JPanel(new BorderLayout());
+        JPanel panelTopGauche = new JPanel(new BorderLayout());
+        panelTopGauche .add(lblImgAccueil, BorderLayout.CENTER);
+        
+        panelTopGauche.setBounds(0,0,100,100);
+        
+        panelTopCentre.add(lblApplicationOnlinote, BorderLayout.NORTH);
+        panelTopCentre.add(lblVide, BorderLayout.CENTER);
+        panelTopCentre.add(lblDetails1, BorderLayout.SOUTH);
+        
+        panelTop.add(panelTopGauche);
+        panelTop.add(panelTopCentre);
+        
+        
+        maFenetreAdmin.getContentPane().add(panelTop, BorderLayout.NORTH);
+            
+        maFenetreAdmin.setVisible(true);
         
         URL imgURLOff = null;
         try {
@@ -84,12 +125,30 @@ public class FenetreAdmin {
     
             }  
         });
+        lblIconDeconnexion.addMouseListener(new MouseAdapter() {  
+            
+            public void mouseClicked(MouseEvent e) {  
+                
+                 FenetreAdmin.maFenetreAdmin.dispose();
+                 Onlinote.relancer();
+    
+            }  
+        });
         menuDroite.add(lblIconDeconnexion);
         menuDroite.add(lblDeconnexion);
         
         maFenetreAdmin.add(menuDroite, BorderLayout.EAST);
         
+        
+        JPanel panelCentre = new JPanel();
+        
+        panelCentre.setBorder((new LineBorder(new Color(0, 0, 0))));
+        
+        maFenetreAdmin.add(panelCentre, BorderLayout.CENTER);
+        
         maFenetreAdmin.setVisible(true);
+        
+        
 	}
     
     public static void creerFenetreAdmin (Personne personne) {

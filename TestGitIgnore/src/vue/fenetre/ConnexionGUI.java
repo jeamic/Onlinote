@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -81,10 +82,20 @@ public class ConnexionGUI {
 				try {
 					Connexion.startApp(textField.getText(), passwordField.getPassword());
 					
-				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1) {
+				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1 ) {
 		            
 					log4j.info(e1.getMessage(), e1);
-				}
+				} catch (NullPointerException e1) {
+				    
+				    JFrame errorFenetre = new JFrame();
+				    JOptionPane.showMessageDialog(errorFenetre, "Connexion échouée à la base de données", "Erreur",  0 );
+				    //JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
+				    log4j.error(e1.getMessage(), e1);
+
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
 			}
 			
 		});

@@ -57,19 +57,18 @@ public class FenetreParent {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTHWEST;
         //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+        
+        
+        JLabel testEspace = new JLabel(" ");
+        
 
-        JPanel monMenu2 = new JPanel();
-        monMenu2.setBorder(BorderFactory.createEmptyBorder(30,30,3,30));
+        JPanel monMenu2 = new JPanel(new BorderLayout());
         
-        gbc.gridx=0;
-        gbc.gridy=0;
-        gbc.weighty=1;
-        gbc.gridheight=(int) 1;
+        monMenu2.add(testEspace, BorderLayout.NORTH);
+        monMenu2.add(monMenu, BorderLayout.NORTH);
         
+                
         grosMenu.add(monMenu2, gbc);
-        
-        gbc.gridy=1;
-        grosMenu.add(monMenu, gbc);
         
         
        
@@ -121,6 +120,8 @@ public class FenetreParent {
         maFenetreParent.getContentPane().add(panelTop, BorderLayout.NORTH);
             
         maFenetreParent.setVisible(true);
+        
+        
         
         
 	}

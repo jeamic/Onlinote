@@ -41,9 +41,9 @@ public class ConnexionJDBC {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			log4j.info(e.getMessage(), e);
+			log4j.error(e.getMessage(), e);
 		} catch (SQLException e) {
-			log4j.info(e.getMessage(), e);
+			log4j.error(e.getMessage(), e);
 		}	
 	}
 	
@@ -107,7 +107,7 @@ public class ConnexionJDBC {
 				}
 			}
 		} catch (Exception e){
-			log4j.info(e.getMessage(), e);
+			log4j.error(e);
 		}
 	}
 }
