@@ -34,10 +34,12 @@ public class Connexion {
 	 * @throws IOException
 	 * @wbp.parser.entryPoint
 	 */
-	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+	public static void startApp(String email, char [] password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException, NullPointerException {
 		
 		DAOPersonne daoPers = new DAOPersonne();
-		Personne pers = daoPers.find(email);
+
+	    Personne pers = daoPers.find(email);
+
 		/* si la personne existe */
 		if (pers != null) { 
 			/*test de comparaison du mot de passe*/

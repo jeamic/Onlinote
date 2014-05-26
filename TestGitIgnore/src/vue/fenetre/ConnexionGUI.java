@@ -30,6 +30,7 @@ public class ConnexionGUI {
 	private static JPasswordField passwordField;
 	private static JLabel lblIncorrectMDP = new JLabel("Le mot de passe saisi est incorrect");
     private static JLabel lblIncorrectUser = new JLabel("Le nom d'utilisateur saisi est incorrect");
+    private static JLabel lblErreurConnexion = new JLabel("La connexion à la base de donnée à échoué");
 	
 	public ConnexionGUI() {
 	    
@@ -81,6 +82,7 @@ public class ConnexionGUI {
 					Connexion.startApp(textField.getText(), passwordField.getPassword());
 					
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1) {
+		            
 					log4j.info(e1.getMessage(), e1);
 				}
 			}
@@ -106,6 +108,11 @@ public class ConnexionGUI {
 		lblIncorrectUser.setVisible(false);
 		frmConnexion.getContentPane().add(lblIncorrectUser);
 		
+		lblErreurConnexion.setForeground(Color.RED);
+		lblErreurConnexion.setBounds(35, 147, 263, 14);
+		lblErreurConnexion.setVisible(false);
+        frmConnexion.getContentPane().add(lblIncorrectMDP);
+		
 
 		frmConnexion.setVisible(true);
 	}
@@ -117,6 +124,7 @@ public class ConnexionGUI {
 	public static void incorrectMDP() {
 	    
 	    passwordField.setText("");
+	    lblErreurConnexion.setVisible(false);
 	    
 	    lblIncorrectUser.setVisible(false);
 	    textField.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -127,8 +135,22 @@ public class ConnexionGUI {
 	public static void incorrectUser() {
 	    
 	    passwordField.setText("");
+        lblErreurConnexion.setVisible(false);
 	    lblIncorrectMDP.setVisible(false);
 	    textField.setBorder(BorderFactory.createLineBorder(Color.red));
 	    lblIncorrectUser.setVisible(true);
+	}
+	
+	public static void incorrectBD() {
+	     passwordField.setText("");
+         lblIncorrectMDP.setVisible(false);
+         lblIncorrectUser.setVisible(false);
+         lblErreurConnexion.setVisible(true);
+	        
+
+	     textField.setBorder(BorderFactory.createLineBorder(Color.black));
+	     passwordField.setBorder(BorderFactory.createLineBorder(Color.black));
+
+	    
 	}
 }

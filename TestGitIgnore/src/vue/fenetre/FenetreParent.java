@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 
 import modele.base.dao.Personne;
 
+import org.apache.log4j.LogManager;
+
 public class FenetreParent {
 	
 	protected static JFrame maFenetreParent = null;
@@ -26,6 +28,11 @@ public class FenetreParent {
 	protected static JPanel panelCenter = null;
 
     private FenetreParent(Personne personne){
+        
+        /**
+         * Log4j logger
+         */
+        org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
 			
         maFenetreParent = new JFrame();
         
@@ -52,14 +59,16 @@ public class FenetreParent {
         //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
 
         JPanel monMenu2 = new JPanel();
-        monMenu2.setBorder(BorderFactory.createEmptyBorder(30,30,130,30));
+        monMenu2.setBorder(BorderFactory.createEmptyBorder(30,30,3,30));
         
         gbc.gridx=0;
         gbc.gridy=0;
         gbc.weighty=1;
+        gbc.gridheight=(int) 1;
         
+        grosMenu.add(monMenu2, gbc);
         
-        
+        gbc.gridy=1;
         grosMenu.add(monMenu, gbc);
         
         
@@ -90,13 +99,16 @@ public class FenetreParent {
             imgURLAccueil = new java.net.URL("file:img/mines_ales.png");
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            log4j.error("image existe pas");
+
         }
-        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
+        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage());
         
         JLabel lblImgAccueil= new JLabel(imgAccueil);
+        lblImgAccueil.setBounds(0,0,100,100);
         panelTopGauche.add(lblImgAccueil, BorderLayout.CENTER);
         
+        panelTopGauche.setBounds(0,0,100,100);
         
         panelTopCentre.add(lblApplicationOnlinote, BorderLayout.NORTH);
         panelTopCentre.add(lblVide, BorderLayout.CENTER);
@@ -104,6 +116,7 @@ public class FenetreParent {
         
         panelTop.add(panelTopGauche);
         panelTop.add(panelTopCentre);
+        
         
         maFenetreParent.getContentPane().add(panelTop, BorderLayout.NORTH);
             
