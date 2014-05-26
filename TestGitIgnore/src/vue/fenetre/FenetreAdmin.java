@@ -2,10 +2,11 @@ package vue.fenetre;
 
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -13,12 +14,13 @@ import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 import modele.base.dao.Personne;
 
@@ -137,14 +139,48 @@ public class FenetreAdmin {
         menuDroite.add(lblIconDeconnexion);
         menuDroite.add(lblDeconnexion);
         
-        maFenetreAdmin.add(menuDroite, BorderLayout.EAST);
+        
+        maFenetreAdmin.getContentPane().add(menuDroite, BorderLayout.EAST);
+        //maFenetreAdmin.add(lblVide, BorderLayout.WEST);
         
         
-        JPanel panelCentre = new JPanel();
+        JPanel panelCentre = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.weighty = 1;
+        gbc.weightx = 1;
+        gbc.gridy = 0;
+        ButtonGroup group = new ButtonGroup();
+        JRadioButton aRadioButton = new JRadioButton("Gestion des élèves", true);
+        panelCentre.add(aRadioButton, gbc);
+        group.add(aRadioButton);
+        gbc.gridy = 1;
+        aRadioButton = new JRadioButton("Gestion des professeurs");
+        panelCentre.add(aRadioButton, gbc);
+        group.add(aRadioButton);
+        aRadioButton = new JRadioButton("Gestion de l'emploi du temps");
+        gbc.gridy = 2;
+        panelCentre.add(aRadioButton, gbc);
+        group.add(aRadioButton);
         
-        panelCentre.setBorder((new LineBorder(new Color(0, 0, 0))));
         
-        maFenetreAdmin.add(panelCentre, BorderLayout.CENTER);
+        maFenetreAdmin.getContentPane().add(panelCentre, BorderLayout.CENTER);
+
+       /* JComboBox comboBox = new JComboBox();
+        comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+        comboBox.setOpaque(false);
+        comboBox.setLightWeightPopupEnabled(false);
+        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Gestion des élèves", "Gestion des professeurs", "Gestion de l'emploi du temps"}));
+        comboBox.setPreferredSize(new Dimension(10,40));
+        comboBox.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+        panelCentre.add(comboBox, BorderLayout.NORTH);
+        
+        JPanel panelCarreCentre = new JPanel();
+        
+        panelCarreCentre.setBorder(new LineBorder( new Color(0,0,0)));
+        
+        panelCentre.add(panelCarreCentre, BorderLayout.CENTER);
+        */
         
         maFenetreAdmin.setVisible(true);
         
