@@ -47,6 +47,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
             }
 		} catch (SQLException e) {
 			log4j.info(e.getMessage(), e);
+
 		}
 
 		return pers;

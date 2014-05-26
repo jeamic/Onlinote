@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 
@@ -79,22 +83,25 @@ public class ConnexionGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
+				try {				    
+				    Connexion.OpenConnexion();
 					Connexion.startApp(textField.getText(), passwordField.getPassword());
-					
+				/*	
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1 ) {
 		            
-					log4j.info(e1.getMessage(), e1);
-				} catch (NullPointerException e1) {
+					log4j.info(e1.getMessage(), e1);*/
+				} catch (NullPointerException | SQLException e1) {
 				    
 				    JFrame errorFenetre = new JFrame();
 				    JOptionPane.showMessageDialog(errorFenetre, "Connexion échouée à la base de données", "Erreur",  0 );
 				    //JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
-				    log4j.error(e1.getMessage(), e1);
 
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+				    ConnexionJDBC instance = ConnexionJDBC.getInstance();
+				    instance.closeConnection();
+
+				    
+				    log4j.error(e1.getMessage(), e1.getCause());
+
                 }
 			}
 			

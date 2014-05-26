@@ -39,10 +39,7 @@ public class ConnexionJDBC {
 		try {
 			loadParamBDD();
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			log4j.error(e.getMessage(), e);
-		} catch (SQLException e) {
 			log4j.error(e.getMessage(), e);
 		}	
 	}
@@ -68,6 +65,10 @@ public class ConnexionJDBC {
 	
 	public Connection getConnection () {
 		return connect;
+	}
+	
+	public void openConnexion () throws SQLException {
+        connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
 	}
 	
 	public void closeConnection () {
