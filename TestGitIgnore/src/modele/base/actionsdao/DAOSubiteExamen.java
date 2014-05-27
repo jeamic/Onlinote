@@ -10,48 +10,48 @@ import org.apache.log4j.LogManager;
 
 import controleur.connexion.Connexion;
 import modele.base.dao.Categorie;
-import modele.base.dao.Devoirs;
+import modele.base.dao.Subit_examen;
 import modele.utils.ConnexionJDBC;
 
-public class DAODevoirs extends DAOFactory <Devoirs>{
-    
+public class DAOSubiteExamen extends DAOFactory <Subit_examen> {
+
     /**
      * Log4j logger
      */
     static org.apache.log4j.Logger log4j =  LogManager.getLogger(Connexion.class.getName());
     
 	@Override
-	public Devoirs find(int id) {
+	public Subit_examen find(int id /* id d'un élève */) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Devoirs create(Devoirs obj) {
+	public Subit_examen create(Subit_examen obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Devoirs update(Devoirs obj) {
+	public Subit_examen update(Subit_examen obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Devoirs obj) {
+	public void delete(Subit_examen obj) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Devoirs find(String chaine) {
+	public Subit_examen find(String chaine) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
     @Override
-    public List<Devoirs> findAll() {
+    public List<Subit_examen> findAll() {
         /* déclaration et init des variables nécessaires */
         List<Categorie> listeCateg = new ArrayList<Categorie>();
         Statement stmt = null;
@@ -74,10 +74,11 @@ public class DAODevoirs extends DAOFactory <Devoirs>{
     }
 
     @Override
-    public Devoirs map(java.sql.ResultSet resultSet) {
+    public Subit_examen map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
     }
+
 
 	
 }

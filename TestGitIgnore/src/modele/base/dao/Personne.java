@@ -14,8 +14,6 @@ public class Personne implements java.io.Serializable {
 	private String email;
 	private String typeP;
 	
-	public Personne () {
-	}
 	public Personne (int idPersonne, String nom, String prenom, String adresse, String motDePasse, String email, String typeP) {
 		this.idPersonne  = idPersonne;
 		this.nom 		  = nom;

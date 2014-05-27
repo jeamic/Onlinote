@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.base.dao.Categorie;
 import modele.base.dao.Matiere;
 import modele.utils.ConnexionJDBC;
 
@@ -52,18 +53,32 @@ public class DAOMatiere extends DAOFactory<Matiere>{
 
     @Override
     public List<Matiere> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        /* déclaration et init des variables nécessaires */
+        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * from categorie");
+
+            while (res.next()){
+                listeCateg.add(new Categorie(res.getString("categorie")));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return listeCateg;
     }
     
     public List<Matiere> getMatieres(int idEleve) {
         /* déclaration et init des variables nécessaires */
         List<Matiere> listeMat = new ArrayList<Matiere>();
-        //PreparedStatement stmt = null;
         Statement stmt = null;
         ResultSet res = null;
-        
-        
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         

@@ -9,13 +9,13 @@ public class Controles implements java.io.Serializable{
     private int idControle;
 	private String enonce;
 	private String corrige;
-	private int noteMax;
-	private String coefficient;
-	private String trimestre;
+	private double noteMax;
+	private double coefficient;
+	private int trimestre;
 	
 	public Controles () {
 	}
-	public Controles (int idControle, String enonce, String corrige, int noteMax, String coefficient, String trimestre) {
+	public Controles (int idControle, String enonce, String corrige, double noteMax, double coefficient, int trimestre) {
 		this.idControle = idControle;
 		this.enonce		 = enonce;
 		this.corrige 	 = corrige;
@@ -23,10 +23,10 @@ public class Controles implements java.io.Serializable{
 		this.coefficient = coefficient;
 		this.trimestre   = trimestre;
 	}
-	public String getTrimestre() {
+	public int getTrimestre() {
         return trimestre;
     }
-    public void setTrimestre(String trimestre) {
+    public void setTrimestre(int trimestre) {
         this.trimestre = trimestre;
     }
     public int getIdControle() {
@@ -47,16 +47,16 @@ public class Controles implements java.io.Serializable{
 	public void setCorrige(String corrige) {
 		this.corrige = corrige;
 	}
-	public int getNoteMax() {
+	public double getNoteMax() {
 		return noteMax;
 	}
-	public void setNoteMax(int noteMax) {
+	public void setNoteMax(double noteMax) {
 		this.noteMax = noteMax;
 	}
-	public String getCoefficient() {
+	public double getCoefficient() {
 		return coefficient;
 	}
-	public void setCoefficient(String coefficient) {
+	public void setCoefficient(double coefficient) {
 		this.coefficient = coefficient;
 	}
 	

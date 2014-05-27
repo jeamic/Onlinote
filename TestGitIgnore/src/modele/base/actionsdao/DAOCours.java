@@ -3,6 +3,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.base.dao.Categorie;
 import modele.base.dao.Cours;
 import modele.base.dao.Matiere;
 import modele.utils.ConnexionJDBC;
@@ -56,8 +57,25 @@ public class DAOCours extends DAOFactory<Cours>{
 
     @Override
     public List<Cours> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        /* déclaration et init des variables nécessaires */
+        List<Cours> listeCours = new ArrayList<Cours>();
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * from categorie");
+
+            while (res.next()){
+                listeCours.add(new Cours(res.getInt("id_cours"), res.getString("matiere"), res.getInt("id_salle"), res.getString("commentaire"), res.getDate("heure_debut"), res.getTime("duree")));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return listeCours;
     }
     
     /**

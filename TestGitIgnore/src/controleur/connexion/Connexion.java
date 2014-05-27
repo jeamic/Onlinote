@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
-import modele.vue.actions.DAOVueEleveImpl;
 import modele.vue.dao.DAOVueEleve;
 
 import org.apache.log4j.LogManager;
 
+import controleur.eleve.GestionEleve;
 import vue.fenetre.ConnexionGUI;
 import vue.fenetre.FenetreAdmin;
 import vue.fenetre.FenetreParent;
@@ -59,7 +59,7 @@ public class Connexion {
 		}
 	}
 	
-	public static void OpenConnexion () throws SQLException {
+	public static void openConnexion () throws SQLException {
 	    ConnexionJDBC.getInstance().openConnexion();
 	}
 	

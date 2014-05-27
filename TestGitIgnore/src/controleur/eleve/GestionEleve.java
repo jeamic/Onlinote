@@ -1,26 +1,24 @@
 package controleur.eleve;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import modele.base.actionsdao.DAOEleve;
-import modele.base.dao.Eleve;
+import modele.vue.dao.DAOVueEleve;
 
 public class GestionEleve {
-    public GestionEleve () {
+    
+    public GestionEleve() {
+        // TODO Auto-generated constructor stub
     }
     
-    public Eleve GetAllEleve(){
-        DAOEleve dao = new DAOEleve();
-        List<Eleve> listEleve = new ArrayList<Eleve>();
-        
-        listEleve = dao.findAll();
-        
-        for (int i = 0; i < listEleve.size(); ++i) {
-            System.out.println(listEleve.get(i));
-        }
-        
-        System.out.println(listEleve);
+    public DAOVueEleve getEleveById (int idEleve){
         return null;
     }
+    
+    public List<DAOVueEleve> getEleveByName (String name) {
+        
+        
+        
+        return null;
+    }
+
 }
