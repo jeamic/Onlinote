@@ -110,8 +110,6 @@ public class DAOEleve extends DAOFactory<Eleve>{
     }
     
     public List<DAOVueEleve> findEleveByName (String name) {
-        
-        
         /* déclaration et init des variables nécessaires */
         DAOVueEleve daoVueEleve = null;
         Personne eleve = null;

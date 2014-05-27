@@ -1,5 +1,6 @@
 package controleur.eleve;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modele.base.actionsdao.DAOEleve;
@@ -15,17 +16,27 @@ public class GestionEleve {
     }
     
     public DAOVueEleve getEleveById (int idEleve){
-        Personne eleve = new Personne();
+        DAOEleve daoEleve = new DAOEleve();
+        DAOPersonne daoPersonne = new DAOPersonne();
         
-        DAOPersonne daoEleve = new DAOPersonne();
+        Personne eleve_personne = new Personne();
+        Eleve eleve = new Eleve();
+        
+        eleve_personne = daoPersonne.find(idEleve);
         eleve = daoEleve.find(idEleve);
-        
-        DAOVueEleve daoVueEleve = new DAOVueEleve(eleve, id_classe, idparent1, idparent2);
+        DAOVueEleve daoVueEleve = new DAOVueEleve(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2());
         return daoVueEleve;
     }
     
     public List<DAOVueEleve> getEleveByName (String name) {
-        return null;
+        List<DAOVueEleve> listeDaoVueEleve = new ArrayList<DAOVueEleve>();
+        DAOEleve daoEleve = new DAOEleve();
+        listeDaoVueEleve = daoEleve.findEleveByName(name);
+        
+        for (int i = 0; i < listeDaoVueEleve.size(); ++i){
+            listeDaoVueEleve.add(listeDaoVueEleve.get(i));
+        }
+        return listeDaoVueEleve;
     }
 
 }
