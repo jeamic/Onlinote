@@ -40,7 +40,7 @@ public class ConnexionJDBC {
 			loadParamBDD();
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			log4j.error(e.getMessage(), e);
+			log4j.info(e.getMessage(), e);
 		}	
 	}
 	

@@ -82,30 +82,23 @@ public class ConnexionGUI {
 		btnConnexion.addActionListener(new ActionListener (){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {				    
-				    Connexion.OpenConnexion();
-					Connexion.startApp(textField.getText(), passwordField.getPassword());
-				/*	
-				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IOException e1 ) {
-		            
-					log4j.info(e1.getMessage(), e1);*/
-				} catch (NullPointerException | SQLException e1) {
-				    
-				    JFrame errorFenetre = new JFrame();
-				    JOptionPane.showMessageDialog(errorFenetre, "Connexion échouée à la base de données", "Erreur",  0 );
-				    //JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
-
-				    ConnexionJDBC instance = ConnexionJDBC.getInstance();
-				    instance.closeConnection();
-
-				    
-				    log4j.error(e1.getMessage(), e1.getCause());
-
-                }
+			    ecouteurConnexion();
 			}
-			
+
+            private void ecouteurConnexion() {
+                try {                 
+                    Connexion.OpenConnexion();
+                    Connexion.startApp(textField.getText(), passwordField.getPassword());
+                } catch (NullPointerException | SQLException e1) {
+                    JFrame errorFenetre = new JFrame();
+                    JOptionPane.showMessageDialog(errorFenetre, "Connexion échouée à la base de données", "Erreur",  0 );
+                    ConnexionJDBC instance = ConnexionJDBC.getInstance();
+                    instance.closeConnection();
+                    log4j.info(e1.getMessage(), e1);
+                }
+            }
 		});
+		
 		/* activer la connexion quand on presse entrée */
 		frmConnexion.getRootPane().setDefaultButton(btnConnexion);
 		passwordField = new JPasswordField();
