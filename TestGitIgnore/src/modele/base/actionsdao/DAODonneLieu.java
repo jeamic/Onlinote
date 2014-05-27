@@ -53,7 +53,7 @@ public class DAODonneLieu extends DAOFactory <DonneLieu>{
     @Override
     public List<DonneLieu> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<DonneLieu> liste = new ArrayList<DonneLieu>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAODonneLieu extends DAOFactory <DonneLieu>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from donne_lieu");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                liste.add(new DonneLieu(res.getInt("id_cours"), res.getInt("id_devoir")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return liste;
     }
 
     @Override

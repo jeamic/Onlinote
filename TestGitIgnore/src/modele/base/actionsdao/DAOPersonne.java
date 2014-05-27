@@ -11,8 +11,8 @@ import modele.utils.ConnexionJDBC;
 
 import org.apache.log4j.LogManager;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 
 public class DAOPersonne extends DAOFactory<Personne>{
@@ -79,7 +79,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
     @Override
     public List<Personne> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Personne> listePersonne = new ArrayList<Personne>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -87,16 +87,16 @@ public class DAOPersonne extends DAOFactory<Personne>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from personne");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listePersonne.add(new Personne(res.getInt("id_personne"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("mot_de_passe"), res.getString("email"), res.getString("type_p")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listePersonne;
     }
 
     @Override

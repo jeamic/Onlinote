@@ -53,7 +53,7 @@ public class DAODocumente extends DAOFactory<Documente>{
     @Override
     public List<Documente> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Documente> listeDocument = new ArrayList<Documente>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAODocumente extends DAOFactory<Documente>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from documente");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeDocument.add(new Documente(res.getInt("id_support"), res.getString("nom_support")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeDocument;
     }
 
     @Override

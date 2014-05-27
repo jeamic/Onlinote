@@ -66,7 +66,7 @@ public class DAOCours extends DAOFactory<Cours>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from cours");
 
             while (res.next()){
                 listeCours.add(new Cours(res.getInt("id_cours"), res.getString("matiere"), res.getInt("id_salle"), res.getString("commentaire"), res.getDate("heure_debut"), res.getTime("duree")));

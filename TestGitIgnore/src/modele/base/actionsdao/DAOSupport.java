@@ -52,7 +52,7 @@ public class DAOSupport extends DAOFactory <Support>{
     @Override
     public List<Support> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Support> listeSupport = new ArrayList<Support>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -60,16 +60,16 @@ public class DAOSupport extends DAOFactory <Support>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from support");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeSupport.add(new Support(res.getString("nom_support")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeSupport;
     }
 
     @Override

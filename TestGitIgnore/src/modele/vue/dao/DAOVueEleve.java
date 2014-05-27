@@ -1,5 +1,8 @@
 package modele.vue.dao;
 
+import modele.base.actionsdao.DAOPersonne;
+import modele.base.dao.Personne;
+
 public class DAOVueEleve {
 
     private int idEleve;
@@ -14,12 +17,12 @@ public class DAOVueEleve {
     public DAOVueEleve () {
     }
     
-    public DAOVueEleve (int id, int idClasse, String nom, String prenom, String adresse, String email, int idParent1, int idParent2) {
-        this.idEleve = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.email = email;
+    public DAOVueEleve (Personne eleve, int idClasse, int idParent1, int idParent2) {
+        this.idEleve = eleve.getIdPersonne();
+        this.nom = eleve.getNom();
+        this.prenom = eleve.getPrenom();
+        this.adresse = eleve.getAdresse();
+        this.email = eleve.getEmail();
         this.idParent1 = idParent1;
         this.idParent2 = idParent2;
         this.idClasse = idClasse;

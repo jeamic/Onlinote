@@ -53,7 +53,7 @@ public class DAODevoirs extends DAOFactory <Devoirs>{
     @Override
     public List<Devoirs> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Devoirs> listeDevoir = new ArrayList<Devoirs>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAODevoirs extends DAOFactory <Devoirs>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from devoirs");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeDevoir.add(new Devoirs(res.getInt("id_devoir"), res.getString("categorie"), res.getString("description")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeDevoir;
     }
 
     @Override

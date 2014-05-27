@@ -52,7 +52,7 @@ public class DAOSuit extends DAOFactory <Suit>{
     @Override
     public List<Suit> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Suit> listeSuit = new ArrayList<Suit>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -60,16 +60,16 @@ public class DAOSuit extends DAOFactory <Suit>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from suit");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeSuit.add(new Suit(res.getInt("id_eleve"), res.getString("libelle")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeSuit;
     }
 
     @Override

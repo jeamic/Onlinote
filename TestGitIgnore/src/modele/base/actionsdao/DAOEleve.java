@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.base.dao.Eleve;
+import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVueNote;
@@ -64,7 +65,8 @@ public class DAOEleve extends DAOFactory<Eleve>{
             res = stmt.executeQuery("select * from eleve e, personne p where e.id_eleve = p.id_personne and p.email = " + chaine + ";");
             while (res.next()){
                 /* création de l'objet correspondant à l'élève recherchée */
-                eleve = new Eleve( res.getInt("id_parent"),
+                eleve = new Eleve( res.getInt("id_parent1"),
+                                   res.getInt("id_parent1"),
                                    res.getInt("id_classe"),
                                    res.getInt("id_eleve"));
             }
@@ -94,9 +96,10 @@ public class DAOEleve extends DAOFactory<Eleve>{
             
             while (res.next()){
                 /* création de l'objet correspondant à l'élève recherchée */
-                eleve = new Eleve( res.getInt("id_parent"),
-                                   res.getInt("id_classe"),
-                                   res.getInt("id_eleve"));
+                eleve = new Eleve( res.getInt("id_parent1"),
+                        res.getInt("id_parent1"),
+                        res.getInt("id_classe"),
+                        res.getInt("id_eleve"));
                 listeEleve.add(eleve);
             }
         } catch (SQLException e) {
@@ -110,7 +113,8 @@ public class DAOEleve extends DAOFactory<Eleve>{
         
         
         /* déclaration et init des variables nécessaires */
-        DAOVueEleve eleve = null;
+        DAOVueEleve daoVueEleve = null;
+        Personne eleve = null;
         List<DAOVueEleve> listeEleve = null;
         
         Statement stmt = null;
@@ -130,9 +134,16 @@ public class DAOEleve extends DAOFactory<Eleve>{
             listeEleve = new ArrayList<DAOVueEleve>();
             
             while (res.next()){
+                eleve = new Personne();
+                eleve.setIdPersonne(res.getInt("id_eleve"));
+                eleve.setNom(res.getString("nom"));
+                eleve.setPrenom(res.getString("prenom"));
+                eleve.setAdresse(res.getString("adresse"));
+                eleve.setEmail(res.getString("email"));
+                
                 /* création de l'objet correspondant à l'élève recherchée */
-                eleve = new DAOVueEleve(res.getInt("id_eleve"), res.getInt("id_classe"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getInt("id_parent1"), res.getInt("id_parent2"));
-                listeEleve.add(eleve);
+                daoVueEleve = new DAOVueEleve(eleve, res.getInt("id_classe"), res.getInt("id_parent1"), res.getInt("id_parent2"));
+                listeEleve.add(daoVueEleve);
             }
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);

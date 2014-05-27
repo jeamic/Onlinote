@@ -60,7 +60,7 @@ public class DAOCompose extends DAOFactory <Compose>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from compose");
 
             while (res.next()){
                 listeCompose.add(new Compose(res.getInt("id_personne"), res.getInt("id_message")));

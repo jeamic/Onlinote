@@ -53,7 +53,7 @@ public class DAOSpecialite extends DAOFactory<Specialite>{
     @Override
     public List<Specialite> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Specialite> listeSpe = new ArrayList<Specialite>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAOSpecialite extends DAOFactory<Specialite>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from specialite");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeSpe.add(new Specialite(res.getString("specialite")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeSpe;
     }
 
     @Override

@@ -54,7 +54,7 @@ public class DAOMatiere extends DAOFactory<Matiere>{
     @Override
     public List<Matiere> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Matiere> listeMatiere = new ArrayList<Matiere>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -62,16 +62,16 @@ public class DAOMatiere extends DAOFactory<Matiere>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from matiere");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeMatiere.add(new Matiere(res.getString("matiere")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeMatiere;
     }
     
     public List<Matiere> getMatieres(int idEleve) {

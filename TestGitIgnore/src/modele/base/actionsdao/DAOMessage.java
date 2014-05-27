@@ -53,7 +53,7 @@ public class DAOMessage extends DAOFactory<Message>{
     @Override
     public List<Message> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Message> listeMsg = new ArrayList<Message>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAOMessage extends DAOFactory<Message>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from message");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeMsg.add(new Message(res.getInt("id_message"), res.getString("objet"), res.getString("destinataires"), res.getString("cotenu"), res.getBoolean("lu")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeMsg;
     }
 
     @Override

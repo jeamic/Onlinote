@@ -53,7 +53,7 @@ public class DAOSubiteExamen extends DAOFactory <Subit_examen> {
     @Override
     public List<Subit_examen> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Subit_examen> listeExam = new ArrayList<Subit_examen>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAOSubiteExamen extends DAOFactory <Subit_examen> {
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from subit_examen");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeExam.add(new Subit_examen(res.getInt("id_controle"), res.getInt("id_eleve"), res.getInt("id_cours"), res.getDouble("note")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeExam;
     }
 
     @Override

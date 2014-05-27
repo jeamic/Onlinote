@@ -54,7 +54,7 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
     @Override
     public List<EstSpecialise> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<EstSpecialise> listeEstSpecialise = new ArrayList<EstSpecialise>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -62,16 +62,16 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from est_specialise");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeEstSpecialise.add(new EstSpecialise(res.getInt("id_prof"), res.getString("specialite")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeEstSpecialise;
     }
 
     @Override

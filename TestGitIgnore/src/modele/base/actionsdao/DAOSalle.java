@@ -53,7 +53,7 @@ public class DAOSalle extends DAOFactory<Salle>{
     @Override
     public List<Salle> findAll() {
         /* déclaration et init des variables nécessaires */
-        List<Categorie> listeCateg = new ArrayList<Categorie>();
+        List<Salle> listeSalle = new ArrayList<Salle>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -61,16 +61,16 @@ public class DAOSalle extends DAOFactory<Salle>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from categorie");
+            res = stmt.executeQuery("select * from salle");
 
             while (res.next()){
-                listeCateg.add(new Categorie(res.getString("categorie")));
+                listeSalle.add(new Salle(res.getInt("id_salle")));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCateg;
+        return listeSalle;
     }
 
     @Override
