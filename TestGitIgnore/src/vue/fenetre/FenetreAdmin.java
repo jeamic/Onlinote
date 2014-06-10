@@ -6,7 +6,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -14,12 +13,14 @@ import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import modele.base.dao.Personne;
@@ -47,7 +48,7 @@ public class FenetreAdmin {
         
         maFenetreAdmin.setSize(new Dimension(880, 540));
         
-        
+        maFenetreAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         maFenetreAdmin.setLocation(dim.width/2-maFenetreAdmin.getSize().width/2, dim.height/2-maFenetreAdmin.getSize().height/2);
         
@@ -141,30 +142,61 @@ public class FenetreAdmin {
         
         
         maFenetreAdmin.getContentPane().add(menuDroite, BorderLayout.EAST);
-        //maFenetreAdmin.add(lblVide, BorderLayout.WEST);
+                
         
-        
-        JPanel panelCentre = new JPanel(new GridBagLayout());
+        JPanel panelCentre = new JPanel(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.weighty = 1;
         gbc.weightx = 1;
         gbc.gridy = 0;
+        gbc.gridx = 1;
+        JPanel multiRadio = new JPanel(new BorderLayout());
         ButtonGroup group = new ButtonGroup();
         JRadioButton aRadioButton = new JRadioButton("Gestion des élèves", true);
-        panelCentre.add(aRadioButton, gbc);
+        aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+        multiRadio.add(aRadioButton, BorderLayout.NORTH);
         group.add(aRadioButton);
-        gbc.gridy = 1;
-        aRadioButton = new JRadioButton("Gestion des professeurs");
-        panelCentre.add(aRadioButton, gbc);
-        group.add(aRadioButton);
-        aRadioButton = new JRadioButton("Gestion de l'emploi du temps");
-        gbc.gridy = 2;
-        panelCentre.add(aRadioButton, gbc);
-        group.add(aRadioButton);
+        JRadioButton aRadioButton2 = new JRadioButton("Gestion des professeurs");
+        multiRadio.add(aRadioButton2, BorderLayout.CENTER);
+        aRadioButton2.setHorizontalAlignment(SwingConstants.CENTER);
+        group.add(aRadioButton2);
+        JRadioButton aRadioButton3 = new JRadioButton("Gestion de l'emploi du temps");
+        multiRadio.add(aRadioButton3, BorderLayout.SOUTH);
+        aRadioButton3.setHorizontalAlignment(SwingConstants.CENTER);
+        group.add(aRadioButton3);
         
+        panelCentre.add(multiRadio, BorderLayout.NORTH);
+        
+        final JTextField textField = new JTextField("Rechercher");
+        
+        gbc.gridy=1;
+        gbc.gridx=0;
+        textField.addMouseListener(new MouseAdapter() {  
+            
+            public void mouseClicked(MouseEvent e) {  
+                
+                textField.setText("");
+    
+            }  
+        });
+        
+        textField.setPreferredSize(new Dimension(10,20));
+        JPanel panelGestion = new JPanel(new BorderLayout());
+        
+        panelGestion.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+        
+        panelGestion.add(textField, BorderLayout.NORTH);
+       
+        
+        JPanel monCadreGestionEleve = new CadreGestionEleve().getCadreGestionEleve();
+        panelGestion.add(monCadreGestionEleve,BorderLayout.CENTER);
+        
+        panelCentre.add(panelGestion, BorderLayout.CENTER);
         
         maFenetreAdmin.getContentPane().add(panelCentre, BorderLayout.CENTER);
+        
+        
 
        /* JComboBox comboBox = new JComboBox();
         comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);

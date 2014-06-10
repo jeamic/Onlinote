@@ -87,7 +87,7 @@ public class ConnexionGUI {
 
             private void ecouteurConnexion() {
                 try {                 
-                    Connexion.OpenConnexion();
+                    Connexion.openConnexion();
                     Connexion.startApp(textField.getText(), passwordField.getPassword());
                 } catch (NullPointerException | SQLException e1) {
                     JFrame errorFenetre = new JFrame();
