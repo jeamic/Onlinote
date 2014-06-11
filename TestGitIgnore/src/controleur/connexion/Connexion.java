@@ -43,8 +43,8 @@ public class Connexion {
 
 	    Personne pers = daoPers.find(email);
 	    
-		/* si la personne existe */
-		if (pers != null) { 
+		/* si la personne existe et que son nom n'est pas "vide"*/
+		if (pers != null && pers.getNom().length() != 0) { 
 			/*test de comparaison du mot de passe*/
 			if (isPasswordOk(password, pers)) {
 			    ConnexionGUI.fermerFenetre();

@@ -238,3 +238,4 @@ Last packet sent to the server was 0 ms ago.
 	at java.awt.EventDispatchThread.run(Unknown Source)
 [2014-05-30 16:44:03,776]ERROR 19566[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:58) - Nom d'utilisateur incorrect
 [2014-05-30 16:44:14,676]ERROR 30466[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:54) - Le mot de passe n'est pas bon
+[2014-06-10 20:28:47,143]ERROR     0[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:54) - Le mot de passe n'est pas bon
