@@ -31,12 +31,14 @@ public class DAOMessage extends DAOFactory<Message>{
 	@Override
 	public Message create(Message msg) {
 	    /* déclaration et init des variables nécessaires */
-        Statement stmt = null;
-        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+	    PreparedStatement preparedStatement = null;
+	    ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         
         try {
-            PreparedStatement preparedStatement = 
+            if (conn == null){ System.out.println("test");}
+            
+            preparedStatement = 
                 conn.prepareStatement("INSERT INTO `message` (`TITRE`, `DESTINATAIRES`, `CONTENU`, `LU`) VALUES (?, ?, ?, ?)", 
                 Statement.RETURN_GENERATED_KEYS);
 

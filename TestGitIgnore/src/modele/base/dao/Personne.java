@@ -15,11 +15,11 @@ public class Personne implements java.io.Serializable {
 	private String motDePasse;
 	private String email;
 	private String typeP;
-	private Date dateNaiss;
+	private String dateNaiss;
 	
 		public Personne() {
     }
-	public Personne (int idPersonne, String nom, String prenom, String adresse, String motDePasse, String email, String typeP, Date dateNaiss) {
+	public Personne (int idPersonne, String nom, String prenom, String adresse, String motDePasse, String email, String typeP, String dateNaiss) {
 		this.idPersonne  = idPersonne;
 		this.nom 		  = nom;
 		this.prenom 	  = prenom;
@@ -30,10 +30,10 @@ public class Personne implements java.io.Serializable {
 		this.dateNaiss = dateNaiss;
 	}
 
-    public Date getDateNaiss() {
+    public String getDateNaiss() {
         return dateNaiss;
     }
-    public void setDateNaiss(Date dateNaiss) {
+    public void setDateNaiss(String dateNaiss) {
         this.dateNaiss = dateNaiss;
     }
     public int getIdPersonne() {

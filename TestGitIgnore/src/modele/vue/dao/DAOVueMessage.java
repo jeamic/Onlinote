@@ -1,14 +1,11 @@
 package modele.vue.dao;
-
-import modele.base.dao.Personne;
-
 public class DAOVueMessage {
     /**
      * 
      */
     
     private int idMessage;
-    private Personne expediteur;
+    private String emailExpediteur;
     private String objet;
     private String destinataires;
     private String contenu;
@@ -16,19 +13,19 @@ public class DAOVueMessage {
     
     public DAOVueMessage (){
     }
-    public DAOVueMessage (int idMessage, Personne expediteur, String objet, String destinataires, String contenu, boolean lu) {
+    public DAOVueMessage (int idMessage, String emailExpediteur, String objet, String destinataires, String contenu, boolean lu) {
         this.idMessage  = idMessage;
-        this.expediteur = expediteur;
+        this.emailExpediteur = emailExpediteur;
         this.objet          = objet;
         this.destinataires  = destinataires;
         this.contenu        = contenu;
         this.lu             = lu;
     }
-    public Personne getExpediteur() {
-        return expediteur;
+    public String getExpediteur() {
+        return emailExpediteur;
     }
-    public void setExpediteur(Personne expediteur) {
-        this.expediteur = expediteur;
+    public void setExpediteur(String emailExpediteur) {
+        this.emailExpediteur = emailExpediteur;
     }
     public int getIdMessage() {
         return idMessage;

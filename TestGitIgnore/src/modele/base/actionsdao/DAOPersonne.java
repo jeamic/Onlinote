@@ -49,7 +49,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
                                      res.getString("mot_de_passe"),
                                      res.getString("email"),
                                      res.getString("type_p"),
-                                     res.getDate("Date_naiss"));
+                                     res.getString("Date_naiss"));
             }
 		} catch (SQLException e) {
 			log4j.info(e.getMessage(), e);
@@ -90,7 +90,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
             res = stmt.executeQuery("select * from personne");
 
             while (res.next()){
-                listePersonne.add(new Personne(res.getInt("id_personne"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("mot_de_passe"), res.getString("email"), res.getString("type_p"), res.getDate("Date_naiss")));
+                listePersonne.add(new Personne(res.getInt("id_personne"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("mot_de_passe"), res.getString("email"), res.getString("type_p"), res.getString("Date_naiss")));
             }
             
         } catch (SQLException e) {

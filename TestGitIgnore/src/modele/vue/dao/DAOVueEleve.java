@@ -15,7 +15,7 @@ public class DAOVueEleve {
     private String email;
     private int idParent1;
     private int idParent2;
-    private Date dateNaiss;
+    private String dateNaiss;
     
     public DAOVueEleve () {
     }
@@ -32,11 +32,11 @@ public class DAOVueEleve {
         this.idClasse = idClasse;
     }
 
-    public Date getDateNaiss() {
+    public String getDateNaiss() {
         return dateNaiss;
     }
 
-    public void setDateNaiss(Date dateNaiss) {
+    public void setDateNaiss(String dateNaiss) {
         this.dateNaiss = dateNaiss;
     }
 

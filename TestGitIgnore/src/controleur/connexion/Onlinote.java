@@ -1,16 +1,19 @@
 package controleur.connexion;
 
 import java.awt.EventQueue;
+import java.sql.SQLException;
 import java.util.List;
 
 import modele.base.actionsdao.DAOEleve;
 import modele.base.actionsdao.DAOMatiere;
 import modele.base.dao.Matiere;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueMessage;
 import modele.vue.dao.DAOVueNote;
 
 import org.apache.log4j.LogManager;
 
+import controleur.messages.GestionMessages;
 import vue.fenetre.ConnexionGUI;
 
 public class Onlinote {
@@ -75,6 +78,23 @@ public class Onlinote {
 		    System.out.println(test.get(i).getNoteMax());
 		}
 		
+		*/
+		
+		/* test message 
+        try {
+            ConnexionJDBC.getInstance().openConnexion();
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		
+		GestionMessages messagerie = new GestionMessages();
+		DAOVueMessage daoMess = new DAOVueMessage();
+		daoMess.setExpediteur("malo.cou@email.com");
+		daoMess.setObjet("Bienvenue dans la messagerie Onlinote");
+		daoMess.setContenu("Quelques conseils pour utiliser la boite de réception");
+		daoMess.setDestinataires("malo.cou@email.com;max.affine@email.com");
+		messagerie.envoyerMessage(daoMess);
 		*/
 	}
 	
