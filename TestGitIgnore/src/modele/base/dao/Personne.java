@@ -1,5 +1,7 @@
 package modele.base.dao;
 
+import java.util.Date;
+
 public class Personne implements java.io.Serializable {
 
 	/**
@@ -13,10 +15,11 @@ public class Personne implements java.io.Serializable {
 	private String motDePasse;
 	private String email;
 	private String typeP;
+	private Date dateNaiss;
 	
 		public Personne() {
     }
-	public Personne (int idPersonne, String nom, String prenom, String adresse, String motDePasse, String email, String typeP) {
+	public Personne (int idPersonne, String nom, String prenom, String adresse, String motDePasse, String email, String typeP, Date dateNaiss) {
 		this.idPersonne  = idPersonne;
 		this.nom 		  = nom;
 		this.prenom 	  = prenom;
@@ -24,8 +27,15 @@ public class Personne implements java.io.Serializable {
 		this.motDePasse = motDePasse;
 		this.email		  = email;
 		this.typeP 	  = typeP;
+		this.dateNaiss = dateNaiss;
 	}
 
+    public Date getDateNaiss() {
+        return dateNaiss;
+    }
+    public void setDateNaiss(Date dateNaiss) {
+        this.dateNaiss = dateNaiss;
+    }
     public int getIdPersonne() {
 		return idPersonne;
 	}

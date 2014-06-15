@@ -15,4 +15,16 @@ public class GestionCours {
         // TODO Auto-generated constructor stub
     }
     
+    public void ajouterCours() {
+        
+    }
+    
+    public void modifierCours () {
+        
+    }
+    
+    public void supprimerCours () {
+        
+    }
+    
 }

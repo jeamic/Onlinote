@@ -70,7 +70,7 @@ public class DAOMatiere extends DAOFactory<Matiere>{
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
-        }        
+        }
         return listeMatiere;
     }
     

@@ -23,3 +23,7 @@ Requête pour Notes élève :
 
 rechercher eleve et prof par nom
 
+
+
+AJOUT date de naissance dans bdd (homonymie)
+

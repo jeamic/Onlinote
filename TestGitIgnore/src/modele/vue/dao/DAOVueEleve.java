@@ -1,5 +1,7 @@
 package modele.vue.dao;
 
+import java.util.Date;
+
 import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Personne;
 
@@ -13,6 +15,7 @@ public class DAOVueEleve {
     private String email;
     private int idParent1;
     private int idParent2;
+    private Date dateNaiss;
     
     public DAOVueEleve () {
     }
@@ -23,9 +26,18 @@ public class DAOVueEleve {
         this.prenom = eleve.getPrenom();
         this.adresse = eleve.getAdresse();
         this.email = eleve.getEmail();
+        this.dateNaiss = eleve.getDateNaiss();
         this.idParent1 = idParent1;
         this.idParent2 = idParent2;
         this.idClasse = idClasse;
+    }
+
+    public Date getDateNaiss() {
+        return dateNaiss;
+    }
+
+    public void setDateNaiss(Date dateNaiss) {
+        this.dateNaiss = dateNaiss;
     }
 
     public int getIdClasse() {
