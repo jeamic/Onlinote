@@ -2,6 +2,8 @@ package modele.vue.dao;
 
 import java.util.List;
 
+import modele.base.dao.Personne;
+
 public class DAOVueParent {
     private int idParent;
     private String nom;
@@ -13,12 +15,12 @@ public class DAOVueParent {
     public DAOVueParent () {
     }
     
-    public DAOVueParent (int id, String nom, String prenom, String adresse, String email, List<DAOVueEleve> listeEnfants) {
-        this.idParent = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.email = email;
+    public DAOVueParent (Personne parent, List<DAOVueEleve> listeEnfants) {
+        this.idParent = parent.getIdPersonne();
+        this.nom = parent.getNom();
+        this.prenom = parent.getPrenom();
+        this.adresse = parent.getAdresse();
+        this.email = parent.getEmail();
         this.listeEnfants = listeEnfants;
     }
 

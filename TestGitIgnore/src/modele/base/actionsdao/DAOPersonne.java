@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.base.dao.Categorie;
+import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueEleve;
 
 import org.apache.log4j.LogManager;
 
@@ -103,6 +105,36 @@ public class DAOPersonne extends DAOFactory<Personne>{
     public Personne map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
+    }
+    
+    public List<DAOVueEleve> getEnfants (int idParent) {
+        /* déclaration et init des variables nécessaires */
+        List<DAOVueEleve> listeEnfants = new ArrayList<DAOVueEleve>();
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            String req = "select * from eleve where id_parent_1="
+                        +Integer.toString(idParent)
+                        +" OR id_parent_2 ="
+                        +Integer.toString(idParent);
+            res = stmt.executeQuery(req);
+            DAOPersonne daoPersonne = new DAOPersonne();
+            DAOEleve daoEleve = new DAOEleve();
+            
+            while (res.next()){
+                Personne eleve_personne = daoPersonne.find(res.getString("email"));
+                Eleve eleve = daoEleve.find(eleve_personne.getIdPersonne());
+                listeEnfants.add(new DAOVueEleve(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2()));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
+        return listeEnfants;
     }
 
 }
