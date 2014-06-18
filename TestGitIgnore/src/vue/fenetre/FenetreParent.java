@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.MalformedURLException;
 
@@ -93,13 +94,13 @@ public class FenetreParent {
         
         java.net.URL imgURLAccueil = null;
         try {
-            imgURLAccueil = new java.net.URL("file:img/mines_ales.png");
+            imgURLAccueil = new java.net.URL("file:img/gard.png");
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             log4j.error("image existe pas");
 
         }
-        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage());
+        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT));
         
         JLabel lblImgAccueil= new JLabel(imgAccueil);
         lblImgAccueil.setBounds(0,0,100,100);
@@ -131,9 +132,9 @@ public class FenetreParent {
     public static void changeMenu()
     {
         if (panelTop != null) {
-            
+            FenetreParent.maFenetreParent.remove(panelTop);
         }
-        FenetreParent.maFenetreParent.remove(panelTop);
+
         
         if (panelCenter != null) {
             FenetreParent.maFenetreParent.remove(panelCenter);         

@@ -225,53 +225,17 @@ public class Menu {
         
         switch(onglet) {
             case "Accueil" :
-                FenetreParent.panelTop = new JPanel(new BorderLayout());
                 
-                JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr ");
-                lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
-                lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
-                lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
+                remplirFenetre("Bienvenue sur l'application Onlinote Mr ","");
+                FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
-                
-                JLabel lblDetails1 = new JLabel("L'application qui vous permet de suivre vos enfants et garder un contact avec l'administration");
-                lblDetails1.setHorizontalAlignment(SwingConstants.CENTER);
-                lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
-                JLabel lblVide = new JLabel(" ");
-                lblVide.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                
-                FenetreParent.panelTop.add(lblApplicationOnlinote, BorderLayout.NORTH);
-                FenetreParent.panelTop.add(lblVide, BorderLayout.CENTER);
-                FenetreParent.panelTop.add(lblDetails1, BorderLayout.SOUTH);
-                
-                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
                 lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
                 FenetreParent.maFenetreParent.getContentPane().validate();
                 
                break;
             case "Notes" :
-                FenetreParent.panelTop = new JPanel(new BorderLayout());
-                FenetreParent.panelCenter = new JPanel (new BorderLayout());
-                
-                JLabel lblApplicationOnlinoteN = new JLabel("Onlinote - Notes");
-                lblApplicationOnlinoteN.setVerticalAlignment(SwingConstants.TOP);
-                lblApplicationOnlinoteN.setFont(new Font("Times new roman", Font.PLAIN, 32));
-                lblApplicationOnlinoteN.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                
-                JLabel lblDetailsN = new JLabel(" ");
-                lblDetailsN.setHorizontalAlignment(SwingConstants.CENTER);
-                lblDetailsN.setFont(new Font("Times new roman", Font.PLAIN, 12));
-                JLabel lblVide2 = new JLabel(" ");
-                lblVide2.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                
-                FenetreParent.panelTop.add(lblApplicationOnlinoteN, BorderLayout.NORTH);
-                FenetreParent.panelTop.add(lblVide2, BorderLayout.CENTER);
-                FenetreParent.panelTop.add(lblDetailsN, BorderLayout.SOUTH);
-                
-                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
-                
+                remplirFenetre("Onlinote - Notes","");
+                FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
                 JPanel mesNotes = new Notes().getNotes();
                 mesNotes.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
@@ -284,27 +248,8 @@ public class Menu {
                 break;
             case "Emploi du temps" :
                 
-                FenetreParent.panelTop = new JPanel(new BorderLayout());
-                FenetreParent.panelCenter = new JPanel (new BorderLayout());
-                
-                JLabel lblApplicationOnlinoteEDT = new JLabel("Onlinote - Emploi du temps");
-                lblApplicationOnlinoteEDT.setVerticalAlignment(SwingConstants.TOP);
-                lblApplicationOnlinoteEDT.setFont(new Font("Times new roman", Font.PLAIN, 32));
-                lblApplicationOnlinoteEDT.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                
-                JLabel lblDetailsEDT = new JLabel(" ");
-                lblDetailsEDT.setHorizontalAlignment(SwingConstants.CENTER);
-                lblDetailsEDT.setFont(new Font("Times new roman", Font.PLAIN, 12));
-                JLabel lblVideEDT = new JLabel(" ");
-                lblVideEDT.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                
-                FenetreParent.panelTop.add(lblApplicationOnlinoteEDT, BorderLayout.NORTH);
-                FenetreParent.panelTop.add(lblVideEDT, BorderLayout.CENTER);
-                FenetreParent.panelTop.add(lblDetailsEDT, BorderLayout.SOUTH);
-                
-                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+                remplirFenetre("Onlinote - Emploi du temps","");
+                FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
                 JPanel monEDT = new EmploiDuTemps().getEDT();
                 monEDT.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
@@ -316,27 +261,13 @@ public class Menu {
                 break;
                 
             case "Messagerie" :
-                FenetreParent.panelTop = new JPanel(new BorderLayout());
-                FenetreParent.panelCenter = new JPanel (new BorderLayout());
-                
-                JLabel lblApplicationOnlinoteM = new JLabel("Onlinote - Emploi du temps");
-                lblApplicationOnlinoteM.setVerticalAlignment(SwingConstants.TOP);
-                lblApplicationOnlinoteM.setFont(new Font("Times new roman", Font.PLAIN, 32));
-                lblApplicationOnlinoteM.setHorizontalAlignment(SwingConstants.CENTER);
+                remplirFenetre("Onlinote - Messagerie", "");
+                FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
                 
-                JLabel lblDetailsM = new JLabel(" ");
-                lblDetailsM.setHorizontalAlignment(SwingConstants.CENTER);
-                lblDetailsM.setFont(new Font("Times new roman", Font.PLAIN, 12));
-                JLabel lblVideM = new JLabel(" ");
-                lblVideM.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                
-                FenetreParent.panelTop.add(lblApplicationOnlinoteM, BorderLayout.NORTH);
-                FenetreParent.panelTop.add(lblVideM, BorderLayout.CENTER);
-                FenetreParent.panelTop.add(lblDetailsM, BorderLayout.SOUTH);
-                
-                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+                JPanel maMessagerie = new Messagerie().getMess();
+                maMessagerie.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
+                FenetreParent.panelCenter.add(maMessagerie);
                 
                 lblMessagerie.setFont(new Font("Times new roman", Font.BOLD, 14));
                 FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
@@ -356,6 +287,52 @@ public class Menu {
        lblEmploiDuTemps.setFont(new Font("Times new roman", Font.PLAIN, 14));
        lblMessagerie.setFont(new Font("Times new roman", Font.PLAIN, 14));
        
+   }
+   
+   private void remplirFenetre(String titre, String desc)
+   {
+       FenetreParent.panelTop = new JPanel(new BorderLayout());
+       JPanel panelTopGauche = new JPanel(new BorderLayout());
+       JPanel panelTopCentre = new JPanel(new BorderLayout());
+       
+       JLabel lblApplicationOnlinote = new JLabel(titre);
+       lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
+       lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
+       lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
+       
+       
+       JLabel lblDetails1 = new JLabel(desc);
+       lblDetails1.setHorizontalAlignment(SwingConstants.CENTER);
+       lblDetails1.setFont(new Font("Times new roman", Font.PLAIN, 12));
+       JLabel lblVide = new JLabel(" ");
+       lblVide.setHorizontalAlignment(SwingConstants.CENTER);
+       
+       
+       java.net.URL imgURLAccueil = null;
+       try {
+           imgURLAccueil = new java.net.URL("file:img/gard.png");
+       } catch (MalformedURLException e) {
+           // TODO Auto-generated catch block
+           log4j.error("image existe pas");
+
+       }
+       ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT));
+       
+       JLabel lblImgAccueil= new JLabel(imgAccueil);
+       lblImgAccueil.setBounds(0,0,100,100);
+       panelTopGauche.add(lblImgAccueil, BorderLayout.CENTER);
+       
+       panelTopGauche.setBounds(0,0,100,100);
+       
+       panelTopCentre.add(lblApplicationOnlinote, BorderLayout.NORTH);
+       panelTopCentre.add(lblVide, BorderLayout.CENTER);
+       panelTopCentre.add(lblDetails1, BorderLayout.SOUTH);
+       
+       FenetreParent.panelTop.add(panelTopGauche);
+       FenetreParent.panelTop.add(panelTopCentre);
+       
+       
+       FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
    }
 
 }
