@@ -19,7 +19,8 @@ public class GestionParent {
     public DAOVueParent getEnfants (Personne personne){
         List<DAOVueEleve> listeEnfants = new ArrayList<DAOVueEleve>();
         DAOPersonne daoPersonne = new DAOPersonne ();
-        listeEnfants = daoPersonne.getEnfants(personne.getIdPersonne());
+        int idPersonne = personne.getIdPersonne();
+        listeEnfants = daoPersonne.getEnfants(idPersonne);
         DAOVueParent daoVueParent = new DAOVueParent(personne, listeEnfants);
         return daoVueParent;
     }

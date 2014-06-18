@@ -26,8 +26,32 @@ public class DAOPersonne extends DAOFactory<Personne>{
 	
 	@Override
 	public Personne find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+        /* déclaration et init des variables nécessaires */
+        Personne pers = null;
+        PreparedStatement stmt = null;
+        ResultSet res = null;
+        
+        /* requête pour rechercher la personne */
+        try {
+            stmt = (PreparedStatement) instance.getConnection().prepareStatement("Select * from personne where id_personne = ?");
+            stmt.setInt(1, id);
+            res = (ResultSet) stmt.executeQuery();
+            if (res.first()){
+                /* création de l'objet correspondant à la personne recherchée */
+                pers = new Personne( res.getInt("id_personne"),
+                                     res.getString("nom"),
+                                     res.getString("prenom"),
+                                     res.getString("adresse"),
+                                     res.getString("mot_de_passe"),
+                                     res.getString("email"),
+                                     res.getString("type_p"),
+                                     res.getString("Date_naiss"));
+            }
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+
+        }
+        return pers;
 	}
 	
 	@Override
@@ -112,21 +136,21 @@ public class DAOPersonne extends DAOFactory<Personne>{
         List<DAOVueEleve> listeEnfants = new ArrayList<DAOVueEleve>();
         Statement stmt = null;
         ResultSet res = null;
-        ConnexionJDBC instance = ConnexionJDBC.getInstance();
-        Connection conn = (Connection) instance.getConnection();
+        /*ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = instance.getConnection();*/
         
         try {
-            stmt = conn.createStatement();
-            String req = "select * from eleve where id_parent_1="
+            stmt = instance.getConnection().createStatement();
+            String req = "select * from eleve where id_parent1="
                         +Integer.toString(idParent)
-                        +" OR id_parent_2 ="
+                        +" OR id_parent2 ="
                         +Integer.toString(idParent);
             res = stmt.executeQuery(req);
             DAOPersonne daoPersonne = new DAOPersonne();
             DAOEleve daoEleve = new DAOEleve();
             
             while (res.next()){
-                Personne eleve_personne = daoPersonne.find(res.getString("email"));
+                Personne eleve_personne = daoPersonne.find(res.getInt("id_eleve"));
                 Eleve eleve = daoEleve.find(eleve_personne.getIdPersonne());
                 listeEnfants.add(new DAOVueEleve(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2()));
             }

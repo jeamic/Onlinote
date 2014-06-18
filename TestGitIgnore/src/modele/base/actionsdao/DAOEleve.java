@@ -27,8 +27,25 @@ public class DAOEleve extends DAOFactory<Eleve>{
 
 	@Override
 	public Eleve find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+        /* déclaration et init des variables nécessaires */
+        Eleve eleve = null;
+        PreparedStatement stmt = null;
+        ResultSet res = null;
+        
+        /* requête pour rechercher la personne */
+        try {
+            stmt = (PreparedStatement) instance.getConnection().prepareStatement("Select * from eleve where id_eleve = ?");
+            stmt.setInt(1, id);
+            res = (ResultSet) stmt.executeQuery();
+            if (res.first()){
+                /* création de l'objet correspondant à la personne recherchée */
+                eleve = new Eleve( res.getInt("id_parent1"), res.getInt("id_parent2"),res.getInt("id_classe"),res.getInt("id_eleve"));
+            }
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+
+        }
+        return eleve;
 	}
 
 	@Override
