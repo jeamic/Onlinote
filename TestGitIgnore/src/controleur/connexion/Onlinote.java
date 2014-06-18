@@ -103,7 +103,7 @@ public class Onlinote {
 		*/
 		
 		
-		/* test getEnfants */
+		/* test getEnfants 
 		try {
             Connexion.openConnexion();
         } catch (SQLException e1) {
@@ -116,11 +116,12 @@ public class Onlinote {
 		Personne personne = daoPersonne.find("malo.cou@email.com");
 		DAOVueParent daoVueParent = gestPar.getEnfants(personne);
 		
-	      for (int i = 0; i < daoVueParent.getListeEnfants().size(); ++i) {
-	            System.out.println(daoVueParent.getListeEnfants().get(i).getNom());
-	        }
+        for (int i = 0; i < daoVueParent.getListeEnfants().size(); ++i) {
+            System.out.println(daoVueParent.getListeEnfants().get(i).getNom());
+        }
+	    / * fin test getEnfants() */
 	}
-	/* fin test getEnfants() */
+	
 	
 	/**
 	 * Launch the application.
