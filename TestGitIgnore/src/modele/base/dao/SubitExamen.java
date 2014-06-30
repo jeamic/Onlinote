@@ -1,6 +1,6 @@
 package modele.base.dao;
 
-public class Subit_examen implements java.io.Serializable {
+public class SubitExamen implements java.io.Serializable {
 	/**
      * 
      */
@@ -10,9 +10,9 @@ public class Subit_examen implements java.io.Serializable {
 	private int idCours;
 	private double note;
 	
-	public Subit_examen () {
+	public SubitExamen () {
 	}
-	public Subit_examen (int idControle, int idEleve, int idCours, double note) {
+	public SubitExamen (int idControle, int idEleve, int idCours, double note) {
 		this.idControle = idControle;
 		this.idEleve    = idEleve;
 		this.idCours 	 = idCours;

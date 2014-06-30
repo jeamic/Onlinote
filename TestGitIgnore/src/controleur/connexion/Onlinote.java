@@ -17,6 +17,8 @@ import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
 
+import controleur.notes.GestionNotes;
+import controleur.cours.GestionMatiere;
 import controleur.messages.GestionMessages;
 import controleur.parent.GestionParent;
 import vue.fenetre.ConnexionGUI;
@@ -142,6 +144,36 @@ public class Onlinote {
 	            for (int i = 0; i < daoVueMessager.size(); ++i) {
 	                System.out.println(daoVueMessager.get(i));
 	            }*/
+		
+		/* test getNotes() */
+		/*
+		try {
+            Connexion.openConnexion();
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		GestionNotes gestNotes = new GestionNotes();
+		List <DAOVueNote> notes = gestNotes.getNotes(3, 1, "Maths");
+		
+		for (int i = 0; i < notes.size(); ++i) {
+            System.out.println(notes.get(i));
+        }
+		*/
+		/* test getMatiere */
+		/*try {
+            Connexion.openConnexion();
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		
+		GestionMatiere gestMat = new GestionMatiere();
+		List<Matiere> listeMat = gestMat.getAllMatieres();
+		
+		for (int i = 0; i < listeMat.size(); ++i) {
+            System.out.println(listeMat.get(i).getMatiere());
+        }*/
 	}
 	
 	
