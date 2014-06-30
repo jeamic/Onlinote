@@ -5,23 +5,33 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modele.base.dao.Personne;
+import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
 
 import controleur.connexion.Onlinote;
+import controleur.parent.GestionParent;
 
 
 public class Menu {
@@ -36,13 +46,18 @@ public class Menu {
 	private JLabel lblNotes = null;
 	private JLabel lblEmploiDuTemps = null;
 	private JLabel lblMessagerie = null;
+    private DAOVueParent parent = null;
+    private List<DAOVueEleve> enfant = null;
+	private DAOVueEleve eleveG = null;
+	private Personne personneG = null;
 	
-	public Menu (String ongletEC, Personne personne) {
+	public Menu (String ongletEC, Personne personne, DAOVueEleve eleve) {
+	    
+	    eleveG = eleve;
+	    personneG = personne;
 	    
 	    ImageIcon tabImg[] = getImg();
 	    
-
-		
 		menu = new JPanel();
 		menu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
@@ -60,17 +75,25 @@ public class Menu {
 		panel.setBounds(15, 58, 125, 63);
 		
 		
-		JLabel lblEleve = new JLabel();
-		
-		lblEleve.setFont(new Font("Times new roman", Font.PLAIN, 14));
-		lblEleve.setText("Elève :");
-		lblEleve.setBounds(51,59,96,26);
-		
-		
-		JLabel lblNomEleve = new JLabel("");
-		
-		menu.add(lblEleve);
-		panel.add(lblNomEleve);
+        
+        JPanel panel_1 = new JPanel();
+        panel.add(panel_1);
+        panel_1.setLayout(new BorderLayout(0, 0));
+        panel_1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        
+        
+        JLabel lblNomEleve = new JLabel(eleve.getNom() + " " + eleve.getPrenom());
+        lblNomEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_1.add(lblNomEleve);
+        
+        
+        JLabel lblEleve = new JLabel();
+        lblEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_1.add(lblEleve, BorderLayout.NORTH);
+        
+        lblEleve.setFont(new Font("Times new roman", Font.PLAIN, 14));
+        lblEleve.setText("Elève :");
+
 		menu.add(panel);
 
 	}
@@ -141,13 +164,13 @@ public class Menu {
         lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
         lblAccueil.setText("Accueil");
         lblAccueil.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Accueil", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Accueil", personneG , eleveG);
             }  
         });
         lblIconAccueil.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                switchOnglet("Accueil", personne);
+            public void mouseClicked(MouseEvent e) {  
+                switchOnglet("Accueil", personneG , eleveG);
            }  
         });
 
@@ -167,13 +190,13 @@ public class Menu {
         lblNotes.setText("Notes");
         
         lblNotes.addMouseListener(new MouseAdapter()  {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Notes", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Notes", personneG , eleveG);
             }  
         });
         lblIconNotes.addMouseListener(new MouseAdapter()  {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                switchOnglet("Notes", personne);
+            public void mouseClicked(MouseEvent e) {  
+                switchOnglet("Notes", personneG , eleveG);
            }  
         });
         menu.add(lblIconNotes);
@@ -184,13 +207,13 @@ public class Menu {
         lblEmploiDuTemps = new JLabel();
         JLabel lblIconEmploiDuTemps = new JLabel(tabImg);
         lblEmploiDuTemps.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Emploi du temps", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Emploi du temps", personneG , eleveG);
             }  
         });
         lblIconEmploiDuTemps.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                switchOnglet("Emploi du temps", personne);
+            public void mouseClicked(MouseEvent e) {  
+                switchOnglet("Emploi du temps", personneG , eleveG);
            }  
         });
         lblIconEmploiDuTemps.setBounds(5, 179, 29, 53);
@@ -213,15 +236,15 @@ public class Menu {
         lblMessagerie.setText("Messagerie");
         lblMessagerie.setFont(new Font("Times new roman", Font.PLAIN, 14));
         lblMessagerie.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Messagerie", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Messagerie", personneG , eleveG);
             }  
         });
         menu.add(lblIconMessagerie);
         menu.add(lblMessagerie);
 	}
 	
-   private void switchOnglet(String onglet, Personne personne) {
+   private void switchOnglet(String onglet, Personne personne, DAOVueEleve eleve) {
        viderGras();
        FenetreParent.changeMenu();
         
@@ -231,8 +254,108 @@ public class Menu {
                 remplirFenetre("Bienvenue sur l'application Onlinote Mr ","");
                 FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
+                
                 lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
                 FenetreParent.maFenetreParent.getContentPane().validate();
+                
+                GestionParent gestionnaireParent = new GestionParent();
+                parent = gestionnaireParent.getEnfants(personne);
+                
+                enfant = parent.getListeEnfants();
+                
+                FenetreParent.panelCenter = new JPanel();
+                ButtonGroup group = new ButtonGroup();
+                JLabel lblVosEnfants = new JLabel("Enfant(s) : ");
+                lblVosEnfants.setVerticalAlignment(SwingConstants.TOP);
+                lblVosEnfants.setFont(new Font("Times new roman", Font.PLAIN, 12));
+                lblVosEnfants.setHorizontalAlignment(SwingConstants.CENTER);
+                FenetreParent.panelCenter.add(lblVosEnfants);
+                JRadioButton aRadioButton = null;
+                
+                FenetreParent.grosMenu = new JPanel(new GridBagLayout());
+                JPanel monMenu = new Menu("Accueil", personne, enfant.get(0)).getMenu();
+                monMenu.setPreferredSize(new Dimension(150, 300));
+                
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.anchor = GridBagConstraints.NORTHWEST;
+                //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+                
+                
+                JLabel testEspace = new JLabel(" ");
+                
+
+                final JPanel monMenu2 = new JPanel(new BorderLayout());
+                
+                monMenu2.add(testEspace, BorderLayout.NORTH);
+                monMenu2.add(monMenu, BorderLayout.NORTH);
+                
+                        
+                FenetreParent.grosMenu.add(monMenu2, gbc);
+                
+                
+                for (int i = 0; i < enfant.size(); ++i)
+                {
+                    
+                    if (i == 0)
+                    {
+                        aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom(), true);
+                    }
+                    else
+                    {
+                        aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom());
+                    }
+                    aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+                    aRadioButton.setActionCommand(Integer.toString(i));
+                    
+                    
+                    
+                    ActionListener actionListener = new ActionListener() {
+                        
+                        public void actionPerformed(ActionEvent e) {
+                            
+                            
+                            FenetreParent.changeEleveMenu(personneG, Integer.parseInt(e.getActionCommand()));
+                                                        
+                               // FenetreParent.grosMenu.removeAll();
+                                /*System.out.println(e.getActionCommand());
+                                
+                                JPanel monMenu = new Menu("Accueil", personneG , enfant.get(Integer.parseInt(e.getActionCommand()))).getMenu();
+                                monMenu.setPreferredSize(new Dimension(150, 300));
+                                
+                                GridBagConstraints gbc = new GridBagConstraints();
+                                gbc.anchor = GridBagConstraints.NORTHWEST;
+                                //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+                                
+                                
+                                JLabel testEspace = new JLabel(" ");
+                                
+
+                                final JPanel monMenu2 = new JPanel(new BorderLayout());
+                                
+                                monMenu2.add(testEspace, BorderLayout.NORTH);
+                                monMenu2.add(monMenu, BorderLayout.NORTH);
+                                
+                                        
+                                FenetreParent.grosMenu.add(monMenu2, gbc);
+                                */
+                                
+                               // FenetreParent.grosMenu.updateUI();
+                                
+
+                            }
+                    };
+                    
+                    aRadioButton.addActionListener(actionListener);
+                    group.add(aRadioButton);
+                    FenetreParent.panelCenter.add(aRadioButton);
+
+                    
+                }
+                
+                
+                
+                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
+                
                 
                break;
             case "Notes" :
@@ -267,7 +390,7 @@ public class Menu {
                 FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
                 
-                JPanel maMessagerie = new Messagerie(personne).getMess();
+                JPanel maMessagerie = new Messagerie(personneG).getMess();
                 maMessagerie.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
                 FenetreParent.panelCenter.add(maMessagerie);
                 

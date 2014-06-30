@@ -8,32 +8,45 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.net.MalformedURLException;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import modele.base.dao.Personne;
+import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
+
+import controleur.parent.GestionParent;
 
 public class FenetreParent {
 	
 	protected static JFrame maFenetreParent = null;
 	protected static JPanel panelTop = null;
 	protected static JPanel panelCenter = null;
-
-    private FenetreParent(Personne personne){
+	static JPanel grosMenu = null;
+    private DAOVueParent parent = null;
+    private static List<DAOVueEleve> enfant = null;
+    
+    FenetreParent(final Personne personne){
         
         /**
          * Log4j logger
          */
-        
-        
-        
+                
         org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
 			
         maFenetreParent = new JFrame();
@@ -51,9 +64,22 @@ public class FenetreParent {
         
         maFenetreParent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        JPanel grosMenu = new JPanel(new GridBagLayout());
+        GestionParent gestionnaireParent = new GestionParent();
+        parent = gestionnaireParent.getEnfants(personne);
         
-        JPanel monMenu = new Menu("Accueil", personne).getMenu();
+        enfant = parent.getListeEnfants();
+        
+        panelCenter = new JPanel();
+        ButtonGroup group = new ButtonGroup();
+        JLabel lblVosEnfants = new JLabel("Enfant(s) : ");
+        lblVosEnfants.setVerticalAlignment(SwingConstants.TOP);
+        lblVosEnfants.setFont(new Font("Times new roman", Font.PLAIN, 12));
+        lblVosEnfants.setHorizontalAlignment(SwingConstants.CENTER);
+        panelCenter.add(lblVosEnfants);
+        JRadioButton aRadioButton = null;
+        
+        grosMenu = new JPanel(new GridBagLayout());
+        JPanel monMenu = new Menu("Accueil", personne , enfant.get(0)).getMenu();
         monMenu.setPreferredSize(new Dimension(150, 300));
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -64,7 +90,7 @@ public class FenetreParent {
         JLabel testEspace = new JLabel(" ");
         
 
-        JPanel monMenu2 = new JPanel(new BorderLayout());
+        final JPanel monMenu2 = new JPanel(new BorderLayout());
         
         monMenu2.add(testEspace, BorderLayout.NORTH);
         monMenu2.add(monMenu, BorderLayout.NORTH);
@@ -73,16 +99,74 @@ public class FenetreParent {
         grosMenu.add(monMenu2, gbc);
         
         
+        for (int i = 0; i < enfant.size(); ++i)
+        {
+            
+            if (i == 0)
+            {
+                aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom(), true);
+            }
+            else
+            {
+                aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom());
+            }
+            aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+            aRadioButton.setActionCommand(Integer.toString(i));
+            
+            
+            
+            ActionListener actionListener = new ActionListener() {
+                
+                public void actionPerformed(ActionEvent e) {
+                                                
+                        grosMenu.removeAll();
+                        
+                        JPanel monMenu = new Menu("Accueil", personne, enfant.get(Integer.parseInt(e.getActionCommand()))).getMenu();
+                        monMenu.setPreferredSize(new Dimension(150, 300));
+                        
+                        GridBagConstraints gbc = new GridBagConstraints();
+                        gbc.anchor = GridBagConstraints.NORTHWEST;
+                        //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+                        
+                        
+                        JLabel testEspace = new JLabel(" ");
+                        
+
+                        final JPanel monMenu2 = new JPanel(new BorderLayout());
+                        
+                        monMenu2.add(testEspace, BorderLayout.NORTH);
+                        monMenu2.add(monMenu, BorderLayout.NORTH);
+                        
+                                
+                        grosMenu.add(monMenu2, gbc);
+                        grosMenu.updateUI();
+                        
+
+                    }
+            };
+            
+            aRadioButton.addActionListener(actionListener);
+            group.add(aRadioButton);
+            panelCenter.add(aRadioButton);
+
+            
+        }
+        
+        
+        
+       maFenetreParent.getContentPane().add(panelCenter, BorderLayout.CENTER);
+        
+
+        
        
         maFenetreParent.getContentPane().add(grosMenu, BorderLayout.WEST);
         
-
         
         panelTop = new JPanel(new BorderLayout());
         JPanel panelTopGauche = new JPanel(new BorderLayout());
         JPanel panelTopCentre = new JPanel(new BorderLayout());
         
-        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr ");
+        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote "+ personne.getPrenom() + " " + personne.getNom());
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
         lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
         lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
@@ -146,5 +230,30 @@ public class FenetreParent {
         FenetreParent.maFenetreParent.repaint();
         FenetreParent.maFenetreParent.validate();
         
+    }
+    
+    public static void changeEleveMenu(Personne p, int e)
+    {
+        grosMenu.removeAll();
+        
+        JPanel monMenu = new Menu("Accueil", p, enfant.get(e)).getMenu();
+        monMenu.setPreferredSize(new Dimension(150, 300));
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+        
+        
+        JLabel testEspace = new JLabel(" ");
+        
+
+        final JPanel monMenu2 = new JPanel(new BorderLayout());
+        
+        monMenu2.add(testEspace, BorderLayout.NORTH);
+        monMenu2.add(monMenu, BorderLayout.NORTH);
+        
+                
+        grosMenu.add(monMenu2, gbc);
+        grosMenu.updateUI();
     }
 }

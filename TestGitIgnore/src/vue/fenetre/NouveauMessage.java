@@ -61,6 +61,7 @@ public class NouveauMessage {
         txtDestinataire.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
+                if (txtDestinataire.getText() != "Destinataire") return;
                 txtDestinataire.setText("");
             }
         });
@@ -111,6 +112,7 @@ public class NouveauMessage {
         txtSujet.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
+                if (txtSujet.getText() != "Sujet") return;
                 txtSujet.setText("");
             }
         });
@@ -125,7 +127,10 @@ public class NouveauMessage {
         txtrMssage.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                txtrMssage.setText("");
+                if (txtrMssage.getText() == "Message")
+                {
+                    txtrMssage.setText("");
+                }
             }
         });
         txtrMssage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
