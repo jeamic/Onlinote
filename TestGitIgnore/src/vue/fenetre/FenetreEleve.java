@@ -20,13 +20,13 @@ import modele.base.dao.Personne;
 
 import org.apache.log4j.LogManager;
 
-public class FenetreParent {
+public class FenetreEleve {
 	
-	protected static JFrame maFenetreParent = null;
+	protected static JFrame maFenetreEleve = null;
 	protected static JPanel panelTop = null;
 	protected static JPanel panelCenter = null;
 
-    private FenetreParent(Personne personne){
+    private FenetreEleve(Personne personne){
         
         /**
          * Log4j logger
@@ -36,24 +36,24 @@ public class FenetreParent {
         
         org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
 			
-        maFenetreParent = new JFrame();
+        maFenetreEleve = new JFrame();
         
-        maFenetreParent.getContentPane().setLayout(new BorderLayout());
+        maFenetreEleve.getContentPane().setLayout(new BorderLayout());
         
         
         
-        maFenetreParent.setSize(new Dimension(880, 540));
+        maFenetreEleve.setSize(new Dimension(880, 540));
         
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        maFenetreParent.setLocation(dim.width/2-maFenetreParent.getSize().width/2, dim.height/2-maFenetreParent.getSize().height/2);
+        maFenetreEleve.setLocation(dim.width/2-maFenetreEleve.getSize().width/2, dim.height/2-maFenetreEleve.getSize().height/2);
 
         
-        maFenetreParent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        maFenetreEleve.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel grosMenu = new JPanel(new GridBagLayout());
         
-        JPanel monMenu = new Menu("Accueil", personne).getMenu();
+        JPanel monMenu = new MenuEleve("Accueil", personne).getMenu();
         monMenu.setPreferredSize(new Dimension(150, 300));
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -74,7 +74,7 @@ public class FenetreParent {
         
         
        
-        maFenetreParent.getContentPane().add(grosMenu, BorderLayout.WEST);
+        maFenetreEleve.getContentPane().add(grosMenu, BorderLayout.WEST);
         
 
         
@@ -119,32 +119,32 @@ public class FenetreParent {
         panelTop.add(panelTopCentre);
         
         
-        maFenetreParent.getContentPane().add(panelTop, BorderLayout.NORTH);
+        maFenetreEleve.getContentPane().add(panelTop, BorderLayout.NORTH);
             
-        maFenetreParent.setVisible(true);
+        maFenetreEleve.setVisible(true);
         
         
         
         
 	}
     
-    public static void creerFenetreParent (Personne personne) {
-        new FenetreParent (personne);
+    public static void creerFenetreEleve (Personne personne) {
+        new FenetreEleve (personne);
     }
     
     public static void changeMenu()
     {
         if (panelTop != null) {
-            FenetreParent.maFenetreParent.remove(panelTop);
+            FenetreEleve.maFenetreEleve.remove(panelTop);
         }
 
         
         if (panelCenter != null) {
-            FenetreParent.maFenetreParent.remove(panelCenter);         
+            FenetreEleve.maFenetreEleve.remove(panelCenter);         
         }
         
-        FenetreParent.maFenetreParent.repaint();
-        FenetreParent.maFenetreParent.validate();
+        FenetreEleve.maFenetreEleve.repaint();
+        FenetreEleve.maFenetreEleve.validate();
         
     }
 }

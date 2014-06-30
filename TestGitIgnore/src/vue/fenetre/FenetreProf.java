@@ -49,7 +49,7 @@ public class FenetreProf {
         
         JPanel grosMenu = new JPanel(new GridBagLayout());
         
-        JPanel monMenu = new MenuProf("Accueil").getMenu();
+        JPanel monMenu = new MenuProf("Accueil", personne).getMenu();
         monMenu.setPreferredSize(new Dimension(150, 300));
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -124,7 +124,7 @@ public class FenetreProf {
         
 	}
     
-    public static void creerFenetreParent (Personne personne) {
+    public static void creerFenetreProf (Personne personne) {
         new FenetreProf (personne);
     }
     

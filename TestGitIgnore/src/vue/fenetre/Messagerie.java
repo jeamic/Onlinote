@@ -6,15 +6,25 @@ import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import modele.base.dao.Personne;
 
 public class Messagerie {
     private JPanel panelMessagerie = null;
-    public Messagerie ()
+    private Personne user = null;
+    public Messagerie (Personne personne)
     {
+       user = personne;
        panelMessagerie = new JPanel(new BorderLayout());
        
        JPanel panel = new JPanel();
@@ -45,21 +55,12 @@ public class Messagerie {
        gbc_lblNewLabel.gridy = 2;
        panel.add(lblNewLabel, gbc_lblNewLabel);
        
-       JLabel lblNewLabel_2 = new JLabel("<html><u>Brouillons</u></html>");
-       lblNewLabel_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-       GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-       gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
-       gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
-       gbc_lblNewLabel_2.gridx = 0;
-       gbc_lblNewLabel_2.gridy = 4;
-       panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
-       
        JLabel lblNewLabel_3 = new JLabel("<html><u>Message supprimé</u></html>");
        lblNewLabel_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
        gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
        gbc_lblNewLabel_3.gridx = 0;
-       gbc_lblNewLabel_3.gridy = 6;
+       gbc_lblNewLabel_3.gridy = 4;
        panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
        
        JPanel panel_1 = new JPanel();
@@ -67,6 +68,28 @@ public class Messagerie {
        panel_1.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
        panelMessagerie.add(panel_1, BorderLayout.CENTER);
        
+       JPanel panel_2 = new JPanel();
+       panelMessagerie.add(panel_2, BorderLayout.NORTH);
+       
+       JButton btnNouveau = new JButton("Nouveau");
+
+       btnNouveau.setHorizontalAlignment(SwingConstants.LEFT);
+       panel_2.add(btnNouveau);
+       
+       JButton btnSupprimer = new JButton("Supprimer");
+       btnSupprimer.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent arg0) {
+               
+           }
+       });
+       btnSupprimer.setVisible(false);
+       panel_2.add(btnSupprimer);
+       
+       btnNouveau.addMouseListener(new MouseAdapter() {  
+           public void mouseClicked(MouseEvent e) {  
+               NouveauMessage.creerNouveauMessage(user);
+          }  
+       });
     }
     
     public JPanel getMess() {

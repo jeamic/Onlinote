@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import modele.base.dao.Personne;
+
 import org.apache.log4j.LogManager;
 
 import controleur.connexion.Onlinote;
@@ -35,7 +37,7 @@ public class Menu {
 	private JLabel lblEmploiDuTemps = null;
 	private JLabel lblMessagerie = null;
 	
-	public Menu (String ongletEC) {
+	public Menu (String ongletEC, Personne personne) {
 	    
 	    ImageIcon tabImg[] = getImg();
 	    
@@ -139,13 +141,13 @@ public class Menu {
         lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
         lblAccueil.setText("Accueil");
         lblAccueil.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e) {  
-                 switchOnglet("Accueil");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                 switchOnglet("Accueil", personne);
             }  
         });
         lblIconAccueil.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e) {  
-                switchOnglet("Accueil");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                switchOnglet("Accueil", personne);
            }  
         });
 
@@ -165,13 +167,13 @@ public class Menu {
         lblNotes.setText("Notes");
         
         lblNotes.addMouseListener(new MouseAdapter()  {  
-            public void mouseClicked(MouseEvent e) {  
-                 switchOnglet("Notes");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                 switchOnglet("Notes", personne);
             }  
         });
         lblIconNotes.addMouseListener(new MouseAdapter()  {  
-            public void mouseClicked(MouseEvent e) {  
-                switchOnglet("Notes");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                switchOnglet("Notes", personne);
            }  
         });
         menu.add(lblIconNotes);
@@ -182,13 +184,13 @@ public class Menu {
         lblEmploiDuTemps = new JLabel();
         JLabel lblIconEmploiDuTemps = new JLabel(tabImg);
         lblEmploiDuTemps.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e) {  
-                 switchOnglet("Emploi du temps");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                 switchOnglet("Emploi du temps", personne);
             }  
         });
         lblIconEmploiDuTemps.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e) {  
-                switchOnglet("Emploi du temps");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                switchOnglet("Emploi du temps", personne);
            }  
         });
         lblIconEmploiDuTemps.setBounds(5, 179, 29, 53);
@@ -211,15 +213,15 @@ public class Menu {
         lblMessagerie.setText("Messagerie");
         lblMessagerie.setFont(new Font("Times new roman", Font.PLAIN, 14));
         lblMessagerie.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e) {  
-                 switchOnglet("Messagerie");
+            public void mouseClicked(MouseEvent e, Personne personne) {  
+                 switchOnglet("Messagerie", personne);
             }  
         });
         menu.add(lblIconMessagerie);
         menu.add(lblMessagerie);
 	}
 	
-   private void switchOnglet(String onglet) {
+   private void switchOnglet(String onglet, Personne personne) {
        viderGras();
        FenetreParent.changeMenu();
         
@@ -265,7 +267,7 @@ public class Menu {
                 FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
                 
-                JPanel maMessagerie = new Messagerie().getMess();
+                JPanel maMessagerie = new Messagerie(personne).getMess();
                 maMessagerie.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
                 FenetreParent.panelCenter.add(maMessagerie);
                 

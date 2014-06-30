@@ -14,7 +14,9 @@ import org.apache.log4j.LogManager;
 import controleur.eleve.GestionEleve;
 import vue.fenetre.ConnexionGUI;
 import vue.fenetre.FenetreAdmin;
+import vue.fenetre.FenetreEleve;
 import vue.fenetre.FenetreParent;
+import vue.fenetre.FenetreProf;
 
 
 public class Connexion {
@@ -68,10 +70,10 @@ public class Connexion {
 	    //new DAOVueEleveImpl().getEleveById(personne.getIdPersonne())
 		switch (personne.getTypeP()) {
 			case "élève":
-				FenetreParent.creerFenetreParent(personne);
+				FenetreEleve.creerFenetreEleve(personne);
 				break;
 			case "professeur": 
-			    FenetreParent.creerFenetreParent(personne);
+			    FenetreProf.creerFenetreProf(personne);
 				break;
 			case "parent": 
 			    FenetreParent.creerFenetreParent(personne);
