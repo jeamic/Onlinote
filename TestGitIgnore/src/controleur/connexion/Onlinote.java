@@ -123,7 +123,7 @@ public class Onlinote {
 		
 		
 		/* test getMsg recus et envoyes */
-	      try {
+	     /* try {
 	            Connexion.openConnexion();
 	        } catch (SQLException e1) {
 	            // TODO Auto-generated catch block
@@ -141,7 +141,7 @@ public class Onlinote {
 	          
 	            for (int i = 0; i < daoVueMessager.size(); ++i) {
 	                System.out.println(daoVueMessager.get(i));
-	            }
+	            }*/
 	}
 	
 	
