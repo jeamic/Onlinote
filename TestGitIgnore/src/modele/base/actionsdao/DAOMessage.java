@@ -13,7 +13,9 @@ import controleur.connexion.Connexion;
 import modele.base.dao.Categorie;
 import modele.base.dao.Matiere;
 import modele.base.dao.Message;
+import modele.base.dao.Messagerie;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueMessage;
 
 public class DAOMessage extends DAOFactory<Message>{
 
@@ -105,5 +107,50 @@ public class DAOMessage extends DAOFactory<Message>{
         // TODO Auto-generated method stub
         return null;
     }
-
+    
+    public List<DAOVueMessage> getMsgEnvoyes (int idPersonne){
+        /* déclaration et init des variables nécessaires */
+        Statement stmt = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        List<DAOVueMessage> listMsg = new ArrayList<DAOVueMessage>();
+        ResultSet res = null;
+        
+        try {            
+            stmt = conn.createStatement();
+            String req = "SELECT * from messagerie, message, personne where messagerie.id_personne = " + idPersonne + " and envoi_recu = 0 and messagerie.id_message = message.id_message and messagerie.id_personne = personne.id_personne;";
+            res = stmt.executeQuery(req);
+            
+            while (res.next()){
+                listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), res.getString("email"), res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
+        return listMsg;
+    }
+    
+    public List<DAOVueMessage> getMsgRecus (int idPersonne){
+        /* déclaration et init des variables nécessaires */
+        Statement stmt = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        List<DAOVueMessage> listMsg = new ArrayList<DAOVueMessage>();
+        ResultSet res = null;
+        
+        try {            
+            stmt = conn.createStatement();
+            String req = "SELECT * from messagerie, message, personne where messagerie.id_personne = " + idPersonne + " and envoi_recu = 1 and messagerie.id_message = message.id_message and messagerie.id_personne = personne.id_personne;";
+            res = stmt.executeQuery(req);
+            
+            while (res.next()){
+                listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), res.getString("email"), res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
+        return listMsg;
+    }
 }

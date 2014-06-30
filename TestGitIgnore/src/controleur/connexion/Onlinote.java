@@ -120,6 +120,28 @@ public class Onlinote {
             System.out.println(daoVueParent.getListeEnfants().get(i).getNom());
         }
 	    / * fin test getEnfants() */
+		
+		
+		/* test getMsg recus et envoyes */
+	      try {
+	            Connexion.openConnexion();
+	        } catch (SQLException e1) {
+	            // TODO Auto-generated catch block
+	            e1.printStackTrace();
+	        }
+	      
+	      GestionMessages messagerie = new GestionMessages();
+	      List<DAOVueMessage> daoVueMessage = messagerie.getMessagesEnvoyes(2);
+	      
+	        for (int i = 0; i < daoVueMessage.size(); ++i) {
+	            System.out.println(daoVueMessage.get(i));
+	        }
+	        
+	          List<DAOVueMessage> daoVueMessager = messagerie.getMessagesRecus(2);
+	          
+	            for (int i = 0; i < daoVueMessager.size(); ++i) {
+	                System.out.println(daoVueMessager.get(i));
+	            }
 	}
 	
 	

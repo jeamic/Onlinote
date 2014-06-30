@@ -100,5 +100,5 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
     public Messagerie map(java.sql.ResultSet resultSet) {
         // TODO Auto-generated method stub
         return null;
-    }	
+    }
 }

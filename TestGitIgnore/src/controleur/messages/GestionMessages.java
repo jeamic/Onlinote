@@ -1,5 +1,8 @@
 package controleur.messages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modele.base.actionsdao.DAOMessagerie;
 import modele.base.actionsdao.DAOMessage;
 import modele.base.actionsdao.DAOPersonne;
@@ -52,5 +55,17 @@ public class GestionMessages {
                 }
             }
         }
+    }/* fin envoyerMessage() */
+    
+    public List <DAOVueMessage> getMessagesEnvoyes (int idPersonne){
+        DAOMessage daoMessage = new DAOMessage(); 
+        List <DAOVueMessage> listMsg = daoMessage.getMsgEnvoyes(idPersonne);        
+        return  listMsg;
+    }
+    
+    public List <DAOVueMessage> getMessagesRecus (int idPersonne){
+        DAOMessage daoMessage = new DAOMessage(); 
+        List <DAOVueMessage> listMsg = daoMessage.getMsgRecus(idPersonne);        
+        return  listMsg;
     }
 }
