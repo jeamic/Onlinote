@@ -156,7 +156,7 @@ public class DAOMessage extends DAOFactory<Message>{
                 res2 = stmt2.executeQuery(req2);
                 String expediteur = null;
                 while (res2.next()){
-                    expediteur = res.getString("email");
+                    expediteur = res2.getString("email");
                 }
                 listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), expediteur, res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
             }
