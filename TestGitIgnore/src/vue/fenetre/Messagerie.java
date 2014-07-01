@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -24,23 +23,25 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import modele.base.actionsdao.DAOFactory;
-import modele.base.dao.Message;
 import modele.base.dao.Personne;
 import modele.vue.dao.DAOVueMessage;
-import vue.tools.ModelTable;
+import vue.tools.ModelTableEnvoye;
+import vue.tools.ModelTableRecu;
 import controleur.messages.GestionMessages;
 
 public class Messagerie {
     private JPanel panelMessagerie = null;
     private Personne user = null;
     private List<DAOVueMessage> messageRecu = null;
+    private List<DAOVueMessage> messageEnvoye = null;
+    private JPanel panel_1 = null;
+    private JPanel panel = null;
     public Messagerie (Personne personne)
     {
        user = personne;
        panelMessagerie = new JPanel(new BorderLayout());
        
-       JPanel panel = new JPanel();
+       panel = new JPanel();
        panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
        panelMessagerie.add(panel, BorderLayout.WEST);
        GridBagLayout gbl_panel = new GridBagLayout();
@@ -49,9 +50,35 @@ public class Messagerie {
        gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
        gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
        panel.setLayout(gbl_panel);
-       
-       JLabel lblNewLabel_1 = new JLabel("<html><u>Message reçu</u></html>");
+       final JLabel lblNewLabel = new JLabel("Message envoyé");
+       final JLabel lblNewLabel_1 = new JLabel("<html><u>Message reçu</u></html>");
        lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+       lblNewLabel_1.addMouseListener(new MouseAdapter() {  
+           public void mouseClicked(MouseEvent e) {
+               
+               lblNewLabel_1.setText("<html><u>Message reçu</u></html>");
+               lblNewLabel.setText("Message envoyé");
+               panel_1.removeAll();
+               ModelTableRecu model = new ModelTableRecu();
+               JTable table = new JTable(model);
+               table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerRecu());
+               JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+               
+               GestionMessages gestionnaireMessage = new GestionMessages();
+               messageRecu = gestionnaireMessage.getMessagesRecus(user.getIdPersonne());
+               
+               model.updateTableData(messageRecu);
+               
+               
+               panel_1.add(panelScrollTable);
+               
+               panel_1.repaint();
+               panel_1.validate();
+               panel.repaint();
+               panel.validate();
+               
+          }  
+       });
        GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
        gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
        gbc_lblNewLabel_1.anchor = GridBagConstraints.NORTHWEST;
@@ -59,8 +86,33 @@ public class Messagerie {
        gbc_lblNewLabel_1.gridy = 0;
        panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
        
-       JLabel lblNewLabel = new JLabel("<html><u>Message envoyé</u></html>");
+       
        lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+       lblNewLabel.addMouseListener(new MouseAdapter() {  
+           public void mouseClicked(MouseEvent e) {
+               lblNewLabel.setText("<html><u>Message envoyé</u></html>");
+               lblNewLabel_1.setText("Message reçu");
+               panel_1.removeAll();
+               ModelTableEnvoye model = new ModelTableEnvoye();
+               JTable table = new JTable(model);
+               table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerEnvoye());
+               JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+               
+               GestionMessages gestionnaireMessage = new GestionMessages();
+               messageEnvoye = gestionnaireMessage.getMessagesEnvoyes(user.getIdPersonne());
+               
+               model.updateTableData(messageEnvoye);
+               
+               
+               panel_1.add(panelScrollTable);
+               
+               panel_1.repaint();
+               panel_1.validate();
+               panel.repaint();
+               panel.validate();
+               
+          }  
+       });
        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
@@ -68,24 +120,17 @@ public class Messagerie {
        gbc_lblNewLabel.gridy = 2;
        panel.add(lblNewLabel, gbc_lblNewLabel);
        
-       JLabel lblNewLabel_3 = new JLabel("<html><u>Message supprimé</u></html>");
-       lblNewLabel_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-       GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-       gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
-       gbc_lblNewLabel_3.gridx = 0;
-       gbc_lblNewLabel_3.gridy = 4;
-       panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
-       
-       JPanel panel_1 = new JPanel(new BorderLayout());
+       panel_1 = new JPanel(new BorderLayout());
        panel_1.setBackground(Color.WHITE);
        //panel_1.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
        
        
        
        /* ADD TABLEAU       */
-       ModelTable model = new ModelTable();
+       
+       ModelTableRecu model = new ModelTableRecu();
        JTable table = new JTable(model);
-       table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListener());
+       table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerRecu());
        JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
        
        GestionMessages gestionnaireMessage = new GestionMessages();
@@ -95,6 +140,8 @@ public class Messagerie {
        
        
        panel_1.add(panelScrollTable);
+       
+       
        /*Fin add tableau */
        panelMessagerie.add(panel_1, BorderLayout.CENTER);
        
@@ -126,7 +173,7 @@ public class Messagerie {
         return panelMessagerie;
     }
     
-    public class MsgTableSelectionListener  implements ListSelectionListener
+    public class MsgTableSelectionListenerRecu  implements ListSelectionListener
     {
         @Override
             public void valueChanged(ListSelectionEvent selectionEvent)
@@ -148,9 +195,38 @@ public class Messagerie {
 
                             DAOVueMessage msgSelected = messageRecu.get(indexMsgSelected);
                             
-                            System.out.println(msgSelected.getContenu());
-                            
                             NouveauMessage.creerNouveauMessage(user, true, msgSelected.getExpediteur(), msgSelected.getObjet(), msgSelected.getContenu());
+                           
+                    
+                   
+                   
+            }
+        }
+    }
+    
+    public class MsgTableSelectionListenerEnvoye  implements ListSelectionListener
+    {
+        @Override
+            public void valueChanged(ListSelectionEvent selectionEvent)
+        {
+            if (selectionEvent.getValueIsAdjusting())
+            {
+                return;
+            }
+           
+            ListSelectionModel selectEvent
+                                            = (ListSelectionModel) selectionEvent.getSource();
+           
+            if (!selectEvent.isSelectionEmpty())
+            {
+                   
+                    int indexMsgSelected = selectEvent.getMaxSelectionIndex();
+                   
+                  
+
+                            DAOVueMessage msgSelected = messageEnvoye.get(indexMsgSelected);
+                            
+                            NouveauMessage.creerNouveauMessage(user, true, msgSelected.getDestinataires(), msgSelected.getObjet(), msgSelected.getContenu());
                            
                     
                    

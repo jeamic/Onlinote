@@ -73,6 +73,10 @@ public class NouveauMessage {
         {
             txtDestinataire.setText(dest);
         }
+        if (isRepondre)
+        {
+            txtDestinataire.setEditable(false);
+        }
         txtDestinataire.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtDestinataire.setToolTipText("Destinataire");
         GridBagConstraints gbc_txtDestinataire = new GridBagConstraints();
@@ -115,6 +119,7 @@ public class NouveauMessage {
         btnRepondre.setVisible(isRepondre);
         btnRepondre.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+                creerNouveauMessage(user, false, dest, "RE:"+ obj, "");
             }
         });
         panel_2.add(btnRepondre, BorderLayout.WEST);
@@ -123,7 +128,7 @@ public class NouveauMessage {
         btnSupprimer.setVisible(isRepondre);
         btnSupprimer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                creerNouveauMessage(user, false, dest, "RE:"+ obj, "");
+               
             }
         });
         panel_2.add(btnSupprimer, BorderLayout.EAST);
@@ -146,6 +151,10 @@ public class NouveauMessage {
         {
            txtSujet.setText(obj);
         }
+        if (isRepondre)
+        {
+            txtSujet.setEditable(false);
+        }
         panel_3.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
         panel_3.add(txtSujet, BorderLayout.NORTH);
         txtSujet.setBorder((BorderFactory.createLineBorder(Color.black)));
@@ -166,6 +175,10 @@ public class NouveauMessage {
         if (cont != "")
         {
             txtrMssage.setText(cont);
+        }
+        if (isRepondre)
+        {
+            txtrMssage.setEditable(false);
         }
         txtrMssage.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtrMssage.setLineWrap(true);

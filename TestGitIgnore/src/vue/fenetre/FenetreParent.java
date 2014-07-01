@@ -118,8 +118,10 @@ public class FenetreParent {
             ActionListener actionListener = new ActionListener() {
                 
                 public void actionPerformed(ActionEvent e) {
-                                                
-                        grosMenu.removeAll();
+                              
+                    
+                        changeEleveMenu(personne, Integer.parseInt(e.getActionCommand()));
+                       /* grosMenu.removeAll();
                         
                         JPanel monMenu = new Menu("Accueil", personne, enfant.get(Integer.parseInt(e.getActionCommand()))).getMenu();
                         monMenu.setPreferredSize(new Dimension(150, 300));
@@ -140,7 +142,7 @@ public class FenetreParent {
                                 
                         grosMenu.add(monMenu2, gbc);
                         grosMenu.updateUI();
-                        
+                        */
 
                     }
             };
@@ -255,5 +257,6 @@ public class FenetreParent {
                 
         grosMenu.add(monMenu2, gbc);
         grosMenu.updateUI();
+
     }
 }

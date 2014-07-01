@@ -1,20 +1,14 @@
 package vue.tools;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import modele.vue.dao.DAOVueMessage;
 
 
-public class ModelTable extends AbstractTableModel {
+public class ModelTableEnvoye extends AbstractTableModel {
 
     /*********************************************************************/
     /**                 Données membres de la classe                    **/
@@ -22,7 +16,7 @@ public class ModelTable extends AbstractTableModel {
     
     private static final    long serialVersionUID = 1L;
     
-    private final           String                  mKStrMsgFrom    = "De",
+    private final           String                  mKStrMsgA    = "A",
                                                     mKStrMsgSubject = "Objet",
                                                     mKStrMsgContenu    = "Contenu";
     
@@ -30,22 +24,18 @@ public class ModelTable extends AbstractTableModel {
                                                         new String[]{
                                                             mKStrMsgSubject,
                                                             mKStrMsgContenu,
-                                                            mKStrMsgFrom
+                                                            mKStrMsgA
                                                         };
     
     private                 List<DAOVueMessage>           mMessagesList   = null;
     
     private                 Object                  mCellCur        = null;
     
-    private                 Color                   mKColorBgMsgNew = new Color(204, 255, 204),
-                                                    mKColorBgMsgRead    = Color.WHITE,
-                                                    mKColorBgMsgSelected = Color.LIGHT_GRAY,
-                                                    mKColorFgMsgSelected = Color.WHITE;
     
     /*********************************************************************/
     /**             Constructeur de la classe                           **/
     /*********************************************************************/
-    public ModelTable()
+    public ModelTableEnvoye()
     {
         super();
         
@@ -82,8 +72,8 @@ public class ModelTable extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) 
     {
         
-        if(getColumnName(columnIndex).equals(mKStrMsgFrom)){
-            mCellCur = mMessagesList.get(rowIndex).getExpediteur();
+        if(getColumnName(columnIndex).equals(mKStrMsgA)){
+            mCellCur = mMessagesList.get(rowIndex).getDestinataires();
         }
         else if(getColumnName(columnIndex).equals(mKStrMsgSubject)){
             mCellCur = mMessagesList.get(rowIndex).getObjet();
@@ -107,41 +97,4 @@ public class ModelTable extends AbstractTableModel {
         
     }
     
-    public class DefaultCellRenderer extends DefaultTableCellRenderer
-    {
-
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, 
-                                                       Object value, 
-                                                       boolean isSelected, 
-                                                       boolean hasFocus, 
-                                                       int row, 
-                                                       int column)
-        {
-            super.getTableCellRendererComponent(table, 
-                                                value, 
-                                                isSelected, 
-                                                hasFocus, 
-                                                row, 
-                                                column);
-            this.setOpaque(true);
-
-            setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-            
-            if(isSelected){
-                setForeground(mKColorFgMsgSelected);
-                setBackground(mKColorBgMsgSelected);
-            }
-            else{
-                setBackground(mKColorBgMsgRead);
-                setFont(new Font(null, Font.ITALIC, 14));
-                setForeground(Color.BLACK);
-            }
-            
-            
-            return this;
-        }
-    }   
 }

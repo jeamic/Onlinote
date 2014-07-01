@@ -249,7 +249,7 @@ public class MenuEleve {
                 remplirFenetre("Onlinote - Notes","");
                 FenetreEleve.panelCenter = new JPanel(new BorderLayout());
                 
-                JPanel mesNotes = new Notes().getNotes();
+                JPanel mesNotes = new Notes(personne.getIdPersonne()).getNotes();
                 mesNotes.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
                 FenetreEleve.panelCenter.add(mesNotes, BorderLayout.CENTER);
                 FenetreEleve.maFenetreEleve.getContentPane().add(FenetreEleve.panelCenter, BorderLayout.CENTER);
