@@ -12,6 +12,8 @@ import controleur.connexion.Connexion;
 import modele.base.dao.Categorie;
 import modele.base.dao.Classe;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueClasse;
+import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVueTypeClasse;
 
 public class DAOClasse extends DAOFactory <Classe>{
@@ -46,9 +48,24 @@ public class DAOClasse extends DAOFactory <Classe>{
 	}
 
 	@Override
-	public Classe find(String chaine) {
-		// TODO Auto-generated method stub
-		return null;
+	public Classe find(String nomClasse) {
+        /* déclaration et init des variables nécessaires */
+        int idClasse;
+        Classe classe = null;
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select id_classe, id_prof_principal from classe where nom_classe = " + nomClasse);
+            idClasse = res.getInt("id_classe");
+            classe = new Classe(idClasse, nomClasse, res.getInt("id_prof_principal"));
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return classe;
 	}
 
     @Override
@@ -110,6 +127,32 @@ public class DAOClasse extends DAOFactory <Classe>{
             log4j.info(e.getMessage(), e);
         }
         return listeTypeClasse;
+    }
+    
+    public List<DAOVueEleve> getEleves (String nomClasse){
+        List<DAOVueEleve> listeEleves = null;
+        
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * from classe");
+
+            while (res.next()){
+                DAOPersonne daoPersonne = new DAOPersonne();
+                daoPersonne.find(res.getInt("id_personne"));
+                res.getInt("id_eleve");
+                listeEleves.add(new DAOVueEleve());
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        } 
+        
+        return listeEleves;
     }
 
 }
