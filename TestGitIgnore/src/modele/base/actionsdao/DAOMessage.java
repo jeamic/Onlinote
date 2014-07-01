@@ -134,10 +134,12 @@ public class DAOMessage extends DAOFactory<Message>{
     public List<DAOVueMessage> getMsgRecus (int idPersonne){
         /* déclaration et init des variables nécessaires */
         Statement stmt = null;
+        Statement stmt2 = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         List<DAOVueMessage> listMsg = new ArrayList<DAOVueMessage>();
         ResultSet res = null;
+        ResultSet res2 = null;
         
         try {            
             stmt = conn.createStatement();
@@ -145,7 +147,13 @@ public class DAOMessage extends DAOFactory<Message>{
             res = stmt.executeQuery(req);
             
             while (res.next()){
-                listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), res.getString("email"), res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
+                String req2 = "select * "
+                        + " from messagerie, personne"
+                        + " where messagerie.id_personne = personne.id_personne"
+                        + " and messagerie.id_message = " + res.getInt("message.id_message")
+                        + " and messagerie.envoi_recu =0";
+                res2 = stmt2.executeQuery(req2);
+                listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), res.getString(res2.getString("email")), res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
             }
             
         } catch (SQLException e) {

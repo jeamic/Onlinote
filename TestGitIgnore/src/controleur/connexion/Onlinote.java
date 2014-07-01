@@ -17,8 +17,8 @@ import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
 
-import controleur.notes.GestionNotes;
 import controleur.cours.GestionMatiere;
+import controleur.cours.GestionNotes;
 import controleur.messages.GestionMessages;
 import controleur.parent.GestionParent;
 import vue.fenetre.ConnexionGUI;

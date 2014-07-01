@@ -1016,3 +1016,6 @@ com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Column 'id
 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
 	at java.awt.EventDispatchThread.run(Unknown Source)
+[2014-07-01 13:37:52,861]ERROR     0[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:60) - Nom d'utilisateur incorrect
+[2014-07-01 13:38:01,131]ERROR  8270[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:60) - Nom d'utilisateur incorrect
+[2014-07-01 13:38:06,340]ERROR 13479[AWT-EventQueue-0] - controleur.connexion.Connexion.startApp(Connexion.java:60) - Nom d'utilisateur incorrect

@@ -182,22 +182,24 @@ public class DAOEleve extends DAOFactory<Eleve>{
         
         /* requête pour rechercher la personne, param 1 = date, param 2 = idEleve*/
         try {
-            String query = "select note, note_max, coefficient, m.matiere, trimestre"
-                          +" from subit_examen s, eleve e, matiere m, cours c, controles cont"
-                          +" where s.id_eleve = ?"
-                            + " and s.id_cours = c.id_cours"
-                            + " and c.matiere = m.matiere"
-                            + " and m.matiere = ?"
-                            + " and s.id_controle = cont.id_controle;";
+            String query = "select cont.id_controle, m.matiere, note, trimestre, cont.coefficient, cont.note_max"
+                    + " from subit_examen s, eleve e, matiere m, cours c, controles cont"
+                    + " where s.id_eleve = ? "
+                    + " and s.id_cours = c.id_cours"
+                    + " and c.matiere = m.matiere"
+                    + " and m.matiere = ?"
+                    + " and s.id_controle = cont.id_controle"
+                    + " and s.id_eleve = e.id_eleve" + ";";
             if (trimestre != 0){
-                query =   "select note, note_max, coefficient, m.matiere, trimestre"
-                        +" from subit_examen s, eleve e, matiere m, cours c, controles cont"
-                        +" where s.id_eleve = ?"
-                            + " and s.id_cours = c.id_cours"
-                            + " and c.matiere = m.matiere"
-                            + " and m.matiere = ?"
-                            + " and s.id_controle = cont.id_controle"
-                            + " and cont.trimestre = ?;";
+                query =   "select cont.id_controle, m.matiere, note, trimestre, cont.coefficient, cont.note_max"
+                        + " from subit_examen s, eleve e, matiere m, cours c, controles cont"
+                        + " where s.id_eleve = ?"
+                        + " and s.id_cours = c.id_cours"
+                        + " and c.matiere = m.matiere"
+                        + " and m.matiere = ?"
+                        + " and s.id_controle = cont.id_controle"
+                        + " and s.id_eleve = e.id_eleve"
+                        + " and trimestre = ?;";
             }
             stmt =   (PreparedStatement) conn.prepareStatement(query);
             stmt.setInt(1, idEleve);

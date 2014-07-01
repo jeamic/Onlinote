@@ -39,7 +39,7 @@ public class GestionMessages {
             
             /*ajout à la table des correspondances pour chaque destinataire*/
             message.setDestinataires(message.getDestinataires().trim());
-            String tabAdresses [] = message.getDestinataires().split(";");
+            String tabAdresses [] = message.getDestinataires().trim().split(";");
             
             for (int i = 0; i < tabAdresses.length; ++i) {
                 Personne pers2 = new Personne();
