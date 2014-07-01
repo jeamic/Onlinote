@@ -38,7 +38,9 @@ public class NouveauMessage {
     private JTextField txtSujet;
     private JTextArea txtrMssage;
     private Personne user = null;
-    private NouveauMessage(Personne personne) {
+    private JButton btnRepondre;
+    private JButton btnSupprimer;
+    private NouveauMessage(Personne personne, boolean isRepondre, final String dest, final String obj, String cont) {
         
         user = personne;
         
@@ -67,6 +69,10 @@ public class NouveauMessage {
         });
         txtDestinataire.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtDestinataire.setText("Destinataire");
+        if (dest != "")
+        {
+            txtDestinataire.setText(dest);
+        }
         txtDestinataire.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtDestinataire.setToolTipText("Destinataire");
         GridBagConstraints gbc_txtDestinataire = new GridBagConstraints();
@@ -81,10 +87,11 @@ public class NouveauMessage {
         panel_1.setLayout(new BorderLayout(0, 0));
         panel_1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         
-        panel_2 = new JPanel();
+        panel_2 = new JPanel(new BorderLayout());
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
         btnEnvoyer = new JButton("Envoyer");
+        btnEnvoyer.setVisible(!isRepondre);
         btnEnvoyer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 DAOVueMessage message = new DAOVueMessage();
@@ -102,7 +109,24 @@ public class NouveauMessage {
                 NouveauMessage.reussiNouveauMessage();
             }
         });
-        panel_2.add(btnEnvoyer);
+        panel_2.add(btnEnvoyer, BorderLayout.CENTER);
+        
+        btnRepondre = new JButton("Repondre");
+        btnRepondre.setVisible(isRepondre);
+        btnRepondre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            }
+        });
+        panel_2.add(btnRepondre, BorderLayout.WEST);
+        
+        btnSupprimer = new JButton("Supprimer");
+        btnSupprimer.setVisible(isRepondre);
+        btnSupprimer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                creerNouveauMessage(user, false, dest, "RE:"+ obj, "");
+            }
+        });
+        panel_2.add(btnSupprimer, BorderLayout.EAST);
         
         panel_3 = new JPanel();
         panel_1.add(panel_3, BorderLayout.NORTH);
@@ -118,6 +142,10 @@ public class NouveauMessage {
         });
         txtSujet.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtSujet.setText("Sujet");
+        if (obj != "")
+        {
+           txtSujet.setText(obj);
+        }
         panel_3.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
         panel_3.add(txtSujet, BorderLayout.NORTH);
         txtSujet.setBorder((BorderFactory.createLineBorder(Color.black)));
@@ -135,6 +163,10 @@ public class NouveauMessage {
         });
         txtrMssage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtrMssage.setText("Message");
+        if (cont != "")
+        {
+            txtrMssage.setText(cont);
+        }
         txtrMssage.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtrMssage.setLineWrap(true);
         panel_1.add(txtrMssage, BorderLayout.CENTER);
@@ -150,8 +182,8 @@ public class NouveauMessage {
         
     }
     
-    public static void creerNouveauMessage(Personne personne) {
-        new NouveauMessage(personne);
+    public static void creerNouveauMessage(Personne personne, boolean isRepondre, String dest, String obj, String cont) {
+        new NouveauMessage(personne, isRepondre, dest, obj, cont);
     }
     
     public static void reussiNouveauMessage(){

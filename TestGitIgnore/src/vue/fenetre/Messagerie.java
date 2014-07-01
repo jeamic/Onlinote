@@ -117,7 +117,7 @@ public class Messagerie {
        
        btnNouveau.addMouseListener(new MouseAdapter() {  
            public void mouseClicked(MouseEvent e) {  
-               NouveauMessage.creerNouveauMessage(user);
+               NouveauMessage.creerNouveauMessage(user, false, "", "", "");
           }  
        });
     }
@@ -149,6 +149,8 @@ public class Messagerie {
                             DAOVueMessage msgSelected = messageRecu.get(indexMsgSelected);
                             
                             System.out.println(msgSelected.getContenu());
+                            
+                            NouveauMessage.creerNouveauMessage(user, true, msgSelected.getExpediteur(), msgSelected.getObjet(), msgSelected.getContenu());
                            
                     
                    
