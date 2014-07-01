@@ -61,9 +61,11 @@ public class DAOClasse extends DAOFactory <Classe>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select id_classe, id_prof_principal from classe where nom_classe = " + nomClasse);
-            idClasse = res.getInt("id_classe");
-            classe = new Classe(idClasse, nomClasse, res.getInt("id_prof_principal"));
+            res = stmt.executeQuery("select id_classe, id_prof_principal from classe where nom_classe = '" + nomClasse + "'");
+            while (res.next()){
+                idClasse = res.getInt("id_classe");
+                classe = new Classe(idClasse, nomClasse, res.getInt("id_prof_principal"));
+            }
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
@@ -132,24 +134,24 @@ public class DAOClasse extends DAOFactory <Classe>{
     }
     
     public List<DAOVueEleve> getEleves (String nomClasse){
-        List<DAOVueEleve> listeEleves = null;
-        
+        List<DAOVueEleve> listeEleves = new ArrayList<DAOVueEleve>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
+        int idClasse = this.find(nomClasse).getIdClasse();
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from classe");
+            res = stmt.executeQuery("select * "
+                                + " from  eleve"
+                                + " where id_classe = " + idClasse);
 
             while (res.next()){
                 DAOPersonne daoPersonne = new DAOPersonne();
-                Personne pers = daoPersonne.find(res.getInt("id_personne"));
+                Personne pers = daoPersonne.find(res.getInt("id_eleve"));
                 DAOEleve daoEleve = new DAOEleve();
-                Eleve eleve = daoEleve.find(res.getInt("id_personne"));
-                
-                res.getInt("id_eleve");
+                Eleve eleve = daoEleve.find(res.getInt("id_eleve"));
                 listeEleves.add(new DAOVueEleve(pers, res.getInt("id_classe"), eleve.getIdParent1(), eleve.getIdParent2()));
             }
             

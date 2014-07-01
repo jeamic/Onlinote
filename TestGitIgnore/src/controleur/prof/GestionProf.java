@@ -15,6 +15,7 @@ public class GestionProf {
     public List<DAOVueClasse> getClasses (int idProf){
         List<DAOVueClasse> listeClasses = new ArrayList<DAOVueClasse>();
         DAOEnseigne daoEnseigne = new DAOEnseigne();
+        listeClasses = daoEnseigne.getClasses(idProf);
                 
         return listeClasses;
     }

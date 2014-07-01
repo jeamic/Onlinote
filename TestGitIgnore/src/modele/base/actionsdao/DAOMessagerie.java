@@ -35,7 +35,7 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
         int envoiOuRecu;
         
         try {
-            if(msgEnvoye.isEnvoiOuRecu() == true){
+            if(msgEnvoye.getEnvoiOuRecu() == 0){
                 envoiOuRecu = 0;
             } else {
                 envoiOuRecu = 1;
@@ -62,9 +62,21 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
 	}
 
 	@Override
-	public void delete(Messagerie obj) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Messagerie msg) {
+        /* déclaration et init des variables nécessaires */
+        List<Messagerie> listeCompose = new ArrayList<Messagerie>();
+        Statement stmt = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate("delete from messagerie where id_personne = " + msg.getIdPersonne()
+                          + " and id_message = " + msg.getIdMessage()
+                          + " and envoi_recu = " + msg.getEnvoiOuRecu());
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }    
 	}
 
 	@Override
@@ -87,7 +99,7 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
             res = stmt.executeQuery("select * from compose");
 
             while (res.next()){
-                listeCompose.add(new Messagerie(res.getInt("id_personne"), res.getInt("id_message")));
+                listeCompose.add(new Messagerie(res.getInt("id_personne"), res.getInt("id_message"), res.getInt("envoi_recu")));
             }
             
         } catch (SQLException e) {

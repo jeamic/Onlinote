@@ -84,7 +84,6 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
     public List<DAOVueClasse> getClasses (int idProf){
         List<DAOVueClasse> listeClasses = new ArrayList<DAOVueClasse>();
         
-        
         /* déclaration et init des variables nécessaires */
         Statement stmt = null;
         ResultSet res = null;
@@ -98,7 +97,6 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
                                 + " where e.id_classe = c.id_classe"
                                 + " and p.id_personne = e.id_personne"
                                 + " and e.id_personne = " + idProf + ";");
-
             while (res.next()){
                 listeClasses.add(new DAOVueClasse(res.getInt("id_classe"), res.getString("nom_classe"), res.getInt("id_prof_principal")));
             }

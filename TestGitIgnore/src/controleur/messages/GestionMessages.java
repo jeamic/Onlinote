@@ -33,7 +33,7 @@ public class GestionMessages {
             Messagerie compose = new Messagerie();
             compose.setIdMessage(envoiMessage.getIdMessage());
             compose.setIdPersonne(pers.getIdPersonne());
-            compose.setEnvoiOuRecu(true);
+            compose.setEnvoiOuRecu(0);
             DAOMessagerie daoCompose = new DAOMessagerie();
             daoCompose.create(compose);        
             
@@ -50,7 +50,7 @@ public class GestionMessages {
                     Messagerie compose2 = new Messagerie();
                     compose2.setIdMessage(envoiMessage.getIdMessage());
                     compose2.setIdPersonne(pers2.getIdPersonne());
-                    compose2.setEnvoiOuRecu(false);
+                    compose2.setEnvoiOuRecu(1);
                     daoCompose.create(compose2); 
                 }
             }
@@ -67,5 +67,11 @@ public class GestionMessages {
         DAOMessage daoMessage = new DAOMessage(); 
         List <DAOVueMessage> listMsg = daoMessage.getMsgRecus(idPersonne);        
         return  listMsg;
+    }
+    
+    public void supprimerMessage (int idMessage, int idPersonne, int envoiRecu){
+        DAOMessagerie daoMessagerie = new DAOMessagerie();
+        Messagerie msg = new Messagerie(idPersonne, idMessage, envoiRecu);
+        daoMessagerie.delete(msg);
     }
 }

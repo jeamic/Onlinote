@@ -6,8 +6,10 @@ import java.util.List;
 
 import modele.base.actionsdao.DAOEleve;
 import modele.base.actionsdao.DAOMatiere;
+import modele.base.actionsdao.DAOMessagerie;
 import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Matiere;
+import modele.base.dao.Messagerie;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueClasse;
@@ -179,7 +181,7 @@ public class Onlinote {
         }*/
 		
 		/* test getEleves et getClasses */
-		try {
+		/*try {
             Connexion.openConnexion();
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
@@ -190,10 +192,20 @@ public class Onlinote {
 		List<DAOVueClasse> listeClasses = gestProf.getClasses(1);
 		
 		GestionClasse gestClasse = new GestionClasse();
-		System.out.println(listeClasses.size());
 		for(int i = 0; i < listeClasses.size(); ++i) {
 		    System.out.println(gestClasse.getEleves("3B").get(i).getPrenom());
-		}
+		}*/
+		
+		/* test suppression messages */
+		/*try {
+            Connexion.openConnexion();
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		GestionMessages gestMess = new GestionMessages();
+		gestMess.supprimerMessage(3, 3, 0);*/
+		
 	}
 	
 	

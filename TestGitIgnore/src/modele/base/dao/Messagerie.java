@@ -8,13 +8,14 @@ public class Messagerie implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private int idPersonne;
 	private int idMessage;
-	private boolean envoiOuRecu;
+	private int envoiOuRecu;
 
 	public Messagerie () {
 	}
-	public Messagerie (int idPersonne, int idMessage) {
+	public Messagerie (int idPersonne, int idMessage, int envoiOuRecu) {
 		this.idPersonne = idPersonne;
 		this.idMessage	 = idMessage;
+		this.envoiOuRecu = envoiOuRecu;
 	}
 	public int getIdPersonne() {
 		return idPersonne;
@@ -28,13 +29,11 @@ public class Messagerie implements java.io.Serializable {
 	public void setIdMessage(int idMessage) {
 		this.idMessage = idMessage;
 	}
-    public boolean isEnvoiOuRecu() {
+    public int getEnvoiOuRecu() {
         return envoiOuRecu;
     }
-    public void setEnvoiOuRecu(boolean envoiOuRecu) {
+    public void setEnvoiOuRecu(int envoiOuRecu) {
         this.envoiOuRecu = envoiOuRecu;
     }
-
-	
 	
 }
