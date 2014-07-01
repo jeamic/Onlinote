@@ -10,14 +10,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import modele.base.dao.Personne;
+import modele.vue.dao.DAOVueMessage;
+import vue.tools.ModelTable;
+import controleur.messages.GestionMessages;
 
 public class Messagerie {
     private JPanel panelMessagerie = null;
@@ -63,9 +69,25 @@ public class Messagerie {
        gbc_lblNewLabel_3.gridy = 4;
        panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
        
-       JPanel panel_1 = new JPanel();
+       JPanel panel_1 = new JPanel(new BorderLayout());
        panel_1.setBackground(Color.WHITE);
-       panel_1.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+       //panel_1.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+       
+       
+       
+       /* ADD TABLEAU       */
+       ModelTable model = new ModelTable();
+       JTable table = new JTable(model);
+       
+       JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+       
+       GestionMessages gestionnaireMessage = new GestionMessages();
+       List <DAOVueMessage> messagesRecu = gestionnaireMessage.getMessagesRecus(personne.getIdPersonne());
+       
+       model.updateTableData(messagesRecu);
+       
+       panel_1.add(panelScrollTable);
+       /*Fin add tableau */
        panelMessagerie.add(panel_1, BorderLayout.CENTER);
        
        JPanel panel_2 = new JPanel();
