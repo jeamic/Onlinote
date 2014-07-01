@@ -33,6 +33,13 @@ group by distributor_id*/
         
         return liste;
     }
+    
+    public List<DAOVueEleve> getEleves (String nomClasse){
+        DAOClasse daoClasse = new DAOClasse();
+        List <DAOVueEleve> listeEleves = daoClasse.getEleves(nomClasse);
+        
+        return listeEleves;
+    }
 
 
 }

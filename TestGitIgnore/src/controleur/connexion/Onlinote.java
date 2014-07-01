@@ -10,6 +10,7 @@ import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Matiere;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueClasse;
 import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVueMessage;
 import modele.vue.dao.DAOVueNote;
@@ -17,10 +18,12 @@ import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
 
+import controleur.administration.GestionClasse;
 import controleur.cours.GestionMatiere;
 import controleur.cours.GestionNotes;
 import controleur.messages.GestionMessages;
 import controleur.parent.GestionParent;
+import controleur.prof.GestionProf;
 import vue.fenetre.ConnexionGUI;
 
 public class Onlinote {
@@ -174,6 +177,23 @@ public class Onlinote {
 		for (int i = 0; i < listeMat.size(); ++i) {
             System.out.println(listeMat.get(i).getMatiere());
         }*/
+		
+		/* test getEleves et getClasses */
+		try {
+            Connexion.openConnexion();
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		
+		GestionProf gestProf = new GestionProf();
+		List<DAOVueClasse> listeClasses = gestProf.getClasses(1);
+		
+		GestionClasse gestClasse = new GestionClasse();
+		System.out.println(listeClasses.size());
+		for(int i = 0; i < listeClasses.size(); ++i) {
+		    System.out.println(gestClasse.getEleves("3B").get(i).getPrenom());
+		}
 	}
 	
 	

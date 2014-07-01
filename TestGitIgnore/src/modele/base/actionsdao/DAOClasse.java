@@ -11,6 +11,8 @@ import org.apache.log4j.LogManager;
 import controleur.connexion.Connexion;
 import modele.base.dao.Categorie;
 import modele.base.dao.Classe;
+import modele.base.dao.Eleve;
+import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueClasse;
 import modele.vue.dao.DAOVueEleve;
@@ -143,9 +145,12 @@ public class DAOClasse extends DAOFactory <Classe>{
 
             while (res.next()){
                 DAOPersonne daoPersonne = new DAOPersonne();
-                daoPersonne.find(res.getInt("id_personne"));
+                Personne pers = daoPersonne.find(res.getInt("id_personne"));
+                DAOEleve daoEleve = new DAOEleve();
+                Eleve eleve = daoEleve.find(res.getInt("id_personne"));
+                
                 res.getInt("id_eleve");
-                listeEleves.add(new DAOVueEleve());
+                listeEleves.add(new DAOVueEleve(pers, res.getInt("id_classe"), eleve.getIdParent1(), eleve.getIdParent2()));
             }
             
         } catch (SQLException e) {
