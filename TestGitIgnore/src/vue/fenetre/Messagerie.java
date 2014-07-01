@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -18,8 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import modele.base.actionsdao.DAOFactory;
+import modele.base.dao.Message;
 import modele.base.dao.Personne;
 import modele.vue.dao.DAOVueMessage;
 import vue.tools.ModelTable;
@@ -28,6 +34,7 @@ import controleur.messages.GestionMessages;
 public class Messagerie {
     private JPanel panelMessagerie = null;
     private Personne user = null;
+    private List<DAOVueMessage> messageRecu = null;
     public Messagerie (Personne personne)
     {
        user = personne;
@@ -78,13 +85,14 @@ public class Messagerie {
        /* ADD TABLEAU       */
        ModelTable model = new ModelTable();
        JTable table = new JTable(model);
-       
+       table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListener());
        JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
        
        GestionMessages gestionnaireMessage = new GestionMessages();
-       List <DAOVueMessage> messagesRecu = gestionnaireMessage.getMessagesRecus(personne.getIdPersonne());
+       messageRecu = gestionnaireMessage.getMessagesRecus(personne.getIdPersonne());
        
-       model.updateTableData(messagesRecu);
+       model.updateTableData(messageRecu);
+       
        
        panel_1.add(panelScrollTable);
        /*Fin add tableau */
@@ -116,5 +124,36 @@ public class Messagerie {
     
     public JPanel getMess() {
         return panelMessagerie;
+    }
+    
+    public class MsgTableSelectionListener  implements ListSelectionListener
+    {
+        @Override
+            public void valueChanged(ListSelectionEvent selectionEvent)
+        {
+            if (selectionEvent.getValueIsAdjusting())
+            {
+                return;
+            }
+           
+            ListSelectionModel selectEvent
+                                            = (ListSelectionModel) selectionEvent.getSource();
+           
+            if (!selectEvent.isSelectionEmpty())
+            {
+                   
+                    int indexMsgSelected = selectEvent.getMaxSelectionIndex();
+                   
+                  
+
+                            DAOVueMessage msgSelected = messageRecu.get(indexMsgSelected);
+                            
+                            System.out.println(msgSelected.getContenu());
+                           
+                    
+                   
+                   
+            }
+        }
     }
 }
