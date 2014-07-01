@@ -143,7 +143,7 @@ public class DAOMessage extends DAOFactory<Message>{
         
         try {            
             stmt = conn.createStatement();
-            String req = "SELECT * from messagerie, message, personne where messagerie.id_personne = " + idPersonne + " and envoi_recu = 1 and messagerie.id_message = message.id_message and messagerie.id_personne = personne.id_personne;";
+            String req = "select * from messagerie, message, personne where messagerie.id_personne = " + idPersonne + " and envoi_recu = 1 and messagerie.id_message = message.id_message and messagerie.id_personne = personne.id_personne;";
             res = stmt.executeQuery(req);
             
             while (res.next()){
@@ -152,8 +152,13 @@ public class DAOMessage extends DAOFactory<Message>{
                         + " where messagerie.id_personne = personne.id_personne"
                         + " and messagerie.id_message = " + res.getInt("message.id_message")
                         + " and messagerie.envoi_recu =0";
+                stmt2 = conn.createStatement();
                 res2 = stmt2.executeQuery(req2);
-                listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), res.getString(res2.getString("email")), res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
+                String expediteur = null;
+                while (res2.next()){
+                    expediteur = res.getString("email");
+                }
+                listMsg.add(new DAOVueMessage(res.getInt("message.id_message"), res.getInt("id_personne"), expediteur, res.getString("titre"), res.getString("destinataires"), res.getString("contenu"), res.getInt("lu"), res.getInt("envoi_recu")));
             }
             
         } catch (SQLException e) {
