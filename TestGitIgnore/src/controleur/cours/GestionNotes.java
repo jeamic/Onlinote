@@ -27,8 +27,9 @@ public class GestionNotes {
         return listeNotes;
     }
     
-    public void ajouterNote () {
-        
+    public void ajouterNote (int idEleve, String nomControle, int note) {
+        DAOSubitExamen daoNotes = new DAOSubitExamen();
+        daoNotes.ajouterNote(idEleve, nomControle, note);
     }
     
     public void modifierNote () {
@@ -36,10 +37,6 @@ public class GestionNotes {
     }
     
     public void supprimerNote () {
-        
-    }
-    
-    public void getBulletin(){
         
     }
 }

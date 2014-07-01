@@ -80,9 +80,11 @@ public class DAOSubitExamen extends DAOFactory <SubitExamen> {
         return null;
     }
 
-    public List<DAOVueNote> getNotes(int idEleve, int trimestre, String matiere) {
+    /*Se retrouve dans DAOEleve
+     * public List<DAOVueNote> getNotes(int idEleve, int trimestre, String matiere) {
+     */
         
-        /* déclaration et init des variables nécessaires */
+        /* déclaration et init des variables nécessaires * /
         List<DAOVueNote> listeNotes = new ArrayList<DAOVueNote>();
         Statement stmt = null;
         ResultSet res = null;
@@ -110,6 +112,38 @@ public class DAOSubitExamen extends DAOFactory <SubitExamen> {
             log4j.info(e.getMessage(), e);
         }        
         return listeNotes;
+    }*/
+    
+    public void ajouterNote (int idEleve, String nomControle, int note) {
+        DAOControles daoControles = new DAOControles();
+        int idControle = daoControles.find(nomControle).getIdControle();
+        int idCours = (Integer) null;
+        Statement stmt = null;
+        ResultSet res = null;
+        Statement stmt2 = null;
+        ResultSet res2 = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            String req = "select distinct id_cours from subit_examen where id_controle = " + idControle;
+            res = stmt.executeQuery(req);
+            
+            while (res.next()){
+                idCours = res.getInt("id_cours");
+            }
+            stmt2 = conn.createStatement();
+            String req2 = "INSERT INTO Subit_examen (id_controle, id_eleve, id_cours, note)"
+                    + " values (" + idControle
+                    + "," + idEleve
+                    + "," + idCours 
+                    + "," + note + ")";
+            stmt2.executeUpdate(req2);
+        
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
     }
 	
 }

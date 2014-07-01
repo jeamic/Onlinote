@@ -85,9 +85,9 @@ public class DAOCours extends DAOFactory<Cours>{
      * @param date format: 2014-05-15 10:00:01
      * @return 
      */
-    public List<DAOVueCours> getCours (int idEleve, String date) {
+    public DAOVueCours getCours (int idEleve, String date) {
         /* déclaration et init des variables nécessaires */
-        List<DAOVueCours> listeCours = new ArrayList<DAOVueCours>();
+        DAOVueCours cours = new DAOVueCours();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -108,13 +108,13 @@ public class DAOCours extends DAOFactory<Cours>{
                      +  " and eleve.id_eleve = " + idEleve + ";");
 
             while (res.next()){
-                listeCours.add(new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("salle"), res.getString("matiere")));
+                cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("salle"), res.getString("matiere"));
             }
             
         } catch (SQLException e) {
             log4j.info(e.getMessage(), e);
         }        
-        return listeCours;
+        return cours;
     }
 
     @Override
