@@ -46,14 +46,14 @@ public class MenuProf {
 	private JLabel lblEmploiDuTemps = null;
 	private JLabel lblMessagerie = null;
 	private Personne prof = null;
-	private DAOVueClasse classe = null;
+	private DAOVueClasse clas = null;
 	
 	public MenuProf (String ongletEC, Personne personne, DAOVueClasse classe) {
 	    
 	    ImageIcon tabImg[] = getImg();
 	    
 	    prof = personne;
-	    this.classe = classe;
+	    clas = classe;
 
 		
 		menu = new JPanel();
@@ -340,7 +340,7 @@ public class MenuProf {
 	                remplirFenetre("Onlinote - Notes","");
 	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
-	                JPanel mesNotes = new NotesProf(classe.getNomClasse()).getNotesProf();
+	                JPanel mesNotes = new NotesProf(personne, clas).getNotesProf();
 	                mesNotes.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
 	                FenetreProf.panelCenter.add(mesNotes, BorderLayout.CENTER);
 	                FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
