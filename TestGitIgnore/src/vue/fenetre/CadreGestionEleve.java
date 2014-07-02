@@ -23,9 +23,6 @@ public class CadreGestionEleve {
         gblpanelCadre.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
         panelCadre = new JPanel(gblpanelCadre);
         GridBagConstraints gbc = new GridBagConstraints();
-        Border borderClasse = BorderFactory.createTitledBorder("Classes");
-
-        panelCadre.setBorder(borderClasse);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.ipady = 600;
         gbc.weightx = 0.5;

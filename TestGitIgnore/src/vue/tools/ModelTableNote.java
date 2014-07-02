@@ -13,7 +13,7 @@ public class ModelTableNote extends AbstractTableModel {
     
     private static final    long serialVersionUID = 1L;
     
-    private final           String                  mKStrArt   = "Arts plastiques",
+    private final static           String           mKStrArt   = "Arts plastiques",
                                                     mKStrEPS   ="E.P.S",
                                                     mKStrBio = "Bio",
                                                     mKStrFrancais    = "Français",

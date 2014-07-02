@@ -13,21 +13,21 @@ public class ModelTableEdt extends AbstractTableModel {
     
     private static final    long serialVersionUID = 1L;
     
-    private final           String                  mKStrHeures = "\\",
-                                                    mKStrLundi    = "Lundi",
-                                                    mKStrMardi = "Mardi",
-                                                    mKStrMercredi    = "Mercredi",
-                                                    mKStrJeudi    = "Jeudi",
-                                                    mKStrVendredi    = "Vendredi";
+    private final static        String              MKStrHeures = "\\",
+                                                    MKStrLundi    = "Lundi",
+                                                    MKStrMardi = "Mardi",
+                                                    MKStrMercredi    = "Mercredi",
+                                                    MKStrJeudi    = "Jeudi",
+                                                    MKStrVendredi    = "Vendredi";
     
     private final           String[]                mKColumnHeader  = 
                                                         new String[]{
-                                                        mKStrHeures,
-                                                        mKStrLundi,
-                                                        mKStrMardi,
-                                                        mKStrMercredi,
-                                                        mKStrJeudi,
-                                                        mKStrVendredi
+                                                        MKStrHeures,
+                                                        MKStrLundi,
+                                                        MKStrMardi,
+                                                        MKStrMercredi,
+                                                        MKStrJeudi,
+                                                        MKStrVendredi
                                                         };
     
     private                 List<String>                mHeures = null;
@@ -71,33 +71,33 @@ public class ModelTableEdt extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         
-        if(getColumnName(columnIndex).equals(mKStrHeures)){
+        if(getColumnName(columnIndex).equals(MKStrHeures)){
                 mCellCur = new String ("<html><p style='text-align:center'>" + mHeures.get(rowIndex).toString() + "</p></html>");
-        } else if(getColumnName(columnIndex).equals(mKStrLundi)){
+        } else if(getColumnName(columnIndex).equals(MKStrLundi)){
             if (mCoursListLundi.get(rowIndex).getMatiere() != null) {
                 mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListLundi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListLundi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListLundi.get(rowIndex).getNomProf() + "</p></html>");
             } else {
                 mCellCur = "";
             }
-        } else if(getColumnName(columnIndex).equals(mKStrMardi)){
+        } else if(getColumnName(columnIndex).equals(MKStrMardi)){
             if (mCoursListMardi.get(rowIndex).getMatiere() != null) {
                 mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListMardi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListMardi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListMardi.get(rowIndex).getNomProf() + "</p></html>");
             } else {
                 mCellCur = "";
             }
-        } else if(getColumnName(columnIndex).equals(mKStrMercredi)){
+        } else if(getColumnName(columnIndex).equals(MKStrMercredi)){
             if (mCoursListMercredi.get(rowIndex).getMatiere() != null) {
                 mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListMercredi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListMercredi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListMercredi.get(rowIndex).getNomProf() + "</p></html>");
             } else {
                 mCellCur = "";
             }
-        } else if(getColumnName(columnIndex).equals(mKStrJeudi)){
+        } else if(getColumnName(columnIndex).equals(MKStrJeudi)){
             if (mCoursListJeudi.get(rowIndex).getMatiere() != null) {
                 mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListJeudi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListJeudi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListJeudi.get(rowIndex).getNomProf() + "</p></html>");
             } else {
                 mCellCur = "";
             }
-        } else if(getColumnName(columnIndex).equals(mKStrVendredi)){
+        } else if(getColumnName(columnIndex).equals(MKStrVendredi)){
             if (mCoursListVendredi.get(rowIndex).getMatiere() != null) {
                 mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListVendredi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListVendredi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListVendredi.get(rowIndex).getNomProf() + "</p></html>");
             } else {

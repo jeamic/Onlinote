@@ -158,7 +158,7 @@ public class NouveauMessage {
         txtrMssage.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                if (txtrMssage.getText() == "Message") {
+                if (txtrMssage.getText().equals("Message")) {
                     txtrMssage.setText("");
                 }
             }

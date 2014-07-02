@@ -36,8 +36,7 @@ public class Messagerie {
     private List<DAOVueMessage> messageEnvoye = null;
     private JPanel panel1 = null;
     private JPanel panel = null;
-    public Messagerie (Personne personne)
-    {
+    public Messagerie (Personne personne) {
        user = personne;
        panelMessagerie = new JPanel(new BorderLayout());
        

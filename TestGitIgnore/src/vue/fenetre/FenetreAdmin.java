@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,7 @@ public class FenetreAdmin {
 	protected static JFrame maFenetreAdmin = null;
 	private JPanel panelCentre = null;
 	private JPanel panelGestion = null;
-	private JPanel monCadreGestionEleve = null;
+	private JPanel monCadreGestionEleve = new JPanel(new BorderLayout());
 
     private FenetreAdmin(Personne personne){
         
@@ -164,9 +165,10 @@ public class FenetreAdmin {
             
             public void actionPerformed(ActionEvent e) {
                           monCadreGestionEleve.removeAll();
-                          monCadreGestionEleve = new CadreGestionEleve().getCadreGestionEleve();
                           Border borderClasse = BorderFactory.createTitledBorder("Classes");
                           monCadreGestionEleve.setBorder(borderClasse);
+                          JPanel contenu = new CadreGestionEleve().getCadreGestionEleve();
+                          monCadreGestionEleve.add(contenu, BorderLayout.CENTER);
                           monCadreGestionEleve.revalidate();
                           monCadreGestionEleve.repaint();
                           
@@ -203,6 +205,8 @@ public class FenetreAdmin {
                 
                 monCadreGestionEleve.removeAll(); 
                 Border borderClasse = BorderFactory.createTitledBorder("Emploi du temps");
+                JPanel contenu = new CadreGestionEdt().getCadreGestionEdT();
+                monCadreGestionEleve.add(contenu, BorderLayout.CENTER);
                 monCadreGestionEleve.setBorder(borderClasse);
                 monCadreGestionEleve.revalidate();
                 monCadreGestionEleve.repaint();
@@ -239,6 +243,7 @@ public class FenetreAdmin {
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 
+                
             }
         });
         panelTopPourRecherche.add(btnSearch, BorderLayout.EAST);
@@ -246,8 +251,11 @@ public class FenetreAdmin {
         
         panelGestion.add(panelTopPourRecherche, BorderLayout.NORTH);
        
-        
-        monCadreGestionEleve = new CadreGestionEleve().getCadreGestionEleve();
+        JPanel contenu = new JPanel(new GridBagLayout());
+        contenu = new CadreGestionEleve().getCadreGestionEleve();
+        Border borderClasse = BorderFactory.createTitledBorder("Classes");
+        monCadreGestionEleve.setBorder(borderClasse);
+        monCadreGestionEleve.add(contenu, BorderLayout.CENTER);
         panelGestion.add(monCadreGestionEleve,BorderLayout.CENTER);
         
         panelCentre.add(panelGestion, BorderLayout.CENTER);

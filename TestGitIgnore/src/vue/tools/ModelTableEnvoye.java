@@ -12,7 +12,7 @@ public class ModelTableEnvoye extends AbstractTableModel {
     
     private static final    long serialVersionUID = 1L;
     
-    private final           String                  mKStrMsgA    = "A",
+    private final static          String            mKStrMsgA    = "A",
                                                     mKStrMsgSubject = "Objet",
                                                     mKStrMsgContenu    = "Contenu";
     

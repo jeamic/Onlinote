@@ -12,7 +12,7 @@ public class ModelTableRecu extends AbstractTableModel {
     
     private static final    long serialVersionUID = 1L;
     
-    private final           String                  mKStrMsgFrom    = "De",
+    private final static    String             mKStrMsgFrom    = "De",
                                                     mKStrMsgSubject = "Objet",
                                                     mKStrMsgContenu    = "Contenu";
     
