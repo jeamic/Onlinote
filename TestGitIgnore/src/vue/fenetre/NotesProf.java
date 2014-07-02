@@ -118,12 +118,22 @@ public class NotesProf {
         GestionControles gestionnaireControle = new GestionControles();
         listControle = gestionnaireControle.getControles(classe.getIdClasse(), personne.getIdPersonne());
         
-        if (listEleve != null && listControle != null ) {
+        if (!listEleve.isEmpty() && !listControle.isEmpty() ) {
             DAOVueNote note = gestionnaireNotes.getNoteControle(listEleve.get(0).getIdEleve(), listControle.get(0).getIdControle());
-            textField.setText(String.valueOf(note.getNote()));
+            if ( note != null ) {
+                textField.setText(String.valueOf(note.getNote()));
+                textField.setEditable(false);
+                btnNewButton.setEnabled(false);
+            } else {
+                textField.setEditable(false);
+                btnNewButton.setEnabled(false);
+            }
+            
+        } else {
             textField.setEditable(false);
             btnNewButton.setEnabled(false);
         }
+         
         
         
         for (int i =0;i<listEleve.size();++i)
