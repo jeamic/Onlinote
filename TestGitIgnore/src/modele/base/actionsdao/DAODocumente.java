@@ -40,8 +40,7 @@ public class DAODocumente extends DAOFactory<Documente>{
 
 	@Override
 	public void delete(Documente obj) {
-		
-		
+	    return;
 	}
 
 	@Override

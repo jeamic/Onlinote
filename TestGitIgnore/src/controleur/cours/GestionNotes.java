@@ -67,11 +67,11 @@ public class GestionNotes {
     }
     
     public void modifierNote () {
-        
+        return;
     }
     
     public void supprimerNote () {
-        
+        return;
     }
 }
 

@@ -98,8 +98,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
 
 	@Override
 	public void delete(Personne obj) {
-		
-		
+	    return;
 	}
 
     @Override
@@ -142,8 +141,6 @@ public class DAOPersonne extends DAOFactory<Personne>{
         List<DAOVuePersonne> listeEnfants = new ArrayList<DAOVuePersonne>();
         Statement stmt = null;
         ResultSet res = null;
-        /*ConnexionJDBC instance = ConnexionJDBC.getInstance();
-        Connection conn = instance.getConnection();*/
         
         try {
             stmt = instance.getConnection().createStatement();
@@ -156,9 +153,9 @@ public class DAOPersonne extends DAOFactory<Personne>{
             DAOEleve daoEleve = new DAOEleve();
             
             while (res.next()){
-                Personne eleve_personne = daoPersonne.find(res.getInt("id_eleve"));
-                Eleve eleve = daoEleve.find(eleve_personne.getIdPersonne());
-                listeEnfants.add(new DAOVuePersonne(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2()));
+                Personne elevePersonne = daoPersonne.find(res.getInt("id_eleve"));
+                Eleve eleve = daoEleve.find(elevePersonne.getIdPersonne());
+                listeEnfants.add(new DAOVuePersonne(elevePersonne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2()));
             }
             
         } catch (SQLException e) {

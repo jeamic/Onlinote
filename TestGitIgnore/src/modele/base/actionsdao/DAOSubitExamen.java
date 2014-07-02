@@ -41,8 +41,7 @@ public class DAOSubitExamen extends DAOFactory <SubitExamen> {
 
 	@Override
 	public void delete(SubitExamen obj) {
-		
-		
+	    return;
 	}
 
 	@Override
@@ -94,7 +93,6 @@ public class DAOSubitExamen extends DAOFactory <SubitExamen> {
         Statement stmt = null;
         ResultSet res = null;
         Statement stmt2 = null;
-        ResultSet res2 = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         

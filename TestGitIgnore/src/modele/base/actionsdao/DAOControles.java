@@ -30,9 +30,7 @@ public class DAOControles extends DAOFactory <Controles>{
 
 	@Override
 	public Controles create(Controles controle) {
-        DAOVueControle daoControles = new DAOVueControle();
         Statement stmt = null;
-        ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         
@@ -62,8 +60,7 @@ public class DAOControles extends DAOFactory <Controles>{
 
 	@Override
 	public void delete(Controles obj) {
-		
-		
+	    return;
 	}
 
 	@Override

@@ -40,8 +40,7 @@ public class DAOChoixOption extends DAOFactory <ChoixOption>{
 
 	@Override
 	public void delete(ChoixOption obj) {
-		
-		
+	    return;
 	}
 
 	@Override

@@ -38,15 +38,15 @@ public class GestionCours {
     }
     
     public void ajouterCours() {
-        
+        return;
     }
     
     public void modifierCours () {
-        
+        return;
     }
     
     public void supprimerCours () {
-        
+        return;
     }
     
 }

@@ -47,8 +47,7 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
 
 	@Override
 	public void delete(EstSpecialise obj) {
-		
-		
+	    return;
 	}
 
     @Override

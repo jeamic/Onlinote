@@ -40,8 +40,7 @@ public class DAODonneLieu extends DAOFactory <DonneLieu>{
 
 	@Override
 	public void delete(DonneLieu obj) {
-		
-		
+	    return;
 	}
 
 	@Override

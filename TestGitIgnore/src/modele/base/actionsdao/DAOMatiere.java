@@ -47,8 +47,7 @@ public class DAOMatiere extends DAOFactory<Matiere>{
 
 	@Override
 	public void delete(Matiere obj) {
-		
-		
+	    return;
 	}
 
     @Override

@@ -37,9 +37,7 @@ public class DAOMessage extends DAOFactory<Message>{
 	    ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
         
-        try {
-            if (conn == null){ System.out.println("test");}
-            
+        try {            
             preparedStatement = 
                 conn.prepareStatement("INSERT INTO `message` (`TITRE`, `DESTINATAIRES`, `CONTENU`, `LU`) VALUES (?, ?, ?, ?)", 
                 Statement.RETURN_GENERATED_KEYS);
@@ -69,8 +67,7 @@ public class DAOMessage extends DAOFactory<Message>{
 
 	@Override
 	public void delete(Message obj) {
-		
-		
+	    return;
 	}
 
 	@Override

@@ -64,7 +64,6 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
 	@Override
 	public void delete(Messagerie msg) {
         /* déclaration et init des variables nécessaires */
-        List<Messagerie> listeCompose = new ArrayList<Messagerie>();
         Statement stmt = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();

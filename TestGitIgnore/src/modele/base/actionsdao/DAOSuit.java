@@ -39,8 +39,7 @@ public class DAOSuit extends DAOFactory <Suit>{
 
 	@Override
 	public void delete(Suit obj) {
-		
-		
+	    return;
 	}
 
 	@Override

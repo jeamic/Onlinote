@@ -40,8 +40,7 @@ public class DAODevoirs extends DAOFactory <Devoirs>{
 
 	@Override
 	public void delete(Devoirs obj) {
-		
-		
+	    return;
 	}
 
 	@Override

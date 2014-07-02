@@ -40,8 +40,7 @@ public class DAOSalle extends DAOFactory<Salle>{
 
 	@Override
 	public void delete(Salle obj) {
-		
-		
+	    return;
 	}
 
 	@Override

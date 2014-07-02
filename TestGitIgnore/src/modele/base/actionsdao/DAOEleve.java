@@ -60,8 +60,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
 
 	@Override
 	public void delete(Eleve obj) {
-		
-		
+		return;
 	}
 
 	@Override

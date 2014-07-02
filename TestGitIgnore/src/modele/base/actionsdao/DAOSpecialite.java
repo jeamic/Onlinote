@@ -40,8 +40,7 @@ public class DAOSpecialite extends DAOFactory<Specialite>{
 
 	@Override
 	public void delete(Specialite obj) {
-		
-		
+	    return;
 	}
 
 	@Override

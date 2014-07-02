@@ -42,8 +42,7 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
 
 	@Override
 	public void delete(Enseigne obj) {
-		
-		
+	    return;
 	}
 
 	@Override

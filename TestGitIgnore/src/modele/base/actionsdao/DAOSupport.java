@@ -39,8 +39,7 @@ public class DAOSupport extends DAOFactory <Support>{
 
 	@Override
 	public void delete(Support obj) {
-		
-		
+	    return;
 	}
 
 	@Override
