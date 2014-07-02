@@ -61,7 +61,7 @@ public class GestionNotes {
      * @param nomControle
      * @param note
      */
-    public void ajouterNote (int idEleve, String nomControle, int note) {
+    public void ajouterNote (int idEleve, String nomControle, double note) {
         DAOSubitExamen daoNotes = new DAOSubitExamen();
         daoNotes.ajouterNote(idEleve, nomControle, note);
     }

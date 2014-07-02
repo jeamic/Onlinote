@@ -77,7 +77,7 @@ public class DAOControles extends DAOFactory <Controles>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from controles where titre = '" + nomControle  + "')");
+            res = stmt.executeQuery("select * from controles where titre = '" + nomControle  + "'");
 
             while (res.next()){
                 controle = new Controles(res.getInt("id_controle"), res.getString("enonce"), res.getString("corrige"), res.getDouble("note_max"), res.getDouble("coefficient"), res.getInt("trimestre"), res.getString("titre"));
@@ -136,7 +136,7 @@ public class DAOControles extends DAOFactory <Controles>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select c.id_controle, c.enonce, c.corrige, c.note_max, c.coefficient, c.trimestre, c.titre"
+            res = stmt.executeQuery("select distinct c.id_controle, c.enonce, c.corrige, c.note_max, c.coefficient, c.trimestre, c.titre"
                     + " from enseigne e, subit_examen s, controles c"
                     + " where e.id_cours = s.id_cours"
                     + " and s.id_controle = c.id_controle"

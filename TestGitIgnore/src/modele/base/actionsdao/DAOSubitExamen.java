@@ -87,10 +87,10 @@ public class DAOSubitExamen extends DAOFactory <SubitExamen> {
      * @param nomControle
      * @param note
      */
-    public void ajouterNote (int idEleve, String nomControle, int note) {
+    public void ajouterNote (int idEleve, String nomControle, Double note) {
         DAOControles daoControles = new DAOControles();
         int idControle = daoControles.find(nomControle).getIdControle();
-        int idCours = (Integer) null;
+        int idCours = 0;
         Statement stmt = null;
         ResultSet res = null;
         Statement stmt2 = null;
