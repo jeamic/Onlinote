@@ -37,6 +37,21 @@ public class GestionCours {
         return cours;
     }
     
+    /**
+     * Donne un cours pour une date et une classe données
+     * 
+     * @param idEleve
+     * @param date
+     * @return
+     */
+    public DAOVueCours getCours (String nomClasse, String date) {
+        DAOVueCours cours = new DAOVueCours();
+        DAOCours daoCours = new DAOCours();
+        cours = daoCours.getCours(nomClasse, date);
+        
+        return cours;
+    }
+    
     public void ajouterCours() {
         return;
     }

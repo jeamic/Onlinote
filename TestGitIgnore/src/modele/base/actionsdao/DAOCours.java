@@ -85,6 +85,9 @@ public class DAOCours extends DAOFactory<Cours>{
      * @return 
      */
     public DAOVueCours getCours (int idPersonne, String date) {
+        DAOClasse daoClasse = new DAOClasse();
+        int idClasse = daoClasse.getEleveIdClasse(idPersonne);
+        
         /* déclaration et init des variables nécessaires */
         DAOVueCours cours = new DAOVueCours();
         Statement stmt = null;
@@ -104,7 +107,46 @@ public class DAOCours extends DAOFactory<Cours>{
                      +  " and '" + date + "' between heure_debut and addtime(heure_debut, duree)"
                      +  " and cours.id_salle = salle.id_salle"
                      +  " and ens.id_classe = cl.id_classe"
-                     +  " and p.id_personne = " + idPersonne + ";");            
+                     +  " and cl.id_classe = " + idClasse + ";");            
+
+            while (res.next()){
+                cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("nom_salle"), res.getString("matiere"));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return cours;
+    }
+    
+    /**
+     * Obtient les cours d'une classe à une date donnée
+     *  
+     * @param nomClasse
+     * @param date format: 2014-05-15 10:00:01
+     * @return 
+     */
+    public DAOVueCours getCours (String nomClasse, String date) {       
+        /* déclaration et init des variables nécessaires */
+        DAOVueCours cours = new DAOVueCours();
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        /* requête pour rechercher la personne, param 1 = date, param 2 = idEleve*/
+        try {
+            stmt = conn.createStatement();
+            res =   stmt.executeQuery(
+                      "select  cours.id_cours, salle.nom_salle, prof.nom, cours.matiere, nom_classe"
+                     +" from    cours, enseigne ens, personne prof, eleve, salle, classe cl, personne p"
+                     +" where   eleve.id_classe = ens.id_classe"
+                     +  " and ens.id_personne = prof.id_personne"
+                     +  " and ens.id_cours = cours.id_cours"
+                     +  " and '" + date + "' between heure_debut and addtime(heure_debut, duree)"
+                     +  " and cours.id_salle = salle.id_salle"
+                     +  " and ens.id_classe = cl.id_classe"
+                     +  " and cl.nom_classe = " + nomClasse + ";");            
 
             while (res.next()){
                 cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("nom_salle"), res.getString("matiere"));

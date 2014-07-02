@@ -206,5 +206,30 @@ public class DAOClasse extends DAOFactory <Classe>{
         }    
         return listeClasses;
     }
+    
+    public int getEleveIdClasse (int idEleve){
+        /* déclaration et init des variables nécessaires */
+        int idClasse =0;
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select e.id_classe"
+                                + " from eleve e, classe c"
+                                + " where e.id_classe = c.id_classe"
+                                + " and id_eleve = " + idEleve);
+
+            while (res.next()){
+                idClasse = res.getInt("id_classe");
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }    
+        return idClasse;
+    }
 
 }
