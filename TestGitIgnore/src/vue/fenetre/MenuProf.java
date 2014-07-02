@@ -340,7 +340,7 @@ public class MenuProf {
 	                remplirFenetre("Onlinote - Notes","");
 	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
-	                JPanel mesNotes = new NotesProf(classe.getIdClasse()).getNotesProf();
+	                JPanel mesNotes = new NotesProf(classe.getNomClasse()).getNotesProf();
 	                mesNotes.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
 	                FenetreProf.panelCenter.add(mesNotes, BorderLayout.CENTER);
 	                FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
