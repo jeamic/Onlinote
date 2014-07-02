@@ -129,7 +129,7 @@ public class ConnexionJDBC {
 				}
 			}
 		} catch (Exception e){
-			log4j.error(e);
+		    log4j.info(e.getMessage(), e);
 		}
 	}
 }

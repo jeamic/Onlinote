@@ -28,12 +28,12 @@ public class GestionEleve {
         DAOEleve daoEleve = new DAOEleve();
         DAOPersonne daoPersonne = new DAOPersonne();
         
-        Personne eleve_personne = new Personne();
+        Personne elevePersonne = new Personne();
         Eleve eleve = new Eleve();
         
-        eleve_personne = daoPersonne.find(idEleve);
+        elevePersonne = daoPersonne.find(idEleve);
         eleve = daoEleve.find(idEleve);
-        DAOVuePersonne daoVueEleve = new DAOVuePersonne(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2());
+        DAOVuePersonne daoVueEleve = new DAOVuePersonne(elevePersonne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2());
         return daoVueEleve;
     }
     
