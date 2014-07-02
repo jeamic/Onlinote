@@ -8,7 +8,7 @@ public class GestionControles {
     public GestionControles() {
     }
     
-    public void ajouterNotes(DAOVueControle daoVueControle){
+    public void ajouterControle(DAOVueControle daoVueControle){
         Controles controle = new Controles();
         controle.setIdControle(daoVueControle.getIdControle());
         controle.setEnonce(daoVueControle.getEnonce());

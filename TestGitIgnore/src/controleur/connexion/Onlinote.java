@@ -13,6 +13,7 @@ import modele.base.dao.Messagerie;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueClasse;
+import modele.vue.dao.DAOVueCours;
 import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVueMessage;
 import modele.vue.dao.DAOVueNote;
@@ -21,6 +22,7 @@ import modele.vue.dao.DAOVueParent;
 import org.apache.log4j.LogManager;
 
 import controleur.administration.GestionClasse;
+import controleur.cours.GestionCours;
 import controleur.cours.GestionMatiere;
 import controleur.cours.GestionNotes;
 import controleur.messages.GestionMessages;
@@ -59,10 +61,10 @@ public class Onlinote {
 		 * 
 		 */
 		/*GestionCours gestCours = new GestionCours();
-		List<List<String>> bla = gestCours.getCours(3, "2014-05-15 10:00:01");
+		DAOVueCours bla = gestCours.getCours(3, "2014-05-15 10:00:01");
 		
-		System.out.println(bla);*/
-		
+		System.out.println(bla.getNomClasse() + " " + bla.getMatiere());
+		*/
 		/*
 		 * @ test getNotes
 		 * 

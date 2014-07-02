@@ -97,18 +97,18 @@ public class DAOCours extends DAOFactory<Cours>{
         try {
             stmt = conn.createStatement();
             res =   stmt.executeQuery(
-                      "select  cours.id_cours, cours.matiere, prof.nom, salle.nom_salle, nom_classe"
+                      "select  cours.id_cours, salle.nom_salle, prof.nom, cours.matiere, nom_classe"
                      +" from    cours, enseigne ens, personne prof, eleve, salle, classe cl"
                      +" where   eleve.id_classe = ens.id_classe"
                      +  " and ens.id_personne = prof.id_personne"
                      +  " and ens.id_cours = cours.id_cours"
-                     +  " and " + date + " between heure_debut and addtime(heure_debut, duree)"
+                     +  " and '" + date + "' between heure_debut and addtime(heure_debut, duree)"
                      +  " and cours.id_salle = salle.id_salle"
                      +  " and ens.id_classe = cl.id_classe"
                      +  " and eleve.id_eleve = " + idEleve + ";");
 
             while (res.next()){
-                cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("salle"), res.getString("matiere"));
+                cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("nom_salle"), res.getString("matiere"));
             }
             
         } catch (SQLException e) {
