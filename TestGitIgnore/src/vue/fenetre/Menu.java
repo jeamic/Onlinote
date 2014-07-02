@@ -272,7 +272,7 @@ public class Menu {
                 FenetreParent.panelCenter.add(lblVosEnfants);
                 JRadioButton aRadioButton = null;
                 
-                FenetreParent.grosMenu = new JPanel(new GridBagLayout());
+                FenetreParent.grosMenu.removeAll();
                 JPanel monMenu = new Menu("Accueil", personne, enfant.get(0)).getMenu();
                 monMenu.setPreferredSize(new Dimension(150, 300));
                 
@@ -295,8 +295,7 @@ public class Menu {
                 
                 for (int i = 0; i < enfant.size(); ++i)
                 {
-                    
-                    if (i == 0)
+                    if (enfant.get(i).getIdEleve() == eleve.getIdEleve())
                     {
                         aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom(), true);
                     }
@@ -315,31 +314,6 @@ public class Menu {
                             
                             
                             FenetreParent.changeEleveMenu(personneG, Integer.parseInt(e.getActionCommand()));
-                                                        
-                               // FenetreParent.grosMenu.removeAll();
-                                /*System.out.println(e.getActionCommand());
-                                
-                                JPanel monMenu = new Menu("Accueil", personneG , enfant.get(Integer.parseInt(e.getActionCommand()))).getMenu();
-                                monMenu.setPreferredSize(new Dimension(150, 300));
-                                
-                                GridBagConstraints gbc = new GridBagConstraints();
-                                gbc.anchor = GridBagConstraints.NORTHWEST;
-                                //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
-                                
-                                
-                                JLabel testEspace = new JLabel(" ");
-                                
-
-                                final JPanel monMenu2 = new JPanel(new BorderLayout());
-                                
-                                monMenu2.add(testEspace, BorderLayout.NORTH);
-                                monMenu2.add(monMenu, BorderLayout.NORTH);
-                                
-                                        
-                                FenetreParent.grosMenu.add(monMenu2, gbc);
-                                */
-                                
-                               // FenetreParent.grosMenu.updateUI();
                                 
 
                             }

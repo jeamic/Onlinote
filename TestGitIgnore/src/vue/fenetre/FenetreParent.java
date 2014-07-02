@@ -256,7 +256,9 @@ public class FenetreParent {
         
                 
         grosMenu.add(monMenu2, gbc);
-        grosMenu.updateUI();
+        //grosMenu.updateUI();
+        grosMenu.revalidate();
+        grosMenu.repaint();
 
     }
 }

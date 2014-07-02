@@ -50,14 +50,14 @@ public class Messagerie {
        gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
        gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
        panel.setLayout(gbl_panel);
-       final JLabel lblNewLabel = new JLabel("Message envoyé");
-       final JLabel lblNewLabel_1 = new JLabel("<html><u>Message reçu</u></html>");
+       final JLabel lblNewLabel = new JLabel("Messages envoyés");
+       final JLabel lblNewLabel_1 = new JLabel("<html><u>Messages reçus</u></html>");
        lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        lblNewLabel_1.addMouseListener(new MouseAdapter() {  
            public void mouseClicked(MouseEvent e) {
                
-               lblNewLabel_1.setText("<html><u>Message reçu</u></html>");
-               lblNewLabel.setText("Message envoyé");
+               lblNewLabel_1.setText("<html><u>Messages reçus</u></html>");
+               lblNewLabel.setText("Messages envoyés");
                panel_1.removeAll();
                ModelTableRecu model = new ModelTableRecu();
                JTable table = new JTable(model);
@@ -90,8 +90,8 @@ public class Messagerie {
        lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        lblNewLabel.addMouseListener(new MouseAdapter() {  
            public void mouseClicked(MouseEvent e) {
-               lblNewLabel.setText("<html><u>Message envoyé</u></html>");
-               lblNewLabel_1.setText("Message reçu");
+               lblNewLabel.setText("<html><u>Messages envoyés</u></html>");
+               lblNewLabel_1.setText("Messages reçus");
                panel_1.removeAll();
                ModelTableEnvoye model = new ModelTableEnvoye();
                JTable table = new JTable(model);
