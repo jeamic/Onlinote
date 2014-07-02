@@ -83,7 +83,6 @@ public class FenetreProf {
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTHWEST;
-        //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
         
         
         JLabel testEspace = new JLabel(" ");
@@ -98,15 +97,11 @@ public class FenetreProf {
         grosMenu.add(monMenu2, gbc);
         
         
-        for (int i = 0; i < classe.size(); ++i)
-        {
+        for (int i = 0; i < classe.size(); ++i) {
             
-            if (i == 0)
-            {
+            if (i == 0) {
                 aRadioButton = new JRadioButton(classe.get(i).getNomClasse(), true);
-            }
-            else
-            {
+            } else {
                 aRadioButton = new JRadioButton(classe.get(i).getNomClasse());
             }
             aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -163,9 +158,7 @@ public class FenetreProf {
         try {
             imgURLAccueil = new java.net.URL("file:img/gard.png");
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             log4j.error("image existe pas");
-
         }
         ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT));
         
@@ -196,8 +189,7 @@ public class FenetreProf {
         new FenetreProf (personne);
     }
     
-    public static void changeMenuProf()
-    {
+    public static void changeMenuProf() {
         if (panelTop != null) {
             
         }
@@ -212,8 +204,7 @@ public class FenetreProf {
         
     }
     
-    public static void changeEleveMenuProf(Personne p, int e)
-    {
+    public static void changeEleveMenuProf(Personne p, int e) {
         grosMenu.removeAll();
         
         JPanel monMenu = new MenuProf("Accueil", p, classe.get(e)).getMenu();

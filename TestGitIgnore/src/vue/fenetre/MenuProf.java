@@ -279,7 +279,6 @@ public class MenuProf {
 	                
 	                GridBagConstraints gbc = new GridBagConstraints();
 	                gbc.anchor = GridBagConstraints.NORTHWEST;
-	                //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
 	                
 	                
 	                JLabel testEspace = new JLabel(" ");
@@ -294,15 +293,11 @@ public class MenuProf {
 	               FenetreProf.grosMenu.add(monMenu2, gbc);
 	                
 	                
-	                for (int i = 0; i < classeG.size(); ++i)
-	                {
+	                for (int i = 0; i < classeG.size(); ++i) {
 	                    
-	                    if (i == 0)
-	                    {
+	                    if (i == 0) {
 	                        aRadioButton = new JRadioButton(classeG.get(i).getNomClasse(), true);
-	                    }
-	                    else
-	                    {
+	                    } else {
 	                        aRadioButton = new JRadioButton(classeG.get(i).getNomClasse());
 	                    }
 	                    aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -383,8 +378,7 @@ public class MenuProf {
 	        }
 	    }
 	   
-	   private void viderGras ()
-	   {
+	   private void viderGras () {
 	       lblAccueil.setFont(new Font("Times new roman", Font.PLAIN, 14));
 	       lblNotes.setFont(new Font("Times new roman", Font.PLAIN, 14));
 	       lblEmploiDuTemps.setFont(new Font("Times new roman", Font.PLAIN, 14));
@@ -392,8 +386,7 @@ public class MenuProf {
 	       
 	   }
 	   
-	   private void remplirFenetre(String titre, String desc)
-	   {
+	   private void remplirFenetre(String titre, String desc) {
 	       FenetreProf.panelTop = new JPanel(new BorderLayout());
 	       JPanel panelTopGauche = new JPanel(new BorderLayout());
 	       JPanel panelTopCentre = new JPanel(new BorderLayout());

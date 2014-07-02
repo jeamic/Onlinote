@@ -57,8 +57,7 @@ public class ModelTableNote extends AbstractTableModel {
     private                 Object                  mCellCur        = null;
     
     
-    public ModelTableNote()
-    {
+    public ModelTableNote() {
         super();
         
         // Récupération de la liste des messages
@@ -77,146 +76,97 @@ public class ModelTableNote extends AbstractTableModel {
 
     
     @Override
-    public int getColumnCount() 
-    {
+    public int getColumnCount() {
         return mKColumnHeader.length;
     }
 
     @Override
-    public String getColumnName(int columnIndex) 
-    {
+    public String getColumnName(int columnIndex) {
 
         return mKColumnHeader[columnIndex];
 
     }
     
     @Override
-    public int getRowCount()
-    {   
+    public int getRowCount() {   
         return mNotesListMaths.size();
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) 
-    {
+    public Object getValueAt(int rowIndex, int columnIndex) {
         
         if(getColumnName(columnIndex).equals(mKStrArt)){
-            if (mNotesListArt.size() > rowIndex) 
-            {
+            if (mNotesListArt.size() > rowIndex) {
                 mCellCur = mNotesListArt.get(rowIndex).getNote() +"/" + mNotesListArt.get(rowIndex).getNoteMax() + " (" + mNotesListArt.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrEPS)){
-            if (mNotesListEPS.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrEPS)){
+            if (mNotesListEPS.size() > rowIndex) {
                 mCellCur = mNotesListEPS.get(rowIndex).getNote() +"/" + mNotesListEPS.get(rowIndex).getNoteMax() + " (" + mNotesListEPS.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrBio)){
-            if (mNotesListBio.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrBio)){
+            if (mNotesListBio.size() > rowIndex) {
                 mCellCur = mNotesListBio.get(rowIndex).getNote() +"/" + mNotesListBio.get(rowIndex).getNoteMax() + " (" + mNotesListBio.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrFrancais)){
-            if (mNotesListFrancais.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrFrancais)){
+            if (mNotesListFrancais.size() > rowIndex) {
                 mCellCur = mNotesListFrancais.get(rowIndex).getNote() +"/" + mNotesListFrancais.get(rowIndex).getNoteMax() + " (" + mNotesListFrancais.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        
-        else if(getColumnName(columnIndex).equals(mKStrHistoire)){
-            if (mNotesListHistoire.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrHistoire)){
+            if (mNotesListHistoire.size() > rowIndex) {
                 mCellCur = mNotesListHistoire.get(rowIndex).getNote() +"/" + mNotesListHistoire.get(rowIndex).getNoteMax() + " (" + mNotesListHistoire.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrLV1)){
-            if (mNotesListLV1.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrLV1)){
+            if (mNotesListLV1.size() > rowIndex) {
                 mCellCur = mNotesListLV1.get(rowIndex).getNote() +"/" + mNotesListLV1.get(rowIndex).getNoteMax()+ " (" + mNotesListLV1.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrLV2)){
-            if (mNotesListLV2.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrLV2)){
+            if (mNotesListLV2.size() > rowIndex) {
                 mCellCur = mNotesListLV2.get(rowIndex).getNote() +"/" + mNotesListLV2.get(rowIndex).getNoteMax() + " (" + mNotesListLV2.get(rowIndex).getCoefficient() + ")" ;
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrMaths)){
-            if (mNotesListMaths.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrMaths)){
+            if (mNotesListMaths.size() > rowIndex) {
                 mCellCur = mNotesListMaths.get(rowIndex).getNote() +"/" + mNotesListMaths.get(rowIndex).getNoteMax() + " (" + mNotesListMaths.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
-            }
-           
-        }
-        else if(getColumnName(columnIndex).equals(mKStrMusique)){
-            if (mNotesListMusique.size() > rowIndex) 
-            {
+            }   
+        } else if(getColumnName(columnIndex).equals(mKStrMusique)){
+            if (mNotesListMusique.size() > rowIndex) {
                 mCellCur = mNotesListMusique.get(rowIndex).getNote() +"/" + mNotesListMusique.get(rowIndex).getNoteMax() + " (" + mNotesListMusique.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrPhysique)){
-            if (mNotesListPhysique.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrPhysique)){
+            if (mNotesListPhysique.size() > rowIndex) {
                 mCellCur = mNotesListPhysique.get(rowIndex).getNote() +"/" + mNotesListPhysique.get(rowIndex).getNoteMax() + " (" + mNotesListPhysique.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else if(getColumnName(columnIndex).equals(mKStrTechnologie)){
-            if (mNotesListTechnologie.size() > rowIndex) 
-            {
+        } else if(getColumnName(columnIndex).equals(mKStrTechnologie)){
+            if (mNotesListTechnologie.size() > rowIndex) {
                 mCellCur = mNotesListTechnologie.get(rowIndex).getNote() +"/" + mNotesListTechnologie.get(rowIndex).getNoteMax() + " (" + mNotesListTechnologie.get(rowIndex).getCoefficient() + ")" ;
-            }
-            else
-            {
+            } else {
                 mCellCur = "/";
             }
-        }
-        else{
+        } else{
             mCellCur = "ERROR";
         }
         
         return (mCellCur);
     }   
 
-    public void updateTableData (List<DAOVueNote> listNoteArt, List<DAOVueNote> listNoteEPS, List<DAOVueNote> listNoteBio, List<DAOVueNote> listNoteFrancais, List<DAOVueNote> listNoteHistoire, List<DAOVueNote> listNoteLV1, List<DAOVueNote> listNoteLV2, List<DAOVueNote> listNoteMaths, List<DAOVueNote> listNoteMusique, List<DAOVueNote> listNotePhysique, List<DAOVueNote> listNoteTechno)
-    {
+    public void updateTableData (List<DAOVueNote> listNoteArt, List<DAOVueNote> listNoteEPS, List<DAOVueNote> listNoteBio, List<DAOVueNote> listNoteFrancais, List<DAOVueNote> listNoteHistoire, List<DAOVueNote> listNoteLV1, List<DAOVueNote> listNoteLV2, List<DAOVueNote> listNoteMaths, List<DAOVueNote> listNoteMusique, List<DAOVueNote> listNotePhysique, List<DAOVueNote> listNoteTechno) {
     
         mNotesListArt = listNoteArt;
         mNotesListEPS = listNoteEPS;

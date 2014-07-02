@@ -70,12 +70,10 @@ public class NouveauMessage {
         });
         txtDestinataire.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtDestinataire.setText("Destinataire");
-        if (!dest.equals(""))
-        {
+        if (!dest.equals("")) {
             txtDestinataire.setText(dest);
         }
-        if (isRepondre)
-        {
+        if (isRepondre) {
             txtDestinataire.setEditable(false);
         }
         txtDestinataire.setBorder((BorderFactory.createLineBorder(Color.black)));
@@ -102,10 +100,6 @@ public class NouveauMessage {
                 DAOVueMessage message = new DAOVueMessage();
                 GestionMessages messagerie = new GestionMessages();
                 
-                
-                String dest = txtDestinataire.getText();
-                String subjet = txtSujet.getText();
-                String object = txtrMssage.getText();
                 message.setExpediteur(user.getEmail());
                 message.setDestinataires(txtDestinataire.getText());
                 message.setObjet(txtSujet.getText());
@@ -149,12 +143,10 @@ public class NouveauMessage {
         });
         txtSujet.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtSujet.setText("Sujet");
-        if (!obj.equals(""))
-        {
+        if (!obj.equals("")) {
            txtSujet.setText(obj);
         }
-        if (isRepondre)
-        {
+        if (isRepondre) {
             txtSujet.setEditable(false);
         }
         panel_3.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
@@ -166,20 +158,17 @@ public class NouveauMessage {
         txtrMssage.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                if (txtrMssage.getText() == "Message")
-                {
+                if (txtrMssage.getText() == "Message") {
                     txtrMssage.setText("");
                 }
             }
         });
         txtrMssage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtrMssage.setText("Message");
-        if (!cont.equals(""))
-        {
+        if (!cont.equals("")) {
             txtrMssage.setText(cont);
         }
-        if (isRepondre)
-        {
+        if (isRepondre) {
             txtrMssage.setEditable(false);
         }
         txtrMssage.setBorder((BorderFactory.createLineBorder(Color.black)));

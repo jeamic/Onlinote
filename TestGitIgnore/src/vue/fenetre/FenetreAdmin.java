@@ -79,7 +79,6 @@ public class FenetreAdmin {
         try {
             imgURLAccueil = new java.net.URL("file:img/gard.png");
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             log4j.error("image existe pas");
 
         }
@@ -255,23 +254,6 @@ public class FenetreAdmin {
         
         maFenetreAdmin.getContentPane().add(panelCentre, BorderLayout.CENTER);
         
-        
-
-       /* JComboBox comboBox = new JComboBox();
-        comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboBox.setOpaque(false);
-        comboBox.setLightWeightPopupEnabled(false);
-        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Gestion des élèves", "Gestion des professeurs", "Gestion de l'emploi du temps"}));
-        comboBox.setPreferredSize(new Dimension(10,40));
-        comboBox.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
-        panelCentre.add(comboBox, BorderLayout.NORTH);
-        
-        JPanel panelCarreCentre = new JPanel();
-        
-        panelCarreCentre.setBorder(new LineBorder( new Color(0,0,0)));
-        
-        panelCentre.add(panelCarreCentre, BorderLayout.CENTER);
-        */
         
         maFenetreAdmin.setVisible(true);
         

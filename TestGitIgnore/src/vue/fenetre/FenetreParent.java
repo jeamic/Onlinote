@@ -100,15 +100,11 @@ public class FenetreParent {
         grosMenu.add(monMenu2, gbc);
         
         
-        for (int i = 0; i < enfant.size(); ++i)
-        {
+        for (int i = 0; i < enfant.size(); ++i) {
             
-            if (i == 0)
-            {
+            if (i == 0) {
                 aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom(), true);
-            }
-            else
-            {
+            } else {
                 aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom());
             }
             aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -164,7 +160,6 @@ public class FenetreParent {
         try {
             imgURLAccueil = new java.net.URL("file:img/gard.png");
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             log4j.error("image existe pas");
 
         }
@@ -197,8 +192,7 @@ public class FenetreParent {
         new FenetreParent (personne);
     }
     
-    public static void changeMenu()
-    {
+    public static void changeMenu() {
         if (panelTop != null) {
             FenetreParent.maFenetreParent.remove(panelTop);
         }
@@ -213,8 +207,7 @@ public class FenetreParent {
         
     }
     
-    public static void changeEleveMenu(Personne p, int e)
-    {
+    public static void changeEleveMenu(Personne p, int e) {
         grosMenu.removeAll();
         
         JPanel monMenu = new Menu("Accueil", p, enfant.get(e)).getMenu();
@@ -222,7 +215,6 @@ public class FenetreParent {
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTHWEST;
-        //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
         
         
         JLabel testEspace = new JLabel(" ");
@@ -235,7 +227,6 @@ public class FenetreParent {
         
                 
         grosMenu.add(monMenu2, gbc);
-        //grosMenu.updateUI();
         grosMenu.revalidate();
         grosMenu.repaint();
 

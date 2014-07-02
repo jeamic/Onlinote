@@ -121,9 +121,7 @@ public class Messagerie {
        panel.add(lblNewLabel, gbc_lblNewLabel);
        
        panel_1 = new JPanel(new BorderLayout());
-       panel_1.setBackground(Color.WHITE);
-       //panel_1.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
-       
+       panel_1.setBackground(Color.WHITE);      
        
        
        /* ADD TABLEAU       */
@@ -173,29 +171,22 @@ public class Messagerie {
         return panelMessagerie;
     }
     
-    public class MsgTableSelectionListenerRecu  implements ListSelectionListener
-    {
+    public class MsgTableSelectionListenerRecu  implements ListSelectionListener {
         @Override
-            public void valueChanged(ListSelectionEvent selectionEvent)
-        {
-            if (selectionEvent.getValueIsAdjusting())
-            {
+            public void valueChanged(ListSelectionEvent selectionEvent) {
+            if (selectionEvent.getValueIsAdjusting()) {
                 return;
             }
            
-            ListSelectionModel selectEvent
-                                            = (ListSelectionModel) selectionEvent.getSource();
+            ListSelectionModel selectEvent = (ListSelectionModel) selectionEvent.getSource();
            
-            if (!selectEvent.isSelectionEmpty())
-            {
+            if (!selectEvent.isSelectionEmpty()) {
                    
                     int indexMsgSelected = selectEvent.getMaxSelectionIndex();
-                   
-                  
 
-                            DAOVueMessage msgSelected = messageRecu.get(indexMsgSelected);
-                            
-                            NouveauMessage.creerNouveauMessage(user, true, msgSelected.getExpediteur(), msgSelected.getObjet(), msgSelected.getContenu());
+                    DAOVueMessage msgSelected = messageRecu.get(indexMsgSelected);
+                    
+                    NouveauMessage.creerNouveauMessage(user, true, msgSelected.getExpediteur(), msgSelected.getObjet(), msgSelected.getContenu());
                            
                     
                    
@@ -204,29 +195,22 @@ public class Messagerie {
         }
     }
     
-    public class MsgTableSelectionListenerEnvoye  implements ListSelectionListener
-    {
+    public class MsgTableSelectionListenerEnvoye  implements ListSelectionListener {
         @Override
-            public void valueChanged(ListSelectionEvent selectionEvent)
-        {
-            if (selectionEvent.getValueIsAdjusting())
-            {
+            public void valueChanged(ListSelectionEvent selectionEvent) {
+            if (selectionEvent.getValueIsAdjusting()) {
                 return;
             }
            
-            ListSelectionModel selectEvent
-                                            = (ListSelectionModel) selectionEvent.getSource();
+            ListSelectionModel selectEvent = (ListSelectionModel) selectionEvent.getSource();
            
-            if (!selectEvent.isSelectionEmpty())
-            {
+            if (!selectEvent.isSelectionEmpty()) {
                    
                     int indexMsgSelected = selectEvent.getMaxSelectionIndex();
-                   
-                  
 
-                            DAOVueMessage msgSelected = messageEnvoye.get(indexMsgSelected);
-                            
-                            NouveauMessage.creerNouveauMessage(user, true, msgSelected.getDestinataires(), msgSelected.getObjet(), msgSelected.getContenu());
+                    DAOVueMessage msgSelected = messageEnvoye.get(indexMsgSelected);
+                    
+                    NouveauMessage.creerNouveauMessage(user, true, msgSelected.getDestinataires(), msgSelected.getObjet(), msgSelected.getContenu());
                            
                     
                    

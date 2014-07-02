@@ -293,14 +293,10 @@ public class Menu {
                 FenetreParent.grosMenu.add(monMenu2, gbc);
                 
                 
-                for (int i = 0; i < enfant.size(); ++i)
-                {
-                    if (i == 0)
-                    {
+                for (int i = 0; i < enfant.size(); ++i) {
+                    if (i == 0) {
                         aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom(), true);
-                    }
-                    else
-                    {
+                    } else {
                         aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom());
                     }
                     aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -379,8 +375,7 @@ public class Menu {
         }
     }
    
-   private void viderGras ()
-   {
+   private void viderGras () {
        lblAccueil.setFont(new Font("Times new roman", Font.PLAIN, 14));
        lblNotes.setFont(new Font("Times new roman", Font.PLAIN, 14));
        lblEmploiDuTemps.setFont(new Font("Times new roman", Font.PLAIN, 14));
@@ -388,8 +383,7 @@ public class Menu {
        
    }
    
-   private void remplirFenetre(String titre, String desc)
-   {
+   private void remplirFenetre(String titre, String desc) {
        FenetreParent.panelTop = new JPanel(new BorderLayout());
        JPanel panelTopGauche = new JPanel(new BorderLayout());
        JPanel panelTopCentre = new JPanel(new BorderLayout());
@@ -411,7 +405,6 @@ public class Menu {
        try {
            imgURLAccueil = new java.net.URL("file:img/gard.png");
        } catch (MalformedURLException e) {
-           // TODO Auto-generated catch block
            log4j.error("image existe pas");
 
        }

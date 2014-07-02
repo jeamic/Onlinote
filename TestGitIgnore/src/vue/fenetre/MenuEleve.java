@@ -292,8 +292,7 @@ public class MenuEleve {
         }
     }
    
-   private void viderGras ()
-   {
+   private void viderGras () {
        lblAccueil.setFont(new Font("Times new roman", Font.PLAIN, 14));
        lblNotes.setFont(new Font("Times new roman", Font.PLAIN, 14));
        lblEmploiDuTemps.setFont(new Font("Times new roman", Font.PLAIN, 14));
@@ -301,8 +300,7 @@ public class MenuEleve {
        
    }
    
-   private void remplirFenetre(String titre, String desc)
-   {
+   private void remplirFenetre(String titre, String desc) {
        FenetreEleve.panelTop = new JPanel(new BorderLayout());
        JPanel panelTopGauche = new JPanel(new BorderLayout());
        JPanel panelTopCentre = new JPanel(new BorderLayout());

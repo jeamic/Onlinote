@@ -96,8 +96,7 @@ public class EmploiDuTemps {
         
         List<String> dateCours = new ArrayList<String>();
         
-        for (int i = 0; i < 5;++i)
-        {
+        for (int i = 0; i < 5;++i) {
             dateCours.add(dt);
             c.add(Calendar.DATE, 1);
             dt = sdf.format(c.getTime());
@@ -208,8 +207,7 @@ public class EmploiDuTemps {
         
         List<String> dateCours = new ArrayList<String>();
         
-        for (int i = 0; i < 5;++i)
-        {
+        for (int i = 0; i < 5;++i) {
             dateCours.add(dt);
             c.add(Calendar.DATE, 1);
             dt = sdf.format(c.getTime());

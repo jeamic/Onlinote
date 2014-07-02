@@ -136,13 +136,11 @@ public class NotesProf {
          
         
         
-        for (int i =0;i<listEleve.size();++i)
-        {
+        for (int i =0;i<listEleve.size();++i) {
             comboBox.addItem(new ComboItem(listEleve.get(i).getNom() + " " + listEleve.get(i).getPrenom(), listEleve.get(i).getIdEleve()));
         }
         
-        for (int i =0;i<listControle.size();++i)
-        {
+        for (int i =0;i<listControle.size();++i) {
             comboBox_1.addItem(new ComboItem(listControle.get(i).getTitre(), listControle.get(i).getIdControle()));
         }
         

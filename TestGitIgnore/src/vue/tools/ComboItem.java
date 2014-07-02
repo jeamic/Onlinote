@@ -10,18 +10,15 @@ public class ComboItem {
     }
     
     @Override
-    public String toString()
-    {
+    public String toString() {
         return key;
     }
     
-    public String getKey()
-    {
+    public String getKey() {
         return key;
     }
     
-    public int getValue()
-    {
+    public int getValue() {
         return value;
     }
 
