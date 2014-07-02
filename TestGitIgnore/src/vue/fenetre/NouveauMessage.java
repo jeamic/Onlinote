@@ -30,11 +30,11 @@ public class NouveauMessage {
     
     private static JFrame frmMessage;
     private JPanel panel;
-    private JPanel panel_1;
+    private JPanel panel1;
     private JTextField txtDestinataire;
-    private JPanel panel_2;
+    private JPanel panel2;
     private JButton btnEnvoyer;
-    private JPanel panel_3;
+    private JPanel panel3;
     private JTextField txtSujet;
     private JTextArea txtrMssage;
     private Personne user = null;
@@ -51,12 +51,12 @@ public class NouveauMessage {
         
         panel = new JPanel();
         frmMessage.getContentPane().add(panel, BorderLayout.NORTH);
-        GridBagLayout gbl_panel = new GridBagLayout();
-        gbl_panel.columnWidths = new int[]{0, 0};
-        gbl_panel.rowHeights = new int[]{0, 0};
-        gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-        panel.setLayout(gbl_panel);
+        GridBagLayout gblpanel = new GridBagLayout();
+        gblpanel.columnWidths = new int[]{0, 0};
+        gblpanel.rowHeights = new int[]{0, 0};
+        gblpanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gblpanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+        panel.setLayout(gblpanel);
         panel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         
         txtDestinataire = new JTextField();
@@ -78,20 +78,20 @@ public class NouveauMessage {
         }
         txtDestinataire.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtDestinataire.setToolTipText("Destinataire");
-        GridBagConstraints gbc_txtDestinataire = new GridBagConstraints();
-        gbc_txtDestinataire.fill = GridBagConstraints.HORIZONTAL;
-        gbc_txtDestinataire.gridx = 0;
-        gbc_txtDestinataire.gridy = 0;
-        panel.add(txtDestinataire, gbc_txtDestinataire);
+        GridBagConstraints gbctxtDestinataire = new GridBagConstraints();
+        gbctxtDestinataire.fill = GridBagConstraints.HORIZONTAL;
+        gbctxtDestinataire.gridx = 0;
+        gbctxtDestinataire.gridy = 0;
+        panel.add(txtDestinataire, gbctxtDestinataire);
         txtDestinataire.setColumns(10);
         
-        panel_1 = new JPanel();
-        frmMessage.getContentPane().add(panel_1, BorderLayout.CENTER);
-        panel_1.setLayout(new BorderLayout(0, 0));
-        panel_1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        panel1 = new JPanel();
+        frmMessage.getContentPane().add(panel1, BorderLayout.CENTER);
+        panel1.setLayout(new BorderLayout(0, 0));
+        panel1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         
-        panel_2 = new JPanel(new BorderLayout());
-        panel_1.add(panel_2, BorderLayout.SOUTH);
+        panel2 = new JPanel(new BorderLayout());
+        panel1.add(panel2, BorderLayout.SOUTH);
         
         btnEnvoyer = new JButton("Envoyer");
         btnEnvoyer.setVisible(!isRepondre);
@@ -108,7 +108,7 @@ public class NouveauMessage {
                 NouveauMessage.reussiNouveauMessage();
             }
         });
-        panel_2.add(btnEnvoyer, BorderLayout.CENTER);
+        panel2.add(btnEnvoyer, BorderLayout.CENTER);
         
         btnRepondre = new JButton("Repondre");
         btnRepondre.setVisible(isRepondre);
@@ -117,7 +117,7 @@ public class NouveauMessage {
                 creerNouveauMessage(user, false, dest, "RE:"+ obj, "");
             }
         });
-        panel_2.add(btnRepondre, BorderLayout.WEST);
+        panel2.add(btnRepondre, BorderLayout.WEST);
         
         btnSupprimer = new JButton("Supprimer");
         btnSupprimer.setVisible(isRepondre);
@@ -126,11 +126,11 @@ public class NouveauMessage {
                
             }
         });
-        panel_2.add(btnSupprimer, BorderLayout.EAST);
+        panel2.add(btnSupprimer, BorderLayout.EAST);
         
-        panel_3 = new JPanel();
-        panel_1.add(panel_3, BorderLayout.NORTH);
-        panel_3.setLayout(new BorderLayout(0, 0));
+        panel3 = new JPanel();
+        panel1.add(panel3, BorderLayout.NORTH);
+        panel3.setLayout(new BorderLayout(0, 0));
         
         txtSujet = new JTextField();
         txtSujet.addMouseListener(new MouseAdapter(){
@@ -149,8 +149,8 @@ public class NouveauMessage {
         if (isRepondre) {
             txtSujet.setEditable(false);
         }
-        panel_3.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
-        panel_3.add(txtSujet, BorderLayout.NORTH);
+        panel3.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
+        panel3.add(txtSujet, BorderLayout.NORTH);
         txtSujet.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtSujet.setColumns(10);
         
@@ -173,7 +173,7 @@ public class NouveauMessage {
         }
         txtrMssage.setBorder((BorderFactory.createLineBorder(Color.black)));
         txtrMssage.setLineWrap(true);
-        panel_1.add(txtrMssage, BorderLayout.CENTER);
+        panel1.add(txtrMssage, BorderLayout.CENTER);
         frmMessage.setResizable(false);
         
 

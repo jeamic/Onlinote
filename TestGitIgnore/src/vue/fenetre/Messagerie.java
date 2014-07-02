@@ -34,7 +34,7 @@ public class Messagerie {
     private Personne user = null;
     private List<DAOVueMessage> messageRecu = null;
     private List<DAOVueMessage> messageEnvoye = null;
-    private JPanel panel_1 = null;
+    private JPanel panel1 = null;
     private JPanel panel = null;
     public Messagerie (Personne personne)
     {
@@ -44,21 +44,21 @@ public class Messagerie {
        panel = new JPanel();
        panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
        panelMessagerie.add(panel, BorderLayout.WEST);
-       GridBagLayout gbl_panel = new GridBagLayout();
-       gbl_panel.columnWidths = new int[]{46, 0};
-       gbl_panel.rowHeights = new int[]{14, 0, 0, 0, 0, 0, 0, 0, 0};
-       gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-       gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-       panel.setLayout(gbl_panel);
+       GridBagLayout gblpanel = new GridBagLayout();
+       gblpanel.columnWidths = new int[]{46, 0};
+       gblpanel.rowHeights = new int[]{14, 0, 0, 0, 0, 0, 0, 0, 0};
+       gblpanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+       gblpanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+       panel.setLayout(gblpanel);
        final JLabel lblNewLabel = new JLabel("Messages envoyés");
-       final JLabel lblNewLabel_1 = new JLabel("<html><u>Messages reçus</u></html>");
-       lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-       lblNewLabel_1.addMouseListener(new MouseAdapter() {  
+       final JLabel lblNewLabel1 = new JLabel("<html><u>Messages reçus</u></html>");
+       lblNewLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+       lblNewLabel1.addMouseListener(new MouseAdapter() {  
            public void mouseClicked(MouseEvent e) {
                
-               lblNewLabel_1.setText("<html><u>Messages reçus</u></html>");
+               lblNewLabel1.setText("<html><u>Messages reçus</u></html>");
                lblNewLabel.setText("Messages envoyés");
-               panel_1.removeAll();
+               panel1.removeAll();
                ModelTableRecu model = new ModelTableRecu();
                JTable table = new JTable(model);
                table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerRecu());
@@ -70,29 +70,29 @@ public class Messagerie {
                model.updateTableData(messageRecu);
                
                
-               panel_1.add(panelScrollTable);
+               panel1.add(panelScrollTable);
                
-               panel_1.repaint();
-               panel_1.validate();
+               panel1.repaint();
+               panel1.validate();
                panel.repaint();
                panel.validate();
                
           }  
        });
-       GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-       gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-       gbc_lblNewLabel_1.anchor = GridBagConstraints.NORTHWEST;
-       gbc_lblNewLabel_1.gridx = 0;
-       gbc_lblNewLabel_1.gridy = 0;
-       panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+       GridBagConstraints gbclblNewLabel1 = new GridBagConstraints();
+       gbclblNewLabel1.insets = new Insets(0, 0, 5, 0);
+       gbclblNewLabel1.anchor = GridBagConstraints.NORTHWEST;
+       gbclblNewLabel1.gridx = 0;
+       gbclblNewLabel1.gridy = 0;
+       panel.add(lblNewLabel1, gbclblNewLabel1);
        
        
        lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        lblNewLabel.addMouseListener(new MouseAdapter() {  
            public void mouseClicked(MouseEvent e) {
                lblNewLabel.setText("<html><u>Messages envoyés</u></html>");
-               lblNewLabel_1.setText("Messages reçus");
-               panel_1.removeAll();
+               lblNewLabel1.setText("Messages reçus");
+               panel1.removeAll();
                ModelTableEnvoye model = new ModelTableEnvoye();
                JTable table = new JTable(model);
                table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerEnvoye());
@@ -104,24 +104,24 @@ public class Messagerie {
                model.updateTableData(messageEnvoye);
                
                
-               panel_1.add(panelScrollTable);
+               panel1.add(panelScrollTable);
                
-               panel_1.repaint();
-               panel_1.validate();
+               panel1.repaint();
+               panel1.validate();
                panel.repaint();
                panel.validate();
                
           }  
        });
-       GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-       gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-       gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-       gbc_lblNewLabel.gridx = 0;
-       gbc_lblNewLabel.gridy = 2;
-       panel.add(lblNewLabel, gbc_lblNewLabel);
+       GridBagConstraints gbclblNewLabel = new GridBagConstraints();
+       gbclblNewLabel.anchor = GridBagConstraints.WEST;
+       gbclblNewLabel.insets = new Insets(0, 0, 5, 0);
+       gbclblNewLabel.gridx = 0;
+       gbclblNewLabel.gridy = 2;
+       panel.add(lblNewLabel, gbclblNewLabel);
        
-       panel_1 = new JPanel(new BorderLayout());
-       panel_1.setBackground(Color.WHITE);      
+       panel1 = new JPanel(new BorderLayout());
+       panel1.setBackground(Color.WHITE);      
        
        
        /* ADD TABLEAU       */
@@ -137,19 +137,19 @@ public class Messagerie {
        model.updateTableData(messageRecu);
        
        
-       panel_1.add(panelScrollTable);
+       panel1.add(panelScrollTable);
        
        
        /*Fin add tableau */
-       panelMessagerie.add(panel_1, BorderLayout.CENTER);
+       panelMessagerie.add(panel1, BorderLayout.CENTER);
        
-       JPanel panel_2 = new JPanel();
-       panelMessagerie.add(panel_2, BorderLayout.NORTH);
+       JPanel panel2 = new JPanel();
+       panelMessagerie.add(panel2, BorderLayout.NORTH);
        
        JButton btnNouveau = new JButton("Nouveau");
 
        btnNouveau.setHorizontalAlignment(SwingConstants.LEFT);
-       panel_2.add(btnNouveau);
+       panel2.add(btnNouveau);
        
        JButton btnSupprimer = new JButton("Supprimer");
        btnSupprimer.addActionListener(new ActionListener() {
@@ -158,7 +158,7 @@ public class Messagerie {
            }
        });
        btnSupprimer.setVisible(false);
-       panel_2.add(btnSupprimer);
+       panel2.add(btnSupprimer);
        
        btnNouveau.addMouseListener(new MouseAdapter() {  
            public void mouseClicked(MouseEvent e) {  

@@ -133,11 +133,11 @@ public class EmploiDuTemps {
             }
         });
         
-        List<DAOVueCours> CoursLundi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursMardi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursMercredi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursJeudi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursVendredi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursLundi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursMardi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursMercredi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursJeudi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursVendredi = new ArrayList<DAOVueCours>();
         
         JLabel centre = new JLabel("Semaine du : " + dateCours.get(0) + " au : " + dateCours.get(4));
         centre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -149,23 +149,23 @@ public class EmploiDuTemps {
         for (int i=0; i < 10 ;++i) {
             
             if (h== 8 || h == 9) {
-                CoursLundi.add(gestionnaireCours.getCours(idEleve, dateCours.get(0) + " 0" + h + ":00:02"));
-                CoursMardi.add(gestionnaireCours.getCours(idEleve, dateCours.get(1)  + " 0" + h + ":00:02"));
-                CoursMercredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(2) + " 0" + h + ":00:02"));
-                CoursJeudi.add(gestionnaireCours.getCours(idEleve, dateCours.get(3) + " 0" + h + ":00:02"));
-                CoursVendredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(4) + " 0" + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(idEleve, dateCours.get(0) + " 0" + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(idEleve, dateCours.get(1)  + " 0" + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(2) + " 0" + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(idEleve, dateCours.get(3) + " 0" + h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(4) + " 0" + h + ":00:02"));
             } else {
-                CoursLundi.add(gestionnaireCours.getCours(idEleve, dateCours.get(0) +" " + h + ":00:02"));
-                CoursMardi.add(gestionnaireCours.getCours(idEleve, dateCours.get(1) +" " + h + ":00:02"));
-                CoursMercredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(2) +" " + h + ":00:02"));
-                CoursJeudi.add(gestionnaireCours.getCours(idEleve, dateCours.get(3) +" "+ h + ":00:02"));
-                CoursVendredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(4) +" " + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(idEleve, dateCours.get(0) +" " + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(idEleve, dateCours.get(1) +" " + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(2) +" " + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(idEleve, dateCours.get(3) +" "+ h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(4) +" " + h + ":00:02"));
             }
 
             h = h+1;
         }
         
-        model.updateTableData(heures, CoursLundi, CoursMardi, CoursMercredi, CoursJeudi, CoursVendredi);
+        model.updateTableData(heures, coursLundi, coursMardi, coursMercredi, coursJeudi, coursVendredi);
         
         eDT.add(panelScrollTable, BorderLayout.CENTER);
         eDT.add(panelTop, BorderLayout.NORTH);
@@ -247,32 +247,32 @@ public class EmploiDuTemps {
         panelTop.add(gauche, BorderLayout.WEST);
         panelTop.add(centre, BorderLayout.CENTER);
         
-        List<DAOVueCours> CoursLundi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursMardi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursMercredi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursJeudi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> CoursVendredi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursLundi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursMardi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursMercredi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursJeudi = new ArrayList<DAOVueCours>();
+        List<DAOVueCours> coursVendredi = new ArrayList<DAOVueCours>();
 
         for (int i=0; i < 10 ;++i) {
             
             if (h== 8 || h == 9) {
-                CoursLundi.add(gestionnaireCours.getCours(ideleve, dateCours.get(0) + " 0" + h + ":00:02"));
-                CoursMardi.add(gestionnaireCours.getCours(ideleve, dateCours.get(1)  + " 0" + h + ":00:02"));
-                CoursMercredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(2) + " 0" + h + ":00:02"));
-                CoursJeudi.add(gestionnaireCours.getCours(ideleve, dateCours.get(3) + " 0" + h + ":00:02"));
-                CoursVendredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(4) + " 0" + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(ideleve, dateCours.get(0) + " 0" + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(ideleve, dateCours.get(1)  + " 0" + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(2) + " 0" + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(ideleve, dateCours.get(3) + " 0" + h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(4) + " 0" + h + ":00:02"));
             } else {
-                CoursLundi.add(gestionnaireCours.getCours(ideleve, dateCours.get(0) +" " + h + ":00:02"));
-                CoursMardi.add(gestionnaireCours.getCours(ideleve, dateCours.get(1) +" " + h + ":00:02"));
-                CoursMercredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(2) +" " + h + ":00:02"));
-                CoursJeudi.add(gestionnaireCours.getCours(ideleve, dateCours.get(3) +" "+ h + ":00:02"));
-                CoursVendredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(4) +" " + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(ideleve, dateCours.get(0) +" " + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(ideleve, dateCours.get(1) +" " + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(2) +" " + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(ideleve, dateCours.get(3) +" "+ h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(4) +" " + h + ":00:02"));
             }
 
             h = h+1;
         }
         
-        model.updateTableData(heures, CoursLundi, CoursMardi, CoursMercredi, CoursJeudi, CoursVendredi);
+        model.updateTableData(heures, coursLundi, coursMardi, coursMercredi, coursJeudi, coursVendredi);
         
         eDT.add(panelScrollTable, BorderLayout.CENTER);
         eDT.add(panelTop, BorderLayout.NORTH);

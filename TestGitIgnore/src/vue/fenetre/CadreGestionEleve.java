@@ -18,10 +18,10 @@ public class CadreGestionEleve {
     private JPanel panelCadre = null;
     public CadreGestionEleve() {
             
-        GridBagLayout gbl_panelCadre = new GridBagLayout();
-        gbl_panelCadre.rowWeights = new double[]{1.0};
-        gbl_panelCadre.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
-        panelCadre = new JPanel(gbl_panelCadre);
+        GridBagLayout gblpanelCadre = new GridBagLayout();
+        gblpanelCadre.rowWeights = new double[]{1.0};
+        gblpanelCadre.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+        panelCadre = new JPanel(gblpanelCadre);
         GridBagConstraints gbc = new GridBagConstraints();
         Border borderClasse = BorderFactory.createTitledBorder("Classes");
 
@@ -43,80 +43,80 @@ public class CadreGestionEleve {
         JPanel panel = new JPanel(new BorderLayout());
         Border border6ieme = BorderFactory.createTitledBorder("6ieme");
         panel.setBorder(border6ieme);
-        GridBagConstraints gbc_panel = new GridBagConstraints();
-        gbc_panel.insets = new Insets(0, 0, 0, 5);
-        gbc_panel.fill = GridBagConstraints.BOTH;
-        gbc_panel.gridx = 0;
-        gbc_panel.gridy = 0;
-        gbc_panel.gridwidth=2;
-        panelCadre.add(panel, gbc_panel);
+        GridBagConstraints gbcpanel = new GridBagConstraints();
+        gbcpanel.insets = new Insets(0, 0, 0, 5);
+        gbcpanel.fill = GridBagConstraints.BOTH;
+        gbcpanel.gridx = 0;
+        gbcpanel.gridy = 0;
+        gbcpanel.gridwidth=2;
+        panelCadre.add(panel, gbcpanel);
         
-        JPanel panel_1 = new JPanel();
-        GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-        gbc_panel_1.insets = new Insets(0, 0, 0, 5);
-        gbc_panel_1.fill = GridBagConstraints.BOTH;
-        gbc_panel_1.gridx = 1;
-        gbc_panel_1.gridy = 0;
-        panelCadre.add(panel_1, gbc_panel_1);
+        JPanel panel1 = new JPanel();
+        GridBagConstraints gbcpanel1 = new GridBagConstraints();
+        gbcpanel1.insets = new Insets(0, 0, 0, 5);
+        gbcpanel1.fill = GridBagConstraints.BOTH;
+        gbcpanel1.gridx = 1;
+        gbcpanel1.gridy = 0;
+        panelCadre.add(panel1, gbcpanel1);
         
-        JPanel panel_2 = new JPanel(new BorderLayout());
+        JPanel panel2 = new JPanel(new BorderLayout());
         Border border5ieme = BorderFactory.createTitledBorder("5ieme");
-        panel_2.setBorder(border5ieme);
-        GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-        gbc_panel_2.insets = new Insets(0, 0, 0, 5);
-        gbc_panel_2.fill = GridBagConstraints.BOTH;
-        gbc_panel_2.gridx = 2;
-        gbc_panel_2.gridy = 0;
-        gbc_panel_2.gridwidth=2;
-        panelCadre.add(panel_2, gbc_panel_2);
+        panel2.setBorder(border5ieme);
+        GridBagConstraints gbcpanel2 = new GridBagConstraints();
+        gbcpanel2.insets = new Insets(0, 0, 0, 5);
+        gbcpanel2.fill = GridBagConstraints.BOTH;
+        gbcpanel2.gridx = 2;
+        gbcpanel2.gridy = 0;
+        gbcpanel2.gridwidth=2;
+        panelCadre.add(panel2, gbcpanel2);
         
-        JPanel panel_3 = new JPanel();
-        GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-        gbc_panel_3.insets = new Insets(0, 0, 0, 5);
-        gbc_panel_3.fill = GridBagConstraints.BOTH;
-        gbc_panel_3.gridx = 3;
-        gbc_panel_3.gridy = 0;
-        panelCadre.add(panel_3, gbc_panel_3);
+        JPanel panel3 = new JPanel();
+        GridBagConstraints gbcpanel3 = new GridBagConstraints();
+        gbcpanel3.insets = new Insets(0, 0, 0, 5);
+        gbcpanel3.fill = GridBagConstraints.BOTH;
+        gbcpanel3.gridx = 3;
+        gbcpanel3.gridy = 0;
+        panelCadre.add(panel3, gbcpanel3);
         
-        JPanel panel_4 = new JPanel(new BorderLayout());
+        JPanel panel4 = new JPanel(new BorderLayout());
         Border border4ieme = BorderFactory.createTitledBorder("4ieme");
-        panel_4.setBorder(border4ieme);
-        GridBagConstraints gbc_panel_4 = new GridBagConstraints();
-        gbc_panel_4.insets = new Insets(0, 0, 0, 5);
-        gbc_panel_4.fill = GridBagConstraints.BOTH;
-        gbc_panel_4.gridx = 4;
-        gbc_panel_4.gridy = 0;
-        gbc_panel_4.gridwidth=2;
-        panelCadre.add(panel_4, gbc_panel_4);
+        panel4.setBorder(border4ieme);
+        GridBagConstraints gbcpanel4 = new GridBagConstraints();
+        gbcpanel4.insets = new Insets(0, 0, 0, 5);
+        gbcpanel4.fill = GridBagConstraints.BOTH;
+        gbcpanel4.gridx = 4;
+        gbcpanel4.gridy = 0;
+        gbcpanel4.gridwidth=2;
+        panelCadre.add(panel4, gbcpanel4);
         
-        JPanel panel_5 = new JPanel();
-        GridBagConstraints gbc_panel_5 = new GridBagConstraints();
-        gbc_panel_5.insets = new Insets(0, 0, 0, 5);
-        gbc_panel_5.fill = GridBagConstraints.BOTH;
-        gbc_panel_5.gridx = 5;
-        gbc_panel_5.gridy = 0;
-        panelCadre.add(panel_5, gbc_panel_5);
+        JPanel panel5 = new JPanel();
+        GridBagConstraints gbcpanel5 = new GridBagConstraints();
+        gbcpanel5.insets = new Insets(0, 0, 0, 5);
+        gbcpanel5.fill = GridBagConstraints.BOTH;
+        gbcpanel5.gridx = 5;
+        gbcpanel5.gridy = 0;
+        panelCadre.add(panel5, gbcpanel5);
         
-        JPanel panel_6 = new JPanel(new BorderLayout());
+        JPanel panel6 = new JPanel(new BorderLayout());
         Border border3ieme = BorderFactory.createTitledBorder("3ieme");
-        panel_6.setBorder(border3ieme);
-        GridBagConstraints gbc_panel_6 = new GridBagConstraints();
-        gbc_panel_6.insets = new Insets(0, 0, 0, 5);
-        gbc_panel_6.fill = GridBagConstraints.BOTH;
-        gbc_panel_6.gridx = 6;
-        gbc_panel_6.gridy = 0;
-        gbc_panel_6.gridwidth=2;
-        panelCadre.add(panel_6, gbc_panel_6);
+        panel6.setBorder(border3ieme);
+        GridBagConstraints gbcpanel6 = new GridBagConstraints();
+        gbcpanel6.insets = new Insets(0, 0, 0, 5);
+        gbcpanel6.fill = GridBagConstraints.BOTH;
+        gbcpanel6.gridx = 6;
+        gbcpanel6.gridy = 0;
+        gbcpanel6.gridwidth=2;
+        panelCadre.add(panel6, gbcpanel6);
         
-        JPanel panel_7 = new JPanel();
-        GridBagConstraints gbc_panel_7 = new GridBagConstraints();
-        gbc_panel_7.fill = GridBagConstraints.BOTH;
-        gbc_panel_7.gridx = 7;
-        gbc_panel_7.gridy = 0;
-        panelCadre.add(panel_7, gbc_panel_7);
+        JPanel panel7 = new JPanel();
+        GridBagConstraints gbcpanel7 = new GridBagConstraints();
+        gbcpanel7.fill = GridBagConstraints.BOTH;
+        gbcpanel7.gridx = 7;
+        gbcpanel7.gridy = 0;
+        panelCadre.add(panel7, gbcpanel7);
 
         
-        // Ajout des +/- sur chaques cadres (panel, panel_2, panel_4 et panel_6)
+        // Ajout des +/- sur chaques cadres (panel, panel2, panel4 et panel6)
         
         JLabel plus6 = new JLabel("+");
         JLabel vide6 = new JLabel("  ");
@@ -172,7 +172,7 @@ public class CadreGestionEleve {
             }  
         });
         
-        panel_2.add(plusMoins5, BorderLayout.SOUTH);
+        panel2.add(plusMoins5, BorderLayout.SOUTH);
         
         JLabel plus4 = new JLabel("+");
         JLabel vide4 = new JLabel("  ");
@@ -200,7 +200,7 @@ public class CadreGestionEleve {
             }  
         });
         
-        panel_4.add(plusMoins4, BorderLayout.SOUTH);
+        panel4.add(plusMoins4, BorderLayout.SOUTH);
         
         JLabel plus3 = new JLabel("+");
         JLabel vide3 = new JLabel("  ");
@@ -228,7 +228,7 @@ public class CadreGestionEleve {
             }  
         });
         
-        panel_6.add(plusMoins3, BorderLayout.SOUTH);
+        panel6.add(plusMoins3, BorderLayout.SOUTH);
         
         
         

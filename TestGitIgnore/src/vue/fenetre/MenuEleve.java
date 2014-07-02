@@ -65,20 +65,20 @@ public class MenuEleve {
 		menu.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
-		panel_1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		JPanel panel1 = new JPanel();
+		panel.add(panel1);
+		panel1.setLayout(new BorderLayout(0, 0));
+		panel1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		
 		
 		JLabel lblNomEleve = new JLabel(personne.getNom() + " " + personne.getPrenom());
 		lblNomEleve.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblNomEleve);
+		panel1.add(lblNomEleve);
 		
 		
 		JLabel lblEleve = new JLabel();
 		lblEleve.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblEleve, BorderLayout.NORTH);
+		panel1.add(lblEleve, BorderLayout.NORTH);
 		
 		lblEleve.setFont(new Font("Times new roman", Font.PLAIN, 14));
 		lblEleve.setText("Elève :");

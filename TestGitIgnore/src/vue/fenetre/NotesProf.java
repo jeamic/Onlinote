@@ -29,7 +29,7 @@ public class NotesProf {
     private List<DAOVueControle> listControle = null;
     private JTextField textField;
     private JComboBox<ComboItem> comboBox = null;
-    private JComboBox<ComboItem> comboBox_1 = null;
+    private JComboBox<ComboItem> comboBox1 = null;
     private JButton btnNewButton = null;
     
     
@@ -40,22 +40,22 @@ public class NotesProf {
         
         JPanel panel = new JPanel();
         notes.add(panel, BorderLayout.CENTER);
-        GridBagLayout gbl_panel = new GridBagLayout();
-        gbl_panel.columnWidths = new int[]{0, 0, 74, 0, 0, 0, 0, 0};
-        gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        gbl_panel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-        gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        panel.setLayout(gbl_panel);
+        GridBagLayout gblpanel = new GridBagLayout();
+        gblpanel.columnWidths = new int[]{0, 0, 74, 0, 0, 0, 0, 0};
+        gblpanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        gblpanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+        gblpanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+        panel.setLayout(gblpanel);
         
         comboBox = new JComboBox<>();
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                if (comboBox_1.getSelectedItem() != null) {
+                if (comboBox1.getSelectedItem() != null) {
                     textField.setEditable(true);
                     btnNewButton.setEnabled(true);
                     textField.setText("");
                     
-                    Object itemC = comboBox_1.getSelectedItem();
+                    Object itemC = comboBox1.getSelectedItem();
                     Object itemE = comboBox.getSelectedItem();
                     GestionNotes gestionnaireNotes = new GestionNotes();
                     DAOVueNote note = gestionnaireNotes.getNoteControle(((ComboItem)itemE).getValue(), ((ComboItem)itemC).getValue());
@@ -67,35 +67,35 @@ public class NotesProf {
                 }
             }
         });
-        GridBagConstraints gbc_comboBox = new GridBagConstraints();
-        gbc_comboBox.insets = new Insets(0, 0, 0, 5);
-        gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-        gbc_comboBox.gridx = 0;
-        gbc_comboBox.gridy = 8;
-        panel.add(comboBox, gbc_comboBox);
+        GridBagConstraints gbccomboBox = new GridBagConstraints();
+        gbccomboBox.insets = new Insets(0, 0, 0, 5);
+        gbccomboBox.fill = GridBagConstraints.HORIZONTAL;
+        gbccomboBox.gridx = 0;
+        gbccomboBox.gridy = 8;
+        panel.add(comboBox, gbccomboBox);
         
-        comboBox_1 = new JComboBox<>();
-        GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-        gbc_comboBox_1.insets = new Insets(0, 0, 0, 5);
-        gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_comboBox_1.gridx = 2;
-        gbc_comboBox_1.gridy = 8;
-        panel.add(comboBox_1, gbc_comboBox_1);
+        comboBox1 = new JComboBox<>();
+        GridBagConstraints gbccomboBox1 = new GridBagConstraints();
+        gbccomboBox1.insets = new Insets(0, 0, 0, 5);
+        gbccomboBox1.fill = GridBagConstraints.HORIZONTAL;
+        gbccomboBox1.gridx = 2;
+        gbccomboBox1.gridy = 8;
+        panel.add(comboBox1, gbccomboBox1);
         
         textField = new JTextField();
-        GridBagConstraints gbc_textField = new GridBagConstraints();
-        gbc_textField.insets = new Insets(0, 0, 0, 5);
-        gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textField.gridx = 5;
-        gbc_textField.gridy = 8;
-        panel.add(textField, gbc_textField);
+        GridBagConstraints gbctextField = new GridBagConstraints();
+        gbctextField.insets = new Insets(0, 0, 0, 5);
+        gbctextField.fill = GridBagConstraints.HORIZONTAL;
+        gbctextField.gridx = 5;
+        gbctextField.gridy = 8;
+        panel.add(textField, gbctextField);
         textField.setColumns(10);
         
         btnNewButton = new JButton("Noter");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (textField.isEnabled()) {
-                Object itemC = comboBox_1.getSelectedItem();
+                Object itemC = comboBox1.getSelectedItem();
                 Object itemE = comboBox.getSelectedItem();
                 GestionNotes gestionnaireNotes = new GestionNotes();
                 gestionnaireNotes.ajouterNote(((ComboItem)itemE).getValue(), ((ComboItem)itemC).getKey() , Integer.valueOf(textField.getText()));
@@ -104,10 +104,10 @@ public class NotesProf {
                 }
             }
         });
-        GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-        gbc_btnNewButton.gridx = 6;
-        gbc_btnNewButton.gridy = 8;
-        panel.add(btnNewButton, gbc_btnNewButton);
+        GridBagConstraints gbcbtnNewButton = new GridBagConstraints();
+        gbcbtnNewButton.gridx = 6;
+        gbcbtnNewButton.gridy = 8;
+        panel.add(btnNewButton, gbcbtnNewButton);
         
         GestionNotes gestionnaireNotes = new GestionNotes();
         
@@ -141,7 +141,7 @@ public class NotesProf {
         }
         
         for (int i =0;i<listControle.size();++i) {
-            comboBox_1.addItem(new ComboItem(listControle.get(i).getTitre(), listControle.get(i).getIdControle()));
+            comboBox1.addItem(new ComboItem(listControle.get(i).getTitre(), listControle.get(i).getIdControle()));
         }
         
         
