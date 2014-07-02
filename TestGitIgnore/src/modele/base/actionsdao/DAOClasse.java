@@ -15,7 +15,7 @@ import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueClasse;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueTypeClasse;
 
 public class DAOClasse extends DAOFactory <Classe>{
@@ -27,25 +27,25 @@ public class DAOClasse extends DAOFactory <Classe>{
     
 	@Override
 	public Classe find(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Classe create(Classe obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Classe update(Classe obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(Classe obj) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -97,11 +97,16 @@ public class DAOClasse extends DAOFactory <Classe>{
 
     @Override
     public Classe map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
     
-    public List<DAOVueTypeClasse> countTypeClass () {
+    /**
+     * Compte le nombre de classes de chaque type
+     * 
+     * @return
+     */
+    public List<DAOVueTypeClasse> countTypeClasse () {
         List<DAOVueTypeClasse> listeTypeClasse = new ArrayList<DAOVueTypeClasse>();
         /* déclaration et init des variables nécessaires */
         Statement stmt = null;
@@ -115,6 +120,8 @@ public class DAOClasse extends DAOFactory <Classe>{
   +"CASE"
   +"  WHEN nom_classe LIKE '3%' THEN '3'"
   +"  WHEN nom_classe LIKE '4%' THEN '4'"
+  +"  WHEN nom_classe LIKE '5%' THEN '5'"
+  +"  WHEN nom_classe LIKE '6%' THEN '6'"
   +" END AS      type_classe"
 +" , COUNT(*) AS nombre"
 +" FROM classe"
@@ -122,6 +129,8 @@ public class DAOClasse extends DAOFactory <Classe>{
 +"  CASE"
   +"  WHEN nom_classe LIKE '3%' THEN '3'"
   +"  WHEN nom_classe LIKE '4%' THEN '4'"
+  +"  WHEN nom_classe LIKE '5%' THEN '5'"
+  +"  WHEN nom_classe LIKE '6%' THEN '6'"
   +"END);");
 
             while (res.next()){
@@ -133,8 +142,14 @@ public class DAOClasse extends DAOFactory <Classe>{
         return listeTypeClasse;
     }
     
-    public List<DAOVueEleve> getEleves (String nomClasse){
-        List<DAOVueEleve> listeEleves = new ArrayList<DAOVueEleve>();
+    /**
+     * Obtient la liste des élèves d'une classe
+     * 
+     * @param nomClasse
+     * @return
+     */
+    public List<DAOVuePersonne> getEleves (String nomClasse){
+        List<DAOVuePersonne> listeEleves = new ArrayList<DAOVuePersonne>();
         Statement stmt = null;
         ResultSet res = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -152,7 +167,7 @@ public class DAOClasse extends DAOFactory <Classe>{
                 Personne pers = daoPersonne.find(res.getInt("id_eleve"));
                 DAOEleve daoEleve = new DAOEleve();
                 Eleve eleve = daoEleve.find(res.getInt("id_eleve"));
-                listeEleves.add(new DAOVueEleve(pers, res.getInt("id_classe"), eleve.getIdParent1(), eleve.getIdParent2()));
+                listeEleves.add(new DAOVuePersonne(pers, res.getInt("id_classe"), eleve.getIdParent1(), eleve.getIdParent2()));
             }
             
         } catch (SQLException e) {
@@ -160,6 +175,37 @@ public class DAOClasse extends DAOFactory <Classe>{
         } 
         
         return listeEleves;
+    }
+    
+    /**
+     * Obtient toutes les classes d'un type
+     * 
+     * @param typeClasse
+     * @return
+     */
+    public List<DAOVueClasse> getClasses (int typeClasse){
+        List<DAOVueClasse> listeClasses = new ArrayList<DAOVueClasse>();
+        
+        /* déclaration et init des variables nécessaires */
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * "
+                                + " from classe c"
+                                + " where nom_classe LIKE '"
+                                + typeClasse + "%'"  + ";");
+            while (res.next()){
+                listeClasses.add(new DAOVueClasse(res.getInt("id_classe"), res.getString("nom_classe"), res.getInt("id_prof_principal")));
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }    
+        return listeClasses;
     }
 
 }

@@ -14,7 +14,7 @@ import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueClasse;
 import modele.vue.dao.DAOVueCours;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueMessage;
 import modele.vue.dao.DAOVueNote;
 import modele.vue.dao.DAOVueParent;
@@ -60,11 +60,18 @@ public class Onlinote {
 		 * @test getCours
 		 * 
 		 */
-		/*GestionCours gestCours = new GestionCours();
+        /*try {
+            ConnexionJDBC.getInstance().openConnexion();
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		GestionCours gestCours = new GestionCours();
 		DAOVueCours bla = gestCours.getCours(3, "2014-05-15 10:00:01");
 		
 		System.out.println(bla.getNomClasse() + " " + bla.getMatiere());
 		*/
+		
 		/*
 		 * @ test getNotes
 		 * 

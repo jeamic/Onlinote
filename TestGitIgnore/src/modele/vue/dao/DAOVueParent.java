@@ -10,12 +10,12 @@ public class DAOVueParent {
     private String prenom;
     private String adresse;
     private String email;
-    private List<DAOVueEleve> listeEnfants;
+    private List<DAOVuePersonne> listeEnfants;
     
     public DAOVueParent () {
     }
     
-    public DAOVueParent (Personne parent, List<DAOVueEleve> listeEnfants) {
+    public DAOVueParent (Personne parent, List<DAOVuePersonne> listeEnfants) {
         this.idParent = parent.getIdPersonne();
         this.nom = parent.getNom();
         this.prenom = parent.getPrenom();
@@ -64,11 +64,11 @@ public class DAOVueParent {
         this.email = email;
     }
 
-    public List<DAOVueEleve> getListeEnfants() {
+    public List<DAOVuePersonne> getListeEnfants() {
         return listeEnfants;
     }
 
-    public void setListeEnfants(List<DAOVueEleve> listeEnfants) {
+    public void setListeEnfants(List<DAOVuePersonne> listeEnfants) {
         this.listeEnfants = listeEnfants;
     }
     

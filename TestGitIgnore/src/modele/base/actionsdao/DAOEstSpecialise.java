@@ -23,31 +23,31 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
     
 	@Override
 	public EstSpecialise find(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public EstSpecialise find(String chaine) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public EstSpecialise create(EstSpecialise obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public EstSpecialise update(EstSpecialise obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(EstSpecialise obj) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -76,7 +76,7 @@ public class DAOEstSpecialise extends DAOFactory<EstSpecialise>{
 
     @Override
     public EstSpecialise map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 	

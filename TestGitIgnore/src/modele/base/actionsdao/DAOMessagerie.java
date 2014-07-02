@@ -22,7 +22,7 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
     
 	@Override
 	public Messagerie find(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -57,7 +57,7 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
 
 	@Override
 	public Messagerie update(Messagerie obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -81,7 +81,7 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
 
 	@Override
 	public Messagerie find(String chaine) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -110,7 +110,7 @@ public class DAOMessagerie extends DAOFactory <Messagerie>{
 
     @Override
     public Messagerie map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 }

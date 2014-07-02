@@ -10,10 +10,15 @@ import modele.base.dao.*;
 import modele.vue.dao.DAOVueMessage;
 
 public class GestionMessages {
+    /**
+     * Constructeur par défaut
+     */
     public GestionMessages () {
     }
     
     /**
+     * Envoyer un message
+     * 
      * @param message mandatory field: email
      */
     public void envoyerMessage (DAOVueMessage message) {
@@ -57,18 +62,37 @@ public class GestionMessages {
         }
     }/* fin envoyerMessage() */
     
+    /**
+     * Obtient les messages envoyés
+     * 
+     * @param idPersonne
+     * @return
+     */
     public List <DAOVueMessage> getMessagesEnvoyes (int idPersonne){
         DAOMessage daoMessage = new DAOMessage(); 
         List <DAOVueMessage> listMsg = daoMessage.getMsgEnvoyes(idPersonne);        
         return  listMsg;
     }
     
+    /**
+     * Obtient les messages reçus
+     * 
+     * @param idPersonne
+     * @return
+     */
     public List <DAOVueMessage> getMessagesRecus (int idPersonne){
         DAOMessage daoMessage = new DAOMessage(); 
         List <DAOVueMessage> listMsg = daoMessage.getMsgRecus(idPersonne);        
         return  listMsg;
     }
     
+    /**
+     * Supprimer un message
+     * 
+     * @param idMessage
+     * @param idPersonne
+     * @param envoiRecu
+     */
     public void supprimerMessage (int idMessage, int idPersonne, int envoiRecu){
         DAOMessagerie daoMessagerie = new DAOMessagerie();
         Messagerie msg = new Messagerie(idPersonne, idMessage, envoiRecu);

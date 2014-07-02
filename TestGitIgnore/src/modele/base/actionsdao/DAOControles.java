@@ -23,7 +23,7 @@ public class DAOControles extends DAOFactory <Controles>{
     
 	@Override
 	public Controles find(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -55,13 +55,13 @@ public class DAOControles extends DAOFactory <Controles>{
 
 	@Override
 	public Controles update(Controles obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(Controles obj) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -113,7 +113,7 @@ public class DAOControles extends DAOFactory <Controles>{
 
     @Override
     public Controles map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 }

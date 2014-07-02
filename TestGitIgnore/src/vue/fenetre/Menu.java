@@ -25,7 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modele.base.dao.Personne;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
@@ -47,11 +47,11 @@ public class Menu {
 	private JLabel lblEmploiDuTemps = null;
 	private JLabel lblMessagerie = null;
     private DAOVueParent parent = null;
-    private List<DAOVueEleve> enfant = null;
-	private DAOVueEleve eleveG = null;
+    private List<DAOVuePersonne> enfant = null;
+	private DAOVuePersonne eleveG = null;
 	private Personne personneG = null;
 	
-	public Menu (String ongletEC, Personne personne, DAOVueEleve eleve) {
+	public Menu (String ongletEC, Personne personne, DAOVuePersonne eleve) {
 	    
 	    eleveG = eleve;
 	    personneG = personne;
@@ -244,7 +244,7 @@ public class Menu {
         menu.add(lblMessagerie);
 	}
 	
-   private void switchOnglet(String onglet, Personne personne, DAOVueEleve eleve) {
+   private void switchOnglet(String onglet, Personne personne, DAOVuePersonne eleve) {
        viderGras();
        FenetreParent.changeMenu();
         

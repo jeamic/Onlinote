@@ -8,6 +8,11 @@ public class GestionControles {
     public GestionControles() {
     }
     
+    /**
+     * Ajoute un contrôle dans la base
+     * 
+     * @param daoVueControle
+     */
     public void ajouterControle(DAOVueControle daoVueControle){
         Controles controle = new Controles();
         controle.setIdControle(daoVueControle.getIdControle());

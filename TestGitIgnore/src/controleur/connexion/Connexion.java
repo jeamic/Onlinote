@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 
 import org.apache.log4j.LogManager;
 
@@ -28,8 +28,9 @@ public class Connexion {
 	private Connexion () {
 	}
 	
-	/* Démarre l'application avec un des quatre types de droit*/
 	/**
+	 * Démarre l'application avec un des quatre types de droit
+	 * 
 	 * @param email
 	 * @param password
 	 * @throws InterruptedException 
@@ -61,10 +62,20 @@ public class Connexion {
 		}
 	}
 	
+	/**
+	 * Ouvre la connexion à la base
+	 * 
+	 * @throws SQLException
+	 */
 	public static void openConnexion () throws SQLException {
 	    ConnexionJDBC.getInstance().openConnexion();
 	}
 	
+	/**
+	 * Détermine quel type d'utilisateur se connecte
+	 * 
+	 * @param personne
+	 */
 	private static void definirTypeConnexion (Personne personne) {
 		
 	    //new DAOVueEleveImpl().getEleveById(personne.getIdPersonne())
@@ -86,6 +97,13 @@ public class Connexion {
 		}
 	}
 	
+	/**
+	 * Vérifie le mot de passe
+	 * 
+	 * @param passwordTyped
+	 * @param pers
+	 * @return
+	 */
 	private static boolean isPasswordOk (char [] passwordTyped, Personne pers) {
 		char [] tmpPassword = pers.getMotDePasse().toCharArray();
 		boolean mdpOK = false;

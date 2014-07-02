@@ -16,10 +16,19 @@ public class GestionCours {
      */
     static org.apache.log4j.Logger log4j =  LogManager.getLogger(Connexion.class.getName());
     
+    /**
+     * Constructeur par défaut
+     */
     public GestionCours() {
-        // TODO Auto-generated constructor stub
     }
     
+    /**
+     * Donne un cours pour une date et un élève donnés
+     * 
+     * @param idEleve
+     * @param date
+     * @return
+     */
     public DAOVueCours getCours (int idEleve, String date) {
         DAOVueCours cours = new DAOVueCours();
         DAOCours daoCours = new DAOCours();

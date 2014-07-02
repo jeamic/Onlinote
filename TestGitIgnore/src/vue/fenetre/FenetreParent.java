@@ -25,7 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import modele.base.dao.Personne;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueParent;
 
 import org.apache.log4j.LogManager;
@@ -39,7 +39,7 @@ public class FenetreParent {
 	protected static JPanel panelCenter = null;
 	static JPanel grosMenu = null;
     private DAOVueParent parent = null;
-    private static List<DAOVueEleve> enfant = null;
+    private static List<DAOVuePersonne> enfant = null;
     
     FenetreParent(final Personne personne){
         

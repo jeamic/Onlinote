@@ -35,6 +35,9 @@ public class ConnexionJDBC {
 	 */
 	private Connection connect = null;
 	
+	/**
+	 * Charge les paramètres de la bdd et le driver JDBC
+	 */
 	private ConnexionJDBC ()  {
 		try {
 			loadParamBDD();
@@ -44,6 +47,11 @@ public class ConnexionJDBC {
 		}	
 	}
 	
+	/**
+	 * Classe pour la gestion du Singleton de connexion à la bdd
+	 * 
+	 * @author Gir
+	 */
 	private static class ConnexionJDBCHolder {
 		private ConnexionJDBCHolder () {
 		}
@@ -52,7 +60,7 @@ public class ConnexionJDBC {
 	
 	/**
 	 * Méthode qui va nous retourner notre instance de connexion à la bdd
-	 * et la créer si elle n'existe pas...
+	 * et la créer si elle n'existe pas
 	 * @return
 	 * @throws ClassNotFoundException 
 	 * @throws IllegalAccessException 
@@ -63,14 +71,27 @@ public class ConnexionJDBC {
 		return ConnexionJDBCHolder.INSTANCE;
 	}
 	
+	/**
+	 * Renvoie la connexion
+	 * 
+	 * @return
+	 */
 	public Connection getConnection () {
 		return connect;
 	}
 	
+	/**
+	 * Ouvre la connexion
+	 * 
+	 * @throws SQLException
+	 */
 	public void openConnexion () throws SQLException {
         connect = DriverManager.getConnection(bddAddress, bddLogin, bddPassword);
 	}
 	
+	/**
+	 * Ferme la connexion
+	 */
 	public void closeConnection () {
 	    try {
             connect.close();

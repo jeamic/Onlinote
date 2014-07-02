@@ -9,7 +9,7 @@ import modele.base.dao.Categorie;
 import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 
 import org.apache.log4j.LogManager;
 
@@ -86,19 +86,19 @@ public class DAOPersonne extends DAOFactory<Personne>{
 
 	@Override
 	public Personne create(Personne obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Personne update(Personne obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(Personne obj) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -127,13 +127,19 @@ public class DAOPersonne extends DAOFactory<Personne>{
 
     @Override
     public Personne map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
     
-    public List<DAOVueEleve> getEnfants (int idParent) {
+    /**
+     * Obtient les enfants d'un parent
+     * 
+     * @param idParent
+     * @return
+     */
+    public List<DAOVuePersonne> getEnfants (int idParent) {
         /* déclaration et init des variables nécessaires */
-        List<DAOVueEleve> listeEnfants = new ArrayList<DAOVueEleve>();
+        List<DAOVuePersonne> listeEnfants = new ArrayList<DAOVuePersonne>();
         Statement stmt = null;
         ResultSet res = null;
         /*ConnexionJDBC instance = ConnexionJDBC.getInstance();
@@ -152,7 +158,7 @@ public class DAOPersonne extends DAOFactory<Personne>{
             while (res.next()){
                 Personne eleve_personne = daoPersonne.find(res.getInt("id_eleve"));
                 Eleve eleve = daoEleve.find(eleve_personne.getIdPersonne());
-                listeEnfants.add(new DAOVueEleve(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2()));
+                listeEnfants.add(new DAOVuePersonne(eleve_personne, eleve.getidClasse(), eleve.getIdParent1(), eleve.getIdParent2()));
             }
             
         } catch (SQLException e) {
@@ -160,5 +166,49 @@ public class DAOPersonne extends DAOFactory<Personne>{
         }
         return listeEnfants;
     }
+    
+    /**
+     * Trouve une personne par nom ou prénom
+     * ou seulement contenant le texte de recherche
+     * @param name
+     * @return
+     */
+    public List<DAOVuePersonne> findPersonneByName (String name){
+        /* déclaration et init des variables nécessaires */
+        DAOVuePersonne daoVuePersonne = null;
+        Personne personne = null;
+        List<DAOVuePersonne> listePersonne = null;
+        
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = instance.getConnection();
+        
+        try {
+            
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * "
+                                + " from personne "
+                                + " where nom LIKE '" + name + "%' "
+                                 + "or prenom LIKE '" + name + "%' ");
+            listePersonne = new ArrayList<DAOVuePersonne>();
+            
+            while (res.next()){
+                personne = new Personne();
+                personne.setIdPersonne(res.getInt("id_personne"));
+                personne.setNom(res.getString("nom"));
+                personne.setPrenom(res.getString("prenom"));
+                personne.setAdresse(res.getString("adresse"));
+                personne.setEmail(res.getString("email"));
+                
+                /* création de l'objet correspondant à l'élève recherchée */
+                daoVuePersonne = new DAOVuePersonne(personne, 0, 0, 0);
+                listePersonne.add(daoVuePersonne);
+            }
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
 
+        return listePersonne;
+    }
 }

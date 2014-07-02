@@ -27,31 +27,31 @@ public class DAOCours extends DAOFactory<Cours>{
 
 	@Override
 	public Cours find(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Cours create(Cours obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Cours update(Cours obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(Cours obj) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public Cours find(String chaine /*format: 2014-05-15 10:00:01 trouve tous les cours à partir de cette date */) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -79,8 +79,8 @@ public class DAOCours extends DAOFactory<Cours>{
     }
     
     /**
-     * Renvoie un cours, la matière et la salle
-     *  pour un élève donnée à une heure donnée
+     * Obtient les cours d'un élève à une date donnée
+     *  
      * @param idEleve
      * @param date format: 2014-05-15 10:00:01
      * @return 
@@ -119,7 +119,7 @@ public class DAOCours extends DAOFactory<Cours>{
 
     @Override
     public Cours map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 

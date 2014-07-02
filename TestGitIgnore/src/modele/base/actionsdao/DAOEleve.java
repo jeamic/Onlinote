@@ -6,7 +6,7 @@ import java.util.List;
 import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
-import modele.vue.dao.DAOVueEleve;
+import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueNote;
 
 import org.apache.log4j.LogManager;
@@ -21,9 +21,6 @@ public class DAOEleve extends DAOFactory<Eleve>{
      * Log4j logger
      */
     static org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionJDBC.class.getName());
-    
-    /* variables pour requêtes */
-    ResultSet res = null;
 
 	@Override
 	public Eleve find(int id) {
@@ -50,19 +47,19 @@ public class DAOEleve extends DAOFactory<Eleve>{
 
 	@Override
 	public Eleve create(Eleve obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Eleve update(Eleve obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(Eleve obj) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -126,11 +123,17 @@ public class DAOEleve extends DAOFactory<Eleve>{
         return listeEleve;
     }
     
-    public List<DAOVueEleve> findEleveByName (String name) {
+    /**
+     * Trouve une liste d'élèves qui contient la chaîne de caractères
+     * 
+     * @param name
+     * @return
+     */
+    public List<DAOVuePersonne> findEleveByName (String name) {
         /* déclaration et init des variables nécessaires */
-        DAOVueEleve daoVueEleve = null;
+        DAOVuePersonne daoVueEleve = null;
         Personne eleve = null;
-        List<DAOVueEleve> listeEleve = null;
+        List<DAOVuePersonne> listeEleve = null;
         
         Statement stmt = null;
         ResultSet res = null;
@@ -146,7 +149,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
                                  + "or prenom LIKE '" + name + "%' "
                                 + "and id_personne in "
                                         + " (select id_eleve from eleve;");
-            listeEleve = new ArrayList<DAOVueEleve>();
+            listeEleve = new ArrayList<DAOVuePersonne>();
             
             while (res.next()){
                 eleve = new Personne();
@@ -157,7 +160,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
                 eleve.setEmail(res.getString("email"));
                 
                 /* création de l'objet correspondant à l'élève recherchée */
-                daoVueEleve = new DAOVueEleve(eleve, res.getInt("id_classe"), res.getInt("id_parent1"), res.getInt("id_parent2"));
+                daoVueEleve = new DAOVuePersonne(eleve, res.getInt("id_classe"), res.getInt("id_parent1"), res.getInt("id_parent2"));
                 listeEleve.add(daoVueEleve);
             }
         } catch (SQLException e) {
@@ -167,10 +170,25 @@ public class DAOEleve extends DAOFactory<Eleve>{
         return listeEleve;
     }
     
+    /**
+     * Obtient les notes d'un élève
+     * 
+     * @param idEleve
+     * @param nomMatiere
+     * @return
+     */
     public List<DAOVueNote> getNotes (int idEleve, String nomMatiere){
         return getNotes(idEleve, nomMatiere, 0);
     }
     
+    /**
+     * Obtient les notes d'un élève
+     * 
+     * @param idEleve
+     * @param nomMatiere
+     * @param trimestre
+     * @return
+     */
     public List<DAOVueNote> getNotes (int idEleve, String nomMatiere, int trimestre){
         
         /* déclaration et init des variables nécessaires */
@@ -223,7 +241,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
 
     @Override
     public Eleve map(java.sql.ResultSet resultSet) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 

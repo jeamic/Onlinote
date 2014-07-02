@@ -5,7 +5,7 @@ import java.util.Date;
 import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Personne;
 
-public class DAOVueEleve {
+public class DAOVuePersonne {
 
     private int idEleve;
     private int idClasse;
@@ -17,10 +17,10 @@ public class DAOVueEleve {
     private int idParent2;
     private String dateNaiss;
     
-    public DAOVueEleve () {
+    public DAOVuePersonne () {
     }
     
-    public DAOVueEleve (Personne eleve, int idClasse, int idParent1, int idParent2) {
+    public DAOVuePersonne (Personne eleve, int idClasse, int idParent1, int idParent2) {
         this.idEleve = eleve.getIdPersonne();
         this.nom = eleve.getNom();
         this.prenom = eleve.getPrenom();
