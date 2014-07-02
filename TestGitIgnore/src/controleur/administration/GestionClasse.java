@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.base.actionsdao.DAOClasse;
+import modele.base.actionsdao.DAOCours;
+import modele.base.actionsdao.DAOEleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueClasse;
+import modele.vue.dao.DAOVueCours;
 import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueTypeClasse;
 
@@ -55,5 +58,16 @@ public class GestionClasse {
         daoClasse.getClasses(typeClasse);
         
         return daoClasse.getClasses(typeClasse);
+    }
+    
+    /**
+     * Renvoie l'id d'un eleve appartenant à une classe
+     * 
+     * @param nomClasse
+     * @return idEleve
+     */
+    public int getIdEleveFromClass (String nomClasse){
+        DAOEleve daoEleve = new DAOEleve();
+        return daoEleve.getIdEleveFromClasse (nomClasse);
     }
 }

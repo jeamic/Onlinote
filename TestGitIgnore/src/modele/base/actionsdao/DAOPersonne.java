@@ -208,4 +208,49 @@ public class DAOPersonne extends DAOFactory<Personne>{
 
         return listePersonne;
     }
+    
+    
+    /**
+     * Renvoie la liste de tous les profs
+     * 
+     * @return
+     */
+    public List<DAOVuePersonne> getAllProfs() {
+        /* déclaration et init des variables nécessaires */
+        DAOVuePersonne daoVuePersonne = null;
+        Personne personne = null;
+        List<DAOVuePersonne> listeProf = null;
+        
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = instance.getConnection();
+        
+        try {
+            
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * "
+                                + " from personne "
+                                + " where type_p = 'professeur'");
+            listeProf = new ArrayList<DAOVuePersonne>();
+            
+            while (res.next()){
+                personne = new Personne();
+                personne.setIdPersonne(res.getInt("id_personne"));
+                personne.setNom(res.getString("nom"));
+                personne.setPrenom(res.getString("prenom"));
+                personne.setAdresse(res.getString("adresse"));
+                personne.setEmail(res.getString("email"));
+                
+                /* création de l'objet correspondant à l'élève recherchée */
+                daoVuePersonne = new DAOVuePersonne(personne, 0, 0, 0);
+                listeProf.add(daoVuePersonne);
+            }
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
+
+        return listeProf;
+        
+    }
 }

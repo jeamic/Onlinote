@@ -115,7 +115,7 @@ public class DAOCours extends DAOFactory<Cours>{
         }        
         return cours;
     }
-
+    
     @Override
     public Cours map(java.sql.ResultSet resultSet) {
         

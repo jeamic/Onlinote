@@ -3,6 +3,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.base.dao.Classe;
 import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
@@ -277,6 +278,43 @@ public class DAOEleve extends DAOFactory<Eleve>{
             log4j.info(e.getMessage(), e);
         }        
         return note;
+    }
+    
+    /**
+     * Renvoie l'id d'un eleve appartenant à une classe
+     * 
+     * @param nomClasse
+     * @return
+     */
+    public int getIdEleveFromClasse (String nomClasse){
+        DAOClasse daoClasse = new DAOClasse();
+        Classe classe = daoClasse.find(nomClasse);
+        
+        /* déclaration et init des variables nécessaires */
+        int idEleve = 0;
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        /* requête pour rechercher la personne, param 1 = date, param 2 = idEleve*/
+        try {
+            String query = "select id_eleve"
+                    + " from eleve e, classe c"
+                    + " where e.id_classe = c.id_classe"
+                    + " and nom_classe = '" + nomClasse +"'"
+                    + " limit 0,1;";
+            
+                stmt =   conn.createStatement();
+                res = stmt.executeQuery(query);
+                
+                while (res.next()){
+                    idEleve = res.getInt("id_eleve");
+                }
+            } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return idEleve;
     }
 
     @Override
