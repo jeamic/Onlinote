@@ -42,6 +42,8 @@ public class CadreGestionEdt {
     private String dt = null;
     private SimpleDateFormat sdf = null;
     private int ideleve = 0;
+    int row = 0;
+    int column = 0;
  
     private JPanel eDT = new JPanel(new BorderLayout());
     public CadreGestionEdt() {
@@ -229,23 +231,8 @@ public class CadreGestionEdt {
         table.setCellSelectionEnabled(true);
         ListSelectionModel cellSelectionModel = table.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-        cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
-          public void valueChanged(ListSelectionEvent e) {
-            String selectedData = null;
-
-            int[] selectedRow = table.getSelectedRows();
-            int[] selectedColumns = table.getSelectedColumns();
-
-            for (int i = 0; i < selectedRow.length; i++) {
-              for (int j = 0; j < selectedColumns.length; j++) {
-                selectedData = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
-              }
-            }
-            System.out.println("Selected: " + selectedData);
-          }
-
-        });
+        
+        
         JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         GestionCours gestionnaireCours = new GestionCours();
@@ -253,7 +240,7 @@ public class CadreGestionEdt {
         
         
         
-        List<String> dateCours = new ArrayList<String>();
+        final List<String> dateCours = new ArrayList<String>();
         
         for (int i = 0; i < 5;++i) {
             dateCours.add(dt);
@@ -292,11 +279,11 @@ public class CadreGestionEdt {
             }
         });
         
-        List<DAOVueCours> coursLundi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursMardi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursMercredi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursJeudi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursVendredi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursLundi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursMardi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursMercredi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursJeudi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursVendredi = new ArrayList<DAOVueCours>();
         
         JLabel centre = new JLabel("Semaine du : " + dateCours.get(0) + " au : " + dateCours.get(4));
         centre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -304,6 +291,84 @@ public class CadreGestionEdt {
         panelTop.add(droite, BorderLayout.EAST);
         panelTop.add(gauche, BorderLayout.WEST);
         panelTop.add(centre, BorderLayout.CENTER);
+        
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = table.rowAtPoint(evt.getPoint());
+                int col = table.columnAtPoint(evt.getPoint());
+                String heure = null;
+                DAOVueCours coursSelected = null;
+                if (row >= 0 && col > 0) {
+                    
+                    
+                    switch(row) {
+                    case 0 :
+                        heure = "08:00:00";
+                        break;
+                    case 1 :
+                        heure = "09:00:00";
+                        break;
+                    case 2 :
+                        heure = "10:00:00";
+                        break;
+                    case 3 :
+                        heure = "11:00:00";
+                        break;
+                    case 4 :
+                        heure = "12:00:00";
+                        break;
+                    case 5 :
+                        heure = "13:00:00";
+                        break;
+                    case 6 :
+                        heure = "14:00:00";
+                        break;
+                    case 7 :
+                        heure = "15:00:00";
+                        break;
+                    case 8 :
+                        heure = "16:00:00";
+                        break;
+                    case 9 :
+                        heure = "17:00:00";
+                        break;
+                    }
+                    
+                    
+                    switch (col) {
+                    case 1 :
+                        coursSelected = coursLundi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        
+                        break;
+                    case 2 :
+                        coursSelected = coursMardi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                    case 3 :
+                        coursSelected = coursMercredi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                    case 4 :
+                        coursSelected = coursJeudi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                    case 5 :
+                        coursSelected = coursVendredi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                        
+                    
+                    }
+                }
+            }
+        });
         
         for (int i=0; i < 10 ;++i) {
             
@@ -351,8 +416,11 @@ public class CadreGestionEdt {
         
         
         ModelTableEdt model = new ModelTableEdt();
-        JTable table = new JTable(model);
+        final JTable table = new JTable(model);
         table.setRowHeight(100);
+        table.setCellSelectionEnabled(true);
+        ListSelectionModel cellSelectionModel = table.getSelectionModel();
+        cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerEdT());
         JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
@@ -361,7 +429,7 @@ public class CadreGestionEdt {
         
         
         
-        List<String> dateCours = new ArrayList<String>();
+        final List<String> dateCours = new ArrayList<String>();
         
         for (int i = 0; i < 5;++i) {
             dateCours.add(dt);
@@ -403,11 +471,89 @@ public class CadreGestionEdt {
         panelTop.add(gauche, BorderLayout.WEST);
         panelTop.add(centre, BorderLayout.CENTER);
         
-        List<DAOVueCours> coursLundi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursMardi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursMercredi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursJeudi = new ArrayList<DAOVueCours>();
-        List<DAOVueCours> coursVendredi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursLundi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursMardi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursMercredi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursJeudi = new ArrayList<DAOVueCours>();
+        final List<DAOVueCours> coursVendredi = new ArrayList<DAOVueCours>();
+        
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = table.rowAtPoint(evt.getPoint());
+                int col = table.columnAtPoint(evt.getPoint());
+                String heure = null;
+                DAOVueCours coursSelected = null;
+                if (row >= 0 && col > 0) {
+                    
+                    
+                    switch(row) {
+                    case 0 :
+                        heure = "08:00:00";
+                        break;
+                    case 1 :
+                        heure = "09:00:00";
+                        break;
+                    case 2 :
+                        heure = "10:00:00";
+                        break;
+                    case 3 :
+                        heure = "11:00:00";
+                        break;
+                    case 4 :
+                        heure = "12:00:00";
+                        break;
+                    case 5 :
+                        heure = "13:00:00";
+                        break;
+                    case 6 :
+                        heure = "14:00:00";
+                        break;
+                    case 7 :
+                        heure = "15:00:00";
+                        break;
+                    case 8 :
+                        heure = "16:00:00";
+                        break;
+                    case 9 :
+                        heure = "17:00:00";
+                        break;
+                    }
+                    
+                    
+                    switch (col) {
+                    case 1 :
+                        coursSelected = coursLundi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        
+                        break;
+                    case 2 :
+                        coursSelected = coursMardi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                    case 3 :
+                        coursSelected = coursMercredi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                    case 4 :
+                        coursSelected = coursJeudi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                    case 5 :
+                        coursSelected = coursVendredi.get(row);
+                        System.out.println(coursSelected.getMatiere());
+                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        break;
+                        
+                    
+                    }
+                }
+            }
+        });
 
         for (int i=0; i < 10 ;++i) {
             
