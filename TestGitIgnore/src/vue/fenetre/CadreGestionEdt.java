@@ -14,17 +14,23 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.log4j.LogManager;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import modele.vue.dao.DAOVueClasse;
 import modele.vue.dao.DAOVueCours;
+import modele.vue.dao.DAOVueMessage;
+
+import org.apache.log4j.LogManager;
+
 import vue.tools.ModelTableEdt;
 import controleur.administration.GestionClasse;
 import controleur.cours.GestionCours;
@@ -37,7 +43,7 @@ public class CadreGestionEdt {
     private SimpleDateFormat sdf = null;
     private int ideleve = 0;
  
-    private JPanel eDT = null;
+    private JPanel eDT = new JPanel(new BorderLayout());
     public CadreGestionEdt() {
             
         
@@ -141,10 +147,12 @@ public class CadreGestionEdt {
             public void actionPerformed(ActionEvent arg0) {
                 if (comboBox3.getSelectedItem() != null) {
                     
-                    eDT.removeAll();
-                    genereEmploiDuTemps();
+                    if (eDT != null) {
+                        eDT.removeAll();
+                    }
                     GestionClasse gestionnaireClasse = new GestionClasse();
                     ideleve = gestionnaireClasse.getIdEleveFromClass(comboBox3.getSelectedItem().toString());
+                    genereEmploiDuTemps();
                     panelCadre.add(eDT, BorderLayout.CENTER);
                     panelCadre.repaint();
                     panelCadre.revalidate();
@@ -174,8 +182,7 @@ public class CadreGestionEdt {
         
         
         org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
-                
-        eDT = new JPanel(new BorderLayout());
+               
         
         List<String> heures = new ArrayList<String>();
         heures.add("8h00 - 9h00");
@@ -217,8 +224,28 @@ public class CadreGestionEdt {
         
         
         ModelTableEdt model = new ModelTableEdt();
-        JTable table = new JTable(model);
+        final JTable table = new JTable(model);
         table.setRowHeight(100);
+        table.setCellSelectionEnabled(true);
+        ListSelectionModel cellSelectionModel = table.getSelectionModel();
+        cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+          public void valueChanged(ListSelectionEvent e) {
+            String selectedData = null;
+
+            int[] selectedRow = table.getSelectedRows();
+            int[] selectedColumns = table.getSelectedColumns();
+
+            for (int i = 0; i < selectedRow.length; i++) {
+              for (int j = 0; j < selectedColumns.length; j++) {
+                selectedData = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
+              }
+            }
+            System.out.println("Selected: " + selectedData);
+          }
+
+        });
         JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         GestionCours gestionnaireCours = new GestionCours();
@@ -326,6 +353,7 @@ public class CadreGestionEdt {
         ModelTableEdt model = new ModelTableEdt();
         JTable table = new JTable(model);
         table.setRowHeight(100);
+        table.getSelectionModel().addListSelectionListener(new MsgTableSelectionListenerEdT());
         JScrollPane panelScrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         GestionCours gestionnaireCours = new GestionCours();
@@ -406,5 +434,30 @@ public class CadreGestionEdt {
         eDT.add(panelTop, BorderLayout.NORTH);
         eDT.repaint();
         eDT.revalidate();
+    }
+
+}
+
+class MsgTableSelectionListenerEdT  implements ListSelectionListener {
+    @Override
+        public void valueChanged(ListSelectionEvent selectionEvent) {
+        if (selectionEvent.getValueIsAdjusting()) {
+            return;
+        }
+       
+        ListSelectionModel selectEvent = (ListSelectionModel) selectionEvent.getSource();
+       
+        if (!selectEvent.isSelectionEmpty()) {
+               
+                int indexMsgSelected = selectEvent.getMaxSelectionIndex();
+
+                /*DAOVueCours msgSelected = coursLundi.get(indexMsgSelected);
+                
+                NouveauMessage.creerNouveauMessage(user, true, msgSelected.getDestinataires(), msgSelected.getObjet(), msgSelected.getContenu());
+                */       
+                
+               
+               
+        }
     }
 }
