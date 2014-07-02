@@ -251,7 +251,7 @@ public class Menu {
         switch(onglet) {
             case "Accueil" :
                 
-                remplirFenetre("Bienvenue sur l'application Onlinote Mr ","");
+                remplirFenetre("<html><p style='text-align:center'>Bienvenue sur l'application Onlinote</p><p style='text-align:center'>"+ personne.getPrenom() + " " + personne.getNom() + "</p></html>","");
                 FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
                 
@@ -295,7 +295,7 @@ public class Menu {
                 
                 for (int i = 0; i < enfant.size(); ++i)
                 {
-                    if (enfant.get(i).getIdEleve() == eleve.getIdEleve())
+                    if (i == 0)
                     {
                         aRadioButton = new JRadioButton(enfant.get(i).getNom() + " " + enfant.get(i).getPrenom(), true);
                     }
@@ -350,7 +350,7 @@ public class Menu {
                 remplirFenetre("Onlinote - Emploi du temps","");
                 FenetreParent.panelCenter = new JPanel(new BorderLayout());
                 
-                JPanel monEDT = new EmploiDuTemps().getEDT();
+                JPanel monEDT = new EmploiDuTemps(eleve.getIdEleve()).getEDT();
                 monEDT.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
                 FenetreParent.panelCenter.add(monEDT);
   

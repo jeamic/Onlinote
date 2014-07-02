@@ -5,23 +5,32 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modele.base.dao.Personne;
+import modele.vue.dao.DAOVueClasse;
 
 import org.apache.log4j.LogManager;
 
 import controleur.connexion.Onlinote;
+import controleur.prof.GestionProf;
 
 
 public class MenuProf {
@@ -36,11 +45,15 @@ public class MenuProf {
 	private JLabel lblNotes = null;
 	private JLabel lblEmploiDuTemps = null;
 	private JLabel lblMessagerie = null;
+	private Personne prof = null;
+	private DAOVueClasse classe = null;
 	
-	public MenuProf (String ongletEC, Personne personne) {
+	public MenuProf (String ongletEC, Personne personne, DAOVueClasse classe) {
 	    
 	    ImageIcon tabImg[] = getImg();
 	    
+	    prof = personne;
+	    this.classe = classe;
 
 		
 		menu = new JPanel();
@@ -60,17 +73,26 @@ public class MenuProf {
 		panel.setBounds(15, 58, 125, 63);
 		
 		
-		JLabel lblEleve = new JLabel();
+		JPanel panel_1 = new JPanel();
+        panel.add(panel_1);
+        panel_1.setLayout(new BorderLayout(0, 0));
+        panel_1.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        
+        
+        JLabel lblNomEleve = new JLabel(classe.getNomClasse());
+        lblNomEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_1.add(lblNomEleve);
+        
+        
+        JLabel lblEleve = new JLabel();
+        lblEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_1.add(lblEleve, BorderLayout.NORTH);
 		
 		lblEleve.setFont(new Font("Times new roman", Font.PLAIN, 14));
 		lblEleve.setText("Classe :");
 		lblEleve.setBounds(51,59,96,26);
 		
 		
-		JLabel lblNomEleve = new JLabel("");
-		
-		menu.add(lblEleve);
-		panel.add(lblNomEleve);
 		menu.add(panel);
 
 	}
@@ -123,7 +145,7 @@ public class MenuProf {
             
             public void mouseClicked(MouseEvent e) {  
                 
-                 FenetreParent.maFenetreParent.dispose();
+                 FenetreProf.maFenetreParent.dispose();
                  Onlinote.relancer();
     
             }  
@@ -141,13 +163,13 @@ public class MenuProf {
         lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
         lblAccueil.setText("Accueil");
         lblAccueil.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Accueil", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Accueil", prof);
             }  
         });
         lblIconAccueil.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                switchOnglet("Accueil", personne);
+            public void mouseClicked(MouseEvent e) {  
+                switchOnglet("Accueil", prof);
            }  
         });
 
@@ -167,13 +189,13 @@ public class MenuProf {
         lblNotes.setText("Notes");
         
         lblNotes.addMouseListener(new MouseAdapter()  {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Notes", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Notes", prof);
             }  
         });
         lblIconNotes.addMouseListener(new MouseAdapter()  {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                switchOnglet("Notes", personne);
+            public void mouseClicked(MouseEvent e) {  
+                switchOnglet("Notes", prof);
            }  
         });
         menu.add(lblIconNotes);
@@ -184,13 +206,13 @@ public class MenuProf {
         lblEmploiDuTemps = new JLabel();
         JLabel lblIconEmploiDuTemps = new JLabel(tabImg);
         lblEmploiDuTemps.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Emploi du temps", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Emploi du temps", prof);
             }  
         });
         lblIconEmploiDuTemps.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                switchOnglet("Emploi du temps", personne);
+            public void mouseClicked(MouseEvent e) {  
+                switchOnglet("Emploi du temps", prof);
            }  
         });
         lblIconEmploiDuTemps.setBounds(5, 179, 29, 53);
@@ -213,8 +235,8 @@ public class MenuProf {
         lblMessagerie.setText("Messagerie");
         lblMessagerie.setFont(new Font("Times new roman", Font.PLAIN, 14));
         lblMessagerie.addMouseListener(new MouseAdapter() {  
-            public void mouseClicked(MouseEvent e, Personne personne) {  
-                 switchOnglet("Messagerie", personne);
+            public void mouseClicked(MouseEvent e) {  
+                 switchOnglet("Messagerie", prof);
             }  
         });
         menu.add(lblIconMessagerie);
@@ -223,57 +245,136 @@ public class MenuProf {
 	
 	 private void switchOnglet(String onglet, Personne personne) {
 	       viderGras();
-	       FenetreParent.changeMenu();
+	       FenetreProf.changeMenuProf();
 	        
 	        switch(onglet) {
 	            case "Accueil" :
+	                remplirFenetre("<html><p style='text-align:center'>Bienvenue sur l'application Onlinote</p><p style='text-align:center'>"+ personne.getPrenom() + " " + personne.getNom() + "</p></html>","");
+	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
-	                remplirFenetre("Bienvenue sur l'application Onlinote Mr ","");
-	                FenetreParent.panelCenter = new JPanel(new BorderLayout());
 	                
 	                lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
-	                FenetreParent.maFenetreParent.getContentPane().validate();
+	                FenetreProf.maFenetreParent.getContentPane().validate();
+	                
+	                
+	                
+	                GestionProf gestionnaireProf = new GestionProf();
+	                List<DAOVueClasse> classeG = null;
+	                classeG = gestionnaireProf.getClasses(personne.getIdPersonne());
+	                
+	                
+	                FenetreProf.panelCenter = new JPanel();
+	                ButtonGroup group = new ButtonGroup();
+	                JLabel lblVosEnfants = new JLabel("Classe(s) : ");
+	                lblVosEnfants.setVerticalAlignment(SwingConstants.TOP);
+	                lblVosEnfants.setFont(new Font("Times new roman", Font.PLAIN, 12));
+	                lblVosEnfants.setHorizontalAlignment(SwingConstants.CENTER);
+	                FenetreProf.panelCenter.add(lblVosEnfants);
+	                JRadioButton aRadioButton = null;
+
+	                
+	                FenetreProf.grosMenu.removeAll();
+	                JPanel monMenu = new MenuProf("Accueil", personne , classeG.get(0)).getMenu();
+	                monMenu.setPreferredSize(new Dimension(150, 300));
+	                
+	                GridBagConstraints gbc = new GridBagConstraints();
+	                gbc.anchor = GridBagConstraints.NORTHWEST;
+	                //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+	                
+	                
+	                JLabel testEspace = new JLabel(" ");
+	                
+
+	                final JPanel monMenu2 = new JPanel(new BorderLayout());
+	                
+	                monMenu2.add(testEspace, BorderLayout.NORTH);
+	                monMenu2.add(monMenu, BorderLayout.NORTH);
+	                
+	                        
+	               FenetreProf.grosMenu.add(monMenu2, gbc);
+	                
+	                
+	                for (int i = 0; i < classeG.size(); ++i)
+	                {
+	                    
+	                    if (i == 0)
+	                    {
+	                        aRadioButton = new JRadioButton(classeG.get(i).getNomClasse(), true);
+	                    }
+	                    else
+	                    {
+	                        aRadioButton = new JRadioButton(classeG.get(i).getNomClasse());
+	                    }
+	                    aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+	                    aRadioButton.setActionCommand(Integer.toString(i));
+	                    
+	                    
+	                    
+	                    ActionListener actionListener = new ActionListener() {
+	                        
+	                        public void actionPerformed(ActionEvent e) {
+	                                      
+	                            
+	                                FenetreProf.changeEleveMenuProf(prof, Integer.parseInt(e.getActionCommand()));
+
+	                            }
+	                    };
+	                    
+	                    aRadioButton.addActionListener(actionListener);
+	                    group.add(aRadioButton);
+	                    FenetreProf.panelCenter.add(aRadioButton);
+
+	                    
+	                }
+	                
+	                
+	                
+	               FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
+	                
+	                
+	                FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
+	                
 	                
 	               break;
 	            case "Notes" :
 	                remplirFenetre("Onlinote - Notes","");
-	                FenetreParent.panelCenter = new JPanel(new BorderLayout());
+	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
-	                JPanel mesNotes = new Notes(personne.getIdPersonne()).getNotes();
+	                JPanel mesNotes = new NotesProf(classe.getIdClasse()).getNotesProf();
 	                mesNotes.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
-	                FenetreParent.panelCenter.add(mesNotes, BorderLayout.CENTER);
-	                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
+	                FenetreProf.panelCenter.add(mesNotes, BorderLayout.CENTER);
+	                FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
 	                lblNotes.setFont(new Font("Times new roman", Font.BOLD, 14));
-	                FenetreParent.maFenetreParent.validate();
+	                FenetreProf.maFenetreParent.validate();
 	                
 	                
 	                break;
 	            case "Emploi du temps" :
 	                
 	                remplirFenetre("Onlinote - Emploi du temps","");
-	                FenetreParent.panelCenter = new JPanel(new BorderLayout());
+	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
-	                JPanel monEDT = new EmploiDuTemps().getEDT();
+	                JPanel monEDT = new EmploiDuTemps(personne.getIdPersonne()).getEDT();
 	                monEDT.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
-	                FenetreParent.panelCenter.add(monEDT);
+	                FenetreProf.panelCenter.add(monEDT);
 	  
-	                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
+	                FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
 	                lblEmploiDuTemps.setFont(new Font("Times new roman", Font.BOLD, 14));
-	                FenetreParent.maFenetreParent.validate();
+	                FenetreProf.maFenetreParent.validate();
 	                break;
 	                
 	            case "Messagerie" :
 	                remplirFenetre("Onlinote - Messagerie", "");
-	                FenetreParent.panelCenter = new JPanel(new BorderLayout());
+	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
 	                
 	                JPanel maMessagerie = new Messagerie(personne).getMess();
 	                maMessagerie.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
-	                FenetreParent.panelCenter.add(maMessagerie);
+	                FenetreProf.panelCenter.add(maMessagerie);
 	                
 	                lblMessagerie.setFont(new Font("Times new roman", Font.BOLD, 14));
-	                FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelCenter, BorderLayout.CENTER);
-	                FenetreParent.maFenetreParent.validate();
+	                FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelCenter, BorderLayout.CENTER);
+	                FenetreProf.maFenetreParent.validate();
 	                break;
 	                
 	            default : 
@@ -293,7 +394,7 @@ public class MenuProf {
 	   
 	   private void remplirFenetre(String titre, String desc)
 	   {
-	       FenetreParent.panelTop = new JPanel(new BorderLayout());
+	       FenetreProf.panelTop = new JPanel(new BorderLayout());
 	       JPanel panelTopGauche = new JPanel(new BorderLayout());
 	       JPanel panelTopCentre = new JPanel(new BorderLayout());
 	       
@@ -330,11 +431,11 @@ public class MenuProf {
 	       panelTopCentre.add(lblVide, BorderLayout.CENTER);
 	       panelTopCentre.add(lblDetails1, BorderLayout.SOUTH);
 	       
-	       FenetreParent.panelTop.add(panelTopGauche);
-	       FenetreParent.panelTop.add(panelTopCentre);
+	       FenetreProf.panelTop.add(panelTopGauche);
+	       FenetreProf.panelTop.add(panelTopCentre);
 	       
 	       
-	       FenetreParent.maFenetreParent.getContentPane().add(FenetreParent.panelTop, BorderLayout.NORTH);
+	       FenetreProf.maFenetreParent.getContentPane().add(FenetreProf.panelTop, BorderLayout.NORTH);
 	   }
 
 

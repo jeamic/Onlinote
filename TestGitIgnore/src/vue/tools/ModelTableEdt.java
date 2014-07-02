@@ -13,7 +13,8 @@ public class ModelTableEdt extends AbstractTableModel {
     
     private static final    long serialVersionUID = 1L;
     
-    private final           String                  mKStrLundi    = "Lundi",
+    private final           String                  mKStrHeures = "\\",
+                                                    mKStrLundi    = "Lundi",
                                                     mKStrMardi = "Mardi",
                                                     mKStrMercredi    = "Mercredi",
                                                     mKStrJeudi    = "Jeudi",
@@ -21,6 +22,7 @@ public class ModelTableEdt extends AbstractTableModel {
     
     private final           String[]                mKColumnHeader  = 
                                                         new String[]{
+                                                        mKStrHeures,
                                                         mKStrLundi,
                                                         mKStrMardi,
                                                         mKStrMercredi,
@@ -28,6 +30,7 @@ public class ModelTableEdt extends AbstractTableModel {
                                                         mKStrVendredi
                                                         };
     
+    private                 List<String>                mHeures = null;
     private                 List<DAOVueCours>           mCoursListLundi   = null;
     private                 List<DAOVueCours>           mCoursListMardi   = null;
     private                 List<DAOVueCours>           mCoursListMercredi   = null;
@@ -41,6 +44,7 @@ public class ModelTableEdt extends AbstractTableModel {
         super();
         
         // Récupération de la liste des messages
+        mHeures = new ArrayList<String>();
         mCoursListLundi   = new ArrayList<DAOVueCours>();
         mCoursListMardi   =new ArrayList<DAOVueCours>();
         mCoursListMercredi   = new ArrayList<DAOVueCours>();
@@ -72,20 +76,43 @@ public class ModelTableEdt extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) 
     {
         
-        if(getColumnName(columnIndex).equals(mKStrLundi)){
-            mCellCur = mCoursListLundi.get(rowIndex).getMatiere();
+        if(getColumnName(columnIndex).equals(mKStrHeures)){
+                mCellCur = new String ("<html><p style='text-align:center'>" + mHeures.get(rowIndex).toString() + "</p></html>");
+        }
+        else if(getColumnName(columnIndex).equals(mKStrLundi)){
+            if (mCoursListLundi.get(rowIndex).getMatiere() != null) {
+                mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListLundi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListLundi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListLundi.get(rowIndex).getNomProf() + "</p></html>");
+            } else {
+                mCellCur = "";
+            }
         }
         else if(getColumnName(columnIndex).equals(mKStrMardi)){
-            mCellCur = mCoursListMardi.get(rowIndex).getMatiere();
+            if (mCoursListMardi.get(rowIndex).getMatiere() != null) {
+                mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListMardi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListMardi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListMardi.get(rowIndex).getNomProf() + "</p></html>");
+            } else {
+                mCellCur = "";
+            }
         }
         else if(getColumnName(columnIndex).equals(mKStrMercredi)){
-            mCellCur = mCoursListMercredi.get(rowIndex).getMatiere();
+            if (mCoursListMercredi.get(rowIndex).getMatiere() != null) {
+                mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListMercredi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListMercredi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListMercredi.get(rowIndex).getNomProf() + "</p></html>");
+            } else {
+                mCellCur = "";
+            }
         }
         else if(getColumnName(columnIndex).equals(mKStrJeudi)){
-            mCellCur = mCoursListJeudi.get(rowIndex).getMatiere();
+            if (mCoursListJeudi.get(rowIndex).getMatiere() != null) {
+                mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListJeudi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListJeudi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListJeudi.get(rowIndex).getNomProf() + "</p></html>");
+            } else {
+                mCellCur = "";
+            }
         }
         else if(getColumnName(columnIndex).equals(mKStrVendredi)){
-            mCellCur = mCoursListVendredi.get(rowIndex).getMatiere();
+            if (mCoursListVendredi.get(rowIndex).getMatiere() != null) {
+                mCellCur = new String ("<html><p style='text-align:center'>" + mCoursListVendredi.get(rowIndex).getMatiere() + " </p><p style='text-align:center'>Classe : " + mCoursListVendredi.get(rowIndex).getSalle() + " </p><p style='text-align:center'>M." + mCoursListVendredi.get(rowIndex).getNomProf() + "</p></html>");
+            } else {
+                mCellCur = "";
+            }
         }
         else{
             mCellCur = "ERROR";
@@ -94,9 +121,9 @@ public class ModelTableEdt extends AbstractTableModel {
         return (mCellCur);
     }   
 
-    public void updateTableData (List<DAOVueCours> listLundi, List<DAOVueCours> listMardi, List<DAOVueCours> listMercredi, List<DAOVueCours> listJeudi, List<DAOVueCours> listVendredi)
+    public void updateTableData (List<String> heures, List<DAOVueCours> listLundi, List<DAOVueCours> listMardi, List<DAOVueCours> listMercredi, List<DAOVueCours> listJeudi, List<DAOVueCours> listVendredi)
     {
-    
+        mHeures = heures;
         mCoursListLundi = listLundi;
         mCoursListMardi = listMardi;
         mCoursListMercredi = listMercredi;

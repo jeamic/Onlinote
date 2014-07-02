@@ -238,7 +238,7 @@ public class MenuEleve {
         switch(onglet) {
             case "Accueil" :
                 
-                remplirFenetre("Bienvenue sur l'application Onlinote Mr ","");
+                remplirFenetre("Bienvenue sur l'application Onlinote","");
                 FenetreEleve.panelCenter = new JPanel(new BorderLayout());
                 
                 lblAccueil.setFont(new Font("Times new roman", Font.BOLD, 14));
@@ -263,7 +263,7 @@ public class MenuEleve {
                 remplirFenetre("Onlinote - Emploi du temps","");
                 FenetreEleve.panelCenter = new JPanel(new BorderLayout());
                 
-                JPanel monEDT = new EmploiDuTemps().getEDT();
+                JPanel monEDT = new EmploiDuTemps(personne.getIdPersonne()).getEDT();
                 monEDT.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
                 FenetreEleve.panelCenter.add(monEDT);
   

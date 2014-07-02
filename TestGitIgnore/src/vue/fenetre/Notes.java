@@ -44,8 +44,8 @@ public class Notes {
         List<Matiere> Matiere = gestionnaireMatiere.getAllMatieres();
         GestionNotes gestionnaireNotes = new GestionNotes();
         NotesArt = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(0).getMatiere());
-        NotesEPS = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(1).getMatiere());
-        NotesBio = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(2).getMatiere());
+        NotesEPS = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(2).getMatiere());
+        NotesBio = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(1).getMatiere());
         NotesFrancais = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(3).getMatiere());
         NotesHistoire = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(4).getMatiere());
         NotesLV1 = gestionnaireNotes.getNotes(idEleve, 1, Matiere.get(5).getMatiere());

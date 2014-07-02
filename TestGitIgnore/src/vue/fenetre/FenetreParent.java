@@ -2,6 +2,7 @@ package vue.fenetre;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -56,8 +57,7 @@ public class FenetreParent {
         
         
         maFenetreParent.setSize(new Dimension(880, 540));
-        
-        
+                
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         maFenetreParent.setLocation(dim.width/2-maFenetreParent.getSize().width/2, dim.height/2-maFenetreParent.getSize().height/2);
 
@@ -77,6 +77,7 @@ public class FenetreParent {
         lblVosEnfants.setHorizontalAlignment(SwingConstants.CENTER);
         panelCenter.add(lblVosEnfants);
         JRadioButton aRadioButton = null;
+
         
         grosMenu = new JPanel(new GridBagLayout());
         JPanel monMenu = new Menu("Accueil", personne , enfant.get(0)).getMenu();
@@ -121,28 +122,6 @@ public class FenetreParent {
                               
                     
                         changeEleveMenu(personne, Integer.parseInt(e.getActionCommand()));
-                       /* grosMenu.removeAll();
-                        
-                        JPanel monMenu = new Menu("Accueil", personne, enfant.get(Integer.parseInt(e.getActionCommand()))).getMenu();
-                        monMenu.setPreferredSize(new Dimension(150, 300));
-                        
-                        GridBagConstraints gbc = new GridBagConstraints();
-                        gbc.anchor = GridBagConstraints.NORTHWEST;
-                        //monMenu.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
-                        
-                        
-                        JLabel testEspace = new JLabel(" ");
-                        
-
-                        final JPanel monMenu2 = new JPanel(new BorderLayout());
-                        
-                        monMenu2.add(testEspace, BorderLayout.NORTH);
-                        monMenu2.add(monMenu, BorderLayout.NORTH);
-                        
-                                
-                        grosMenu.add(monMenu2, gbc);
-                        grosMenu.updateUI();
-                        */
 
                     }
             };
@@ -168,7 +147,7 @@ public class FenetreParent {
         JPanel panelTopGauche = new JPanel(new BorderLayout());
         JPanel panelTopCentre = new JPanel(new BorderLayout());
         
-        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote "+ personne.getPrenom() + " " + personne.getNom());
+        JLabel lblApplicationOnlinote = new JLabel("<html><p style='text-align:center'>Bienvenue sur l'application Onlinote</p><p style='text-align:center'>"+ personne.getPrenom() + " " + personne.getNom() + "</p></html>");
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
         lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
         lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);

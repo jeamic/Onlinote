@@ -82,7 +82,7 @@ public class FenetreEleve {
         JPanel panelTopGauche = new JPanel(new BorderLayout());
         JPanel panelTopCentre = new JPanel(new BorderLayout());
         
-        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote Mr ");
+        JLabel lblApplicationOnlinote = new JLabel("Bienvenue sur l'application Onlinote");
         lblApplicationOnlinote.setVerticalAlignment(SwingConstants.TOP);
         lblApplicationOnlinote.setFont(new Font("Times new roman", Font.PLAIN, 32));
         lblApplicationOnlinote.setHorizontalAlignment(SwingConstants.CENTER);
