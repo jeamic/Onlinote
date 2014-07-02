@@ -98,7 +98,7 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select distinct c.id_classe, c.nom_classe, e.id_personne "
+            res = stmt.executeQuery("select distinct c.id_classe, c.nom_classe, id_prof_principal "
                                 + " from enseigne e, classe c, personne p"
                                 + " where e.id_classe = c.id_classe"
                                 + " and p.id_personne = e.id_personne"
