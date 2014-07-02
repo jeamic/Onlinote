@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
@@ -16,12 +18,14 @@ import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import modele.base.dao.Personne;
 
@@ -32,6 +36,9 @@ import controleur.connexion.Onlinote;
 public class FenetreAdmin {
 	
 	protected static JFrame maFenetreAdmin = null;
+	private JPanel panelCentre = null;
+	private JPanel panelGestion = null;
+	private JPanel monCadreGestionEleve = null;
 
     private FenetreAdmin(Personne personne){
         
@@ -70,13 +77,13 @@ public class FenetreAdmin {
         
         java.net.URL imgURLAccueil = null;
         try {
-            imgURLAccueil = new java.net.URL("file:img/mines_ales.png");
+            imgURLAccueil = new java.net.URL("file:img/gard.png");
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             log4j.error("image existe pas");
 
         }
-        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage());
+        ImageIcon imgAccueil = new ImageIcon(new ImageIcon(imgURLAccueil).getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT));
         
         JLabel lblImgAccueil= new JLabel(imgAccueil);
         lblImgAccueil.setBounds(0,0,100,100);
@@ -103,8 +110,7 @@ public class FenetreAdmin {
         try {
             imgURLOff = new java.net.URL("file:img/offBlack.png");
         } catch (MalformedURLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            log4j.info(e1.getMessage());
         }
         ImageIcon imgOff = new ImageIcon(new ImageIcon(imgURLOff).getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
         
@@ -144,7 +150,7 @@ public class FenetreAdmin {
         maFenetreAdmin.getContentPane().add(menuDroite, BorderLayout.EAST);
                 
         
-        JPanel panelCentre = new JPanel(new BorderLayout());
+        panelCentre = new JPanel(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.weighty = 1;
@@ -155,19 +161,63 @@ public class FenetreAdmin {
         ButtonGroup group = new ButtonGroup();
         JRadioButton aRadioButton = new JRadioButton("Gestion des élèves", true);
         aRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+        ActionListener actionListener = new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                          monCadreGestionEleve.removeAll();
+                          monCadreGestionEleve = new CadreGestionEleve().getCadreGestionEleve();
+                          Border borderClasse = BorderFactory.createTitledBorder("Classes");
+                          monCadreGestionEleve.setBorder(borderClasse);
+                          monCadreGestionEleve.revalidate();
+                          monCadreGestionEleve.repaint();
+                          
+                          
+                }
+        };
+        
+        aRadioButton.addActionListener(actionListener);
         multiRadio.add(aRadioButton, BorderLayout.NORTH);
         group.add(aRadioButton);
         JRadioButton aRadioButton2 = new JRadioButton("Gestion des professeurs");
         multiRadio.add(aRadioButton2, BorderLayout.CENTER);
         aRadioButton2.setHorizontalAlignment(SwingConstants.CENTER);
+        ActionListener actionListener2 = new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                          
+                monCadreGestionEleve.removeAll();
+                Border borderClasse = BorderFactory.createTitledBorder("Professeurs");
+                monCadreGestionEleve.setBorder(borderClasse);
+                monCadreGestionEleve.revalidate();
+                monCadreGestionEleve.repaint();
+                }
+        };
+        
+        aRadioButton2.addActionListener(actionListener2);
         group.add(aRadioButton2);
         JRadioButton aRadioButton3 = new JRadioButton("Gestion de l'emploi du temps");
         multiRadio.add(aRadioButton3, BorderLayout.SOUTH);
         aRadioButton3.setHorizontalAlignment(SwingConstants.CENTER);
+        ActionListener actionListener3 = new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                monCadreGestionEleve.removeAll(); 
+                Border borderClasse = BorderFactory.createTitledBorder("Emploi du temps");
+                monCadreGestionEleve.setBorder(borderClasse);
+                monCadreGestionEleve.revalidate();
+                monCadreGestionEleve.repaint();
+                          
+
+                }
+        };
+        
+        aRadioButton3.addActionListener(actionListener3);
         group.add(aRadioButton3);
         
         panelCentre.add(multiRadio, BorderLayout.NORTH);
         
+        JPanel panelTopPourRecherche = new JPanel(new BorderLayout());
         final JTextField textField = new JTextField("Rechercher");
         
         gbc.gridy=1;
@@ -182,14 +232,23 @@ public class FenetreAdmin {
         });
         
         textField.setPreferredSize(new Dimension(10,20));
-        JPanel panelGestion = new JPanel(new BorderLayout());
+        panelGestion = new JPanel(new BorderLayout());
         
         panelGestion.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
         
-        panelGestion.add(textField, BorderLayout.NORTH);
+        JButton btnSearch = new JButton("Rechercher");
+        btnSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                
+            }
+        });
+        panelTopPourRecherche.add(btnSearch, BorderLayout.EAST);
+        panelTopPourRecherche.add(textField, BorderLayout.CENTER);
+        
+        panelGestion.add(panelTopPourRecherche, BorderLayout.NORTH);
        
         
-        JPanel monCadreGestionEleve = new CadreGestionEleve().getCadreGestionEleve();
+        monCadreGestionEleve = new CadreGestionEleve().getCadreGestionEleve();
         panelGestion.add(monCadreGestionEleve,BorderLayout.CENTER);
         
         panelCentre.add(panelGestion, BorderLayout.CENTER);

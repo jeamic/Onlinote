@@ -99,7 +99,6 @@ public class FenetreEleve {
         try {
             imgURLAccueil = new java.net.URL("file:img/gard.png");
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             log4j.error("image existe pas");
 
         }

@@ -63,13 +63,14 @@ public class NouveauMessage {
         txtDestinataire.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                if (txtDestinataire.getText() != "Destinataire") return;
-                txtDestinataire.setText("");
+                if (txtDestinataire.getText().equals("Destinataire")) {
+                    txtDestinataire.setText("");
+                }
             }
         });
         txtDestinataire.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtDestinataire.setText("Destinataire");
-        if (dest != "")
+        if (!dest.equals(""))
         {
             txtDestinataire.setText(dest);
         }
@@ -141,13 +142,14 @@ public class NouveauMessage {
         txtSujet.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                if (txtSujet.getText() != "Sujet") return;
-                txtSujet.setText("");
+                if (txtSujet.getText().equals("Sujet")) {
+                    txtSujet.setText(""); 
+                }
             }
         });
         txtSujet.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtSujet.setText("Sujet");
-        if (obj != "")
+        if (!obj.equals(""))
         {
            txtSujet.setText(obj);
         }
@@ -172,7 +174,7 @@ public class NouveauMessage {
         });
         txtrMssage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
         txtrMssage.setText("Message");
-        if (cont != "")
+        if (!cont.equals(""))
         {
             txtrMssage.setText(cont);
         }

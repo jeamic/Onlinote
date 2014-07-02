@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.LogManager;
+
 import modele.vue.dao.DAOVueCours;
 import vue.tools.ModelTableEdt;
 import controleur.cours.GestionCours;
@@ -30,6 +32,14 @@ public class EmploiDuTemps {
     private JPanel eDT = null;
 
     public EmploiDuTemps (int idEleve) {
+        
+        /**
+         * Log4j logger
+         */
+        
+        
+        
+        org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
     
         ideleve = idEleve;
     
@@ -57,7 +67,7 @@ public class EmploiDuTemps {
             c.setTime(sdf.parse(dt));
             dt = sdf.format(c.getTime());
         } catch (ParseException e) {
-            e.printStackTrace();
+            log4j.info(e.getMessage());
         }
         
         
