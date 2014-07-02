@@ -1,9 +1,5 @@
 package modele.vue.dao;
 
-
-
-
-
 public class DAOVueControle {
 
     private int idControle;

@@ -239,6 +239,46 @@ public class DAOEleve extends DAOFactory<Eleve>{
         }        
         return listeNotes;
     }
+    
+    /**
+     * Obtient la note d'un élève pour un contrôle
+     * 
+     * @param idEleve
+     * @param nomMatiere
+     * @param trimestre
+     * @return
+     */
+    public DAOVueNote getNoteControle (int idEleve, int idControle){
+        
+        /* déclaration et init des variables nécessaires */
+        DAOVueNote note = null;
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        /* requête pour rechercher la personne, param 1 = date, param 2 = idEleve*/
+        try {
+            String query = "select cont.id_controle, m.matiere, note, trimestre, cont.coefficient, cont.note_max"
+                    + " from subit_examen s, eleve e, matiere m, cours c, controles cont"
+                    + " where s.id_eleve = " + idEleve
+                    + " and s.id_controle = " + idControle
+                    + " and s.id_cours = c.id_cours"
+                    + " and c.matiere = m.matiere"
+                    + " and s.id_controle = cont.id_controle"
+                    + " and s.id_eleve = e.id_eleve";
+            
+                stmt =   conn.createStatement();
+                res = stmt.executeQuery(query);
+                
+                while (res.next()){
+                    note = new DAOVueNote(idEleve, res.getDouble("note"), res.getDouble("note_max"), res.getDouble("coefficient"), res.getInt("trimestre"), res.getString("matiere"));
+                }
+            } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return note;
+    }
 
     @Override
     public Eleve map(java.sql.ResultSet resultSet) {

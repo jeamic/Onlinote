@@ -81,11 +81,11 @@ public class DAOCours extends DAOFactory<Cours>{
     /**
      * Obtient les cours d'un élève à une date donnée
      *  
-     * @param idEleve
+     * @param idPersonne
      * @param date format: 2014-05-15 10:00:01
      * @return 
      */
-    public DAOVueCours getCours (int idEleve, String date) {
+    public DAOVueCours getCours (int idPersonne, String date) {
         /* déclaration et init des variables nécessaires */
         DAOVueCours cours = new DAOVueCours();
         Statement stmt = null;
@@ -98,14 +98,14 @@ public class DAOCours extends DAOFactory<Cours>{
             stmt = conn.createStatement();
             res =   stmt.executeQuery(
                       "select  cours.id_cours, salle.nom_salle, prof.nom, cours.matiere, nom_classe"
-                     +" from    cours, enseigne ens, personne prof, eleve, salle, classe cl"
+                     +" from    cours, enseigne ens, personne prof, eleve, salle, classe cl, personne p"
                      +" where   eleve.id_classe = ens.id_classe"
                      +  " and ens.id_personne = prof.id_personne"
                      +  " and ens.id_cours = cours.id_cours"
                      +  " and '" + date + "' between heure_debut and addtime(heure_debut, duree)"
                      +  " and cours.id_salle = salle.id_salle"
                      +  " and ens.id_classe = cl.id_classe"
-                     +  " and eleve.id_eleve = " + idEleve + ";");
+                     +  " and p.id_personne = " + idPersonne + ";");            
 
             while (res.next()){
                 cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("nom_salle"), res.getString("matiere"));

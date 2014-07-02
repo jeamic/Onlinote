@@ -39,6 +39,22 @@ public class GestionNotes {
     }
     
     /**
+     * Obtient la note 
+     * 
+     * @param idEleve
+     * @param trimestre
+     * @param matiere
+     * @return
+     */
+    public DAOVueNote getNoteControle (int idEleve, int idControle){
+        DAOVueNote note = new DAOVueNote();
+        DAOEleve daoSubitExamen = new DAOEleve();
+        note = daoSubitExamen.getNoteControle(idEleve, idControle);
+
+        return note;
+    }
+    
+    /**
      * Ajouter une note
      * 
      * @param idEleve
