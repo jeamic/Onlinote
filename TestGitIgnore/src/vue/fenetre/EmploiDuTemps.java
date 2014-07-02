@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,9 +18,6 @@ import javax.swing.SwingConstants;
 
 import modele.vue.dao.DAOVueCours;
 import vue.tools.ModelTableEdt;
-
-import com.ibm.icu.util.Calendar;
-
 import controleur.cours.GestionCours;
 
 public class EmploiDuTemps {

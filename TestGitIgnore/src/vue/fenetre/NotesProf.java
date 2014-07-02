@@ -1,28 +1,18 @@
 package vue.fenetre;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.List;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
-import modele.base.dao.Matiere;
-import modele.base.dao.Personne;
-import modele.vue.dao.DAOVueNote;
-import modele.vue.dao.DAOVuePersonne;
-import vue.fenetre.Messagerie.MsgTableSelectionListenerRecu;
-import vue.tools.ModelTableNote;
-import controleur.administration.GestionClasse;
-import controleur.cours.GestionMatiere;
-import controleur.cours.GestionNotes;
-
-import javax.swing.JComboBox;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import modele.vue.dao.DAOVuePersonne;
+import controleur.administration.GestionClasse;
 
 public class NotesProf {
     private JPanel notes = null;
@@ -77,6 +67,8 @@ public class NotesProf {
         
         GestionClasse gestionnaireClasse = new GestionClasse();
         listEleve = gestionnaireClasse.getEleves(nomClasse);
+        
+        //GestionControle gestionnaireControle = new GestionContro
         
         for (int i =0;i<listEleve.size();++i)
         {
