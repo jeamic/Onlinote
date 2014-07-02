@@ -7,6 +7,7 @@ import modele.base.actionsdao.DAOEleve;
 import modele.base.actionsdao.DAOPersonne;
 import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
+import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVuePersonne;
 
 public class GestionEleve {
@@ -42,8 +43,8 @@ public class GestionEleve {
      * @param name
      * @return
      */
-    public List<DAOVuePersonne> getEleveByName (String name) {
-        List<DAOVuePersonne> listeDaoVueEleve = new ArrayList<DAOVuePersonne>();
+    public List<DAOVueEleve> getEleveByName (String name) {
+        List<DAOVueEleve> listeDaoVueEleve = new ArrayList<DAOVueEleve>();
         DAOEleve daoEleve = new DAOEleve();
         listeDaoVueEleve = daoEleve.findEleveByName(name);
         

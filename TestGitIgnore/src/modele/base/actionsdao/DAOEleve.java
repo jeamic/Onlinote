@@ -6,6 +6,7 @@ import java.util.List;
 import modele.base.dao.Eleve;
 import modele.base.dao.Personne;
 import modele.utils.ConnexionJDBC;
+import modele.vue.dao.DAOVueEleve;
 import modele.vue.dao.DAOVuePersonne;
 import modele.vue.dao.DAOVueNote;
 
@@ -129,11 +130,11 @@ public class DAOEleve extends DAOFactory<Eleve>{
      * @param name
      * @return
      */
-    public List<DAOVuePersonne> findEleveByName (String name) {
+    public List<DAOVueEleve> findEleveByName (String name) {
         /* déclaration et init des variables nécessaires */
-        DAOVuePersonne daoVueEleve = null;
+        DAOVueEleve daoVueEleve = null;
         Personne eleve = null;
-        List<DAOVuePersonne> listeEleve = null;
+        List<DAOVueEleve> listeEleve = null;
         
         Statement stmt = null;
         ResultSet res = null;
@@ -149,7 +150,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
                                  + "or prenom LIKE '" + name + "%' "
                                 + "and id_personne in "
                                         + " (select id_eleve from eleve;");
-            listeEleve = new ArrayList<DAOVuePersonne>();
+            listeEleve = new ArrayList<DAOVueEleve>();
             
             while (res.next()){
                 eleve = new Personne();
@@ -160,7 +161,7 @@ public class DAOEleve extends DAOFactory<Eleve>{
                 eleve.setEmail(res.getString("email"));
                 
                 /* création de l'objet correspondant à l'élève recherchée */
-                daoVueEleve = new DAOVuePersonne(eleve, res.getInt("id_classe"), res.getInt("id_parent1"), res.getInt("id_parent2"));
+                daoVueEleve = new DAOVueEleve(eleve, res.getInt("id_classe"), res.getInt("id_parent1"), res.getInt("id_parent2"));
                 listeEleve.add(daoVueEleve);
             }
         } catch (SQLException e) {
