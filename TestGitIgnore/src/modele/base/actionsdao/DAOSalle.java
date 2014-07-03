@@ -44,9 +44,26 @@ public class DAOSalle extends DAOFactory<Salle>{
 	}
 
 	@Override
-	public Salle find(String chaine) {
-		
-		return null;
+	public Salle find(String nomSalle) {
+        /* déclaration et init des variables nécessaires */
+        Salle salle = new Salle();
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        
+        try {
+            stmt = conn.createStatement();
+            res = stmt.executeQuery("select * from salle where nom_salle = " + nomSalle);
+
+            while (res.next()){
+                salle = new Salle(res.getInt("id_salle"), nomSalle);
+            }
+            
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }        
+        return salle;
 	}
 
     @Override
@@ -63,7 +80,7 @@ public class DAOSalle extends DAOFactory<Salle>{
             res = stmt.executeQuery("select * from salle");
 
             while (res.next()){
-                listeSalle.add(new Salle(res.getInt("id_salle")));
+                listeSalle.add(new Salle(res.getInt("id_salle"), res.getString("nom_salle")));
             }
             
         } catch (SQLException e) {

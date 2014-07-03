@@ -1,5 +1,7 @@
 package controleur.cours;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import modele.base.actionsdao.DAOCours;
@@ -52,8 +54,9 @@ public class GestionCours {
         return cours;
     }
     
-    public void ajouterCours() {
-        return;
+    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree) {
+        DAOCours daoCours = new DAOCours();
+        daoCours.ajouterCours(daoVueCours, heureDebut, duree);
     }
     
     public void modifierCours () {

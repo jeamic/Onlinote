@@ -10,8 +10,9 @@ public class Salle implements java.io.Serializable {
 
     public Salle () {
 	}
-	public Salle (int idSalle) {
+	public Salle (int idSalle, String nomSalle) {
 		this.idSalle = idSalle;
+		this.nomSalle = nomSalle;
 	}
 	public int getIdSalle() {
 		return idSalle;

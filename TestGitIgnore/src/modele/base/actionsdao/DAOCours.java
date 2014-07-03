@@ -6,15 +6,18 @@ import java.util.List;
 import modele.base.dao.Categorie;
 import modele.base.dao.Cours;
 import modele.base.dao.Matiere;
+import modele.base.dao.Salle;
 import modele.utils.ConnexionJDBC;
 import modele.vue.dao.DAOVueCours;
 
 import org.apache.log4j.LogManager;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
 
 import controleur.connexion.Connexion;
 
@@ -32,8 +35,25 @@ public class DAOCours extends DAOFactory<Cours>{
 	}
 
 	@Override
-	public Cours create(Cours obj) {
-		
+	public Cours create(Cours cours) {
+        Statement stmt = null;
+        ResultSet res = null;
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        try {
+            stmt = conn.createStatement();
+            String req = "INSERT INTO Cours (id_cours, matiere, id_salle, commentaire, heure_debut, duree)"
+                    + " values (" + cours.getidCours()
+                    + "," + cours.getMatiere()
+                    + "," + cours.getidSalle() 
+                    + "," + cours.getCommentaire()
+                    + "," + cours.getheureDebut()
+                    + "," + cours.getDuree() + ");";
+            stmt.executeUpdate(req);
+        
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
 		return null;
 	}
 
@@ -146,7 +166,7 @@ public class DAOCours extends DAOFactory<Cours>{
                      +  " and '" + date + "' between heure_debut and addtime(heure_debut, duree)"
                      +  " and cours.id_salle = salle.id_salle"
                      +  " and ens.id_classe = cl.id_classe"
-                     +  " and cl.nom_classe = " + nomClasse + ";");            
+                     +  " and cl.nom_classe = '" + nomClasse + "';");            
 
             while (res.next()){
                 cours = new DAOVueCours(res.getInt("id_cours"), res.getString("nom"), res.getString("nom_classe"), res.getString("nom_salle"), res.getString("matiere"));
@@ -156,6 +176,16 @@ public class DAOCours extends DAOFactory<Cours>{
             log4j.info(e.getMessage(), e);
         }        
         return cours;
+    }
+    
+    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree){
+        DAOSalle daoSalle = new DAOSalle();
+        Salle salle = daoSalle.find(daoVueCours.getSalle());
+        int idSalle = salle.getIdSalle();
+        
+        DAOCours daoCours = new DAOCours();
+        Cours cours = new Cours(daoVueCours.getIdCours(), daoVueCours.getMatiere(), idSalle, "", heureDebut, duree);
+        daoCours.create(cours);
     }
     
     @Override

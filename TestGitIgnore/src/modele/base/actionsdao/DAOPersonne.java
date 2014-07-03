@@ -186,8 +186,8 @@ public class DAOPersonne extends DAOFactory<Personne>{
             stmt = conn.createStatement();
             res = stmt.executeQuery("select * "
                                 + " from personne "
-                                + " where nom LIKE '" + name + "%' "
-                                 + "or prenom LIKE '" + name + "%' ");
+                                + " where nom like '%" + name + "%' "
+                                 + "or prenom like '%" + name + "%' ");
             listePersonne = new ArrayList<DAOVuePersonne>();
             
             while (res.next()){
