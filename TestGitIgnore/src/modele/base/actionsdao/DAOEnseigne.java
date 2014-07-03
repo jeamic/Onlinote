@@ -30,7 +30,7 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
 
 	@Override
 	public Enseigne create(Enseigne obj) {
-		
+
 		return null;
 	}
 

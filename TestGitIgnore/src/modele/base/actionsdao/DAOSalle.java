@@ -54,7 +54,7 @@ public class DAOSalle extends DAOFactory<Salle>{
         
         try {
             stmt = conn.createStatement();
-            res = stmt.executeQuery("select * from salle where nom_salle = " + nomSalle);
+            res = stmt.executeQuery("select * from salle where nom_salle = '" + nomSalle + "'");
 
             while (res.next()){
                 salle = new Salle(res.getInt("id_salle"), nomSalle);
