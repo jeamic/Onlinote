@@ -16,10 +16,16 @@ import javax.swing.JPanel;
 
 import modele.base.dao.Matiere;
 import modele.vue.dao.DAOVueCours;
+import modele.vue.dao.DAOVuePersonne;
+import modele.vue.dao.DAOVueSalle;
+import controleur.administration.GestionSalles;
 import controleur.cours.GestionCours;
 import controleur.cours.GestionMatiere;
+import controleur.prof.GestionProf;
 
 import javax.swing.JButton;
+
+import vue.tools.ComboItem;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,10 +41,10 @@ public class NouveauCours {
     private JComboBox<String> comboBoxMatiere;
     private JButton btnAjouterCours;
     private JLabel lblNomProf;
-    private JComboBox comboBoxSalle;
-    private JComboBox comboBoxProf;
+    private JComboBox<String> comboBoxSalle;
+    private JComboBox<ComboItem> comboBoxProf;
     private String dateP = null;
-    private NouveauCours(String date) {
+    private NouveauCours(String date, String nomClasse) {
         
         
         frmCours = new JFrame();
@@ -61,7 +67,13 @@ public class NouveauCours {
         gbc_lblNomSalle.gridy = 1;
         panel.add(lblNomSalle, gbc_lblNomSalle);
         
-        comboBoxSalle = new JComboBox();
+        comboBoxSalle = new JComboBox<String>();
+        GestionSalles gestionnaireSalle = new GestionSalles();
+        List<DAOVueSalle> listSalle = gestionnaireSalle.getAllNomSalles();
+        
+        for (int i =0; i<listSalle.size();++i){
+            comboBoxSalle.addItem(listSalle.get(i).getNomSalle());
+        }
         GridBagConstraints gbc_comboBoxSalle = new GridBagConstraints();
         gbc_comboBoxSalle.insets = new Insets(0, 0, 5, 0);
         gbc_comboBoxSalle.fill = GridBagConstraints.HORIZONTAL;
@@ -116,7 +128,15 @@ public class NouveauCours {
         gbc_lblNomProf.gridy = 7;
         panel.add(lblNomProf, gbc_lblNomProf);
         
-        comboBoxProf = new JComboBox();
+        comboBoxProf = new JComboBox<ComboItem>();
+        GestionProf gestionnaireProf = new GestionProf();
+        List<DAOVuePersonne> listProf = gestionnaireProf.getAllProf();
+        
+        for (int i = 0; i<listProf.size();++i) {
+            comboBoxProf.addItem(new ComboItem(listProf.get(i).getNom() + " " + listProf.get(i).getPrenom(), listProf.get(i).getIdEleve()));
+            
+        }
+        
         GridBagConstraints gbc_comboBoxProf = new GridBagConstraints();
         gbc_comboBoxProf.insets = new Insets(0, 0, 5, 0);
         gbc_comboBoxProf.fill = GridBagConstraints.HORIZONTAL;
@@ -128,10 +148,13 @@ public class NouveauCours {
         btnAjouterCours.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
+                Object itemP = comboBoxProf.getSelectedItem();
                 DAOVueCours cours = new DAOVueCours();
                 cours.setMatiere(comboBoxMatiere.getSelectedItem().toString());
+                cours.setSalle(comboBoxSalle.getSelectedItem().toString());
                 GestionCours gestionnaireCours = new GestionCours();
-                gestionnaireCours.ajouterCours(cours, Date.valueOf(dateP), Time.valueOf(comboBoxDuree.getSelectedItem().toString()));
+
+                gestionnaireCours.ajouterCours(cours, Date.valueOf(dateP), Time.valueOf(comboBoxDuree.getSelectedItem().toString()),((ComboItem)itemP).getValue(), "");
             }
         });
         GridBagConstraints gbc_btnAjouterCours = new GridBagConstraints();
@@ -154,8 +177,8 @@ public class NouveauCours {
         
     }
     
-    public static void creerNouveauCours(String date) {
-        new NouveauCours(date);
+    public static void creerNouveauCours(String date, String nomClasse) {
+        new NouveauCours(date, nomClasse);
     }
     
    

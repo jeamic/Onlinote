@@ -44,6 +44,7 @@ public class CadreGestionEdt {
     private int ideleve = 0;
     int row = 0;
     int column = 0;
+    String nomClasse = null;
  
     private JPanel eDT = new JPanel(new BorderLayout());
     public CadreGestionEdt() {
@@ -152,6 +153,7 @@ public class CadreGestionEdt {
                     if (eDT != null) {
                         eDT.removeAll();
                     }
+                    nomClasse = comboBox3.getSelectedItem().toString();
                     GestionClasse gestionnaireClasse = new GestionClasse();
                     ideleve = gestionnaireClasse.getIdEleveFromClass(comboBox3.getSelectedItem().toString());
                     genereEmploiDuTemps();
@@ -340,7 +342,7 @@ public class CadreGestionEdt {
                     case 1 :
                         coursSelected = coursLundi.get(row);
                         if (coursSelected.getMatiere() == null) {
-                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure, nomClasse);
                         }
                         
                         
@@ -348,25 +350,25 @@ public class CadreGestionEdt {
                     case 2 :
                         coursSelected = coursMardi.get(row);
                         if (coursSelected.getMatiere().equals(null)) {
-                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure, nomClasse);
                         }
                         break;
                     case 3 :
                         coursSelected = coursMercredi.get(row);
                         if (coursSelected.getMatiere().equals(null)) {
-                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure, nomClasse);
                         }
                         break;
                     case 4 :
                         coursSelected = coursJeudi.get(row);
                         if (coursSelected.getMatiere().equals(null)) {
-                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure, nomClasse);
                         }
                         break;
                     case 5 :
                         coursSelected = coursVendredi.get(row);
                         if (coursSelected.getMatiere().equals(null)) {
-                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure, nomClasse);
                         }
                         break;
                         
