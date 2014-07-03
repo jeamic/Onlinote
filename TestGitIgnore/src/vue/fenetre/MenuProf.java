@@ -349,7 +349,7 @@ public class MenuProf {
 	                remplirFenetre("Onlinote - Emploi du temps","");
 	                FenetreProf.panelCenter = new JPanel(new BorderLayout());
 	                
-	                JPanel monEDT = new EmploiDuTemps(personne.getIdPersonne()).getEDT();
+	                JPanel monEDT = new EmploiDuTempsProf(clas.getNomClasse()).getEDT();
 	                monEDT.setBorder(BorderFactory.createEmptyBorder(0,30,30,30));
 	                FenetreProf.panelCenter.add(monEDT);
 	  

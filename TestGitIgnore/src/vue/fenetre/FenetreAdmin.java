@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -29,10 +30,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import modele.base.dao.Personne;
+import modele.vue.dao.DAOVuePersonne;
 
 import org.apache.log4j.LogManager;
 
 import controleur.connexion.Onlinote;
+import controleur.personne.GestionPersonne;
 
 public class FenetreAdmin {
 	
@@ -243,7 +246,35 @@ public class FenetreAdmin {
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 
+                GestionPersonne gestionnairePersonne = new GestionPersonne();
+                List<DAOVuePersonne> listRecherche = gestionnairePersonne.findPersonneByName(textField.getText());
                 
+                monCadreGestionEleve.removeAll();
+                Border borderClasse = BorderFactory.createTitledBorder("Résultat(s) recherche");
+                monCadreGestionEleve.setBorder(borderClasse);
+                
+                JPanel Recherche = new JPanel(new GridBagLayout());
+                
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.anchor = GridBagConstraints.NORTH;
+                gbc.weighty = 1;
+                gbc.weightx = 1;
+                gbc.gridy = 0;
+                gbc.gridx = 0;
+                
+                monCadreGestionEleve.add(Recherche);
+                JLabel personne = new JLabel();
+                for (int i = 0; i<listRecherche.size();++i){
+                    personne = new JLabel();
+                    personne.setText(listRecherche.get(i).getNom() + " " + listRecherche.get(i).getPrenom());
+                    System.out.println(personne.getText());
+                    gbc.gridy = i;
+                    Recherche.add(personne, gbc);
+                }
+                
+
+                monCadreGestionEleve.revalidate();
+                monCadreGestionEleve.repaint();
             }
         });
         panelTopPourRecherche.add(btnSearch, BorderLayout.EAST);

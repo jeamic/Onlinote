@@ -22,16 +22,16 @@ import modele.vue.dao.DAOVueCours;
 import vue.tools.ModelTableEdt;
 import controleur.cours.GestionCours;
 
-public class EmploiDuTemps {
+public class EmploiDuTempsProf {
 
     private Calendar c = null;
     private String dt = null;
     private SimpleDateFormat sdf = null;
-    private int ideleve = 0;
+    private String nomclasse = null;
  
     private JPanel eDT = null;
 
-    public EmploiDuTemps (int idEleve) {
+    public EmploiDuTempsProf (String nomClasse) {
         
         /**
          * Log4j logger
@@ -41,7 +41,7 @@ public class EmploiDuTemps {
         
         org.apache.log4j.Logger log4j =  LogManager.getLogger(ConnexionGUI.class.getName());
     
-        ideleve = idEleve;
+        nomclasse = nomClasse;
     
         eDT = new JPanel(new BorderLayout());
         
@@ -150,17 +150,17 @@ public class EmploiDuTemps {
             
             if (h== 8 || h == 9) {
                 
-                coursLundi.add(gestionnaireCours.getCours(idEleve, dateCours.get(0) + " 0" + h + ":00:02"));
-                coursMardi.add(gestionnaireCours.getCours(idEleve, dateCours.get(1)  + " 0" + h + ":00:02"));
-                coursMercredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(2) + " 0" + h + ":00:02"));
-                coursJeudi.add(gestionnaireCours.getCours(idEleve, dateCours.get(3) + " 0" + h + ":00:02"));
-                coursVendredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(4) + " 0" + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(0) + " 0" + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(1)  + " 0" + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(2) + " 0" + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(3) + " 0" + h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(4) + " 0" + h + ":00:02"));
             } else {
-                coursLundi.add(gestionnaireCours.getCours(idEleve, dateCours.get(0) +" " + h + ":00:02"));
-                coursMardi.add(gestionnaireCours.getCours(idEleve, dateCours.get(1) +" " + h + ":00:02"));
-                coursMercredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(2) +" " + h + ":00:02"));
-                coursJeudi.add(gestionnaireCours.getCours(idEleve, dateCours.get(3) +" "+ h + ":00:02"));
-                coursVendredi.add(gestionnaireCours.getCours(idEleve, dateCours.get(4) +" " + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(0) +" " + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(1) +" " + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(2) +" " + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(3) +" "+ h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(nomClasse, dateCours.get(4) +" " + h + ":00:02"));
             }
 
             h = h+1;
@@ -257,17 +257,17 @@ public class EmploiDuTemps {
         for (int i=0; i < 10 ;++i) {
             
             if (h== 8 || h == 9) {
-                coursLundi.add(gestionnaireCours.getCours(ideleve, dateCours.get(0) + " 0" + h + ":00:02"));
-                coursMardi.add(gestionnaireCours.getCours(ideleve, dateCours.get(1)  + " 0" + h + ":00:02"));
-                coursMercredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(2) + " 0" + h + ":00:02"));
-                coursJeudi.add(gestionnaireCours.getCours(ideleve, dateCours.get(3) + " 0" + h + ":00:02"));
-                coursVendredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(4) + " 0" + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(0) + " 0" + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(1)  + " 0" + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(2) + " 0" + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(3) + " 0" + h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(4) + " 0" + h + ":00:02"));
             } else {
-                coursLundi.add(gestionnaireCours.getCours(ideleve, dateCours.get(0) +" " + h + ":00:02"));
-                coursMardi.add(gestionnaireCours.getCours(ideleve, dateCours.get(1) +" " + h + ":00:02"));
-                coursMercredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(2) +" " + h + ":00:02"));
-                coursJeudi.add(gestionnaireCours.getCours(ideleve, dateCours.get(3) +" "+ h + ":00:02"));
-                coursVendredi.add(gestionnaireCours.getCours(ideleve, dateCours.get(4) +" " + h + ":00:02"));
+                coursLundi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(0) +" " + h + ":00:02"));
+                coursMardi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(1) +" " + h + ":00:02"));
+                coursMercredi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(2) +" " + h + ":00:02"));
+                coursJeudi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(3) +" "+ h + ":00:02"));
+                coursVendredi.add(gestionnaireCours.getCours(nomclasse, dateCours.get(4) +" " + h + ":00:02"));
             }
 
             h = h+1;
