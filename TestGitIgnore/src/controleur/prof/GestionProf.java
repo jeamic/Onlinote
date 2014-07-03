@@ -15,6 +15,11 @@ public class GestionProf {
     public GestionProf() {     
     }
     
+    /**
+     * Renvoie tous les profs
+     * 
+     * @return
+     */
     public List<DAOVuePersonne> getAllProf (){
         DAOPersonne daoPersonne = new DAOPersonne();
         return daoPersonne.getAllProfs();

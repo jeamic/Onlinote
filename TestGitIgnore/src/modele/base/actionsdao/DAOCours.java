@@ -188,6 +188,14 @@ public class DAOCours extends DAOFactory<Cours>{
         return cours;
     }
     
+    /**
+     * Ajoute un cours
+     * 
+     * @param daoVueCours
+     * @param heureDebut
+     * @param duree
+     * @param idProf
+     */
     public void ajouterCours(DAOVueCours daoVueCours, String heureDebut, String duree, int idProf){
         DAOSalle daoSalle = new DAOSalle();
         Salle salle = daoSalle.find(daoVueCours.getSalle());

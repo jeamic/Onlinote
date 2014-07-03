@@ -11,6 +11,11 @@ public class GestionSalles {
     public GestionSalles() {
     }
     
+    /**
+     * Obtient tous les noms des salles
+     * 
+     * @return
+     */
     public List<DAOVueSalle> getAllNomSalles(){
         DAOSalle daoSalle = new DAOSalle();
         List<Salle> salle = daoSalle.findAll();

@@ -54,6 +54,14 @@ public class GestionCours {
         return cours;
     }
     
+    /**
+     * Permet l'ajout d'un cours
+     * 
+     * @param daoVueCours
+     * @param heureDebut
+     * @param duree
+     * @param idProf
+     */
     public void ajouterCours(DAOVueCours daoVueCours, String heureDebut, String duree, int idProf) {
         DAOCours daoCours = new DAOCours();
         daoCours.ajouterCours(daoVueCours, heureDebut, duree, idProf);
