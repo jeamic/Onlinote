@@ -37,7 +37,6 @@ public class DAOCours extends DAOFactory<Cours>{
 
 	@Override
 	public Cours create(Cours cours) {
-	    
 	    PreparedStatement preparedStatement = null;
         ConnexionJDBC instance = ConnexionJDBC.getInstance();
         Connection conn = (Connection) instance.getConnection();
@@ -47,7 +46,7 @@ public class DAOCours extends DAOFactory<Cours>{
                 conn.prepareStatement("INSERT INTO Cours (id_cours, matiere, id_salle, commentaire, heure_debut, duree)"
                         + " values (?, ?, ?, ?, "
                         + "'" + cours.getheureDebut() + "'"
-                        + ", '" + cours.getDuree() + "'", Statement.RETURN_GENERATED_KEYS);
+                        + ", '" + cours.getDuree() + "')", Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, cours.getidCours());
             preparedStatement.setString(2, cours.getMatiere());
@@ -203,7 +202,7 @@ public class DAOCours extends DAOFactory<Cours>{
         Enseigne enseigne = new Enseigne();
         
         DAOClasse daoClasse = new DAOClasse();
-        enseigne.setIdClasse(daoClasse.find(daoVueCours.getSalle()).getIdClasse());
+        enseigne.setIdClasse(daoClasse.find(daoVueCours.getNomClasse()).getIdClasse());
         enseigne.setIdCours(cours.getidCours());
         enseigne.setIdPersonne(idProf);
         daoEnseigne.create(enseigne);

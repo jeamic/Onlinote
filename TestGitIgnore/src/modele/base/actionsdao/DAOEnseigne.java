@@ -1,5 +1,6 @@
 package modele.base.actionsdao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,9 +30,22 @@ public class DAOEnseigne extends DAOFactory <Enseigne>{
 	}
 
 	@Override
-	public Enseigne create(Enseigne obj) {
-
-		return null;
+	public Enseigne create(Enseigne ens) {
+        ConnexionJDBC instance = ConnexionJDBC.getInstance();
+        Connection conn = (Connection) instance.getConnection();
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+            String req = "INSERT INTO Enseigne (id_classe, id_cours, id_personne)"
+                    + " values (" + ens.getIdClasse()
+                    + "," + ens.getIdCours()
+                    + "," + ens.getIdPersonne() +  ")";
+            stmt.executeUpdate(req);
+        
+        } catch (SQLException e) {
+            log4j.info(e.getMessage(), e);
+        }
+        return ens;
 	}
 
 	@Override

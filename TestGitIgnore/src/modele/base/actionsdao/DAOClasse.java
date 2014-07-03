@@ -51,7 +51,7 @@ public class DAOClasse extends DAOFactory <Classe>{
 	@Override
 	public Classe find(String nomClasse) {
         /* déclaration et init des variables nécessaires */
-        int idClasse;
+        int idClasse = 0;
         Classe classe = null;
         Statement stmt = null;
         ResultSet res = null;
