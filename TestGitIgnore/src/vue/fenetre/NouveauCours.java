@@ -44,7 +44,7 @@ public class NouveauCours {
     private JComboBox<String> comboBoxSalle;
     private JComboBox<ComboItem> comboBoxProf;
     private String dateP = null;
-    private NouveauCours(String date, String nomClasse) {
+    private NouveauCours(String date, final String nomClasse) {
         
         
         frmCours = new JFrame();
@@ -152,9 +152,10 @@ public class NouveauCours {
                 DAOVueCours cours = new DAOVueCours();
                 cours.setMatiere(comboBoxMatiere.getSelectedItem().toString());
                 cours.setSalle(comboBoxSalle.getSelectedItem().toString());
+                cours.setNomClasse(nomClasse);
                 GestionCours gestionnaireCours = new GestionCours();
 
-                gestionnaireCours.ajouterCours(cours, Date.valueOf(dateP), Time.valueOf(comboBoxDuree.getSelectedItem().toString()),((ComboItem)itemP).getValue(), "");
+                gestionnaireCours.ajouterCours(cours, dateP, comboBoxDuree.getSelectedItem().toString(),((ComboItem)itemP).getValue());
             }
         });
         GridBagConstraints gbc_btnAjouterCours = new GridBagConstraints();
