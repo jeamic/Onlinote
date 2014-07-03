@@ -54,9 +54,9 @@ public class GestionCours {
         return cours;
     }
     
-    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree) {
+    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree, int idProf, String nomClasse) {
         DAOCours daoCours = new DAOCours();
-        daoCours.ajouterCours(daoVueCours, heureDebut, duree);
+        daoCours.ajouterCours(daoVueCours, heureDebut, duree, idProf, nomClasse);
     }
     
     public void modifierCours () {
