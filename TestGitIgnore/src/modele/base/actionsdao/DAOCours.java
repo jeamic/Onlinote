@@ -201,6 +201,11 @@ public class DAOCours extends DAOFactory<Cours>{
         
         DAOEnseigne daoEnseigne = new DAOEnseigne();
         Enseigne enseigne = new Enseigne();
+        
+        DAOClasse daoClasse = new DAOClasse();
+        enseigne.setIdClasse(daoClasse.find(nomClasse).getIdClasse());
+        enseigne.setIdCours(cours.getidCours());
+        enseigne.setIdPersonne(idProf);
         daoEnseigne.create(enseigne);
     }
     
