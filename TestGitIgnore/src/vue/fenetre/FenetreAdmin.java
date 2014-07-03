@@ -267,7 +267,6 @@ public class FenetreAdmin {
                 for (int i = 0; i<listRecherche.size();++i){
                     personne = new JLabel();
                     personne.setText(listRecherche.get(i).getNom() + " " + listRecherche.get(i).getPrenom());
-                    System.out.println(personne.getText());
                     gbc.gridy = i;
                     Recherche.add(personne, gbc);
                 }

@@ -339,29 +339,35 @@ public class CadreGestionEdt {
                     switch (col) {
                     case 1 :
                         coursSelected = coursLundi.get(row);
-                        System.out.println(coursSelected.getMatiere());
-                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        if (coursSelected.getMatiere() == null) {
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                        }
+                        
                         
                         break;
                     case 2 :
                         coursSelected = coursMardi.get(row);
-                        System.out.println(coursSelected.getMatiere());
-                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        if (coursSelected.getMatiere().equals(null)) {
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                        }
                         break;
                     case 3 :
                         coursSelected = coursMercredi.get(row);
-                        System.out.println(coursSelected.getMatiere());
-                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        if (coursSelected.getMatiere().equals(null)) {
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                        }
                         break;
                     case 4 :
                         coursSelected = coursJeudi.get(row);
-                        System.out.println(coursSelected.getMatiere());
-                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        if (coursSelected.getMatiere().equals(null)) {
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                        }
                         break;
                     case 5 :
                         coursSelected = coursVendredi.get(row);
-                        System.out.println(coursSelected.getMatiere());
-                        System.out.println(dateCours.get(col-1) + " " + heure);
+                        if (coursSelected.getMatiere().equals(null)) {
+                            NouveauCours.creerNouveauCours(dateCours.get(col-1) + " " + heure);
+                        }
                         break;
                         
                     

@@ -7,11 +7,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+import modele.vue.dao.DAOVueClasse;
+import controleur.administration.GestionClasse;
 
 public class CadreGestionEleve {
     
@@ -38,6 +42,8 @@ public class CadreGestionEleve {
          */
         
         JPanel panel = new JPanel(new BorderLayout());
+        JPanel classe6 = new JPanel(new GridBagLayout());
+        panel.add(classe6, BorderLayout.CENTER);
         Border border6ieme = BorderFactory.createTitledBorder("6ieme");
         panel.setBorder(border6ieme);
         GridBagConstraints gbcpanel = new GridBagConstraints();
@@ -57,6 +63,8 @@ public class CadreGestionEleve {
         panelCadre.add(panel1, gbcpanel1);
         
         JPanel panel2 = new JPanel(new BorderLayout());
+        JPanel classe5 = new JPanel(new GridBagLayout());
+        panel2.add(classe5, BorderLayout.CENTER);
         Border border5ieme = BorderFactory.createTitledBorder("5ieme");
         panel2.setBorder(border5ieme);
         GridBagConstraints gbcpanel2 = new GridBagConstraints();
@@ -76,6 +84,8 @@ public class CadreGestionEleve {
         panelCadre.add(panel3, gbcpanel3);
         
         JPanel panel4 = new JPanel(new BorderLayout());
+        JPanel classe4 = new JPanel(new GridBagLayout());
+        panel4.add(classe4, BorderLayout.CENTER);
         Border border4ieme = BorderFactory.createTitledBorder("4ieme");
         panel4.setBorder(border4ieme);
         GridBagConstraints gbcpanel4 = new GridBagConstraints();
@@ -95,6 +105,8 @@ public class CadreGestionEleve {
         panelCadre.add(panel5, gbcpanel5);
         
         JPanel panel6 = new JPanel(new BorderLayout());
+        JPanel classe3 = new JPanel(new GridBagLayout());
+        panel6.add(classe3, BorderLayout.CENTER);
         Border border3ieme = BorderFactory.createTitledBorder("3ieme");
         panel6.setBorder(border3ieme);
         GridBagConstraints gbcpanel6 = new GridBagConstraints();
@@ -111,6 +123,45 @@ public class CadreGestionEleve {
         gbcpanel7.gridx = 7;
         gbcpanel7.gridy = 0;
         panelCadre.add(panel7, gbcpanel7);
+        
+        GestionClasse gestionnaireClasse = new GestionClasse();
+        
+        List<DAOVueClasse> sixieme = gestionnaireClasse.getClasses(6);
+        List<DAOVueClasse> cinquieme = gestionnaireClasse.getClasses(5);
+        List<DAOVueClasse> quatrieme = gestionnaireClasse.getClasses(4);
+        List<DAOVueClasse> troisieme = gestionnaireClasse.getClasses(3);
+        JLabel nomClasse = new JLabel();
+        
+        GridBagConstraints gbcClasses = new GridBagConstraints();
+        gbcClasses.anchor = GridBagConstraints.NORTH;
+        gbcClasses.weighty = 1;
+        gbcClasses.weightx = 1;
+        gbcClasses.gridy = 0;
+        gbcClasses.gridx = 0;
+        for (int i = 0; i<sixieme.size(); ++i) {
+            nomClasse = new JLabel();
+            nomClasse.setText(sixieme.get(i).getNomClasse());
+            gbcClasses.gridy = i;
+            classe6.add(nomClasse, gbcClasses);
+        }
+        for (int i = 0; i<cinquieme.size(); ++i) {
+            nomClasse = new JLabel();
+            nomClasse.setText(cinquieme.get(i).getNomClasse());
+            gbcClasses.gridy = i;
+            classe5.add(nomClasse, gbcClasses);
+        }
+        for (int i = 0; i<quatrieme.size(); ++i) {
+            nomClasse = new JLabel();
+            nomClasse.setText(quatrieme.get(i).getNomClasse());
+            gbcClasses.gridy = i;
+            classe4.add(nomClasse, gbcClasses);
+        }
+        for (int i = 0; i<troisieme.size(); ++i) {
+            nomClasse = new JLabel();
+            nomClasse.setText(troisieme.get(i).getNomClasse());
+            gbcClasses.gridy = i;
+            classe3.add(nomClasse, gbcClasses);
+        }
 
         
         // Ajout des +/- sur chaques cadres (panel, panel2, panel4 et panel6)
