@@ -156,6 +156,11 @@ public class NouveauCours {
                 GestionCours gestionnaireCours = new GestionCours();
 
                 gestionnaireCours.ajouterCours(cours, dateP, comboBoxDuree.getSelectedItem().toString(),((ComboItem)itemP).getValue());
+                
+                fermerFenetre();
+                CadreGestionEdt.CreerEdt(nomClasse);
+                
+                
             }
         });
         GridBagConstraints gbc_btnAjouterCours = new GridBagConstraints();
@@ -180,6 +185,10 @@ public class NouveauCours {
     
     public static void creerNouveauCours(String date, String nomClasse) {
         new NouveauCours(date, nomClasse);
+    }
+    
+    public static void fermerFenetre() {
+        frmCours.dispose();
     }
     
    

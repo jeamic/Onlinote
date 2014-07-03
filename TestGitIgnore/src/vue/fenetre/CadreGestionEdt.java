@@ -37,16 +37,16 @@ import controleur.cours.GestionCours;
 
 public class CadreGestionEdt {
     
-    private JPanel panelCadre = null;
-    private Calendar c = null;
-    private String dt = null;
-    private SimpleDateFormat sdf = null;
-    private int ideleve = 0;
+    private static JPanel panelCadre = null;
+    private static Calendar c = null;
+    private static String dt = null;
+    private static SimpleDateFormat sdf = null;
+    private static int ideleve = 0;
     int row = 0;
     int column = 0;
-    String nomClasse = null;
+    static String nomClasse = null;
  
-    private JPanel eDT = new JPanel(new BorderLayout());
+    private static JPanel eDT = new JPanel(new BorderLayout());
     public CadreGestionEdt() {
             
         
@@ -150,16 +150,7 @@ public class CadreGestionEdt {
             public void actionPerformed(ActionEvent arg0) {
                 if (comboBox3.getSelectedItem() != null) {
                     
-                    if (eDT != null) {
-                        eDT.removeAll();
-                    }
-                    nomClasse = comboBox3.getSelectedItem().toString();
-                    GestionClasse gestionnaireClasse = new GestionClasse();
-                    ideleve = gestionnaireClasse.getIdEleveFromClass(comboBox3.getSelectedItem().toString());
-                    genereEmploiDuTemps();
-                    panelCadre.add(eDT, BorderLayout.CENTER);
-                    panelCadre.repaint();
-                    panelCadre.revalidate();
+                    CreerEdt(comboBox3.getSelectedItem().toString());
                     
                 }
             }
@@ -177,7 +168,20 @@ public class CadreGestionEdt {
         return panelCadre;
     }
     
-    public void genereEmploiDuTemps() {
+    public static void CreerEdt(String nomClass) {
+        if (eDT != null) {
+            eDT.removeAll();
+        }
+        nomClasse = nomClass;
+        GestionClasse gestionnaireClasse = new GestionClasse();
+        ideleve = gestionnaireClasse.getIdEleveFromClass(nomClass);
+        genereEmploiDuTemps();
+        panelCadre.add(eDT, BorderLayout.CENTER);
+        panelCadre.repaint();
+        panelCadre.revalidate();
+    }
+    
+    public static void genereEmploiDuTemps() {
         
         /**
          * Log4j logger
@@ -404,7 +408,7 @@ public class CadreGestionEdt {
 
     }
     
-    public void modifEdt() {
+    public static void modifEdt() {
         
         eDT.removeAll();
         
