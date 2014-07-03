@@ -13,12 +13,12 @@ public class Cours implements java.io.Serializable {
 	private String matiere;
 	private int idSalle;
 	private String commentaire;
-	private Date heureDebut;
-	private Time duree;
+	private String heureDebut;
+	private String duree;
 	
 	public Cours () {
 	}
-	public Cours (int idCours, String matiere, int idSalle, String commentaire, Date heureDebut, Time duree) {
+	public Cours (int idCours, String matiere, int idSalle, String commentaire, String heureDebut, String duree) {
 		this.matiere 	 = matiere;
 		this.idSalle 	 = idSalle;
 		this.idCours 	 = idCours;
@@ -50,16 +50,16 @@ public class Cours implements java.io.Serializable {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
-	public Date getheureDebut() {
+	public String getheureDebut() {
 		return heureDebut;
 	}
-	public void setheureDebut(Date heureDebut) {
+	public void setheureDebut(String heureDebut) {
 		this.heureDebut = heureDebut;
 	}
-	public Time getDuree() {
+	public String getDuree() {
 		return duree;
 	}
-	public void setDuree(Time duree) {
+	public void setDuree(String duree) {
 		this.duree = duree;
 	}
 	

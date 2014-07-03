@@ -45,14 +45,14 @@ public class DAOCours extends DAOFactory<Cours>{
         try {            
             preparedStatement = 
                 conn.prepareStatement("INSERT INTO Cours (id_cours, matiere, id_salle, commentaire, heure_debut, duree)"
-                        + " values (?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+                        + " values (?, ?, ?, ?, "
+                        + "'" + cours.getheureDebut() + "'"
+                        + ", '" + cours.getDuree() + "'", Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, cours.getidCours());
             preparedStatement.setString(2, cours.getMatiere());
             preparedStatement.setInt(3, cours.getidSalle());
             preparedStatement.setString(4, cours.getCommentaire());
-            preparedStatement.setDate(5, cours.getheureDebut());
-            preparedStatement.setTime(6, cours.getDuree());
             preparedStatement.executeUpdate();
             
             /* on récupère l'id auto généré par la base */
@@ -99,7 +99,7 @@ public class DAOCours extends DAOFactory<Cours>{
             res = stmt.executeQuery("select * from cours");
 
             while (res.next()){
-                listeCours.add(new Cours(res.getInt("id_cours"), res.getString("matiere"), res.getInt("id_salle"), res.getString("commentaire"), res.getDate("heure_debut"), res.getTime("duree")));
+                listeCours.add(new Cours(res.getInt("id_cours"), res.getString("matiere"), res.getInt("id_salle"), res.getString("commentaire"), res.getString("heure_debut"), res.getString("duree")));
             }
             
         } catch (SQLException e) {
@@ -189,7 +189,7 @@ public class DAOCours extends DAOFactory<Cours>{
         return cours;
     }
     
-    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree, int idProf){
+    public void ajouterCours(DAOVueCours daoVueCours, String heureDebut, String duree, int idProf){
         DAOSalle daoSalle = new DAOSalle();
         Salle salle = daoSalle.find(daoVueCours.getSalle());
         int idSalle = salle.getIdSalle();
