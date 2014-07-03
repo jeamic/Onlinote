@@ -189,7 +189,7 @@ public class DAOCours extends DAOFactory<Cours>{
         return cours;
     }
     
-    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree, int idProf, String nomClasse){
+    public void ajouterCours(DAOVueCours daoVueCours, Date heureDebut, Time duree, int idProf){
         DAOSalle daoSalle = new DAOSalle();
         Salle salle = daoSalle.find(daoVueCours.getSalle());
         int idSalle = salle.getIdSalle();
@@ -203,7 +203,7 @@ public class DAOCours extends DAOFactory<Cours>{
         Enseigne enseigne = new Enseigne();
         
         DAOClasse daoClasse = new DAOClasse();
-        enseigne.setIdClasse(daoClasse.find(nomClasse).getIdClasse());
+        enseigne.setIdClasse(daoClasse.find(daoVueCours.getSalle()).getIdClasse());
         enseigne.setIdCours(cours.getidCours());
         enseigne.setIdPersonne(idProf);
         daoEnseigne.create(enseigne);
